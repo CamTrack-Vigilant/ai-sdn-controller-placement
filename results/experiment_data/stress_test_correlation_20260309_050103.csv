@@ -1,0 +1,7 @@
+algorithm,points,pearson_corr_latency_vs_reliability
+__overall__,10,
+bandit_rl,2,
+genetic,2,
+greedy_k_center,2,
+kmeans,2,
+random,2,

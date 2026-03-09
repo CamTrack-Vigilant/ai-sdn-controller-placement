@@ -1,0 +1,4 @@
+scenario,num_sites,num_controllers,algorithm,average_distance,control_plane_reliability,resilience_ratio,worst_case_distance,controller_load_std,is_pareto_optimal,ideal_point_distance,compromise_rank
+sites2_k2,2,2,bandit_rl,1.0336208573974017,1.0,1.987966547196957,2.0033550150868384,0.0,True,0.0,1.0
+sites2_k2,2,2,genetic,1.0336208573974017,1.0,1.987966547196957,2.0033550150868384,0.0,True,0.0,2.0
+sites3_k2,3,2,genetic,1.689959929418497,1.0,1.7247596344015337,3.933983102246967,1.0,True,0.0,1.0

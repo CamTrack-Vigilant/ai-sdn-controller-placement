@@ -1,0 +1,36 @@
+{
+  "topology": {
+    "num_sites": 4,
+    "nodes_per_site": 12,
+    "intra_site_degree": 4,
+    "rewiring_prob": 0.2,
+    "inter_site_links": 2,
+    "seed": 42
+  },
+  "experiment": {
+    "num_controllers": 3,
+    "trials": 5,
+    "seed": 42,
+    "metrics_to_plot": [
+      "average_distance",
+      "worst_case_distance",
+      "controller_load_std",
+      "resilience_ratio",
+      "control_plane_reliability"
+    ]
+  },
+  "outputs": {
+    "data_dir": "results/experiment_data",
+    "graph_dir": "results/graphs",
+    "logs_dir": "logs"
+  },
+  "rl_logging": {
+    "enabled": true,
+    "file_name": "rl_training.jsonl",
+    "log_every": 25
+  },
+  "rl_objective": {
+    "latency_weight": 1.0,
+    "reliability_weight": 0.25
+  }
+}
