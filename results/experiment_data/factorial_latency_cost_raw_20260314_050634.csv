@@ -1,0 +1,11 @@
+scenario,topology_model,node_count,controller_budget,trial,algorithm,avg_latency,runtime_ms,iterations_budget,iterations_to_converge,topology_seed,trial_seed,controllers
+barabasi_albert_n20_k3,barabasi_albert,20,3,1,random,6.145081870088075,0.042400002712383866,1,1,1039,10180,n2;n18;n12
+barabasi_albert_n20_k3,barabasi_albert,20,3,1,greedy_k_center,5.299499689384737,0.20349999249447137,1,1,1039,10180,n0;n14;n18
+barabasi_albert_n20_k3,barabasi_albert,20,3,1,kmeans,6.309439064863604,3312.292900009197,1,1,1039,10180,n6;n9;n4
+barabasi_albert_n20_k3,barabasi_albert,20,3,1,genetic,4.922756575660547,38.567800002056174,10,10,1039,10180,n0;n3;n6
+barabasi_albert_n20_k3,barabasi_albert,20,3,1,bandit_rl,5.547409055999338,554.8797000083141,50,20,1039,10180,n1;n10;n6
+waxman_n20_k3,waxman,20,3,1,random,5.736215903398348,0.0678000069456175,1,1,2036,20187,n4;n12;n15
+waxman_n20_k3,waxman,20,3,1,greedy_k_center,4.742889308570051,0.31429999216925353,1,1,2036,20187,n6;n0;n4
+waxman_n20_k3,waxman,20,3,1,kmeans,4.06601805505825,36.55150000122376,1,1,2036,20187,n11;n13;n6
+waxman_n20_k3,waxman,20,3,1,genetic,3.3928252322582217,37.80689999985043,10,2,2036,20187,n13;n15;n16
+waxman_n20_k3,waxman,20,3,1,bandit_rl,4.728760636313316,287.31909999623895,50,12,2036,20187,n11;n19;n9

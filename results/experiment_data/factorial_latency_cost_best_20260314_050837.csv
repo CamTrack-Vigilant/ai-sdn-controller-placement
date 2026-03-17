@@ -1,0 +1,3 @@
+topology_model,node_count,controller_budget,algorithm,avg_latency_mean,avg_latency_std,runtime_ms_mean,runtime_ms_std,iterations_budget_mean,iterations_to_converge_mean,latency_runtime_product,latency_gain_vs_random_pct,efficiency_score,efficiency_rank,is_pareto_optimal
+barabasi_albert,20,3,genetic,4.922756575660547,0.0,41.115999993053265,0.0,10.0,10.0,202.40405933066197,19.891114882900794,0.034907797510988985,1,True
+waxman,20,3,genetic,3.3928252322582217,0.0,54.41929999506101,0.0,10.0,2.0,184.6351741450727,40.85255350573214,0.11523807584645579,1,True

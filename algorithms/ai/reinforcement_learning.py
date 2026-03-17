@@ -53,7 +53,8 @@ def bandit_rl_controller_placement(
     run_label: str | None = None,
     latency_weight: float = 1.0,
     reliability_weight: float = 0.0,
-) -> List[str]:
+    return_metadata: bool = False,
+) -> List[str] | tuple[List[str], dict[str, int | float | None]]:
     """Epsilon-greedy bandit baseline for adaptive controller placement."""
     if num_controllers <= 0:
         raise ValueError("num_controllers must be greater than zero")
@@ -120,6 +121,7 @@ def bandit_rl_controller_placement(
     effective_label = run_label or "bandit_rl"
     epsilon_value = epsilon
     best_reward = float("-inf")
+    best_reward_history: list[float] = []
     event_records: list[dict] = []
 
     if log_path:
@@ -148,6 +150,7 @@ def bandit_rl_controller_placement(
 
         reward = action_rewards[action]
         best_reward = max(best_reward, reward)
+        best_reward_history.append(best_reward)
         visits[action] += 1
         q_values[action] += (reward - q_values[action]) / visits[action]
         epsilon_value = max(0.01, epsilon_value * 0.995)
@@ -171,6 +174,14 @@ def bandit_rl_controller_placement(
             )
 
     best_action = max(action_list, key=lambda action: q_values[action])
+    convergence_episode = next(
+        (
+            index + 1
+            for index, reward in enumerate(best_reward_history)
+            if best_reward - reward <= 1e-12
+        ),
+        None,
+    )
 
     if log_path:
         top_actions = sorted(action_list, key=lambda action: q_values[action], reverse=True)[:5]
@@ -199,5 +210,13 @@ def bandit_rl_controller_placement(
             }
         )
         _append_jsonl(log_path, event_records)
+
+    if return_metadata:
+        return list(best_action), {
+            "iterations_budget": int(episodes),
+            "convergence_iteration": convergence_episode,
+            "final_best_reward": float(best_reward),
+            "num_actions": int(len(action_list)),
+        }
 
     return list(best_action)

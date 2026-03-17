@@ -69,7 +69,8 @@ def genetic_controller_placement(
     mutation_rate: float = 0.15,
     tournament_size: int = 3,
     seed: int | None = 42,
-) -> List[str]:
+    return_metadata: bool = False,
+) -> List[str] | tuple[List[str], dict[str, int | float | None]]:
     if num_controllers <= 0:
         raise ValueError("num_controllers must be greater than zero")
 
@@ -81,9 +82,13 @@ def genetic_controller_placement(
     all_pairs = dict(nx.all_pairs_dijkstra_path_length(graph, weight="weight"))
 
     population = [tuple(sorted(rng.sample(nodes, num_controllers))) for _ in range(population_size)]
+    best_so_far = float("-inf")
+    best_so_far_history: list[float] = []
 
     for _ in range(generations):
         scores = {individual: _placement_score(all_pairs, nodes, individual) for individual in population}
+        best_so_far = max(best_so_far, max(scores.values()))
+        best_so_far_history.append(best_so_far)
         elite = max(population, key=lambda individual: scores[individual])
 
         new_population = [elite]
@@ -101,4 +106,24 @@ def genetic_controller_placement(
 
     final_scores = {individual: _placement_score(all_pairs, nodes, individual) for individual in population}
     best = max(population, key=lambda individual: final_scores[individual])
+    final_best_score = float(final_scores[best])
+
+    best_so_far = max(best_so_far, final_best_score)
+    best_so_far_history.append(best_so_far)
+    convergence_generation = next(
+        (
+            index + 1
+            for index, score in enumerate(best_so_far_history)
+            if final_best_score - score <= 1e-12
+        ),
+        None,
+    )
+
+    if return_metadata:
+        return list(best), {
+            "iterations_budget": int(generations),
+            "convergence_iteration": convergence_generation,
+            "final_score": final_best_score,
+        }
+
     return list(best)
