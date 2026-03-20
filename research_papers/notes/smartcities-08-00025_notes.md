@@ -23,32 +23,32 @@
 
 ## 2) Synthesis Inputs
 
-- Key capability demonstrated:
-- Main limitation acknowledged by authors:
-- Data regime (size, quality, realism):
-- Evaluation setting (controlled, synthetic, real-world):
+- Key capability demonstrated: Synthesizes how ML, DL, and ensemble approaches outperform classical methods in complex prediction tasks.
+- Main limitation acknowledged by authors: Interpretable sequence-to-sequence models remain limited, and the study is not SDN-controller-placement specific.
+- Data regime (size, quality, realism): Secondary review of heterogeneous studies, datasets, and metrics from ITS traffic prediction literature.
+- Evaluation setting (controlled, synthetic, real-world): Literature-review synthesis rather than direct experimental implementation.
 
 ## 3) Categorized SotA
 
 ### Technological SotA
-- Best algorithms/architectures:
+- Best algorithms/architectures: Ensemble methods and deep sequence models (for example CNN-LSTM, BiLSTM, and boosted-tree variants in reviewed studies).
 
 ### Methodological SotA
-- Training/validation method:
-- Baselines compared against:
+- Training/validation method: Comparative synthesis of published benchmarks and trends across model families.
+- Baselines compared against: Classical statistical approaches versus ML/DL/ensemble approaches in the reviewed literature.
 
 ### Functional SotA
-- What the system can do today:
-- What it still cannot do reliably:
+- What the system can do today: Provide transferable evaluation thinking on trade-offs such as accuracy versus interpretability and scalability.
+- What it still cannot do reliably: Offer direct SDN CPP performance evidence without domain-specific experiments.
 
 ## 4) SotA vs Gap Test
 
-- SotA statement:
-- Gap statement:
-- Why this gap matters for SDN controller placement research:
+- SotA statement: Cross-domain AI reviews show strong gains from modern learning approaches when evaluation is rigorous and multi-dimensional.
+- Gap statement: The traffic domain evidence does not directly answer SDN controller placement trade-offs.
+- Why this gap matters for SDN controller placement research: This paper is useful for method framing, but SDN claims still require dedicated CPP experiments and baselines.
 
 ## 5) Your Notes
 
-- Reusable ideas:
-- Risks/bias concerns:
-- Follow-up papers to read next:
+- Reusable ideas: Keep a structured review workflow (problem, method, evidence, limitations, reuse path) for each CPP paper.
+- Risks/bias concerns: Domain transfer risk and publication-bias accumulation typical of broad literature reviews.
+- Follow-up papers to read next: SDN-specific synthesis and benchmark papers (Heller CPP, AP-DQN, CPCSA).

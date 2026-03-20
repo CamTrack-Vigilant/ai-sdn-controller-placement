@@ -22,32 +22,32 @@
 
 ## 2) Synthesis Inputs
 
-- Key capability demonstrated:
-- Main limitation acknowledged by authors:
-- Data regime (size, quality, realism):
-- Evaluation setting (controlled, synthetic, real-world):
+- Key capability demonstrated: Uses critical-switch awareness to reduce control overhead, packet loss, and latency while improving throughput.
+- Main limitation acknowledged by authors: The authors note no support for heterogeneous controllers and no defense against vulnerabilities such as DDoS/common-mode faults.
+- Data regime (size, quality, realism): Internet Topology Zoo topologies with simulation-based comparative measurements.
+- Evaluation setting (controlled, synthetic, real-world): Controlled simulation with real topology inputs.
 
 ## 3) Categorized SotA
 
 ### Technological SotA
-- Best algorithms/architectures:
+- Best algorithms/architectures: CPCSA partitioning and controller assignment guided by critical-switch role awareness.
 
 ### Methodological SotA
-- Training/validation method:
-- Baselines compared against:
+- Training/validation method: Comparative experimental evaluation on multiple metrics (overhead, loss, latency, throughput).
+- Baselines compared against: SPDA, DBCP/DBCB, and gravCPA.
 
 ### Functional SotA
-- What the system can do today:
-- What it still cannot do reliably:
+- What the system can do today: Improve placement quality where switch criticality strongly affects control-plane efficiency.
+- What it still cannot do reliably: Address heterogeneous-controller settings and explicit adversarial fault/security scenarios.
 
 ## 4) SotA vs Gap Test
 
-- SotA statement:
-- Gap statement:
-- Why this gap matters for SDN controller placement research:
+- SotA statement: Topology-role-aware placement can materially improve SDN control-plane efficiency in benchmark simulations.
+- Gap statement: There is still limited evidence on reproducible compute-aware trade-offs and stability across broader scenario matrices.
+- Why this gap matters for SDN controller placement research: Practical adoption requires methods that are not only better on quality metrics but also robust, efficient, and repeatable.
 
 ## 5) Your Notes
 
-- Reusable ideas:
-- Risks/bias concerns:
-- Follow-up papers to read next:
+- Reusable ideas: Introduce node criticality features into baseline and AI placement policies.
+- Risks/bias concerns: Criticality metrics may be topology-dependent and sensitive to modeling assumptions.
+- Follow-up papers to read next: 2377677.2377767.pdf; 1-s2.0-S2590123026006717-main.pdf; symmetry-15-01520-v2.pdf.

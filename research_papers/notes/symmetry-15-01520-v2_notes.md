@@ -22,32 +22,32 @@
 
 ## 2) Synthesis Inputs
 
-- Key capability demonstrated:
-- Main limitation acknowledged by authors:
-- Data regime (size, quality, realism):
-- Evaluation setting (controlled, synthetic, real-world):
+- Key capability demonstrated: Shows hierarchical multi-controller optimization with improved latency, reliability, load variance, and overhead on large topologies.
+- Main limitation acknowledged by authors: Real-time operational dynamics and strict compute-budget reproducibility are less explicit than quality metrics.
+- Data regime (size, quality, realism): Experimental simulations on three real large-scale SDN topologies.
+- Evaluation setting (controlled, synthetic, real-world): Controlled simulation with real-topology inputs.
 
 ## 3) Categorized SotA
 
 ### Technological SotA
-- Best algorithms/architectures:
+- Best algorithms/architectures: MOIHHO multi-objective improved Harris Hawks Optimization for hierarchical controller placement.
 
 ### Methodological SotA
-- Training/validation method:
-- Baselines compared against:
+- Training/validation method: Multi-objective comparative simulation assessing worst/average latency, reliability, load variance, and integrated overhead.
+- Baselines compared against: NSGA-II and MOPSO.
 
 ### Functional SotA
-- What the system can do today:
-- What it still cannot do reliably:
+- What the system can do today: Provide robust multi-metric placement improvements in large-topology scenarios.
+- What it still cannot do reliably: Guarantee stable superiority under all topology scales, workload shifts, and deployment constraints.
 
 ## 4) SotA vs Gap Test
 
-- SotA statement:
-- Gap statement:
-- Why this gap matters for SDN controller placement research:
+- SotA statement: Multi-objective metaheuristics can deliver balanced CPP outcomes beyond single-latency optimization.
+- Gap statement: There is still insufficient standardized reporting of efficiency frontiers and reproducible scenario-by-scenario stability.
+- Why this gap matters for SDN controller placement research: Adoption decisions require clarity on when quality gains justify runtime/complexity costs.
 
 ## 5) Your Notes
 
-- Reusable ideas:
-- Risks/bias concerns:
-- Follow-up papers to read next:
+- Reusable ideas: Hierarchical decomposition and explicit multi-objective outcome table design.
+- Risks/bias concerns: Weighting and objective-scaling choices can strongly influence reported superiority.
+- Follow-up papers to read next: 1-s2.0-S2590123026006717-main.pdf; peerj-cs-1698.pdf; 2377677.2377767.pdf.

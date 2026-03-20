@@ -22,32 +22,32 @@
 
 ## 2) Synthesis Inputs
 
-- Key capability demonstrated:
-- Main limitation acknowledged by authors:
-- Data regime (size, quality, realism):
-- Evaluation setting (controlled, synthetic, real-world):
+- Key capability demonstrated: Demonstrates that a hybrid HSA-PSO search can improve latency, throughput, reliability, and fitness versus compared metaheuristics.
+- Main limitation acknowledged by authors: Evidence is simulation-heavy and may not fully cover real-time operational variability or standardized reproducibility controls.
+- Data regime (size, quality, realism): Controlled simulation scenarios with quantitative latency/reliability/throughput measurements.
+- Evaluation setting (controlled, synthetic, real-world): Controlled synthetic evaluation with comparative baselines.
 
 ## 3) Categorized SotA
 
 ### Technological SotA
-- Best algorithms/architectures:
+- Best algorithms/architectures: Hybrid HSA-PSO multi-controller placement optimizer (MC-SDN).
 
 ### Methodological SotA
-- Training/validation method:
-- Baselines compared against:
+- Training/validation method: Metaheuristic optimization over placement fitness with comparative numeric evaluation.
+- Baselines compared against: SA-FFCCPP and GSOCCPP.
 
 ### Functional SotA
-- What the system can do today:
-- What it still cannot do reliably:
+- What the system can do today: Improve placement quality on selected metrics in controlled experiments.
+- What it still cannot do reliably: Guarantee consistent gains under broader topology diversity, dynamic workloads, and compute constraints.
 
 ## 4) SotA vs Gap Test
 
-- SotA statement:
-- Gap statement:
-- Why this gap matters for SDN controller placement research:
+- SotA statement: Hybrid metaheuristics can be competitive for multi-controller optimization in static simulation settings.
+- Gap statement: Evidence is still weak on reproducible cross-topology efficiency frontiers and seed-stability behavior.
+- Why this gap matters for SDN controller placement research: Without robust cross-scenario validation, reported improvements may not transfer to operational decision-making.
 
 ## 5) Your Notes
 
-- Reusable ideas:
-- Risks/bias concerns:
-- Follow-up papers to read next:
+- Reusable ideas: Multi-metric reporting format and fitness-based comparative benchmarking.
+- Risks/bias concerns: Metaheuristic parameter sensitivity and possible premature convergence artifacts.
+- Follow-up papers to read next: symmetry-15-01520-v2.pdf; 1-s2.0-S2590123026006717-main.pdf; 2377677.2377767.pdf.

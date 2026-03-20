@@ -22,32 +22,32 @@
 
 ## 2) Synthesis Inputs
 
-- Key capability demonstrated:
-- Main limitation acknowledged by authors:
-- Data regime (size, quality, realism):
-- Evaluation setting (controlled, synthetic, real-world):
+- Key capability demonstrated: Provides a broad empirical comparison of multiple CPP families and reports improvements on latency, flow rate, and controller-controller delay.
+- Main limitation acknowledged by authors: As a thesis-level consolidated study, reproducibility details and cross-lab replication evidence may be uneven across chapters.
+- Data regime (size, quality, realism): Multi-scenario simulation data with aggregate improvement tables across compared approaches.
+- Evaluation setting (controlled, synthetic, real-world): Controlled simulation and comparative experimental analysis.
 
 ## 3) Categorized SotA
 
 ### Technological SotA
-- Best algorithms/architectures:
+- Best algorithms/architectures: WBC-CPP, GWO-WBC-CPP, and PSO-HSL with comparative reference to additional baseline families.
 
 ### Methodological SotA
-- Training/validation method:
-- Baselines compared against:
+- Training/validation method: Comparative multi-metric evaluation over latency, load balancing, reliability, and flow-related outcomes.
+- Baselines compared against: Conventional CPP and baseline SDN placement methods, including HC-BC and Louvain-BC references.
 
 ### Functional SotA
-- What the system can do today:
-- What it still cannot do reliably:
+- What the system can do today: Show that targeted optimization can improve several operational metrics at once in controlled settings.
+- What it still cannot do reliably: Provide a universally transferable ranking across topology families and strict compute budgets.
 
 ## 4) SotA vs Gap Test
 
-- SotA statement:
-- Gap statement:
-- Why this gap matters for SDN controller placement research:
+- SotA statement: Multi-algorithm CPP studies can reveal strong practical improvements and useful trade-off patterns.
+- Gap statement: Standardized, reproducible efficiency-frontier comparisons across methods are still limited.
+- Why this gap matters for SDN controller placement research: Thesis-grade evidence needs not only improvement percentages but also transparent reproducibility and scenario-conditioned interpretation.
 
 ## 5) Your Notes
 
-- Reusable ideas:
-- Risks/bias concerns:
-- Follow-up papers to read next:
+- Reusable ideas: Improvement-summary table format and search-space reduction variants for runtime-sensitive experimentation.
+- Risks/bias concerns: Potential chapter-level heterogeneity in experiment assumptions and parameter fairness across compared methods.
+- Follow-up papers to read next: symmetry-15-01520-v2.pdf; 1-s2.0-S2590123026006717-main.pdf; peerj-cs-1698.pdf.
