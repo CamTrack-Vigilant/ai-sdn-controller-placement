@@ -54,10 +54,8 @@ I will not present borrowed ideas, formulations, or algorithm logic as original 
 
 ### Baseline citation register (to be used in report)
 
-- K-center style greedy placement: Gonzalez, T. F. (1985). Clustering to minimize the maximum intercluster distance.
-- K-means clustering: MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations.
-- Genetic algorithms: Holland, J. H. (1975). Adaptation in Natural and Artificial Systems.
-- Reinforcement learning and bandit foundations: Sutton, R. S., and Barto, A. G. (2018). Reinforcement Learning: An Introduction.
+- Centralized reference register: references.md
+- Use references.md as the single source for bibliography entries and attribution consistency checks.
 
 ### Pre-submission integrity check
 
@@ -101,6 +99,13 @@ This project follows the two-stage ethics submission pathway.
 | --- | --- | --- | --- |
 | Interim protocol package to supervisors | 17 April 2026 | Ethics form, project summary, data protection plan, citation and integrity checklist | Must be submitted for review and revision feedback |
 | Signed protocol to Faculty Research Ethics Committee | 27 April 2026 | Revised application, supervisor-approved corrections, required signatures | Final signed copy must be submitted by deadline |
+
+## Submission Tracker (April 2026)
+
+| Submission Item | Target Window | Required Artifacts | Owner | Status |
+| --- | --- | --- | --- | --- |
+| Supervisor Ethics Protocol Package | 14 to 17 April 2026 | Research Design; SDN controller scripts used as data collection tools (scripts/run_factorial_latency_cost_matrix.py and experiments/experiment_runner.py); docs/ethics/dataset_intake_form.md; docs/ethics/de_identification_checklist.md; docs/ethics/data_retention_schedule.md; docs/ethics/participant_consent_template.md | Candidate researcher | Pending |
+| Signed Faculty Ethics Submission | By 27 April 2026 | Revised package with supervisor feedback and signatures | Candidate researcher and supervisors | Pending |
 
 Hard boundary:
 

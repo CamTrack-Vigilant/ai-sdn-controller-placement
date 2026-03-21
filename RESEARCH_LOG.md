@@ -4,6 +4,8 @@ Project: AI-Driven Controller Placement Optimization in Multi-Site SDN
 Date: 2026-03-20
 Purpose: Align the project workspace and evidence workflow to four core research pillars from research methodology.
 
+Central citation register: references.md
+
 ---
 
 ## 1) Primary vs. Secondary Research Alignment
@@ -110,37 +112,19 @@ Thesis logic:
 
 ---
 
-## 4) Evidence Integration (Facts, Summaries, Quotes with Page Citations)
+## 4) Evidence Integration and Citation Register
 
-Note: The entries below are extracted from repository PDFs and are cited with explicit page numbers.
+Detailed citation entries are centralized in references.md.
 
-### Paper A: Heller et al. (2012) - The Controller Placement Problem
-Source file: research_papers/2377677.2377767.pdf
+Evidence extraction notes remain in:
 
-- Fact (objective): Table 1 reports that, for one controller, 82% of topologies meet a 50 ms ring-protection round-trip target at 1.0x safety margin (p. 5).
-- Summary (method overview): The study evaluates controller placement latency trade-offs on Internet2 and then broadens analysis to over 100 WAN topologies, focusing on average and worst-case propagation latency behavior (p. 1).
-- Quote (exact wording): "More surprisingly, one controller location is often sufficient to meet existing reaction-time requirements (though certainly not fault tolerance requirements)." (p. 1)
+- research_papers/notes/
+- docs/literature_review.md
 
-### Paper B: Benoudifa et al. (2023) - MuZero-Based Autonomous CPP
-Source file: research_papers/1-s2.0-S1319157823003968-main.pdf
+Working rule for this log:
 
-- Fact (objective): The method explicitly states a two-objective trade-off (latency and load balancing) and introduces K-Means segmentation before game-based search to improve efficiency (p. 7).
-- Summary (method overview): Controller placement is approached as a self-competition decision process using MuZero after clustering the network into smaller decision regions (p. 7).
-- Quote (exact wording): "In conclusion, our experimental results demonstrate that the implemen- tation of MuZero for leader selection in a cluster is promising. MuZero successfully finds the leader in complex networks, with high success rates and reasonable search times." (p. 14)
-
-### Paper C: Farahi et al. (2026) - AP-DQN
-Source file: research_papers/1-s2.0-S2590123026006717-main.pdf
-
-- Fact (objective): The abstract reports 24% improvement in load balancing, 25% reduction in latency, 28% reduction in link operational expenses, and 12% improvement in normalized security level against comparative techniques (p. 1).
-- Summary (method overview): AP-DQN combines an improved Affinity Propagation clustering stage with a DQN agent that formulates placement as an MDP and learns an incremental deployment policy; evaluation uses Internet Topology Zoo against MODECP, Multi-GA, and Random-CP (p. 1).
-- Quote (exact wording): "Simulation results show that AP-DQN can obtain 24 % improvement in load balancing, 25 % reduction in latency, 28 % reduction in link operational expenses, and 12 % improvement in normalized security level compared to comparative techniques." (p. 1)
-
-### Paper D: Yusuf et al. (2023) - CPCSA
-Source file: research_papers/peerj-cs-1698.pdf
-
-- Fact (objective): The abstract claims aggregate improvements of 73% reduction in controller overhead, 51% reduction in loss, 16% reduction in latency, and 16% improvement in throughput versus benchmark algorithms (p. 1).
-- Summary (method overview): CPCSA evaluates critical-switch-aware placement on real topologies from Internet Topology Zoo and compares against benchmark placement methods (p. 1).
-- Quote (exact wording): "Results show that CPCSA has achieved an aggregate reduction in the controller's overhead by 73%, loss by 51%, and latency by 16% while improving throughput by 16% compared to the benchmark algorithms." (p. 1)
+- Keep experiment evidence and interpretation notes here.
+- Keep bibliographic and source attribution records in references.md to avoid duplication.
 
 ---
 
