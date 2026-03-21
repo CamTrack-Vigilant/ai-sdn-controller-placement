@@ -10,7 +10,7 @@ Multi-Objective Evaluation of AI-Driven Controller Placement in Multi-Site Softw
 - Field of Study: Computer Science / Software Defined Networking
 - Faculty: Faculty of Science, Agriculture and Engineering
 - Student Name: THABANG NHLOKOMA BUTHELEZI
-- Student Number: [Insert Student Number]
+- Student Number: 230011908
 - Current Highest Qualification: BSc
 - Supervisor: Dr Skhumbuzo Zwane
 - Co-Supervisor: Prof Pragasen Mudali
