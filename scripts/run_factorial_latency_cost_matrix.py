@@ -11,6 +11,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 from algorithms.ai.genetic_algorithm import genetic_controller_placement
@@ -195,6 +196,62 @@ def _pareto_optimal_mask(frame: pd.DataFrame, latency_col: str, runtime_col: str
     return mask
 
 
+def _bootstrap_mean_diff_ci(
+    values_a: np.ndarray,
+    values_b: np.ndarray,
+    confidence: float = 0.95,
+    n_bootstrap: int = 2000,
+    seed: int = 12345,
+) -> tuple[float, float]:
+    rng = np.random.default_rng(seed)
+
+    a = np.asarray(values_a, dtype=float)
+    b = np.asarray(values_b, dtype=float)
+    if a.size == 0 or b.size == 0:
+        return float("nan"), float("nan")
+
+    samples_a = rng.choice(a, size=(n_bootstrap, a.size), replace=True)
+    samples_b = rng.choice(b, size=(n_bootstrap, b.size), replace=True)
+    diffs = samples_a.mean(axis=1) - samples_b.mean(axis=1)
+
+    alpha = 1.0 - confidence
+    lower = float(np.quantile(diffs, alpha / 2.0))
+    upper = float(np.quantile(diffs, 1.0 - alpha / 2.0))
+    return lower, upper
+
+
+def _cliffs_delta(values_a: np.ndarray, values_b: np.ndarray) -> float:
+    a = np.asarray(values_a, dtype=float)
+    b = np.asarray(values_b, dtype=float)
+    if a.size == 0 or b.size == 0:
+        return float("nan")
+
+    greater = 0
+    lesser = 0
+    for left in a:
+        for right in b:
+            if left > right:
+                greater += 1
+            elif left < right:
+                lesser += 1
+
+    total = a.size * b.size
+    if total == 0:
+        return float("nan")
+    return float((greater - lesser) / total)
+
+
+def _cliffs_delta_magnitude(delta: float) -> str:
+    abs_delta = abs(delta)
+    if abs_delta < 0.147:
+        return "negligible"
+    if abs_delta < 0.33:
+        return "small"
+    if abs_delta < 0.474:
+        return "medium"
+    return "large"
+
+
 def build_summary_table(raw_df: pd.DataFrame) -> pd.DataFrame:
     summary_df = (
         raw_df.groupby(
@@ -245,6 +302,75 @@ def build_summary_table(raw_df: pd.DataFrame) -> pd.DataFrame:
         scenario_frames.append(scenario)
 
     return pd.concat(scenario_frames, ignore_index=True)
+
+
+def build_statistical_comparison_table(
+    raw_df: pd.DataFrame,
+    baseline_algorithm: str = "random",
+) -> pd.DataFrame:
+    rows: list[dict[str, object]] = []
+    group_cols = ["topology_model", "node_count", "controller_budget"]
+
+    for scenario_index, (scenario_key, group) in enumerate(raw_df.groupby(group_cols, sort=False), start=1):
+        topology_model, node_count, controller_budget = scenario_key
+
+        baseline_rows = group[group["algorithm"] == baseline_algorithm]
+        if baseline_rows.empty:
+            continue
+
+        baseline_latency = baseline_rows["avg_latency"].to_numpy(dtype=float)
+        baseline_runtime = baseline_rows["runtime_ms"].to_numpy(dtype=float)
+
+        for algorithm, algorithm_rows in group.groupby("algorithm", sort=False):
+            if algorithm == baseline_algorithm:
+                continue
+
+            algo_latency = algorithm_rows["avg_latency"].to_numpy(dtype=float)
+            algo_runtime = algorithm_rows["runtime_ms"].to_numpy(dtype=float)
+
+            latency_gain_vs_baseline_mean = float(np.mean(baseline_latency) - np.mean(algo_latency))
+            runtime_penalty_vs_baseline_mean = float(np.mean(algo_runtime) - np.mean(baseline_runtime))
+
+            latency_ci_low, latency_ci_high = _bootstrap_mean_diff_ci(
+                baseline_latency,
+                algo_latency,
+                seed=1000 + scenario_index,
+            )
+            runtime_ci_low, runtime_ci_high = _bootstrap_mean_diff_ci(
+                algo_runtime,
+                baseline_runtime,
+                seed=2000 + scenario_index,
+            )
+
+            latency_delta = _cliffs_delta(algo_latency, baseline_latency)
+            runtime_delta = _cliffs_delta(algo_runtime, baseline_runtime)
+
+            rows.append(
+                {
+                    "topology_model": topology_model,
+                    "node_count": int(node_count),
+                    "controller_budget": int(controller_budget),
+                    "algorithm": str(algorithm),
+                    "baseline_algorithm": baseline_algorithm,
+                    "trials_algorithm": int(len(algo_latency)),
+                    "trials_baseline": int(len(baseline_latency)),
+                    "latency_gain_vs_baseline_mean": latency_gain_vs_baseline_mean,
+                    "latency_gain_ci95_low": latency_ci_low,
+                    "latency_gain_ci95_high": latency_ci_high,
+                    "runtime_penalty_vs_baseline_mean": runtime_penalty_vs_baseline_mean,
+                    "runtime_penalty_ci95_low": runtime_ci_low,
+                    "runtime_penalty_ci95_high": runtime_ci_high,
+                    "latency_cliffs_delta_alg_vs_baseline": latency_delta,
+                    "latency_cliffs_magnitude": _cliffs_delta_magnitude(latency_delta),
+                    "runtime_cliffs_delta_alg_vs_baseline": runtime_delta,
+                    "runtime_cliffs_magnitude": _cliffs_delta_magnitude(runtime_delta),
+                }
+            )
+
+    if not rows:
+        raise RuntimeError("No statistical comparison rows generated.")
+
+    return pd.DataFrame(rows).sort_values(group_cols + ["algorithm"]).reset_index(drop=True)
 
 
 def plot_pareto_by_scenario(summary_df: pd.DataFrame, output_dir: Path, timestamp: str) -> list[Path]:
@@ -414,6 +540,7 @@ def main() -> None:
 
     raw_df = pd.DataFrame(rows)
     summary_df = build_summary_table(raw_df)
+    stats_df = build_statistical_comparison_table(raw_df)
 
     best_df = (
         summary_df.sort_values(
@@ -427,10 +554,12 @@ def main() -> None:
     raw_csv = data_dir / f"factorial_latency_cost_raw_{timestamp}.csv"
     summary_csv = data_dir / f"factorial_latency_cost_summary_{timestamp}.csv"
     best_csv = data_dir / f"factorial_latency_cost_best_{timestamp}.csv"
+    stats_csv = data_dir / f"factorial_latency_cost_stats_{timestamp}.csv"
 
     raw_df.to_csv(raw_csv, index=False)
     summary_df.to_csv(summary_csv, index=False)
     best_df.to_csv(best_csv, index=False)
+    stats_df.to_csv(stats_csv, index=False)
 
     pareto_dir = graph_dir / f"latency_cost_pareto_{timestamp}"
     pareto_plots = plot_pareto_by_scenario(summary_df, pareto_dir, timestamp)
@@ -439,6 +568,7 @@ def main() -> None:
     print(f"Raw output: {raw_csv}")
     print(f"Summary output: {summary_csv}")
     print(f"Best-per-scenario output: {best_csv}")
+    print(f"Statistical comparison output: {stats_csv}")
     print(f"Pareto plots generated: {len(pareto_plots)}")
     if pareto_plots:
         print(f"Pareto output directory: {pareto_dir}")

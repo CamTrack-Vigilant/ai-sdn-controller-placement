@@ -1,11 +1,73 @@
 # ai-sdn-controller-placement
 
-AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks.
+**AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks**
 
-This project provides a practical research scaffold to compare baseline and AI-driven
-controller placement strategies across synthetic multi-site SDN topologies.
+## Research Context: Why Network Engineers Remain Skeptical
 
-## Researcher Purpose
+This project investigates a critical infrastructure decision gap: when should network engineers adopt AI-driven optimization methods for controller placement in Software Defined Networks, and when are simpler, faster heuristic approaches sufficient?
+
+Recent advances in artificial intelligence and metaheuristic optimization have generated optimistic claims about improving infrastructure performance. Yet published comparisons often emphasize performance on isolated metrics (latency) while downplaying computational cost, topology-dependent behavior, or robustness under real-world constraints. This creates methodological risk for infrastructure teams: a method that appears optimal in one metric may be computationally infeasible or unstable under realistic conditions.
+
+This project provides a reproducible research scaffold to answer this question through controlled, multi-objective evaluation of controller placement strategies across varied SDN deployment scenarios.
+
+---
+
+## Researcher Purpose and Academic Identity
+
+I am using this project as a formal scientific inquiry, not only a software build.
+My academic identity in this work is to act as a reproducible, evidence-driven
+researcher who tests trade-offs between latency, resilience, and computational cost
+under controlled conditions.
+
+This means I commit to:
+
+- framing each run around explicit research questions and hypotheses
+- using repeatable experiment settings (seeded trials, fixed topology matrices)
+- reporting strengths, limitations, and uncertainty rather than only best results
+- keeping methodological quality central, because poor research design is unethical
+
+---
+
+## Literature Discovery Strategy: How This Research Was Positioned
+
+This project is grounded in a systematic literature review using best practices in research methodology. For complete documentation, see [Advanced Search Documentation](docs/research_proposal_hons_working_draft.md#55-advanced-search-documentation-literature-discovery-strategy) in the research proposal.
+
+### Literature Foundation
+
+**Key insight**: The literature on SDN controller placement is fragmented and single-metric focused. While many studies claim that AI methods improve latency, few simultaneously evaluate computational cost, multi-objective trade-offs, or robustness across topology families.
+
+**Research gap identified**: There is no unified, reproducible benchmarking framework that evaluates all method families (random, greedy, clustering, genetic, reinforcement learning) under identical conditions with joint reporting of latency, runtime, convergence, and reliability.
+
+### How We Positioned This Work
+
+1. **Citation Pearl Growing Method**: Identified foundational "seed" papers (Heller et al. 2012, Gonzalez 1985) and traced citation paths forward and backward to discover related works across three method families (heuristics, genetic algorithms, reinforcement learning).
+
+2. **Boolean Search Strings**: Used systematic keyword searches across IEEE Xplore, ACM Digital Library, and Google Scholar:
+   - `("SDN" OR "Software Defined Network*") AND ("Controller Placement") AND ("Algorithm*" OR "Optimiz*")`
+   - `("Controller Placement") AND ("Genetic Algorithm*" OR "Evolutionary Algorithm*")`
+   - `("SDN") AND ("Reinforcement Learning" OR "Bandit" OR "Q-Learning")`
+
+3. **Literature Gap Analysis**: Documented three specific gaps:
+   - **Reproducibility**: No standard for benchmarking methodology
+   - **Scalability**: Evaluation mostly on small topologies (20-100 nodes); behavior at scale unknown
+   - **Multi-Objective**: Studies treat latency, cost, and reliability as separate concerns, not unified
+
+4. **Research Positioning**: This project directly addresses all three gaps by:
+   - Providing a reproducible, open-source benchmarking pipeline
+   - Evaluating across multiple topology families and scales
+   - Reporting latency, runtime, convergence, and reliability jointly
+
+### References and Bibliography
+
+All sources used in this project are documented in centralized, IEEE-standardized format:
+- **[references.md](references.md)**: Authoritative bibliography with complete citation metadata
+- **[REFERENCE_MANAGEMENT_WORKFLOW.md](docs/REFERENCE_MANAGEMENT_WORKFLOW.md)**: Protocol for citation practices and plagiarism prevention
+
+Every claim about prior work is attributed with numbered citations [1]-[8] that correspond to formal references.
+
+---
+
+## Working Title and Proposed Research Summary
 
 I am using this project as a formal scientific inquiry, not only a software build.
 My academic identity in this work is to act as a reproducible, evidence-driven
@@ -26,6 +88,30 @@ Multi-Objective Evaluation of AI-Driven Controller Placement in Multi-Site Softw
 
 Proposed Research Summary:
 This study investigates how controller placement strategies in multi-site software-defined networks should be evaluated when latency, resilience, and computational cost are treated as linked objectives rather than isolated metrics. The project compares baseline methods (random, greedy k-center, and k-means) against AI-driven approaches (genetic search and bandit-based reinforcement learning) across controlled synthetic topologies generated using Barabasi-Albert and Waxman models. A factorial experiment design is used to vary topology family, node scale, and controller budget while preserving reproducibility through fixed seeds and repeated trials. Outcomes are assessed using average controller distance, convergence behavior, runtime cost, and reliability-oriented indicators, with Pareto analysis used to identify practical trade-off fronts. The intended contribution is a reproducible evidence base that clarifies when AI-driven placement is genuinely beneficial, when heuristics remain competitive, and how topology characteristics influence that decision.
+
+## Methodological Positioning (Masterclass-Aligned)
+
+- Paradigm: post-positivist quantitative inquiry (positivist family).
+- Design type: computational factorial experiment with repeated trials.
+- Research logic: deductive hypothesis testing with explicit baseline comparison.
+
+Why this is appropriate for this project:
+
+- The core questions ask whether one method outperforms another on measurable outcomes.
+- The codebase supports controlled variable manipulation (topology model, scale, controller budget).
+- The pipeline supports inferential interpretation with repeated stochastic trials and seed-traceable outputs.
+
+Quantitative analysis standards used in this repository:
+
+- Descriptive statistics (mean, standard deviation, confidence intervals).
+- Pairwise contrasts against baseline methods using bootstrap confidence intervals.
+- Practical effect-size reporting to avoid over-reliance on p-value style claims.
+- Pareto and efficiency-rank analysis for multi-objective decision quality.
+
+Qualitative scope note:
+
+- No interviews or observations are in the current synthetic-only phase.
+- If expert interviews are added later, coding/thematic analysis and trustworthiness checks will be executed only after formal ethics approval.
 
 ## Honours Programme Milestone Alignment (2026)
 
@@ -237,6 +323,90 @@ It additionally exports:
 
 - `stress_test_pareto_ranked_*.csv`: Pareto points ranked by normalized ideal-point distance.
 - `stress_test_best_compromise_*.csv`: one rank-1 compromise point per scenario.
+
+Factorial latency-cost runs export complementary statistical evidence files in `results/experiment_data`:
+
+- `factorial_latency_cost_raw_*.csv`: all algorithm-trial observations.
+- `factorial_latency_cost_summary_*.csv`: scenario-level descriptive summaries.
+- `factorial_latency_cost_best_*.csv`: best compromise method per scenario.
+- `factorial_latency_cost_stats_*.csv`: scenario-level pairwise contrasts, confidence intervals, and effect sizes.
+
+## Data Collection & Analysis Standards
+
+This project is designed to meet academic research standards for data integrity, reproducibility, and analysis rigor. All data collection processes are documented and validated according to March 31st Data Collection & Analysis Excellence standards.
+
+### Sampling Methodology
+
+**Two-stage sampling strategy**:
+- **Non-probability purposive sampling** (topology selection): Deliberate selection of Barabasi-Albert and Waxman topology models across defined node scales (12, 24, 36, 48 nodes/site) to maximize informational richness and support theoretical investigation.
+- **Probability sampling** (trial replication): Within each scenario, repeated stochastic trials using independent random seeds enable unbiased estimation of algorithm behavior distribution and valid statistical inference.
+
+**Sample size justification**: Target of 20–30 trials per algorithm per scenario (~7,200 total observations across 3 seed sets) provides:
+- ±5–7 ms margin of error for latency estimates (95% CI)
+- 75–80% statistical power to detect medium effect sizes (Cohen's d ≈ 0.6–0.7)
+- Rank stability validation across independent seed conditions
+
+For complete justification, see [Sample Size Calculation and Statistical Power Rationale](docs/research_proposal_hons_working_draft.md#85b-sample-size-calculation-and-statistical-power-rationale) in the research proposal.
+
+### Pilot Testing & Quality Assurance
+
+All experiments undergo systematic **pilot testing** before confirmatory data collection:
+- **Pilot phase**: 4 representative scenarios, 5 trials each (20 scenario-algorithm combinations)
+- **Validation checks**: Script syntax, metric generation, CSV integrity, seed reproducibility, algorithm parameter calibration
+- **Decision gate**: If all checks pass → proceed to full factorial experiment; if checks fail → debug and re-run
+
+For detailed pilot procedures, see [Pilot Testing Procedure](docs/research_proposal_hons_working_draft.md#87-pilot-testing-procedure) in the research proposal.
+
+### Data Validation Protocol
+
+Systematic procedures to detect and handle data quality issues:
+
+**During Collection**:
+- Real-time CSV integrity validation (metrics are non-null, logically consistent)
+- Seed traceability checks (every row includes topology_seed and trial_seed)
+- Runtime outlier flagging (runtimes > 3s MAD flagged for investigation)
+
+**Post-Collection**:
+- CSV schema verification (column presence, data types)
+- Metric range checks (average_distance ∈ [0–200], resilience_ratio ∈ [0–1])
+- Logical consistency (average_distance ≤ worst_case_distance)
+- Missing data inventory (flag if ≥5% missing per algorithm/scenario)
+
+**Outlier handling policy**: Outliers retained with documentation unless confirmed data errors; sensitivity analysis reports results with/without outliers.
+
+For complete protocol, see [Data Validation Protocol](docs/research_proposal_hons_working_draft.md#87a-data-validation-protocol) in the research proposal.
+
+### Reproducibility Controls
+
+**Fixed random seeds**: Every stochastic element uses deterministic seeding for reproducibility.
+- Topology generation: base_seed (e.g., 42) fixed per scenario
+- Trial sequences: each trial receives distinct, deterministically generated seed
+- Algorithms: genetic and RL algorithms accept seed parameter → deterministic execution
+
+**Verification**: Re-run identical experiment configuration with identical seed; expect bit-identical outputs (diff < 1% floating-point tolerance).
+
+See [RUNNING.md - Reproducibility & Audit Trail](RUNNING.md#reproducibility--audit-trail) for exact verification protocol.
+
+### Statistical Analysis & SPSS/GENSTAT Compatibility
+
+All inferential statistics are conducted using Python (Pandas, NumPy, SciPy) with transparent, open-source implementations. For departmental verification, analysis outputs are formatted for compatibility with standard statistical software:
+
+- **CSV Tables for SPSS/GENSTAT Import**: Scenario summaries, pairwise comparisons, and raw trial data formatted as .csv files with consistent encoding (UTF-8, period decimal separator).
+- **Statistical Documentation**: Summary statistics table (PDF) formatted for manual transcription if supervisor prefers native SPSS/GENSTAT verification.
+- **Data Dictionary**: Complete documentation of every column (data type, units, valid ranges, interpretation).
+
+**Verification Workflow**: Departmental supervisor (if independent verification requested) can import exports into SPSS/GENSTAT and re-compute descriptive statistics to confirm Python-generated values match (tolerance: ±0.01%).
+
+For complete specification, see [Inferential Statistics & Departmental Verification Protocol (SPSS/GENSTAT Compatibility)](docs/research_proposal_hons_working_draft.md#810a-inferential-statistics--departmental-verification-protocol-spsspgenstat-compatibility) in the research proposal.
+
+### Data Integrity & Cleaning
+
+For detailed data collection tools, digital logging methods, validation checklists, and archival procedures, see:
+- **[RUNNING.md - Data Integrity & Cleaning](RUNNING.md#data-integrity--cleaning)**: Technical implementation of validation procedures, data collection tools inventory, and reproducibility protocols.
+- **[Pilot Testing Procedure](docs/research_proposal_hons_working_draft.md#87-pilot-testing-procedure)**: Multi-step validation before confirmatory data collection.
+- **[Data Validation Protocol](docs/research_proposal_hons_working_draft.md#87a-data-validation-protocol)**: Outlier handling, missing data policies, and CSV integrity verification.
+
+---
 
 ## Optional Mininet Backend
 

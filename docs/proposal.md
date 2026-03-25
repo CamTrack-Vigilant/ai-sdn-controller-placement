@@ -4,11 +4,13 @@
 
 AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks
 
-## Problem Statement
+## Executive Summary
 
-Controller placement has a direct impact on SDN control-plane latency, scalability,
-and resilience. In multi-site deployments, static placement policies may underperform
-under varying traffic and topology constraints.
+In multi-site SDN deployments, controller placement decisions affect network latency, reliability, and operational cost. Yet published comparisons of placement methods often prioritize single metrics (latency) while downplaying computational burden, topology-dependent behavior, and multi-objective trade-offs. This creates an infrastructure decision gap: when is AI-driven optimization genuinely superior to baseline heuristics, and when is the added computational cost unjustified?
+
+This study provides reproducible, multi-objective evidence through controlled benchmarking. It compares baseline methods (random, greedy k-center, k-means) and AI-driven approaches (genetic algorithm, bandit reinforcement learning) across varied topology families and scales, with joint evaluation of latency, runtime, reliability, and convergence behavior. The result is scenario-conditioned method selection guidance: conditions under which AI is justified, conditions under which heuristics suffice, and practical trade-off frameworks for real deployments.
+
+## Problem Statement and Research Questions
 
 ## Objectives
 
@@ -18,10 +20,23 @@ under varying traffic and topology constraints.
 
 ## Methodology
 
+Research paradigm and design:
+
+- Paradigm: post-positivist (positivist family), suitable for hypothesis testing with measurable outcomes.
+- Design: computational factorial experiment with repeated trials across topology family, node scale, and controller budget.
+
+Method steps:
+
 1. Generate synthetic multi-site topologies.
-2. Run multiple placement algorithms over repeated trials.
-3. Evaluate outcomes with common SDN controller placement metrics.
-4. Analyze trade-offs and identify best-performing strategies by scenario.
+2. Run baseline and AI placement algorithms over repeated seeded trials.
+3. Evaluate latency, reliability, runtime, and convergence metrics.
+4. Analyze trade-offs with Pareto and efficiency ranking by scenario.
+5. Report statistical evidence (confidence intervals, bootstrap contrasts, effect sizes) for key comparisons.
+
+Sample-size and inference note:
+
+- Pilot runs use smaller trial counts for instrumentation checks.
+- Confirmatory runs increase trials per scenario to support stable estimates and defensible statistical interpretation.
 
 ## Expected Deliverables
 
