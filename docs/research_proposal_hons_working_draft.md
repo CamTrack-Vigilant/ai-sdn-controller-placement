@@ -2,7 +2,7 @@
 
 ## Provisional Title
 
-Multi-Objective Evaluation of AI-Driven Controller Placement in Multi-Site Software Defined Networks: Balancing Performance, Reliability, and Computational Cost
+Decision-Grade Multi-Objective Benchmarking of AI and Heuristic Controller Placement in Multi-Site Software Defined Networks
 
 ## Degree and Administrative Details
 
@@ -76,15 +76,15 @@ To address this problem, a controlled experimental framework is required that:
 
 The primary research question is formulated to test the core claim motivating this study:
 
-**Primary RQ**: In multi-site synthetic SDN topologies, does an AI-driven controller placement approach outperform baseline heuristic approaches on latency, under reliability and computational efficiency constraints?
+**Primary RQ**: In multi-site synthetic SDN topologies, do AI-driven controller placement methods provide superior multi-objective decision quality compared with baseline heuristics when latency, control-plane reliability, runtime, and convergence burden are evaluated jointly?
 
 This primary RQ is scaffolded by three supporting questions that decompose the multi-objective evaluation:
 
-**Supporting RQ1 (Performance)**: Do AI-driven placement methods achieve lower average controller-switch latency than baseline heuristics across controlled multi-site topology scenarios?
+**Supporting RQ1 (Performance and Robustness)**: Under fixed topology families, node scales, and controller budgets, what is the effect size of AI methods versus baseline heuristics on average controller-switch latency and control-plane reliability?
 
-**Supporting RQ2 (Efficiency)**: Do observed latency improvements remain defensible when runtime and convergence burden are jointly considered? (In other words, is the latency gain worth the added computational cost?)
+**Supporting RQ2 (Computational Efficiency)**: After accounting for runtime cost and convergence burden, which algorithms remain practically superior and Pareto-efficient for planning use cases?
 
-**Supporting RQ3 (Scalability and Topology Sensitivity)**: Do method rankings remain stable across topology families and scale levels while maintaining acceptable reliability behavior under failure-oriented metrics?
+**Supporting RQ3 (Generalization Boundaries)**: How stable are algorithm rankings across topology families and scale levels, and where do rankings shift enough to require scenario-conditioned method selection guidance?
 
 ---
 

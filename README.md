@@ -69,22 +69,8 @@ Every claim about prior work is attributed with numbered citations [1]-[8] that 
 
 ## Working Title and Proposed Research Summary
 
-I am using this project as a formal scientific inquiry, not only a software build.
-My academic identity in this work is to act as a reproducible, evidence-driven
-researcher who tests trade-offs between latency, resilience, and computational cost
-under controlled conditions.
-
-This means I commit to:
-
-- framing each run around explicit research questions and hypotheses
-- using repeatable experiment settings (seeded trials, fixed topology matrices)
-- reporting strengths, limitations, and uncertainty rather than only best results
-- keeping methodological quality central, because poor research design is unethical
-
-## Working Title and Proposed Research Summary
-
 Working Title:
-Multi-Objective Evaluation of AI-Driven Controller Placement in Multi-Site Software Defined Networks: Balancing Performance, Resilience, and Computational Cost
+Decision-Grade Multi-Objective Benchmarking of AI and Heuristic Controller Placement in Multi-Site Software Defined Networks
 
 Proposed Research Summary:
 This study investigates how controller placement strategies in multi-site software-defined networks should be evaluated when latency, resilience, and computational cost are treated as linked objectives rather than isolated metrics. The project compares baseline methods (random, greedy k-center, and k-means) against AI-driven approaches (genetic search and bandit-based reinforcement learning) across controlled synthetic topologies generated using Barabasi-Albert and Waxman models. A factorial experiment design is used to vary topology family, node scale, and controller budget while preserving reproducibility through fixed seeds and repeated trials. Outcomes are assessed using average controller distance, convergence behavior, runtime cost, and reliability-oriented indicators, with Pareto analysis used to identify practical trade-off fronts. The intended contribution is a reproducible evidence base that clarifies when AI-driven placement is genuinely beneficial, when heuristics remain competitive, and how topology characteristics influence that decision.

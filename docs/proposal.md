@@ -2,7 +2,7 @@
 
 ## Title
 
-AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks
+Decision-Grade Multi-Objective Benchmarking of AI and Heuristic Controller Placement in Multi-Site Software Defined Networks
 
 ## Executive Summary
 
@@ -11,6 +11,18 @@ In multi-site SDN deployments, controller placement decisions affect network lat
 This study provides reproducible, multi-objective evidence through controlled benchmarking. It compares baseline methods (random, greedy k-center, k-means) and AI-driven approaches (genetic algorithm, bandit reinforcement learning) across varied topology families and scales, with joint evaluation of latency, runtime, reliability, and convergence behavior. The result is scenario-conditioned method selection guidance: conditions under which AI is justified, conditions under which heuristics suffice, and practical trade-off frameworks for real deployments.
 
 ## Problem Statement and Research Questions
+
+In multi-site SDN controller placement, method claims are frequently made from single metrics (typically latency), even though deployment decisions require joint interpretation of latency, reliability, runtime cost, and optimization burden. This creates a decision-risk gap: teams can over-adopt complex AI methods without clear evidence that gains remain defensible once computational and robustness constraints are included.
+
+Primary research question:
+
+- In multi-site synthetic SDN topologies, do AI-driven controller placement methods provide superior multi-objective decision quality compared with baseline heuristics when latency, control-plane reliability, runtime, and convergence burden are evaluated jointly?
+
+Supporting research questions:
+
+- Under fixed topology families, node scales, and controller budgets, what is the effect size of AI methods versus baseline heuristics on average controller-switch latency and control-plane reliability?
+- After accounting for runtime cost and convergence burden, which algorithms remain practically superior and Pareto-efficient for planning use cases?
+- How stable are algorithm rankings across topology families and scale levels, and where do rankings shift enough to require scenario-conditioned method selection guidance?
 
 ## Objectives
 

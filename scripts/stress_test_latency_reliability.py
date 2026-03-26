@@ -101,31 +101,52 @@ def plot_scatter(
 
 
 def build_correlation_table(aggregated_df: pd.DataFrame) -> pd.DataFrame:
-    def safe_corr(frame: pd.DataFrame) -> float:
-        x = frame["average_distance"]
-        y = frame["control_plane_reliability"]
+    def safe_corr(frame: pd.DataFrame, x_col: str, y_col: str) -> float:
+        x = frame[x_col]
+        y = frame[y_col]
         if len(frame) < 2 or x.nunique(dropna=True) < 2 or y.nunique(dropna=True) < 2:
             return float("nan")
         return float(x.corr(y))
 
     rows: list[dict[str, float | str | int]] = []
 
-    overall_corr = safe_corr(aggregated_df)
+    overall_latency_reliability_corr = safe_corr(
+        aggregated_df,
+        "average_distance",
+        "control_plane_reliability",
+    )
+    overall_latency_runtime_corr = safe_corr(
+        aggregated_df,
+        "average_distance",
+        "runtime_ms",
+    )
+    overall_reliability_runtime_corr = safe_corr(
+        aggregated_df,
+        "control_plane_reliability",
+        "runtime_ms",
+    )
+
     rows.append(
         {
             "algorithm": "__overall__",
             "points": int(len(aggregated_df)),
-            "pearson_corr_latency_vs_reliability": float(overall_corr),
+            "pearson_corr_latency_vs_reliability": float(overall_latency_reliability_corr),
+            "pearson_corr_latency_vs_runtime": float(overall_latency_runtime_corr),
+            "pearson_corr_reliability_vs_runtime": float(overall_reliability_runtime_corr),
         }
     )
 
     for algorithm, group in aggregated_df.groupby("algorithm"):
-        corr = safe_corr(group)
+        latency_reliability_corr = safe_corr(group, "average_distance", "control_plane_reliability")
+        latency_runtime_corr = safe_corr(group, "average_distance", "runtime_ms")
+        reliability_runtime_corr = safe_corr(group, "control_plane_reliability", "runtime_ms")
         rows.append(
             {
                 "algorithm": algorithm,
                 "points": int(len(group)),
-                "pearson_corr_latency_vs_reliability": float(corr),
+                "pearson_corr_latency_vs_reliability": float(latency_reliability_corr),
+                "pearson_corr_latency_vs_runtime": float(latency_runtime_corr),
+                "pearson_corr_reliability_vs_runtime": float(reliability_runtime_corr),
             }
         )
 
@@ -193,6 +214,9 @@ def main() -> None:
                 "resilience_ratio",
                 "worst_case_distance",
                 "controller_load_std",
+                "runtime_ms",
+                "iterations_budget",
+                "iterations_to_converge",
             ]
         ]
         .mean()
@@ -246,7 +270,24 @@ def main() -> None:
         best_compromise_df=best_compromise_df,
     )
 
-    overall_corr = float(correlation_df.loc[correlation_df["algorithm"] == "__overall__", "pearson_corr_latency_vs_reliability"].iloc[0])
+    overall_latency_reliability_corr = float(
+        correlation_df.loc[
+            correlation_df["algorithm"] == "__overall__",
+            "pearson_corr_latency_vs_reliability",
+        ].iloc[0]
+    )
+    overall_latency_runtime_corr = float(
+        correlation_df.loc[
+            correlation_df["algorithm"] == "__overall__",
+            "pearson_corr_latency_vs_runtime",
+        ].iloc[0]
+    )
+    overall_reliability_runtime_corr = float(
+        correlation_df.loc[
+            correlation_df["algorithm"] == "__overall__",
+            "pearson_corr_reliability_vs_runtime",
+        ].iloc[0]
+    )
 
     print(f"Scenarios run: {len(sites) * len(controllers)}")
     print(f"Raw results CSV: {raw_csv_path}")
@@ -258,7 +299,9 @@ def main() -> None:
     print(f"Scatter plot: {scatter_path}")
     print(f"Pareto points: {len(pareto_df)}")
     print(f"Best-compromise points: {len(best_compromise_df)}")
-    print(f"Overall latency/reliability Pearson correlation: {overall_corr:.4f}")
+    print(f"Overall latency/reliability Pearson correlation: {overall_latency_reliability_corr:.4f}")
+    print(f"Overall latency/runtime Pearson correlation: {overall_latency_runtime_corr:.4f}")
+    print(f"Overall reliability/runtime Pearson correlation: {overall_reliability_runtime_corr:.4f}")
 
 
 if __name__ == "__main__":
