@@ -31,6 +31,33 @@
   },
   "rl_objective": {
     "latency_weight": 1.0,
-    "reliability_weight": 0.25
+    "reliability_weight": 0.25,
+    "seconds_per_episode_weight": 0.25
+  },
+  "rl_hyperparameters": {
+    "comment": "Reference band from Farahi et al. (2026) AP-DQN implementation",
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "gamma": 0.99,
+    "max_episodes": 1000,
+    "replay_memory_size": 10000,
+    "target_update_frequency": 100,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.05,
+    "epsilon_decay": 0.995
+  },
+  "topology_config": {
+    "comment": "Primary canonical topologies: Internet2 and ATT-MPLS for baseline parity (Heller et al. 2012)",
+    "primary_topologies": ["Internet2", "ATT-MPLS"],
+    "synthetic_fallback": ["barabasi_albert", "waxman"],
+    "internet2_nodes": 11,
+    "att_mpls_nodes": 21
+  },
+  "simulation": {
+    "comment": "Mininet + Iperf3 operationalization for packet-level realism",
+    "emulator": "mininet",
+    "traffic_generator": "iperf3",
+    "traffic_duration_seconds": 10,
+    "traffic_bandwidth_mbps": 100
   }
 }

@@ -1,0 +1,16 @@
+Input:  docs\submit\Research Proposal Template with Contant- PG Studies - Hons (1).pdf
+Output: docs\submit\Research Proposal Template with Contant- PG Studies - Hons (1)_linked.pdf
+
+Landing zones:
+- ref-heller: page 23 @ (108.1, 721.1)
+- ref-farahi: page 23 @ (108.1, 675.6)
+- ref-radam: page 24 @ (108.1, 58.2)
+- ref-benoudifa: page 23 @ (93.6, 587.6)
+- ref-lange: page 24 @ (48.0, 700.0)
+
+Injected links:
+- Heller et al., 2012: 15
+- Farahi et al., 2026: 17
+- Radam et al., 2022: 11
+- Benoudifa et al., 2023: 14
+- Lange et al., 2015: 2

@@ -248,7 +248,7 @@ This Writing Excellence enhancement complements earlier methodology and evidence
    - New opening hook: "Research Context: Why Network Engineers Remain Skeptical"
    - Synchronized narrative with research proposal
 
-3. `docs/proposal.md` (Lines ~1-25)
+3. [docs/proposal.md](proposal.md) (Lines ~1-25)
    - Enhanced Executive Summary
    - Aligned problem framing with research proposal
 

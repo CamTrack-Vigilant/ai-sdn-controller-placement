@@ -45,8 +45,8 @@ status: COMPLETE — Ready for April 24-30 March 31st Workshop Presentation
 **Evidence Supporting This Claim**:
 1. **Section 8.5a text** directly quotes sampling theory definitions and applies them to research context
 2. **Purposive topology rationale** grounded in literature review (Section 6) identifying Barabasi-Albert and Waxman as standard synthetic models in SDN research
-3. **Probability trial protocol** documented in `evaluation/performance_analysis.py` lines 40–55 showing seed generation implementation
-4. **Topology code** (`topology/synthetic_topology_models.py` lines 90–140) shows fixed seed per topology, deterministic generation
+3. **Probability trial protocol** documented in [evaluation/performance_analysis.py](evaluation/performance_analysis.py) lines 40–55 showing seed generation implementation
+4. **Topology code** ([topology/synthetic_topology_models.py](topology/synthetic_topology_models.py) lines 90–140) shows fixed seed per topology, deterministic generation
 
 **Why This Matters**: Defensible research requires explicit articulation of sampling choices. The proposal now demonstrates that topology selection is theoretically justified (not arbitrary) and trial replication is statistically sound (not ad hoc).
 
@@ -74,8 +74,8 @@ status: COMPLETE — Ready for April 24-30 March 31st Workshop Presentation
    - Margin of error formula: `t_{0.025, N-1} × s/√N`
    - Power formula: `N = 2((2z_α/2 + z_β)/ES)^2`
 2. **Table 1** in Section 8.5b shows empirical margin of error for each N (5, 10, 20, 30)
-3. **Experiments code** (`experiments/experiment_runner.py` lines 22–26) shows default trials=5 with override capability for confirmatory phase
-4. **Config file** (`configs/experiment_config.json` line 9) shows "trials": 5 baseline, documented as tunable parameter
+3. **Experiments code** ([experiments/experiment_runner.py](experiments/experiment_runner.py) lines 22–26) shows default trials=5 with override capability for confirmatory phase
+4. **Config file** ([configs/experiment_config.json](configs/experiment_config.json) line 9) shows "trials": 5 baseline, documented as tunable parameter
 5. **RESEARCH_LOG.md** lines 88–115 documents prior runs achieving convergence with 20–30 trials
 
 **Why This Matters**: Statistical power is the cornerstone of defensible hypothesis testing. The proposal now explicitly shows that:
@@ -356,7 +356,7 @@ status: COMPLETE — Ready for April 24-30 March 31st Workshop Presentation
 ### Three-Part Evidence for March 31st Workshop Presentation
 
 **Part A: Proposal Documentation**
-- File: [research_proposal_hons_working_draft.md](docs/research_proposal_hons_working_draft.md)
+- File: [proposal.md](docs/proposal.md)
 - Sections: 8.5a, 8.5b, 8.7, 8.7a, 8.10a, 8.13
 - Word count: 14,000+ words of formal methodology documentation
 - **Demonstration**: Open proposal; navigate to Section 8.5a; show sampling definitions (Braun, non-probability purposive, explicitly cited)

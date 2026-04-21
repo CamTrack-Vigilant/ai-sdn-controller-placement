@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import argparse
 import copy
-from datetime import datetime
+from datetime import datetime, timezone
+import hashlib
 import json
 import logging
+import platform
 from pathlib import Path
+import subprocess
 import sys
 from typing import Any
 
@@ -55,6 +58,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "rl_objective": {
         "latency_weight": 1.0,
         "reliability_weight": 0.25,
+        "seconds_per_episode_weight": 0.25,
     },
 }
 
@@ -108,6 +112,89 @@ def setup_logging(logs_dir: Path, level: str, log_file: str | None = None) -> Pa
     return log_path
 
 
+def _compute_config_hash(config: dict[str, Any]) -> str:
+    canonical = json.dumps(config, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def _resolve_git_commit() -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        value = result.stdout.strip()
+        return value or None
+    except Exception:
+        return None
+
+
+def enforce_decision_grade_trials(*, trials: int, strict_enabled: bool) -> tuple[bool, str]:
+    if not strict_enabled:
+        return True, "Strict enforcement disabled (non-decision-grade mode)."
+
+    if trials <= 0:
+        return False, "Strict mode requires a positive trial count."
+
+    if trials % 30 != 0:
+        return (
+            False,
+            (
+                f"Strict decision-grade mode requires trials to be a multiple of 30. "
+                f"Received trials={trials}. Use --trials 30 (or 60/90/...) or disable strict mode."
+            ),
+        )
+
+    return True, f"Strict decision-grade enforcement passed for trials={trials}."
+
+
+def write_manifest(
+    *,
+    data_dir: Path,
+    timestamp: str,
+    run_id: str,
+    run_mode: str,
+    config: dict[str, Any],
+    random_seed: int,
+    trials: int,
+    strict_decision_grade_enabled: bool,
+    strict_enforcement_passed: bool,
+    strict_enforcement_reason: str,
+) -> Path:
+    data_dir.mkdir(parents=True, exist_ok=True)
+
+    manifest = {
+        "run_id": run_id,
+        "run_mode": run_mode,
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "python_version": platform.python_version(),
+        "system_os": f"{platform.system()} {platform.release()}",
+        "git_commit_hash": _resolve_git_commit(),
+        "random_seed": int(random_seed),
+        "config_hash": _compute_config_hash(config),
+        "suite_runs": int(trials),
+        "suite_size_target": 30,
+        "completed_30_run_suites": int(trials) // 30,
+        "strict_decision_grade": {
+            "enabled": bool(strict_decision_grade_enabled),
+            "passed": bool(strict_enforcement_passed),
+            "reason": strict_enforcement_reason,
+        },
+        "config": config,
+    }
+
+    latest_manifest_path = data_dir / "manifest.json"
+    latest_manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
+
+    timestamped_manifest_path = data_dir / f"manifest_{timestamp}.json"
+    timestamped_manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
+
+    return latest_manifest_path
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run SDN controller placement benchmark experiments")
     parser.add_argument(
@@ -138,6 +225,14 @@ def parse_args() -> argparse.Namespace:
         type=str,
         default=None,
         help="Optional explicit log file path",
+    )
+    parser.add_argument(
+        "--strict-decision-grade",
+        action="store_true",
+        help=(
+            "Enable decision-grade enforcement. When enabled, trials must be a positive multiple "
+            "of 30 or execution fails fast."
+        ),
     )
     return parser.parse_args()
 
@@ -189,6 +284,19 @@ def main() -> None:
     rl_logging_cfg = config.get("rl_logging", {})
     rl_objective_cfg = config.get("rl_objective", {})
 
+    strict_passed, strict_reason = enforce_decision_grade_trials(
+        trials=int(experiment_cfg["trials"]),
+        strict_enabled=bool(args.strict_decision_grade),
+    )
+    if not strict_passed:
+        logger.error("Strict decision-grade enforcement failed: %s", strict_reason)
+        raise ValueError(strict_reason)
+
+    run_id = f"benchmark_{timestamp}"
+    run_mode = "decision_grade" if bool(args.strict_decision_grade) else "non_decision_grade"
+    logger.info("Run mode: %s", run_mode)
+    logger.info("Strict decision-grade enforcement: %s", strict_reason)
+
     latency_weight = float(rl_objective_cfg.get("latency_weight", 1.0))
     reliability_weight = float(rl_objective_cfg.get("reliability_weight", 0.0))
 
@@ -206,7 +314,7 @@ def main() -> None:
         bandit_kwargs.update({
             "log_path": str(rl_log_path),
             "log_every": int(rl_logging_cfg.get("log_every", 25)),
-            "run_label": f"benchmark_{timestamp}",
+            "run_label": run_id,
         })
         logger.info("Bandit RL training logs: %s", rl_log_path)
         logger.info(
@@ -243,6 +351,19 @@ def main() -> None:
     csv_path = data_dir / f"benchmark_{timestamp}.csv"
     benchmark_df.to_csv(csv_path, index=False)
 
+    manifest_path = write_manifest(
+        data_dir=data_dir,
+        timestamp=timestamp,
+        run_id=run_id,
+        run_mode=run_mode,
+        config=config,
+        random_seed=int(experiment_cfg["seed"]),
+        trials=int(experiment_cfg["trials"]),
+        strict_decision_grade_enabled=bool(args.strict_decision_grade),
+        strict_enforcement_passed=strict_passed,
+        strict_enforcement_reason=strict_reason,
+    )
+
     metrics_to_plot = list(experiment_cfg["metrics_to_plot"])
 
     for metric in metrics_to_plot:
@@ -256,10 +377,12 @@ def main() -> None:
     print("\nAverage metrics by algorithm:")
     print(summary.to_string(float_format=lambda value: f"{value:.4f}"))
     print(f"\nSaved benchmark CSV: {csv_path}")
+    print(f"Saved manifest JSON: {manifest_path}")
     print(f"Saved plots directory: {graph_dir}")
     print(f"Saved log file: {log_path}")
 
     logger.info("Saved benchmark CSV: %s", csv_path)
+    logger.info("Saved manifest JSON: %s", manifest_path)
     logger.info("Saved plots directory: %s", graph_dir)
     logger.info("Average metrics by algorithm:\n%s", summary.to_string(float_format=lambda value: f"{value:.4f}"))
 

@@ -1,0 +1,17 @@
+Workspace: C:\Users\fanele\AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks\ai-sdn-controller-placement
+Primary PDF input: C:\Users\fanele\AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks\ai-sdn-controller-placement\docs\submit\Research Proposal Template with Contant- PG Studies - Hons (1)_linked (6).pdf
+Primary PDF output: C:\Users\fanele\AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks\ai-sdn-controller-placement\docs\submit\Research Proposal Template with Contant- PG Studies - Hons (1)_linked (6)_hotlinks.pdf
+
+PDF citation links inserted:
+- Heller et al., 2012: 15
+- Farahi et al., 2026: 17
+- Radam et al., 2022: 11
+- Benoudifa et al., 2023: 14
+- Lange et al., 2015: 2
+- University of Zululand, n.d.: 2
+
+Cross-document files updated: 20
+Cross-document code-span links inserted: 50
+Cross-document plain-path links inserted: 9
+
+PDF link verification: 69/69 links valid

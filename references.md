@@ -30,7 +30,7 @@ This file centralizes all research sources used in this project, organized alpha
 
 The following PDF files in the research_papers folder refer to identical sources and are tracked as single citation entries:
 
-- `research_papers/2377677.2377767.pdf` and `research_papers/2377677.2377767 (1).pdf` → Both refer to Heller et al. (2012) "The Controller Placement Problem"
+- [research_papers/2377677.2377767.pdf](research_papers/2377677.2377767.pdf) and [research_papers/2377677.2377767 (1).pdf](research_papers/2377677.2377767%20%281%29.pdf) -> Both refer to Heller et al. (2012) "The Controller Placement Problem"
   - **Canonical Citation**: [1] Heller, Sherwood, McKeown (2012)
   - **Note**: Duplicate PDF indicates file was downloaded twice; only one canonical entry maintained in bibliography
 

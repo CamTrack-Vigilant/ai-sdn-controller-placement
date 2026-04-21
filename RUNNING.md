@@ -59,6 +59,48 @@ source .venv/bin/activate   # Linux/Mac
 python run_rl_training.py
 ```
 
+## Linux/WSL2 Decision-Grade Benchmark Flow
+
+Use this path for final Honours evidence collection.
+
+### Ubuntu/WSL2 setup
+
+```bash
+sudo apt update
+sudo apt install -y python3 python3-venv python3-pip mininet
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Ensure `ryu-manager` is available in your active environment before strict runs.
+
+### Push-button preflight + benchmark
+
+```bash
+source .venv/bin/activate
+python scripts/run_linux_ready_benchmark.py --config configs/experiment_config.json --trials 30 --strict-decision-grade
+```
+
+This command executes:
+
+- `env_check.py` preflight (unless `--skip-preflight` is passed)
+- `experiments/experiment_runner.py` with your forwarded arguments
+
+### Run modes
+
+- `decision_grade`: set `--strict-decision-grade` and use trial counts in multiples of 30.
+- `non_decision_grade`: default mode for exploratory or development runs.
+
+If strict mode is enabled and trials are not a positive multiple of 30, execution fails fast with remediation guidance.
+
+### Expected outputs
+
+- Benchmark CSV in `results/experiment_data/benchmark_<timestamp>.csv`
+- Manifest JSON in `results/experiment_data/manifest.json`
+- Timestamped manifest in `results/experiment_data/manifest_<timestamp>.json`
+- Metric plots in `results/graphs/`
+
 ### Option 2: Run as Module from Project Root
 
 ```bash
@@ -101,7 +143,7 @@ These imports expect the project root to be in Python's module search path. Runn
   - Configurable topology, episodes, and reward weights
   - Logs training progress to JSONL
 
-- **`scripts/run_factorial_latency_cost_matrix.py`**: Run full factorial latency-cost benchmark
+- **[scripts/run_factorial_latency_cost_matrix.py](scripts/run_factorial_latency_cost_matrix.py)**: Run full factorial latency-cost benchmark
   - Compares baseline and AI algorithms across topology families and scales
   - Exports raw, summary, best-per-scenario, and statistical comparison CSV files
   - Generates Pareto frontier plots per scenario
@@ -136,8 +178,8 @@ This section documents data collection tools, validation procedures, and integri
 
 | Script | Purpose | Output Format | Integrity Controls |
 |--------|---------|---------------|-------------------|
-| `scripts/run_factorial_latency_cost_matrix.py` | Benchmark all algorithms across factorial scenario matrix | CSV (raw, summary, best-per-scenario) | Fixed seeds, algorithm-specific logging, runtime validation |
-| `experiments/experiment_runner.py` | Execute single scenario with repeated trials | CSV rows per algorithm-trial combination | Deterministic seed generation, metric validation |
+| [scripts/run_factorial_latency_cost_matrix.py](scripts/run_factorial_latency_cost_matrix.py) | Benchmark all algorithms across factorial scenario matrix | CSV (raw, summary, best-per-scenario) | Fixed seeds, algorithm-specific logging, runtime validation |
+| [experiments/experiment_runner.py](experiments/experiment_runner.py) | Execute single scenario with repeated trials | CSV rows per algorithm-trial combination | Deterministic seed generation, metric validation |
 | `run_rl_training.py` | Train RL bandit agent with reward logging | JSONL (structured training log) | Episode counter, episode completion status, seed traceability |
 | `analyze_rl_logs.py` | Aggregate RL training logs into scenario-level summaries | CSV aggregated RL metrics | Episode filtering (exclude early episodes), convergence validation |
 
@@ -214,8 +256,8 @@ diff results/experiment_data/seed_42_trial20/*.csv \
 ### Data Retention & Archival
 
 - **Raw trial data**: Retained in `results/experiment_data/*.csv` (retained for proposal tenure, for audit, and for potential future meta-analysis).
-- **Analysis scripts**: Version-controlled in `evaluation/` and `scripts/` directories; git history preserves all analysis iterations.
-- **Intermediate outputs** (plots, logs): Retained in `results/` subdirectories corresponding to experiment run date/ID.
+- **Analysis scripts**: Version-controlled in [evaluation/](evaluation) and [scripts/](scripts) directories; git history preserves all analysis iterations.
+- **Intermediate outputs** (plots, logs): Retained in [results/](results) subdirectories corresponding to experiment run date/ID.
 - **Long-term archival**: Upon thesis submission, raw data and scripts archived to institutional repository (per UNIZULU data-retention policy); accessible for 3+ years for verification.
 
 ### Data Issues Encountered log

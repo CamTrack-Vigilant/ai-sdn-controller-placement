@@ -61,6 +61,6 @@ How stable are algorithm rankings across topology families and scale levels, and
 ## Meeting-Ready Actions Completed
 
 1. Stress-test outputs were regenerated with the updated runtime/convergence-aware pipeline.
-2. A slide-ready summary table (best compromise per scenario) was prepared in `docs/meeting_slide_pack_20260326.md`.
+2. A slide-ready summary table (best compromise per scenario) was prepared in [docs/meeting_slide_pack_20260326.md](meeting_slide_pack_20260326.md).
 3. A ranking-change slide was prepared using topology-family/scale factorial results, including the observed shift at node_count=20 and controller_budget=5.
-4. A backup slide section with limitations and external-validity boundaries was prepared in `docs/meeting_slide_pack_20260326.md`.
+4. A backup slide section with limitations and external-validity boundaries was prepared in [docs/meeting_slide_pack_20260326.md](meeting_slide_pack_20260326.md).

@@ -4,11 +4,11 @@ This folder is organized to help you extract and compare State of the Art (SotA)
 
 ## Folder Layout
 
-- `research_papers/` - PDF papers and high-level workspace docs.
-- `research_papers/sdn_textbooks/` - textbooks and long-form references.
-- `research_papers/matrices/` - synthesis matrix CSV files.
-- `research_papers/notes/` - paper-by-paper notes and extraction records.
-- `research_papers/templates/` - reusable templates for consistent reviews.
+- [research_papers/](.) - PDF papers and high-level workspace docs.
+- [research_papers/sdn_textbooks/](sdn_textbooks) - textbooks and long-form references.
+- [research_papers/matrices/](matrices) - synthesis matrix CSV files.
+- [research_papers/notes/](notes) - paper-by-paper notes and extraction records.
+- [research_papers/templates/](templates) - reusable templates for consistent reviews.
 
 ## Workflow (Use This Every Time)
 

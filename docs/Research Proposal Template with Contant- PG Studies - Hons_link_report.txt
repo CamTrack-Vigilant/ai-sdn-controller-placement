@@ -1,0 +1,16 @@
+Input:  C:[/Users/fanele/AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks/ai-sdn-controller-placement/docs/Research Proposal Template with Contant- PG Studies - Hons.pdf](Research Proposal Template with Contant- PG Studies - Hons.pdf)
+Output: C:[/Users/fanele/AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks/ai-sdn-controller-placement/docs/Research Proposal Template with Contant- PG Studies - Hons_linked.pdf](Research Proposal Template with Contant- PG Studies - Hons_linked.pdf)
+
+Landing zones:
+- ref-heller: page 24 @ (108.1, 153.1)
+- ref-farahi: page 24 @ (108.1, 132.8)
+- ref-radam: page 24 @ (108.1, 183.3)
+- ref-benoudifa: page 24 @ (93.6, 80.0)
+- ref-lange: page 24 @ (48.0, 700.0)
+
+Injected links:
+- Heller et al., 2012: 15
+- Farahi et al., 2026: 17
+- Radam et al., 2022: 11
+- Benoudifa et al., 2023: 13
+- Lange et al., 2015: 2

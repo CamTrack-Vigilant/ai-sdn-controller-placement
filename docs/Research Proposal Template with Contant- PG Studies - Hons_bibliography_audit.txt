@@ -1,0 +1,13 @@
+Input: C:[/Users/fanele/AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks/ai-sdn-controller-placement/docs/Research Proposal Template with Contant- PG Studies - Hons_linked.pdf](Research Proposal Template with Contant- PG Studies - Hons_linked.pdf)
+Output: C:[/Users/fanele/AI-Driven Controller Placement Optimization in Multi-Site Software Defined Networks/ai-sdn-controller-placement/docs/Research Proposal Template with Contant- PG Studies - Hons_linked_hardened.pdf](Research Proposal Template with Contant- PG Studies - Hons_linked_hardened.pdf)
+
+Anchor destinations:
+- ref-benoudifa: page 24 @ (48.0, 81.4)
+- ref-farahi: page 24 @ (48.0, 136.2)
+- ref-heller: page 24 @ (48.0, 191.0)
+- ref-radam: page 24 @ (48.0, 245.8)
+- ref-lange: page 24 @ (48.0, 300.6)
+- ref-unizulu-ip: page 24 @ (48.0, 345.2)
+
+URI links inserted: 8
+Internal citation links inserted: 58

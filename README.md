@@ -30,7 +30,7 @@ This means I commit to:
 
 ## Literature Discovery Strategy: How This Research Was Positioned
 
-This project is grounded in a systematic literature review using best practices in research methodology. For complete documentation, see [Advanced Search Documentation](docs/research_proposal_hons_working_draft.md#55-advanced-search-documentation-literature-discovery-strategy) in the research proposal.
+This project is grounded in a systematic literature review using best practices in research methodology. For complete documentation, see [Advanced Search Documentation](docs/proposal.md) in the research proposal.
 
 ### Literature Foundation
 
@@ -267,7 +267,7 @@ The RL baseline supports reward shaping with a composite objective:
 
 `reward = -(latency_weight * average_distance) + (reliability_weight * control_plane_reliability)`
 
-Default weights are configured in `configs/experiment_config.json` under `rl_objective`.
+Default weights are configured in [configs/experiment_config.json](configs/experiment_config.json) under `rl_objective`.
 
 ## Run Tests
 
@@ -277,10 +277,10 @@ python -m unittest discover -s tests -v
 
 ## Outputs
 
-- CSV result files are written to `results/experiment_data`.
-- Metric comparison plots are written to `results/graphs`.
-- Run logs are written to `logs/`.
-- RL training traces are written to `logs/rl_training.jsonl` (configurable).
+- CSV result files are written to [results/experiment_data](results/experiment_data).
+- Metric comparison plots are written to [results/graphs](results/graphs).
+- Run logs are written to [logs/](logs).
+- RL training traces are written to [logs/rl_training.jsonl](logs/rl_training.jsonl) (configurable).
 
 Core benchmark metrics include:
 
@@ -310,7 +310,7 @@ It additionally exports:
 - `stress_test_pareto_ranked_*.csv`: Pareto points ranked by normalized ideal-point distance.
 - `stress_test_best_compromise_*.csv`: one rank-1 compromise point per scenario.
 
-Factorial latency-cost runs export complementary statistical evidence files in `results/experiment_data`:
+Factorial latency-cost runs export complementary statistical evidence files in [results/experiment_data](results/experiment_data):
 
 - `factorial_latency_cost_raw_*.csv`: all algorithm-trial observations.
 - `factorial_latency_cost_summary_*.csv`: scenario-level descriptive summaries.
@@ -332,7 +332,7 @@ This project is designed to meet academic research standards for data integrity,
 - 75–80% statistical power to detect medium effect sizes (Cohen's d ≈ 0.6–0.7)
 - Rank stability validation across independent seed conditions
 
-For complete justification, see [Sample Size Calculation and Statistical Power Rationale](docs/research_proposal_hons_working_draft.md#85b-sample-size-calculation-and-statistical-power-rationale) in the research proposal.
+For complete justification, see [Sample Size Calculation and Statistical Power Rationale](docs/proposal.md) in the research proposal.
 
 ### Pilot Testing & Quality Assurance
 
@@ -341,7 +341,7 @@ All experiments undergo systematic **pilot testing** before confirmatory data co
 - **Validation checks**: Script syntax, metric generation, CSV integrity, seed reproducibility, algorithm parameter calibration
 - **Decision gate**: If all checks pass → proceed to full factorial experiment; if checks fail → debug and re-run
 
-For detailed pilot procedures, see [Pilot Testing Procedure](docs/research_proposal_hons_working_draft.md#87-pilot-testing-procedure) in the research proposal.
+For detailed pilot procedures, see [Pilot Testing Procedure](docs/proposal.md) in the research proposal.
 
 ### Data Validation Protocol
 
@@ -360,7 +360,7 @@ Systematic procedures to detect and handle data quality issues:
 
 **Outlier handling policy**: Outliers retained with documentation unless confirmed data errors; sensitivity analysis reports results with/without outliers.
 
-For complete protocol, see [Data Validation Protocol](docs/research_proposal_hons_working_draft.md#87a-data-validation-protocol) in the research proposal.
+For complete protocol, see [Data Validation Protocol](docs/proposal.md) in the research proposal.
 
 ### Reproducibility Controls
 
@@ -383,14 +383,14 @@ All inferential statistics are conducted using Python (Pandas, NumPy, SciPy) wit
 
 **Verification Workflow**: Departmental supervisor (if independent verification requested) can import exports into SPSS/GENSTAT and re-compute descriptive statistics to confirm Python-generated values match (tolerance: ±0.01%).
 
-For complete specification, see [Inferential Statistics & Departmental Verification Protocol (SPSS/GENSTAT Compatibility)](docs/research_proposal_hons_working_draft.md#810a-inferential-statistics--departmental-verification-protocol-spsspgenstat-compatibility) in the research proposal.
+For complete specification, see [Inferential Statistics & Departmental Verification Protocol (SPSS/GENSTAT Compatibility)](docs/proposal.md) in the research proposal.
 
 ### Data Integrity & Cleaning
 
 For detailed data collection tools, digital logging methods, validation checklists, and archival procedures, see:
 - **[RUNNING.md - Data Integrity & Cleaning](RUNNING.md#data-integrity--cleaning)**: Technical implementation of validation procedures, data collection tools inventory, and reproducibility protocols.
-- **[Pilot Testing Procedure](docs/research_proposal_hons_working_draft.md#87-pilot-testing-procedure)**: Multi-step validation before confirmatory data collection.
-- **[Data Validation Protocol](docs/research_proposal_hons_working_draft.md#87a-data-validation-protocol)**: Outlier handling, missing data policies, and CSV integrity verification.
+- **[Pilot Testing Procedure](docs/proposal.md)**: Multi-step validation before confirmatory data collection.
+- **[Data Validation Protocol](docs/proposal.md)**: Outlier handling, missing data policies, and CSV integrity verification.
 
 ---
 
@@ -411,11 +411,11 @@ print(result.average_rtt_ms, result.worst_rtt_ms)
 
 ## Recommended Workflow
 
-1. Define: Build or load the graph in `topology/` (and keep external inputs in `data/raw/`).
-2. Measure: Run `algorithms/baseline/random_placement.py` to establish floor performance.
-3. Optimize: Train and evaluate `algorithms/ai/reinforcement_learning.py` placement behavior.
-4. Validate: Run `simulation/mininet_simulation.py` to compare theoretical and virtual-network latency.
-5. Visualize: Use `evaluation/performance_analysis.py` to generate plots in `results/graphs/`.
+1. Define: Build or load the graph in [topology/](topology) (and keep external inputs in [data/raw/](data/raw)).
+2. Measure: Run [algorithms/baseline/random_placement.py](algorithms/baseline/random_placement.py) to establish floor performance.
+3. Optimize: Train and evaluate [algorithms/ai/reinforcement_learning.py](algorithms/ai/reinforcement_learning.py) placement behavior.
+4. Validate: Run [simulation/mininet_simulation.py](simulation/mininet_simulation.py) to compare theoretical and virtual-network latency.
+5. Visualize: Use [evaluation/performance_analysis.py](evaluation/performance_analysis.py) to generate plots in [results/graphs/](results/graphs).
 
 ## Next Research Steps
 

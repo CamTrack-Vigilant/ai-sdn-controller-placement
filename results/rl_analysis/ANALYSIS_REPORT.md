@@ -127,7 +127,7 @@ Reward = -[(0.6 × avg_distance) + (0.4 × (1 - reliability))]
 
 ## Visualizations
 
-Two detailed plots have been generated in `results/rl_analysis/`:
+Two detailed plots have been generated in [results/rl_analysis/](.):
 
 ### 1. Convergence Analysis (`convergence_analysis.png`)
 Six-panel visualization showing:
@@ -181,9 +181,9 @@ Six-panel visualization showing:
 ## Files Generated
 
 - `results/rl_training/training_log.jsonl` - Raw training data
-- `results/rl_analysis/convergence_analysis.png` - Multi-panel convergence plots
-- `results/rl_analysis/reward_distribution.png` - Reward histogram and quartiles
-- `results/rl_analysis/ANALYSIS_REPORT.md` - This document
+- [results/rl_analysis/convergence_analysis.png](convergence_analysis.png) - Multi-panel convergence plots
+- [results/rl_analysis/reward_distribution.png](reward_distribution.png) - Reward histogram and quartiles
+- [results/rl_analysis/ANALYSIS_REPORT.md](ANALYSIS_REPORT.md) - This document
 
 ---
 

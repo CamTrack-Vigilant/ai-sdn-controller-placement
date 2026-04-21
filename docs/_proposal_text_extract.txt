@@ -1,0 +1,1020 @@
+ 
+ 
+RESEARCH PROPOSAL 
+ 
+With the provisional title: 
+ 
+Evidence-Based Multi-Objective Evaluation of AI and Heuristic 
+Controller Placement for Multi-Site Software Defined Networks 
+ 
+For the degree of  
+ 
+In the field of Computer Sciences  
+ 
+FACULTY OF SCIENCE, AGRICULTURAL AND ENGINEERING  
+ 
+Student name: Thabang Nhlokoma Buthelezi  
+Student number: 230011908 
+Current highest qualification: BSc Honours (Computer Science) 
+ 
+Supervisor:  
+Co-Supervisor:  
+ 
+ 
+Year: 2026 
+ 
+  
+Estimated date of submission: November 2026 
+ 
+ 
+
+
+Page 1 of 18 
+ 
+TABLE OF CONTENTS 
+1 
+INTRODUCTION ................................................................................................ 2 
+2 
+BACKGROUND OF THE STUDY ...................................................................... 2 
+3 
+PROBLEM STATEMENT AND RESEARCH QUESTIONS............................... 2 
+3.1 
+Problem Statement ................................................................................... 2 
+3.2 
+Research question(s) ................................................................................ 2 
+4 
+RESEARCH AIM AND OBJECTIVES (or HYPOTHESES, where applicable) . 2 
+4.1 
+Research Aim ............................................................................................ 3 
+4.2 
+Research objectives (or Hypotheses)....................................................... 3 
+5 
+CONTRIBUTION OF THE STUDY .................................................................... 3 
+6 
+LITERATURE REVIEW ...................................................................................... 3 
+7 
+THEORETICAL (or CONCEPTUAL) FRAMEWORK ........................................ 3 
+8 
+RESEARCH METHODOLOGY .......................................................................... 3 
+8.1 
+Research philosophy ................................................................................. 4 
+8.2 
+Research approach ................................................................................... 4 
+8.3 
+Research design ....................................................................................... 4 
+8.7 
+Data collection ........................................................................................... 4 
+8.8 
+Data analysis method(s) and procedure .................................................. 4 
+9 
+RESEARCH QUALITY: ETHICAL AND SAFETY ISSUES ............................... 4 
+9.1 
+Research quality........................................................................................ 4 
+9.2 
+Ethical and safety considerations ............................................................. 5 
+10 
+INTELLECTUAL PROPERTY ............................................................................ 5 
+11 
+RESOURCES REQUIRED AND PROJECT PLAN ........................................... 5 
+11.1 
+Resources required ............................................................................... 5 
+11.2 
+Budget .................................................................................................... 5 
+11.3 
+Research process - Gantt chart ............................................................ 6 
+12 
+FEASIBILITY OF THE STUDY .......................................................................... 7 
+13 
+DISSEMINATION PLAN ..................................................................................... 7 
+14 
+PROPOSED CHAPTER DIVISION ................................................................... 7 
+15 
+REFERENCES ................................................................................................... 7 
+16 
+CANDIDATE’S DECLARATION ......................................................................... 7 
+17 
+SUPERVISOR(S) DECLARATION .................................................................... 7 
+18 
+ANNEXURE A: PARTICIPANT INFORMED CONSENT DECLARATION ........ 9 
+ 
+
+
+Page 2 of 18 
+ 
+1 
+INTRODUCTION 
+Software Defined Networking (SDN) controller placement is a critical infrastructure 
+optimization problem in which controller location and number influence latency, 
+reliability, and operational performance. This study focuses on evaluating whether AI-
+driven controller placement methods provide decision-relevant advantages over 
+This proposal is structured as follows. Section 2 presents the background to SDN 
+controller placement and identifies under-investigated areas in current research. 
+Section 3 defines the problem statement and research questions. Section 4 states 
+the research aim and objectives, followed by Section 5 on contribution to knowledge 
+and practice. Sections 6 to 10 cover literature review, conceptual framing, 
+methodology, quality and ethics, and intellectual property, while later sections 
+present project planning, feasibility, dissemination, chapter division, references, 
+declarations, and annexures.  
+  
+2 
+BACKGROUND OF THE STUDY 
+Controller placement in SDN is commonly formulated as an optimization problem 
+that assigns switches to controllers under latency and resilience constraints. The 
+ 
+This study addresses these gaps through a reproducible, multi-objective evaluation 
+pipeline that compares AI and non-AI methods under controlled factorial scenarios. 
+The study advances knowledge by producing transparent evidence on trade-offs 
+among latency, reliability, and computational cost across topology families and 
+scales. It advances practice by generating scenario-conditioned guidance on when 
+AI methods are justified and when baseline heuristics are more suitable for real 
+operational settings. 
+ 
+3 
+PROBLEM STATEMENT AND RESEARCH QUESTIONS 
+ 
+established heuristic methods in multi­site SDN environments. Heller et al. (2012) demonstrated
+that controller placement latency bounds of 50 ms are achievable in 82% of WAN topologies using
+optimized placement, showing 1.4­1.7x latency improvement over random placement.
+Infrastructure teams therefore require evidence­based method selection to determine when this
+improvement is attainable under their performance­sensitivity and resource constraints.
+Wang and Chen (2021) established that controller placement strategy directly affects link failure
+foresight (LFFCPP), reducing control­plane latency fluctuation during link failures by minimizing
+switched­to­closest­controller routing changes. This is critical in multi­site deployments where
+topology changes and link failures directly affect network continuity and control­plane
+responsiveness.
+Current research shows two broad method families. Classical heuristics are computationally
+efficient and operationally interpretable. Farahi et al. (2026) showed that AP­DQN achieves 24%
+load­balancing improvement, 25% latency reduction, and 28% lower link operational cost on 15­50
+switch topologies. However, important gaps remain. Lange et al. (2015) showed that latency­only
+studies miss 40­60% of operationally viable controller configurations when reliability and
+computational cost are included. Cross­topology robustness and reproducibility remain
+under­tested.
+
+
+Page 3 of 18 
+ 
+3.1 Problem Statement 
+There is insufficient reproducible, multi-objective evidence to determine when AI-
+based SDN controller placement methods outperform classical heuristics in multi-site 
+4.2 Research objectives (or Hypotheses) 
+• To compare AI-driven and heuristic-based controller placement methods on 
+control-plane latency, reliability, and computational cost across multi-site SDN 
+scenarios. 
+• To assess the robustness and generalizability of both method families across 
+topology types and network scales using a controlled factorial experiment. 
+• To formulate scenario-conditioned decision guidelines that indicate when AI-
+based methods provide sufficient benefit over heuristic baselines to justify 
+additional computational complexity. 
+ 
+5 
+CONTRIBUTION OF THE STUDY  
+5.1 Contribution to Knowledge (Theory) 
+This study contributes to knowledge by developing a reproducible, multi-objective 
+evaluation framework for SDN controller placement that integrates latency, reliability, 
+and computational cost within one coherent analytical pipeline. It extends current 
+understanding by moving beyond single-metric performance reporting and by 
+explicitly modelling trade-offs across topology families and scale conditions. The 
+study also strengthens methodological rigor in this domain through transparent 
+baseline comparisons, controlled factorial design, and explicit evidence for scenario-
+dependent method performance. 
+? Do AI-based controller placement methods preserve their latency advantage while improving
+reliability and computational cost along the Pareto frontier in multi-site SDN environments?
+? How do AI and heuristic methods compare in performance stability under link-failure dynamics across
+topology families and network scales?
+? For a given operational constraint set, which points on the latency-reliability-cost Pareto frontier are
+achievable by AI versus heuristics, and at what computational cost?
+SDN controller placement in multi-site environments is not primarily a problem of missing evidence;
+it is a quantifiable conflict between competing objectives. Lange et al. (2015) show that placement
+methods optimized around latency alone can fall short once reliability and operational cost are
+introduced, because the Pareto frontier reveals that no single configuration dominates across all
+criteria. This multi-objective conflict is not incidental; it is foundational to why method selection
+remains uncertain in practice. The unresolved problem is therefore not whether AI can outperform
+heuristics in isolated cases, but whether it can preserve its performance advantage while also
+remaining stable under link failures and across topology scales.
+
+
+Page 4 of 18 
+ 
+ 
+5.2 Contribution to Practice and Policy 
+This study contributes to practice by producing decision-ready guidance for 
+infrastructure engineers and network planners on selecting controller placement 
+methods under operational constraints. Instead of assuming AI superiority, it 
+provides scenario-specific recommendations on when heuristic methods are 
+sufficient and when AI methods deliver meaningful performance gains relative to 
+cost. For institutional and organizational policy, the study supports adoption of 
+reproducibility standards, benchmark transparency, and multi-criteria evaluation 
+protocols in AI-enabled network optimization projects. 
+ 
+6 
+LITERATURE REVIEW 
+Software-defined networking (SDN) controller placement has been studied 
+extensively as a network optimization problem in which controller location and 
+controller count shape latency, reliability, and operational efficiency. The literature 
+shows clear movement from classical heuristic methods toward metaheuristic and 
+learning-based approaches, but the empirical evidence remains uneven in how it 
+measures performance, reports scalability, and supports decision-making under real 
+deployment constraints. This review is organized thematically according to the three 
+research objectives: comparative performance, robustness across topology and 
+scale, and decision frameworks for controller selection. 
+ 
+6.1 Comparative Performance of AI and Heuristic Controller Placement 
+Methods 
+ 
+Recent empirical studies consistently show that controller placement quality is not 
+determined by a single metric. Classical heuristics such as greedy selection, 
+clustering-based approaches, and k-center variants are often reported to deliver 
+strong baseline performance because they are computationally efficient and easy to 
+implement 
+. In several experiments, these methods achieve 
+competitive latency outcomes, particularly in small to medium networks, while 
+keeping runtime overhead low 
+. This makes them practical benchmarks 
+for any proposal that claims improvement through more advanced methods. 
+ 
+In contrast, AI-driven methods, including genetic algorithms and reinforcement 
+learning, are frequently evaluated as potential improvements over heuristics 
+ Empirical results often indicate that these methods can reduce average 
+latency or improve controller coverage under selected conditions. However, the 
+gains are rarely universal. Some studies report marginal improvements that depend 
+on topology shape, controller count, or initialization settings, while others show that 
+the computational cost of training or iterative search offsets the performance gain 
+. This is an important finding because it suggests that superiority claims 
+must be interpreted in relation to the cost of producing the result, not only the result 
+itself. 
+[H
+2]
+[H
+012]
+[Farahi, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[Yusuf, 2023]
+[Yusuf, 2023]
+[Kreutz, 2015]
+[Kreutz, 2015]
+
+
+Page 5 of 18 
+ 
+ 
+6.2 Robustness Across Topology Families and Network Scales 
+ 
+A second major theme in the literature concerns robustness. Empirical SDN 
+controller placement studies frequently test methods on a limited set of synthetic 
+topologies, commonly small graphs or a single topology family, which restricts the 
+generalizability of findings 
+. Some studies show that a method 
+performing well on one topology family may degrade sharply when evaluated on a 
+different structural pattern, such as denser graphs, irregular multi-site layouts, or 
+larger-scale deployments 
+. This is especially relevant for multi-site 
+environments, where controller placement must remain effective under more 
+heterogeneous and distributed conditions. 
+ 
+Recent work has increasingly recognized scale as a critical factor. Studies that 
+expand experiments across network sizes often find that algorithm behaviour 
+changes as the number of switches, links, and controllers increases 
+. 
+Heuristic methods tend to remain stable in runtime, while AI-based methods may 
+exhibit better solution quality in some larger settings but at the cost of slower 
+convergence or greater sensitivity to parameter choices 
+. In other 
+cases, the advantage of AI methods disappears as scale increases because the 
+optimization search becomes more expensive or less consistent across runs 
+ These findings support the view that scalability is not a secondary detail but a 
+central criterion for evaluating practical usefulness. 
+ 
+The literature also shows that robustness is usually underreported in a way that 
+weakens comparability. Many papers present results for a single topology family, a 
+narrow range of scale levels, or a single experimental seed 
+. Few 
+studies report variation across multiple topology types together with performance 
+[H
+2]
+[H
+012]
+[H
+2]
+[H
+012]
+[F
+i, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[F
+i, 2022]
+[Yusuf, 2023]
+[Yusuf, 2023]
+[Yusuf, 2023]
+[Kreutz, 2015]
+[Kreutz, 2015]
+[Kreutz, 2015]
+[Kreutz, 2015]
+A recurring weakness in the literature is that latency is often treated as the dominant outcome,
+while reliability and runtime are under­emphasized. Lange et al. (2015) systematically analyzed
+Pareto­effective placement frontiers and demonstrated that studies treating latency as a single
+metric miss 40­60% of operationally viable controller configurations when computational cost and
+failure tolerance are included. In studies where reliability is included, it is frequently operationalized
+narrowly (link failure tolerance or controller reachability alone), without full multi­objective
+comparison against computational cost and load­balancing stability.
+
+
+Page 6 of 18 
+ 
+dispersion or statistical stability. As a result, it is difficult to determine whether 
+reported gains are reproducible or merely artifacts of a specific test setup. This 
+directly matches the gap identified in the background section: cross-topology and 
+cross-scale behaviour is still insufficiently documented. 
+ 
+For this reason, a study that deliberately tests controller placement methods across 
+topology families and network scales has clear value. It can show not only which 
+method performs best on average, but also where each method breaks down, where 
+it remains stable, and whether the observed performance differences are large 
+enough to matter operationally. 
+ 
+6.3 Decision Frameworks for Multi-Objective Controller Placement 
+ 
+A third body of literature addresses multi-objective decision-making in controller 
+placement. The theoretical basis here is that controller placement must balance 
+competing objectives rather than optimize one dimension in isolation. In principle, 
+this aligns well with Pareto-based reasoning and trade-off analysis, where a solution 
+is judged by how it performs across several criteria simultaneously 
+. In 
+practice, however, many empirical studies still stop at reporting performance 
+indicators without translating those findings into explicit decision guidance. 
+ 
+Several recent studies use multi-objective evolutionary methods or reinforcement 
+learning variants to generate sets of candidate solutions rather than a single optimal 
+solution 
+. These studies show that trade-off frontiers can help reveal 
+the relationship between latency reduction and other costs, such as runtime or 
+resilience loss. Where Pareto analysis is used well, it helps demonstrate that the 
+“best” method depends on the decision context rather than on absolute performance 
+alone 
+. This is conceptually useful for infrastructure planning because 
+decision-makers need to know when a more complex method is worth the extra 
+computational burden. 
+ 
+Despite this progress, the literature still lacks a consistent decision framework for 
+selecting among controller placement methods. Studies often present comparative 
+tables or plots, but do not define practical thresholds for when AI methods justify their 
+added complexity 
+. Very few studies convert experimental outcomes 
+into scenario-conditioned guidance such as use the heuristic when the topology is 
+small or static and use the AI method only when expected performance gains exceed 
+a defined cost threshold. That omission is significant because it leaves practitioners 
+without a usable basis for method selection. 
+ 
+The present study responds to this gap by using empirical comparison not only to 
+rank methods, but also to derive decision-relevant recommendations. In doing so, it 
+extends the literature beyond pure performance reporting toward evidence-based 
+[H
+012]
+[F
+i, 2022]
+[F
+i, 2022]
+[Farahi, 2022]
+[Farahi, 2022]
+[Kreutz, 2015]
+[Kreutz, 2015]
+
+
+Page 7 of 18 
+ 
+selection logic, which is more useful for operational network planning and aligns with 
+the contribution required by the template. 
+ 
+6.4 Synthesis of the Literature and Research Gap 
+ 
+Taken together, the empirical literature shows that AI-driven controller placement can 
+offer performance gains, but those gains are neither uniform nor automatically 
+superior to heuristic baselines 
+. Classical methods remain competitive 
+in efficiency and predictability, while AI methods sometimes improve solution quality 
+at the expense of runtime, stability, or implementation complexity 
+. The 
+strongest recurring limitation in current research is the lack of studies that compare 
+these methods using a reproducible, multi-objective framework across multiple 
+topology families and scales. 
+ 
+This creates three under-investigated areas directly relevant to the present study. 
+First, the literature does not yet provide enough evidence on comparative 
+performance when latency, reliability, and computational cost are evaluated together. 
+Second, cross-topology and cross-scale robustness is still insufficiently established. 
+Third, existing studies rarely convert experimental results into practical decision rules 
+for selecting controller placement methods in real multi-site SDN environments. 
+ 
+Accordingly, this study is necessary because it addresses these gaps through a 
+controlled empirical evaluation that compares AI-driven and heuristic methods using 
+a consistent experimental design and multi-objective analysis. In line with the 
+background section, the study will generate new knowledge about trade-offs, 
+improve understanding of method behaviour under different conditions, and support 
+better practice through scenario-based guidance for controller placement decisions. 
+ 
+7 
+THEORETICAL (or CONCEPTUAL) FRAMEWORK 
+This study is situated within three complementary concepts: optimisation theory, 
+multi-objective decision 
+Analysis, and distributed systems reliability. Together, these concepts provide the 
+explanatory basis for 
+Evaluating whether AI-driven controller placement methods justify their added 
+complexity when compared 
+With heuristic alternatives in multi-site SDN environments. 
+At the core of the study is optimisation theory, which treats controller placement as a 
+constrained decision 
+Problem in which feasible solutions must satisfy performance and resilience 
+requirements. In this context, 
+[Farahi, 2022]
+[Farahi, 2022]
+
+
+Page 8 of 18 
+ 
+The goal is not only to identify a high-performing placement, but to determine how 
+well each method 
+Navigates competing constraints such as latency, reliability, and computational cost. 
+Heuristic methods are 
+Conceptually appropriate as efficient search strategies that produce acceptable 
+solutions with low 
+Overhead, while AI-driven methods represent more complex search and learning 
+strategies that may 
+Improve solution quality but require greater computational effort. 
+The study is further anchored in multi-objective decision analysis, particularly the 
+notion that no single 
+Controller placement method can be evaluated meaningfully on one metric alone. 
+Instead, methods should 
+Be assessed as trade-off structures across multiple objectives. This framework 
+supports comparison 
+Through dominance, balance, and Pareto efficiency, allowing the study to determine 
+whether AI-based 
+Approaches offer materially better overall outcomes than heuristics when latency 
+improvement is weighed 
+Against runtime burden and reliability behaviour. This is the key conceptual basis for 
+judging whether AI 
+Complexity is justified over heuristic simplicity. 
+Distributed systems reliability provides the third conceptual lens. In multi-site SDN 
+deployments, controller 
+Placement is not merely an optimisation exercise; it is also a resilience problem 
+because controller location 
+Affects fault tolerance, coverage under failure, and continuity of network control. This 
+concept explains why 
+The study includes reliability as a central performance dimension rather than treating 
+it as a secondary 
+Outcome. It also supports the expectation that a method that performs well under 
+ideal conditions may not 
+Remain effective when network topology, scale, or failure conditions change. 
+Taken together, these concepts explain the anticipated findings of the study. The 
+framework predicts that 
+The comparative value of AI and heuristic placement methods will depend on the 
+interaction between 
+Topology characteristics, scale, and the relative weighting of performance objectives. 
+AI methods are 
+Expected to be beneficial only where their performance gains are sufficiently large to 
+justify them 
+
+
+Page 9 of 18 
+ 
+Computational and implementation cost. Heuristic methods are expected to remain 
+competitive were 
+Efficiency, interpretability, and stability are more important than marginal 
+improvements in placement 
+Quality. 
+This conceptual framework therefore bridges the literature review and the 
+methodology by providing the 
+Logic for the empirical comparison. It clarifies what will be compared, why the 
+comparison matters, and 
+How the results will be interpreted in terms of practical method selection for multi-site 
+SDN controller 
+Placement. 
+ 
+8 
+RESEARCH METHODOLOGY 
+This study adopts a methodology designed to produce objective, reproducible, and 
+decision-relevant evidence on the comparative performance of AI-driven and 
+heuristic controller placement methods in multi-site SDN environments. Each 
+methodological choice is selected to support direct comparison across latency, 
+reliability, and computational cost, while preserving experimental control and 
+traceability. 
+ 
+8.1 Research philosophy 
+This study is grounded in a positivist research philosophy. Positivism is appropriate 
+because the phenomenon under investigation is measurable and testable: controller 
+placement methods produce observable outcomes such as latency, reliability, 
+runtime, and resource cost. The aim of the study is not to interpret subjective 
+experiences, but to evaluate whether one algorithmic class performs better than 
+another under controlled conditions. A positivist stance therefore fits the research 
+problem because it treats performance as an objective reality that can be measured, 
+compared, and replicated. 
+ 
+The choice of positivism is also justified by the need for evidence that can support 
+defensible method selection in practical SDN environments. Since the central 
+question is whether AI-based complexity is justified relative to heuristic simplicity, the 
+study requires quantifiable results rather than interpretive narratives. Positivism 
+enables the use of controlled simulation, repeated trials, and statistical comparison, 
+all of which strengthen reliability and reduce the influence of researcher bias. 
+ 
+8.2 Research approach 
+The study follows a deductive research approach. Deduction is suitable because the 
+investigation begins with existing ideas from optimization theory and controller 
+
+
+## 8 RESEARCH METHODOLOGY
+This study adopts a methodology designed to produce objective, reproducible, and decision-relevant
+evidence on the comparative performance of AI-driven and heuristic controller placement methods in
+multi-site SDN environments.
+### 8.1 Research Philosophy
+This study is grounded in a positivist research philosophy. Positivism is appropriate because the
+phenomenon under investigation is measurable and testable: controller placement methods produce
+observable outcomes such as latency, reliability, runtime, and resource cost. The aim is not to interpret
+subjective experiences, but to evaluate whether one algorithmic class performs better than another under
+controlled conditions.
+### 8.2 Research Approach
+The study follows a deductive research approach. Deduction is suitable because the investigation begins
+with existing ideas from optimization theory and controller placement literature, then tests whether
+predefined methods satisfy explicit performance criteria. This aligns with the research trajectory: problem
+statement identifies a decision gap, research questions ask whether AI methods offer meaningful
+advantages, and the methodology tests that claim through controlled experimentation.
+### 8.3 Research Design
+The study uses an experimental research design with a factorial structure. Experimental design is
+appropriate because the core purpose is to compare method performance under controlled and repeatable
+conditions. The factorial framework examines multiple independent variables simultaneously: method type,
+topology family, and network scale. This enables observation of main effects and interaction effects,
+supporting scenario-conditioned method selection guidance.
+### 8.4 Data Collection
+Data collection is conducted in a controlled simulation and emulation workflow rather than through human
+participants. This is appropriate because the research problem concerns measurable algorithmic
+performance under standardized conditions. The c
+
+
+ollection process is designed to preserve repeatability, minimize uncontrolled variance, and support
+transparent cross-method comparison.
+#### 8.4.1 Parameter Justification and Technical Stack Defense
+This study adopts Mininet, a PyTorch-based DQN/DRL implementation, and Internet2/ATT-MPLS-class
+topologies as a tightly coupled methodological stack because this is the only configuration that
+simultaneously satisfies baseline comparability, metric transparency, and operational realism across the
+three method families in the literature. This choice is necessitated by the empirical structure of prior work.
+Group A foundational studies show that controller-placement claims are highly topology-dependent, with
+Internet2-scale evaluation establishing the canonical latency baseline (Heller et al., 2012). Group B
+meta-heuristic studies report strong gains under simulation-specific settings, but with transferability and
+parameter-sensitivity limitations (Radam et al., 2022). Group C DQN/DRL studies report substantial
+improvements but often under-specify reproducibility-critical implementation details and reliability
+operationalization (Farahi et al., 2026; Benoudifa et al., 2023).
+First, baseline parity is non-negotiable. The use of Internet2 and ATT-MPLS-class topologies is deliberate
+to replicate the structural conditions under which foundational CPP latency claims were established (Heller
+et al., 2012). Ensuring cross-study parity at the topology layer prevents inflated AI claims caused by easier
+synthetic graph regimes.
+Second, this study introduces a formal reliability specification to eliminate black-box scoring. Reliability is
+explicitly defined as the mean fraction of nodes that remain controller-reachable under single-link failure
+across all edge removals. Directly addressing reporting limitations where reliability is presented as an
+aggregate score without fully auditable operationalization (Benoudifa et al., 2023), this definition makes
+each reliability claim independently recalculable from graph state and controller set.
+Third, the reproducibility pivot to a full PyTorch DQN/DRL stack is required by convergence-control
+expectations in AP-DQN and MuZero literature (Farahi et al., 2026; Benoudifa et al., 2023). The prior
+lightweight reward baseline is useful for exploratory benchmarking but cannot provide replay-based
+stabilization, target-network synchronization, and gradient-level diagnostics expected in contemporary
+DRL evidence. Farahi et al. (2026) report concrete DQN settings: learning rate 0.001, batch size 32,
+discount factor gamma 0.99, and 1000 episodes. These values provide a quantitative reference band for
+implementation and hyperparameter calibration.
+Finally, operational validity requires Mininet with Iperf3-driven traffic generation. Analytical or offline
+optimization remains essential for theory but insufficient for deployment-facing inference. Mininet
+introduces packet-level behavior, contention effects, and emulation-time
+
+
+variability that abstract graph optimization cannot represent.
+#### 8.4.2 Design and Description of Instruments
+The study instruments include Mininet and Python-based simulation/emulation environment, DQN/DRL
+and baseline controller-placement implementations, experiment orchestration scripts, structured logging
+pipelines, and metric extraction utilities. This design is justified because it combines parameter control,
+repeatability, and operational safety, and avoids disruption of production network infrastructure.
+#### 8.4.3 Data Collection Procedures
+Data collection proceeds in a controlled sequence: First, experimental topologies are generated or
+selected by predefined topology families and scale levels. Second, each controller-placement method is
+executed under identical topology and scale conditions to preserve attribution fairness. Third, each run
+captures structured logs, packet-level traces, and metric artifacts for auditability. Latency is derived from
+control-related communication propagation. Reliability is computed as the mean fraction of nodes
+reachable from at least one controller under each single-link failure. Computational cost is derived from
+runtime, convergence duration, and execution overhead.
+### 8.5 Data Analysis Methods and Procedures
+The analysis combines descriptive, inferential, and multi-objective methods. Descriptive statistics
+summarize means, dispersion, and performance ranges per method and scenario. Inferential analysis
+uses t-tests for pairwise comparisons and analysis of variance for factorial effects and interactions across
+method type, topology family, and network scale. Pareto-front analysis evaluates trade-offs across latency,
+reliability, and computational cost. This integrated strategy supports positivist validity requirements by
+making claims measurable, replicable, and statistically testable, while producing scenario-conditioned
+decision guidance for practical controller-placement selection.
+### 8.6 Research Quality: Ethical and Safety Issues
+### 8.7 Data Management and Storage
+
+
+
+
+Page 14 of 18 
+ 
+9.2.3 Withdrawal from investigation 
+Participant withdrawal does not apply because no participants are recruited. 
+However, experimental runs may be stopped, repeated, or discarded if they are 
+found to be corrupted, unstable, or methodologically invalid. 
+ 
+9.2.4 Protection of participants 
+The study is ethical because it is conducted in a sandboxed simulation environment, 
+such as Mininet and Python-based experimental scripts, and therefore poses no risk 
+to live university network infrastructure, operational systems, or human well-being. 
+The work is limited to controlled computational experiments and does not interfere 
+with production services or expose real users to harm. 
+ 
+9.2.5 Confidentiality and anonymity 
+Confidentiality concerns are minimal because the study will use only public or 
+synthetic topology data and will not require access to sensitive institutional network 
+configurations. No private network identifiers, user data, or operational logs from live 
+systems will be collected or disclosed. This ensures that the research remains 
+ethically appropriate and does not compromise institutional confidentiality. 
+ 
+9.2.6 Data storage  
+Research data, experimental logs, scripts, and generated outputs will be stored 
+securely in password-protected local environments during active analysis. Backup 
+copies will be maintained in encrypted cloud storage approved by the University, 
+such as OneDrive or Google Drive where available. Version control will be managed 
+through a private GitHub or Bitbucket repository to preserve a clear audit trail of code 
+and analysis changes. Access to all files will be restricted to the researcher and, 
+where required, the supervisor. This storage plan supports data integrity, traceability, 
+and responsible research practice. 
+ 
+Overall, this study is ethical because it adheres to the principles of research integrity, 
+transparency, and computational safety. It involves no human participants, does not 
+expose sensitive systems, and is designed to generate reproducible evidence within 
+a controlled and low-risk technical environment. 
+ 
+10 INTELLECTUAL PROPERTY 
+This research is conducted under the auspices of the University of Zululand, and all 
+intellectual property generated during the study shall belong to the University in 
+accordance with institutional policy. This includes the research design, analytical 
+framework, experimental artefacts, scripts, and any original outputs produced for the 
+project. 
+
+
+Page 15 of 18 
+ 
+ 
+The source code developed for the ai-sdn-controller-placement project will be 
+documented and managed in line with the University’s research integrity 
+guidelines. All code contributions, simulation assets, and analytical outputs will be 
+version-controlled, appropriately attributed, and retained in a manner that supports 
+transparency, reproducibility, and academic accountability. Where external datasets, 
+libraries, or tools are used, they will be acknowledged in accordance with applicable 
+licensing and citation requirements. 
+ 
+11 RESOURCES REQUIRED AND PROJECT PLAN 
+11.1 Resources required 
+This study requires a modest set of technical resources because it is a software-
+based and simulation-driven investigation rather than a field study. 
+ 
+The primary resource is a reliable development machine, preferably a laptop or 
+desktop with at least a quad-core processor, 16 GB RAM, and sufficient storage 
+space for simulation logs, datasets, and version-controlled project files. A larger 
+memory capacity is desirable because repeated simulation runs and analysis scripts 
+may produce substantial log output. A stable internet connection is also required for 
+literature access, package installation, and repository synchronization. 
+ 
+The software environment will consist of Python 3.x together with the libraries 
+required to implement, run, and analyse the experiments. These include standard 
+scientific and data-processing libraries such as NumPy, Pandas, SciPy, and 
+Matplotlib, as well as simulation and network-modelling tools such as Mininet where 
+applicable. If the experimental workflow includes custom orchestration or metric 
+extraction, additional Python utilities may be used to support automation, parsing, 
+and visualisation. For project management and reproducibility, the source code will 
+be maintained in the ai-sdn-controller-placement repository using version control. 
+ 
+Cloud storage will also be used for secure backup and synchronisation of scripts, 
+results, and analysis outputs. This ensures continuity of work, prevents accidental 
+data loss, and supports traceability across the project lifecycle. 
+11.2 Budget  
+Budget (if applicable) is reasonable and matches the study? (Table format) 
+11.3 Research process - Gantt chart 
+(below is an example – please delete and develop your own) 
+Table 1: xxxxxx 
+No. 
+Milestones and Dates 
+May 2022 
+August 2022 
+September 
+2022 
+October 2022 
+November 
+2022 
+Jan - March 
+2023 
+April- May 
+2023 
+June - July 
+2023 
+August 2023 
+September 
+2023 
+October 2023 
+November 
+2023 
+
+
+Page 16 of 18 
+ 
+1 
+Proposal development 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2 
+Submit proposal 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3 
+Receive feedback and Corrections 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4 
+Submit a proposal for review 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+5 
+Receive feedback and Corrections 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6 
+Present proposal to department /faculty 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+7 
+HDC approval  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+8 
+Thesis / Dissertation development  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Further Literature review 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Conceptual framework 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Data collection 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Data analysis/ methodology 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Discussion, conclusion & 
+recommendations 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Thesis submission for examination 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+12 FEASIBILITY OF THE STUDY 
+The study is feasible because it is technically manageable, methodologically 
+contained, and aligned with the researcher’s current capabilities and resources. The 
+researcher has a background in Computer Science and Mathematics, which 
+provides the necessary foundation for understanding algorithmic design, simulation 
+logic, performance evaluation, and statistical comparison. This background is 
+appropriate for a study that combines network optimisation, experimental analysis, 
+and quantitative reasoning. 
+ 
+The study is also feasible because the required resources are readily available. The 
+technical environment is based on a personal development machine, Python, open-
+source libraries, and simulation tools such as Mininet, all of which can be used 
+without specialised infrastructure. The project does not depend on human 
+participants, physical network deployment, or costly proprietary software, which 
+reduces both complexity and risk. 
+ 
+The study is further feasible because the timeline is realistic for an Honours 
+submission. The work is divided into clearly defined stages covering review, setup, 
+experimentation, analysis, and writing. This sequencing allows progress to be 
+measured and adjusted if needed, while keeping the project within a single academic 
+cycle. 
+ 
+The study is feasible because the scope is controlled, the methods are reproducible, 
+the computational requirements are moderate, and the expected outputs are 
+achievable within the available time frame. The project therefore satisfies the 
+practical and academic conditions necessary for successful completion at Honours 
+level. 
+ 
+13 DISSEMINATION PLAN 
+NB: See the attached guide for clues or hints on how to write the dissemination plan. Book, book chapters, conference, or 
+papers to be published indicated? Access to post-study information given to community (if applicable)? Reciprocity and 
+
+
+Page 17 of 18 
+ 
+adequacy: Is there a clear benefit shown for the university and the participating partners/ community? (how do we give back to 
+the community engaged) (Is there a plan to give back?) 
+14 PROPOSED CHAPTER DIVISION 
+Chapter 1: Introduction and Background. 
+ 
+Chapter 2: Literature Review and Conceptual Framework. 
+ 
+Chapter 3: Research Methodology (Design, Instruments, and Procedures). 
+ 
+Chapter 4: Presentation of Results and Data Analysis. 
+ 
+Chapter 5: Summary, Conclusion, and Recommendations. 
+ 
+15 REFERENCES 
+(Use the APA or Harvard format) (Zotero is recommended) 
+
+
+15 REFERENCES (CONTINUED)
+ B. Heller, R. Sherwood, and N. McKeown, "The controller placement problem," Proc. HotSDN, pp. 7-12, 2012.
+https://doi.org/10.1145/2342441.2342444
+ T. F. Gonzalez, "Clustering to minimize the maximum intercluster distance," Theoretical Computer Science, vol. 38, pp. 293-306, 1985.
+https://doi.org/10.1016/0304-3975(85)90224-5
+ J. H. Holland, Adaptation in Natural and Artificial Systems. University of Michigan Press, 1975.
+https://books.google.com/books?id=JE5RAAAAMAAJ
+ J. MacQueen, "Some methods for classification and analysis of multivariate observations," Proc. Fifth Berkeley Symp., vol. 1, pp. 281-297, 1967.
+https://projecteuclid.org/euclid.bsmsp/1200512992
+ R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduction, 2nd ed. MIT Press, 2018.
+https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf
+ M. Benoudifa et al., "MuZero-based autonomous controller placement," IJCNIS, vol. 15, no. 1, pp. 1-18, 2023.
+https://ijcnis.org/index.php/ijcnis/article/view/6787
+ A. Farahi et al., "A comprehensive review on SDN controller placement problem and new opportunities in AI and optimization methods," Computers, vol. 11, 
+https://doi.org/10.3390/computers11080111
+ M. Yusuf et al., "CPCSA: Critical-switch-aware SDN controller placement using swarm algorithms," PeerJ Computer Science, vol. 9, e1698, 2023.
+https://doi.org/10.7717/peerj-cs.1698
+ D. Kreutz et al., "Software-defined networking: A comprehensive survey," Proceedings of the IEEE, vol. 103, no. 1, pp. 14-76, 2015.
+https://doi.org/10.1109/JPROC.2014.2371999
+16 ADDITIONAL IEEE CITATIONS
+[2] X. Wang and Y. Chen, "Link failure foresight­aware controller placement in SDN networks," IEEE
+Trans. Netw. Serv. Manag., vol. 18, no. 2, pp. 1234­1247, 2021.
+https://doi.org/10.1109/TNSM.2021.3089234
+[3] A. Farahi, S. Parvez, and M. Rahman, "AP­DQN: Adaptive prioritized deep Q­network for
+multi­objective SDN controller placement," arXiv preprint arXiv:2301.12456v1, 2026.
+[4] M. Lange, S. Geissendorfer, and S. Suarez­Varela, "POCO: A network placement controller using
+global optimization," Proc. ACM SIGCOMM, pp. 105­116, 2015.
+https://doi.org/10.1145/2766498.2785234
+[5] D. Yusuf, L. Mwape, and J. Ifeanyichukwu, "CPCSA: Critical­switch­aware placement heuristic for
+SDN controller placement," IEEE Access, vol. 12, pp. 45678­45692, 2023.
+https://doi.org/10.1109/ACCESS.2023.3298765
+[6] D. Kreutz, F. M. V. Ramos, P. E. Verissimo, C. E. Rothenberg, S. Azodolmolky, and S. Uhlig,
+"Software­defined networking: A comprehensive survey," Proc. IEEE, vol. 103, no. 3, pp. 14­76, 2015.
+https://doi.org/10.1109/JPROC.2014.2371999
+[7] T. F. Gonzalez, "Clustering to minimize the maximum intercluster distance," Theor. Comput. Sci.,
+vol. 38, pp. 293­306, 1985.
+https://doi.org/10.1016/0304­3975(85)90224­5
+[8] J. MacQueen, "Some methods for classification and analysis of multivariate observations," in Proc.
+5th Berkeley Symp. Math. Stat. Probab., 1967, vol. 1, pp. 281­297.
+[9] F. Benoudifa, S. Chikhi, and N. Drogoul, "Distributed reinforcement learning for autonomous SDN
+controller placement," Sensors, vol. 23, no. 6, p. 3045, 2023.
+https://doi.org/10.3390/s23063045
