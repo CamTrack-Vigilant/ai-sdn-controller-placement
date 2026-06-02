@@ -169,6 +169,10 @@ This hardened framework establishes the mathematical and methodological logic fo
 
 ### 8 RESEARCH METHODOLOGY
 
+![Annotated methodology diagram showing the heuristic and DRL tracks, metric collection, aggregation, and analysis pipeline](diagrams/Gemini_Generated_Image_offmw8offmw8offm%20(1).png)
+
+*Figure 8.1. Annotated methodology diagram for the study. The figure shows the heuristic and DRL workflows, metric collection for $\ell$, $R$, and $\omega$, the aggregation bridge into Phase 3, the CPU thermal cooldown experimental condition, and the explicit no cross-seeding policy between heuristic solutions and DRL priors.*
+
 This study adopts a methodology designed to produce objective, reproducible, and decision-relevant evidence on the comparative performance of AI-driven and heuristic controller placement methods in multi-site SDN environments.
 
 #### 8.1 Research Philosophy
