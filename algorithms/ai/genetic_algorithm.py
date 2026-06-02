@@ -84,12 +84,15 @@ def genetic_controller_placement(
     population = [tuple(sorted(rng.sample(nodes, num_controllers))) for _ in range(population_size)]
     best_so_far = float("-inf")
     best_so_far_history: list[float] = []
+    best_placement_history: list[Tuple[str, ...]] = []
 
     for _ in range(generations):
         scores = {individual: _placement_score(all_pairs, nodes, individual) for individual in population}
+        generation_best = max(population, key=lambda individual: scores[individual])
         best_so_far = max(best_so_far, max(scores.values()))
         best_so_far_history.append(best_so_far)
-        elite = max(population, key=lambda individual: scores[individual])
+        best_placement_history.append(generation_best)
+        elite = generation_best
 
         new_population = [elite]
         while len(new_population) < population_size:
@@ -110,6 +113,7 @@ def genetic_controller_placement(
 
     best_so_far = max(best_so_far, final_best_score)
     best_so_far_history.append(best_so_far)
+    best_placement_history.append(best)
     convergence_generation = next(
         (
             index + 1
@@ -124,6 +128,7 @@ def genetic_controller_placement(
             "iterations_budget": int(generations),
             "convergence_iteration": convergence_generation,
             "final_score": final_best_score,
+            "best_placement_history": [list(placement) for placement in best_placement_history],
         }
 
     return list(best)

@@ -422,3 +422,25 @@ print(result.average_rtt_ms, result.worst_rtt_ms)
 - Replace synthetic simulation with Mininet-backed traffic experiments.
 - Add additional RL policies and hyperparameter sweeps.
 - Evaluate robustness under controller and link failures.
+
+## One-Command Workflow
+
+Run the full phase workflow from the project virtual environment:
+
+```bash
+python3 scripts/run_full_workflow.py --episodes 1000 --benchmark-input results/experiment_data/benchmark_20260309_044937.csv --top-k 10
+```
+
+The workflow runs the stability audit first and then runs Pareto synthesis on
+the benchmark file you provide. This keeps the input explicit and avoids
+accidentally synthesizing from the wrong export.
+
+For post-hoc phase-6 validation of the Pareto shortlist against the 48-node
+multi-site benchmark graph, run:
+
+```bash
+python3 scripts/validate_shortlist_mininet.py --benchmark-input results/experiment_data/benchmark_20260309_044937.csv
+```
+
+This uses the multi-site topology config by default and writes a Mininet
+validation JSON alongside the shortlist artifacts.

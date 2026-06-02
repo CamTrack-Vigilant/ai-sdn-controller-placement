@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime, timezone
+import csv
 import os
+from pathlib import Path
 import threading
 import time
 from typing import Optional
@@ -218,3 +221,71 @@ def _find_ryu_process() -> Optional[psutil.Process]:
             return process
 
     return None
+
+
+def sample_process_telemetry_to_csv(
+    *,
+    pid: int,
+    output_csv_path: str | Path,
+    sample_interval_s: float = 0.5,
+    stop_event: threading.Event | None = None,
+) -> None:
+    """Sample CPU and RSS memory for a specific PID and persist to CSV."""
+    process = psutil.Process(pid)
+    output_path = Path(output_csv_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    active_stop_event = stop_event if stop_event is not None else threading.Event()
+
+    fieldnames = [
+        "timestamp_utc",
+        "elapsed_s",
+        "pid",
+        "cpu_percent",
+        "rss_memory_mb",
+        "status",
+    ]
+
+    # Prime sampling so subsequent reads represent interval usage.
+    process.cpu_percent(None)
+    start_time = time.perf_counter()
+
+    with output_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+
+        while not active_stop_event.is_set():
+            now = datetime.now(timezone.utc).isoformat()
+            elapsed_s = time.perf_counter() - start_time
+
+            try:
+                cpu_percent = float(process.cpu_percent(None))
+                rss_memory_mb = float(process.memory_info().rss) / (1024.0 * 1024.0)
+                status = "ok"
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                writer.writerow(
+                    {
+                        "timestamp_utc": now,
+                        "elapsed_s": round(elapsed_s, 6),
+                        "pid": pid,
+                        "cpu_percent": "",
+                        "rss_memory_mb": "",
+                        "status": "process_unavailable",
+                    }
+                )
+                break
+
+            writer.writerow(
+                {
+                    "timestamp_utc": now,
+                    "elapsed_s": round(elapsed_s, 6),
+                    "pid": pid,
+                    "cpu_percent": round(cpu_percent, 6),
+                    "rss_memory_mb": round(rss_memory_mb, 6),
+                    "status": status,
+                }
+            )
+            handle.flush()
+
+            if active_stop_event.wait(sample_interval_s):
+                break

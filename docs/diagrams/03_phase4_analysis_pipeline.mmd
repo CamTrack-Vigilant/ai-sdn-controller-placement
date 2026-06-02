@@ -1,0 +1,66 @@
+graph TD
+    START(["📊 Post-Experiment Analysis<br/>(Phase 4: May 9 – Jun 14)"]) --> AGGR["<b>Step 1: Data Aggregation</b><br/>10,800 observations from 2,160 cells"]
+    
+    AGGR --> MASTER["Consolidate into Master CSV:<br/>experiment_master.csv<br/>(All algorithms × topologies × seeds)"]
+    
+    MASTER --> DESC["<b>Step 2: Descriptive Analysis</b>"]
+    
+    DESC --> DESC1["Group BY [algorithm, topology, k]<br/>72 unique cells × 150 samples/cell"]
+    
+    DESC1 --> DESC2["Compute per cell:<br/>• Mean latency ± 95% CI<br/>• Median, Q1, Q3<br/>• Mean reliability ± CI<br/>• Mean complexity ± CI"]
+    
+    DESC2 --> DESC_VIZ["Visualize:<br/>✓ Box plots (latency by algorithm)<br/>✓ Violin plots (reliability)<br/>✓ Bar charts (complexity, log-scale)"]
+    
+    DESC_VIZ --> INFERENTIAL["<b>Step 3: Inferential Analysis</b>"]
+    
+    INFERENTIAL --> ANOVA["Multi-way ANOVA<br/>latency ~ algorithm + topology<br/>+ controller_budget + scale<br/>+ interactions"]
+    
+    ANOVA --> ANOVA_TEST["Test: H₀ = No algorithm effect<br/>Expected: p < 0.05 ✓ Reject H₀<br/>Post-hoc: Tukey HSD pairwise"]
+    
+    ANOVA_TEST --> PARETO["<b>Pareto Front Analysis</b><br/>(3-Dimensional)"]
+    
+    PARETO --> PARETO_DEF["For each [topology, k] cell:<br/>Identify non-dominated solutions<br/><br/>Solution X dominates Y if:<br/>• L_X ≤ L_Y (latency)<br/>• R_X ≥ R_Y (reliability)<br/>• ω_X ≤ ω_Y (complexity)<br/><br/>Output: Pareto frontier set"]
+    
+    PARETO_DEF --> PARETO_CALC["Calculate:<br/>• Domination count per algorithm<br/>• Hypervolume (3D volume)<br/>• Trade-off surface curvature"]
+    
+    PARETO_CALC --> PARETO_VIZ["Visualize:<br/>✓ 3D scatter plots (latency, reliability, ω)<br/>✓ 2D Pareto projections (latency vs. reliability)"]
+    
+    PARETO_VIZ --> STABILITY["<b>Cross-Scenario Stability</b>"]
+    
+    STABILITY --> RANK["Rank algorithms by latency:<br/>Scenario 1 (Internet2, k=3): [A1, A2, A3, A4]<br/>Scenario 2 (ATT-MPLS, k=5): [A_?, A_?, A_?, A_?]<br/>Scenario N: ..."]
+    
+    RANK --> CORR["Spearman Rank Correlation (ρ):<br/>Between scenario pairs<br/><br/>Expected ρ > 0.7: Stable<br/>ρ < 0.6: Scenario-dependent"]
+    
+    CORR --> CORR_VIZ["Visualize:<br/>✓ Rank correlation heatmap<br/>✓ Rank change matrix"]
+    
+    CORR_VIZ --> EFFECT["<b>Effect Size & Power</b>"]
+    
+    EFFECT --> COHENS["Cohen's d (latency DQN vs. Greedy):<br/>IF |d| > 0.5: Medium effect ✓<br/>IF |d| > 0.8: Large effect ✓✓"]
+    
+    COHENS --> POWER["Statistical Power Check:<br/>Observed power ≥ 0.80?<br/>Post-hoc analysis per cell"]
+    
+    POWER --> SYNTH["<b>Step 4: Synthesis & Interpretation</b>"]
+    
+    SYNTH --> SYNTH1["Decision Questions:<br/>1. Which algorithms are Pareto-optimal?<br/>2. Are rankings stable?<br/>3. Is AI cost (ω) justified?<br/>4. Which scenario favors which algorithm?"]
+    
+    SYNTH1 --> SYNTH2["Cost-Benefit Analysis:<br/>Gain = ΔL (vs. Greedy)<br/>Cost = ω (DQN vs. Greedy)<br/>Ratio = Gain / Cost<br/><br/>Decision threshold:<br/>IF Ratio > T → AI worth it<br/>IF Ratio < T → Greedy preferred"]
+    
+    SYNTH2 --> MATRIX["<b>Recommendation Matrix</b><br/>Scenario → Best Algorithm"]
+    
+    MATRIX --> MATRIX_TABLE["┌──────────────────────────────┐<br/>│ Topology │ k │ Scale │ Recommendation │<br/>├──────────────────────────────┤<br/>│ Internet2 │ 3 │ Med   │ Greedy (low ω)  │<br/>│ Internet2 │ 5 │ Med   │ DQN (gain ≥ cost) │<br/>│ ATT-MPLS  │ 3 │ Large │ TBD (analysis)  │<br/>│ Synthetic │ 2 │ Med   │ Baseline (stable)│<br/>└──────────────────────────────┘"]
+    
+    MATRIX_TABLE --> THESIS["<b>Thesis Integration</b><br/>Chapter 5: Results & Analysis"]
+    
+    THESIS --> END(["✅ Phase 4 Complete<br/>→ Phase 5: Figure Generation"])
+    
+    style START fill:#90EE90
+    style END fill:#FFB6C6
+    style AGGR fill:#87CEEB
+    style DESC fill:#B0E0E6
+    style INFERENTIAL fill:#DDA0DD
+    style ANOVA fill:#FFA07A
+    style PARETO fill:#FFD700
+    style STABILITY fill:#F0E68C
+    style SYNTH fill:#B0E0E6
+    style MATRIX fill:#98FB98
+    style THESIS fill:#87CEEB

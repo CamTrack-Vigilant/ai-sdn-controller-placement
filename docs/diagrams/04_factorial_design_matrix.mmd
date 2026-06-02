@@ -1,0 +1,72 @@
+graph TD
+    TITLE["<b>FACTORIAL DESIGN MATRIX STRUCTURE</b><br/>4 × 3 × 3 × 2 × 30 = 2,160 Experimental Cells"]
+    
+    TITLE --> FACTOR1["<b>FACTOR 1: Algorithm (A)</b><br/>Levels = 4"]
+    FACTOR1 --> A1["A1: Greedy k-center<br/>(Baseline heuristic)"]
+    FACTOR1 --> A2["A2: DQN<br/>(Deep Q-Learning)"]
+    FACTOR1 --> A3["A3: Random<br/>(Lower bound)"]
+    FACTOR1 --> A4["A4: Baseline variant<br/>(Alternative heuristic)"]
+    
+    TITLE --> FACTOR2["<b>FACTOR 2: Topology (T)</b><br/>Levels = 3"]
+    FACTOR2 --> T1["T1: Internet2<br/>11 nodes<br/>(Canonical real)"]
+    FACTOR2 --> T2["T2: ATT-MPLS<br/>21 nodes<br/>(Canonical real)"]
+    FACTOR2 --> T3["T3: Synthetic BA<br/>15 nodes<br/>(Generalize)"]
+    
+    TITLE --> FACTOR3["<b>FACTOR 3: Controller Budget (K)</b><br/>Levels = 3"]
+    FACTOR3 --> K1["K1: k=2<br/>Minimal coverage"]
+    FACTOR3 --> K2["K2: k=3<br/>Standard"]
+    FACTOR3 --> K3["K3: k=5<br/>Redundant"]
+    
+    TITLE --> FACTOR4["<b>FACTOR 4: Network Scale (S)</b><br/>Levels = 2"]
+    FACTOR4 --> S1["S1: Medium<br/>≤15 nodes"]
+    FACTOR4 --> S2["S2: Large<br/>≥20 nodes"]
+    
+    TITLE --> FACTOR5["<b>FACTOR 5: Random Seed (R)</b><br/>Levels = 30"]
+    FACTOR5 --> R1["R1: Seed=42<br/>(Primary, intensive telemetry)"]
+    FACTOR5 --> R2["R2-R30: Seed=142,242,...,2942<br/>(Replication, statistical power)"]
+    
+    A1 --> CELL_DEF["<b>Experimental Cell Definition</b>"]
+    A2 --> CELL_DEF
+    A3 --> CELL_DEF
+    A4 --> CELL_DEF
+    T1 --> CELL_DEF
+    T2 --> CELL_DEF
+    T3 --> CELL_DEF
+    K1 --> CELL_DEF
+    K2 --> CELL_DEF
+    K3 --> CELL_DEF
+    S1 --> CELL_DEF
+    S2 --> CELL_DEF
+    R1 --> CELL_DEF
+    R2 --> CELL_DEF
+    
+    CELL_DEF --> EXAMPLE["<b>Example Experimental Cell:</b><br/>A2 (DQN) × T1 (Internet2)<br/>× K2 (k=3) × S1 (Medium)<br/>× R1 (Seed=42)"]
+    
+    EXAMPLE --> TRIALS["Conduct 5 Independent Trials<br/>per Cell"]
+    
+    TRIALS --> TRIAL_ROW["Trial 1:<br/>Execute DQN on Internet2<br/>Measure: L(P), R_avg(P), ω<br/>Record 1 CSV row"]
+    
+    TRIAL_ROW --> TRIAL_SUM["5 Trials × 2,160 Cells<br/>= 10,800 Total Observations"]
+    
+    TRIAL_SUM --> SUMMARY["<b>Factorial Design Summary Table</b>"]
+    
+    SUMMARY --> TABLE["┌────────────────────────────────────────┐<br/>│ Factor      │ Levels │ Total Combos  │<br/>├────────────────────────────────────────┤<br/>│ Algorithm   │ 4      │ 4             │<br/>│ Topology    │ 3      │ 4×3 = 12      │<br/>│ Budget      │ 3      │ 12×3 = 36     │<br/>│ Scale       │ 2      │ 36×2 = 72     │<br/>│ Seed        │ 30     │ 72×30 = 2,160 │<br/>│ Trials/Cell │ 5      │ 2,160×5 = 10,800 │<br/>├────────────────────────────────────────┤<br/>│ TOTAL DATAPOINTS: 10,800              │<br/>└────────────────────────────────────────┘"]
+    
+    TABLE --> BALANCE["<b>Balanced Design</b><br/>✓ Equal replication per cell<br/>✓ No missing combinations<br/>✓ Full factorial (not fractional)<br/>✓ Allows interaction detection"]
+    
+    BALANCE --> END(["✅ Study Design<br/>Ready for Execution"])
+    
+    style TITLE fill:#FFD700
+    style FACTOR1 fill:#87CEEB
+    style FACTOR2 fill:#87CEEB
+    style FACTOR3 fill:#87CEEB
+    style FACTOR4 fill:#87CEEB
+    style FACTOR5 fill:#87CEEB
+    style CELL_DEF fill:#B0E0E6
+    style EXAMPLE fill:#FFA07A
+    style TRIALS fill:#FFD700
+    style TRIAL_ROW fill:#F0E68C
+    style TRIAL_SUM fill:#DDA0DD
+    style SUMMARY fill:#98FB98
+    style BALANCE fill:#90EE90
+    style END fill:#FFB6C6

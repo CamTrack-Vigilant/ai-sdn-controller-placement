@@ -1,0 +1,4 @@
+Metric symbols: ℓ = latency (ms), R = reachability/reliability (0-1), ω = complexity in seconds per episode.
+Aggregation: per-episode means ± CI; time-series metrics summarised to mean/max/std.
+‘Automatic CPU thermal cooldown’ is an experimental factor recorded as a contributor to ω.
+No cross-seeding of heuristic solutions into DRL.

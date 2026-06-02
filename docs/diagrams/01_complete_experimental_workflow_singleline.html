@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complete Experimental Workflow Singleline Render</title>
+  <style>
+    body { margin: 0; background: #ffffff; font-family: Arial, sans-serif; }
+    .mermaid { padding: 16px; }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'strict',
+      theme: 'base',
+      flowchart: { useMaxWidth: false, htmlLabels: false }
+    });
+  </script>
+</head>
+<body>
+<div class="mermaid">
+graph TD
+    START([Start: Factorial Experiment]) --> PHASE1["PHASE 1: Environment Setup ✅ Dependencies, topologies, baseline validation"]
+    
+    PHASE1 --> INIT["Initialize: • Load experiment_config.json • Set Seed = 42 (primary) • Create output directories"]
+    
+    INIT --> LOOP1{"🔄 Iterate Through 30 Random Seeds (s = 42, 142, ..., 2942)"}
+    
+    LOOP1 --> SEED_START["Seed = s"]
+    
+    SEED_START --> LOOP2{"🔄 Iterate Through 3 Topologies (Internet2, ATT-MPLS, Synthetic-BA)"}
+    
+    LOOP2 --> TOPO_START["Load Topology T • Internet2: 11 nodes • ATT-MPLS: 21 nodes • Synthetic-BA: 15 nodes"]
+    
+    TOPO_START --> LOOP3{"🔄 Iterate Through 3 Controller Budgets (k = 2, 3, 5)"}
+    
+    LOOP3 --> BUDGET_START["Controller Budget = k"]
+    
+    BUDGET_START --> LOOP4{"🔄 Iterate Through 4 Algorithms (Greedy, DQN, Random, Baseline)"}
+    
+    LOOP4 --> ALGO_START["Select Algorithm A"]
+    
+    ALGO_START --> ALGO_CHECK{"Which Algorithm?"}
+    
+    ALGO_CHECK -->|Greedy| GREEDY["GREEDY k-CENTER 1. Farthest-first heuristic 2. O(nk) complexity Expected ω ≈ 0.00002 s"]
+    
+    ALGO_CHECK -->|DQN| DQN["DQN TRAINING 1. Initialize neural network 2. Train 1,000 episodes 3. Extract greedy policy Expected ω ≈ 0.0226 s"]
+    
+    ALGO_CHECK -->|Random| RANDOM["RANDOM PLACEMENT 1. Uniformly sample k nodes 2. Return random set P Expected ω ≈ 0.000001 s"]
+    
+    ALGO_CHECK -->|Baseline| BASELINE["BASELINE HEURISTIC 1. Alternative k-center variant 2. Medoid-based selection Expected ω ≈ 0.00002 s"]
+    
+    GREEDY --> TRIAL_START["TRIAL EXECUTION per [A, T, k, Seed] combination"]
+    DQN --> TRIAL_START
+    RANDOM --> TRIAL_START
+    BASELINE --> TRIAL_START
+    
+    TRIAL_START --> MEASURE["MEASUREMENT PHASE For resulting placement P:"]
+    
+    MEASURE --> METRIC1["📏 Latency L(P) 1. Compute shortest-paths (Floyd-Warshall) 2. Find min dist to controller per node 3. Average across all nodes 4. Report: XX.XXXX ms"]
+    
+    METRIC1 --> METRIC2["🛡️ Reliability R_avg(P) 1. FOR each link e ∈ E:    • Remove link e    • Check all nodes reachable? 2. Average reachability indicator 3. Report: 0.XXXX [0.0–1.0]"]
+    
+    METRIC2 --> METRIC3["⏱️ Complexity ω 1. Record wall-clock time 2. ω = (t_end - t_start) / episodes 3. Report: 0.XXXXXX seconds"]
+    
+    METRIC3 --> METRIC4["⚖️ Secondary Metrics • Load balance fairness • Convergence speed (DQN) • Worst-case distance • Cost-benefit ratio"]
+    
+    METRIC4 --> RECORD["RECORD TO CSV algorithm, topology, k, seed, latency_ms, reliability_ravg, complexity_s, load_std, convergence_episodes, timestamp"]
+    
+    RECORD --> FILE["📄 Write Row to: results/experiment_data/ [algorithm]_[topology].csv"]
+    
+    FILE --> LOOP5_CHECK{"More Algorithms?"}
+    LOOP5_CHECK -->|Yes| LOOP4
+    LOOP5_CHECK -->|No| LOOP3_CHECK
+    
+    LOOP3_CHECK{"More Budgets?"}
+    LOOP3_CHECK -->|Yes| LOOP3
+    LOOP3_CHECK -->|No| LOOP2_CHECK
+    
+    LOOP2_CHECK{"More Topologies?"}
+    LOOP2_CHECK -->|Yes| LOOP2
+    LOOP2_CHECK -->|No| LOOP1_TRIAL{"Repeat 5 trials per [A,T,k,Seed] combination?"}
+    
+    LOOP1_TRIAL -->|Yes| LOOP4
+    LOOP1_TRIAL -->|No| COOLDOWN["🌡️ THERMAL COOLDOWN 60-300 seconds CPU recovery"]
+    
+    COOLDOWN --> LOOP1_CHECK{"More Seeds?"}
+    LOOP1_CHECK -->|Yes| LOOP1
+    LOOP1_CHECK -->|No| PHASE2["PHASE 2: Data Aggregation Consolidate all CSVs"]
+    
+    PHASE2 --> CONSOL["Consolidate: • Read all algorithm_topology.csv • Merge into master dataframe • Total rows: ~10,800 • Output: experiment_master.csv"]
+    
+    CONSOL --> PHASE3["PHASE 3: Analysis Statistical inference & visualization"]
+    
+    PHASE3 --> STAT1["📊 Descriptive Statistics • Mean ± 95% CI per cell • Latency distribution (boxplots) • Reliability distribution • Complexity comparison"]
+    
+    STAT1 --> STAT2["📈 Inferential Analysis • Multi-way ANOVA   H₀: No algorithm effect • Pareto dominance (3D)   Identify non-dominated sets • Spearman rank correlation   Cross-scenario stability"]
+    
+    STAT2 --> VIZ["🎨 Visualization • Figure 1: 3D Pareto frontier • Figure 2: Latency box plots • Figure 3: Algorithm rank heatmap • Figure 4: DQN convergence curve • Figure 5: Complexity log-scale bar"]
+    
+    VIZ --> RESULT["PHASE 4: Result Synthesis Interpretation & reporting"]
+    
+    RESULT --> INTERP["Interpret Results: • Which algorithms Pareto-optimal? • How stable across scenarios? • Cost-benefit analysis (gain/ω) • Recommendation matrix"]
+    
+    INTERP --> THESIS["✍️ THESIS DOCUMENTATION Chapter 5: Results & Analysis"]
+    
+    THESIS --> END(["✅ END: Complete Study → Phase 4 (May 9 – Jun 14)"])
+    
+    style START fill:#90EE90
+    style END fill:#FFB6C6
+    style PHASE1 fill:#87CEEB
+    style PHASE2 fill:#87CEEB
+    style PHASE3 fill:#87CEEB
+    style RESULT fill:#87CEEB
+    style GREEDY fill:#FFA07A
+    style DQN fill:#FFD700
+    style RANDOM fill:#DDA0DD
+    style BASELINE fill:#F0E68C
+    style METRIC1 fill:#B0E0E6
+    style METRIC2 fill:#B0E0E6
+    style METRIC3 fill:#B0E0E6
+    style METRIC4 fill:#B0E0E6
+    style COOLDOWN fill:#FFB6C1
+    style THESIS fill:#90EE90
+
+</div>
+</body>
+</html>
