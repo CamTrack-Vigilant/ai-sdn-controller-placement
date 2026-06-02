@@ -16,9 +16,21 @@
 | **03_phase4_analysis_pipeline.mmd** | Phase 4 Analysis Pipeline | Statistical analysis workflow | Analysts, thesis writers |
 | **04_factorial_design_matrix.mmd** | Factorial Design Matrix Structure | Experimental design breakdown | All (methodology) |
 
+| **Gemini_Generated_Image_offmw8offmw8offm (1).png** | Annotated Methodology Figure | Visual summary of heuristic vs DRL tracks, metric collection, and analysis pipeline | Proposal, thesis, defense slides |
+
 ---
 
 ## 🎨 How to View & Export Diagrams
+
+### Annotated Methodology Figure
+
+**File:** `Gemini_Generated_Image_offmw8offmw8offm (1).png`
+
+**Use:** Insert this image into the methodology section of the proposal or thesis when you need the final annotated workflow visual.
+
+**Suggested caption:**
+
+> Figure 8.1. Annotated methodology diagram for the study. The figure shows the heuristic and DRL workflows, metric collection for ℓ, R, and ω, the aggregation bridge into Phase 3, the CPU thermal cooldown experimental condition, and the explicit no cross-seeding policy between heuristic solutions and DRL priors.
 
 ### Option 1: VS Code with Mermaid Extension (Recommended)
 **Best for:** Quick viewing, editing, and live preview
