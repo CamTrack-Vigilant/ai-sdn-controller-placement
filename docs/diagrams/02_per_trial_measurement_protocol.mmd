@@ -1,0 +1,46 @@
+graph TD
+    START(["🔄 Per-Trial Execution<br/>[Algorithm, Topology, k, Seed]"]) --> ALG_EXEC["⚙️ Algorithm Execution<br/>Apply placement algorithm"]
+    
+    ALG_EXEC --> RESULT["Result: Placement P<br/>(set of k controller nodes)"]
+    
+    RESULT --> MEASURE["📊 Measurement Phase"]
+    
+    MEASURE --> L["<b>Step 1: Latency L(P)</b>"]
+    L --> L1["Compute all-pairs<br/>shortest paths"]
+    L1 --> L2["For each node v_i:<br/>d_i = min distance to P"]
+    L2 --> L3["L(P) = mean(d_i)<br/>Units: milliseconds"]
+    
+    L3 --> R["<b>Step 2: Reliability R_avg(P)</b>"]
+    R --> R1["FOR each link e in E:"]
+    R1 --> R2["Temporarily remove e<br/>from topology"]
+    R2 --> R3["Check: Can every node<br/>reach a controller?"]
+    R3 --> R4["If YES → count += 1<br/>If NO → count += 0"]
+    R4 --> R5["R_avg(P) = count / |E|<br/>Range: [0.0, 1.0]"]
+    
+    R5 --> W["<b>Step 3: Complexity ω</b>"]
+    W --> W1["t_start = perf_counter()"]
+    W1 --> W2["[Algorithm runs above]"]
+    W2 --> W3["t_end = perf_counter()"]
+    W3 --> W4["ω = (t_end - t_start)<br/>÷ episode_count"]
+    W4 --> W5["Report: ω seconds<br/>Range: 10⁻⁶ to 10 s"]
+    
+    W5 --> SEC["<b>Step 4: Secondary Metrics</b>"]
+    SEC --> SEC1["Load Balance:<br/>σ(controller_loads)"]
+    SEC1 --> SEC2["Convergence (DQN only):<br/>Episodes to 95%"]
+    SEC2 --> SEC3["Worst-case distance:<br/>max d_i"]
+    SEC3 --> SEC4["Cost-benefit ratio:<br/>ΔL / ω"]
+    
+    SEC4 --> REC["📝 Record to CSV"]
+    REC --> CSV["Write row:<br/>algorithm, topology, k, seed,<br/>latency_ms, reliability_ravg,<br/>complexity_s, load_std,<br/>convergence_episodes,<br/>placement_nodes,<br/>timestamp_utc"]
+    
+    CSV --> END(["✅ Trial Complete<br/>Next [A,T,k,S]"])
+    
+    style START fill:#90EE90
+    style END fill:#FFB6C6
+    style ALG_EXEC fill:#FFD700
+    style MEASURE fill:#87CEEB
+    style L fill:#B0E0E6
+    style R fill:#B0E0E6
+    style W fill:#B0E0E6
+    style SEC fill:#B0E0E6
+    style REC fill:#F0E68C

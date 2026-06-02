@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
-from evaluation.metrics import summarize_metrics
+from evaluation.metrics import precompute_reliability_cache, summarize_metrics
 from evaluation.telemetry import ResourceMonitor
 
 AlgorithmFn = Callable[..., List[str]]
@@ -50,6 +50,10 @@ def run_algorithm_benchmark(
 ) -> pd.DataFrame:
     rng = random.Random(seed)
     rows = []
+
+    # Phase 5 graph-only optimization: precompute reliability cache once so
+    # per-candidate scoring does not rebuild N-1 failure graphs.
+    precompute_reliability_cache(graph)
 
     for trial in range(1, trials + 1):
         trial_seed = rng.randint(0, 10**9)

@@ -1,0 +1,134 @@
+{
+  "benchmark_input": "results/experiment_data/benchmark_20260309_044937.csv",
+  "shortlist_input": "/home/pro/Desktop/ai-sdn-controller-placement/results/rl_analysis/pareto/pareto_shortlist.json",
+  "topology_config": {
+    "num_sites": 4,
+    "nodes_per_site": 12,
+    "intra_site_degree": 4,
+    "rewiring_prob": 0.2,
+    "inter_site_links": 2,
+    "seed": 42
+  },
+  "graph": {
+    "nodes": 48,
+    "edges": 104
+  },
+  "insight": "Best Mininet RTT on the 48-node multi-site benchmark: 4.415 ms for genetic with 3 controllers.",
+  "results": [
+    {
+      "algorithm": "genetic",
+      "controllers": [
+        "s0-n10",
+        "s1-n11",
+        "s2-n2"
+      ],
+      "trial": 1,
+      "graph_average_distance": 2.222181007929327,
+      "mininet_average_rtt_ms": 4.414504357453982,
+      "mininet_worst_rtt_ms": 10.219082785735882,
+      "rtt_minus_graph_ms": 2.192323349524655,
+      "source_entry": {
+        "algorithm": "genetic",
+        "controllers": "s0-n10;s1-n11;s2-n2",
+        "trial": 1,
+        "latency_obj": 2.222181007929327,
+        "disconnection_obj": 0.0,
+        "omega_obj": 4.320493798938574,
+        "average_distance": 2.222181007929327,
+        "control_plane_reliability": 1.0
+      }
+    },
+    {
+      "algorithm": "genetic",
+      "controllers": [
+        "s0-n10",
+        "s1-n11",
+        "s2-n2"
+      ],
+      "trial": 3,
+      "graph_average_distance": 2.222181007929327,
+      "mininet_average_rtt_ms": 4.414504357453982,
+      "mininet_worst_rtt_ms": 10.219082785735882,
+      "rtt_minus_graph_ms": 2.192323349524655,
+      "source_entry": {
+        "algorithm": "genetic",
+        "controllers": "s0-n10;s1-n11;s2-n2",
+        "trial": 3,
+        "latency_obj": 2.222181007929327,
+        "disconnection_obj": 0.0,
+        "omega_obj": 4.320493798938574,
+        "average_distance": 2.222181007929327,
+        "control_plane_reliability": 1.0
+      }
+    },
+    {
+      "algorithm": "genetic",
+      "controllers": [
+        "s0-n10",
+        "s1-n11",
+        "s2-n2"
+      ],
+      "trial": 4,
+      "graph_average_distance": 2.222181007929327,
+      "mininet_average_rtt_ms": 4.414504357453982,
+      "mininet_worst_rtt_ms": 10.219082785735882,
+      "rtt_minus_graph_ms": 2.192323349524655,
+      "source_entry": {
+        "algorithm": "genetic",
+        "controllers": "s0-n10;s1-n11;s2-n2",
+        "trial": 4,
+        "latency_obj": 2.222181007929327,
+        "disconnection_obj": 0.0,
+        "omega_obj": 4.320493798938574,
+        "average_distance": 2.222181007929327,
+        "control_plane_reliability": 1.0
+      }
+    },
+    {
+      "algorithm": "genetic",
+      "controllers": [
+        "s0-n10",
+        "s1-n11",
+        "s2-n4"
+      ],
+      "trial": 2,
+      "graph_average_distance": 2.2399350512404865,
+      "mininet_average_rtt_ms": 4.441527982480053,
+      "mininet_worst_rtt_ms": 10.391489959632276,
+      "rtt_minus_graph_ms": 2.201592931239566,
+      "source_entry": {
+        "algorithm": "genetic",
+        "controllers": "s0-n10;s1-n11;s2-n4",
+        "trial": 2,
+        "latency_obj": 2.2399350512404865,
+        "disconnection_obj": 0.0,
+        "omega_obj": 3.741657386773941,
+        "average_distance": 2.2399350512404865,
+        "control_plane_reliability": 1.0
+      }
+    },
+    {
+      "algorithm": "bandit_rl",
+      "controllers": [
+        "s0-n1",
+        "s2-n10",
+        "s3-n2"
+      ],
+      "trial": 2,
+      "graph_average_distance": 2.4073055316653096,
+      "mininet_average_rtt_ms": 4.7756558671252085,
+      "mininet_worst_rtt_ms": 10.34578514144995,
+      "rtt_minus_graph_ms": 2.368350335459899,
+      "source_entry": {
+        "algorithm": "bandit_rl",
+        "controllers": "s0-n1;s2-n10;s3-n2",
+        "trial": 2,
+        "latency_obj": 2.4073055316653096,
+        "disconnection_obj": 0.0,
+        "omega_obj": 2.943920288775949,
+        "average_distance": 2.4073055316653096,
+        "control_plane_reliability": 1.0
+      }
+    }
+  ]
+}

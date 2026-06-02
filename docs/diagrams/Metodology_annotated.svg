@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Annotated SVG for Metodology diagram.
+     This file contains editable text annotations added per user request:
+     - Replaced symbol tau with omega (s/episode)
+     - Added legend box (layer: legend)
+     - Added aggregation annotation (layer: annotation_metric_aggregation)
+     - Added CPU thermal cooldown tag and dashed arrow (layer: annotation_cpu_tag)
+     - Added No cross-seeding note between heuristic and DRL tracks (layer: annotation_crossseed)
+     Note: the original raster image was referenced by the user as
+     Gemini_Generated_Image_offmw8offmw8offm.png; preserve that original raster externally if needed.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .label { font-family: Arial, Helvetica, sans-serif; fill: #0B3D91; font-size: 14px; }
+      .small { font-family: Arial, Helvetica, sans-serif; fill: #0B3D91; font-size: 11px; font-style: italic }
+      .legend { font-family: Arial, Helvetica, sans-serif; fill: #000000; font-size: 11px }
+      .box { fill: #F6F7F9; stroke: #CCCCCC; stroke-width: 1 }
+      .note { font-family: Arial, Helvetica, sans-serif; fill: #0B3D91; font-size: 12px }
+    </style>
+  </defs>
+
+  <!-- Placeholder rectangle representing original diagram background -->
+  <rect x="0" y="0" width="1600" height="900" fill="white" />
+
+  <!-- Center header note for cross-seeding policy -->
+  <g id="annotation_crossseed">
+    <rect x="520" y="40" width="560" height="34" rx="6" ry="6" class="box" />
+    <text x="800" y="63" text-anchor="middle" class="note">No cross-seeding: heuristic solutions NOT used as DRL priors.</text>
+  </g>
+
+  <!-- Legend box (bottom-left) -->
+  <g id="legend">
+    <rect x="40" y="760" width="320" height="96" rx="6" ry="6" class="box" />
+    <text x="56" y="788" class="legend">ℓ : latency (ms)</text>
+    <text x="56" y="808" class="legend">R : reachability / reliability (0–1)</text>
+    <text x="56" y="828" class="legend">ω (s/episode) : complexity — seconds per episode</text>
+  </g>
+
+  <!-- Aggregation annotation above fusion arrow -->
+  <g id="annotation_metric_aggregation">
+    <text x="820" y="540" text-anchor="middle" class="small">Aggregation: per-episode mean ± CI; time-series → mean / max / std; align units to ω (s/episode)</text>
+  </g>
+
+  <!-- CPU thermal cooldown tag and dashed arrow toward omega tokens -->
+  <g id="annotation_cpu_tag">
+    <rect x="1220" y="150" width="300" height="42" rx="6" ry="6" class="box" />
+    <text x="1236" y="178" class="label">Experimental condition (levels: OFF / ON) — recorded as contributor to ω</text>
+    <!-- dashed arrow (representational) -->
+    <path d="M1500 192 C1420 300, 1180 520, 980 560" stroke="#D9534F" stroke-width="1" stroke-dasharray="6,4" fill="none" />
+    <path d="M1500 192 C1420 260, 1220 460, 820 520" stroke="#D9534F" stroke-width="1" stroke-dasharray="6,4" fill="none" />
+  </g>
+
+  <!-- Footer credit / production note (small) -->
+  <text x="40" y="880" class="small">Annotated by project: ai-sdn-controller-placement — editable SVG layers: legend, annotation_metric_aggregation, annotation_cpu_tag, annotation_crossseed, annotation_symbol_replace</text>
+
+</svg>

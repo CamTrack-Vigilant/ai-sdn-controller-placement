@@ -1,0 +1,359 @@
+{
+  "sweep": [
+    {
+      "seed": 42,
+      "checks": [
+        {
+          "algorithm": "genetic",
+          "trial": 1,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 3,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 4,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 2,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n4"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "bandit_rl",
+          "trial": 2,
+          "controllers": [
+            "s0-n1",
+            "s2-n10",
+            "s3-n2"
+          ],
+          "reliability": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 123,
+      "checks": [
+        {
+          "algorithm": "genetic",
+          "trial": 1,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 3,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 4,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 2,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n4"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "bandit_rl",
+          "trial": 2,
+          "controllers": [
+            "s0-n1",
+            "s2-n10",
+            "s3-n2"
+          ],
+          "reliability": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 456,
+      "checks": [
+        {
+          "algorithm": "genetic",
+          "trial": 1,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 3,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 4,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 2,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n4"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "bandit_rl",
+          "trial": 2,
+          "controllers": [
+            "s0-n1",
+            "s2-n10",
+            "s3-n2"
+          ],
+          "reliability": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 789,
+      "checks": [
+        {
+          "algorithm": "genetic",
+          "trial": 1,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 3,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 4,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 2,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n4"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "bandit_rl",
+          "trial": 2,
+          "controllers": [
+            "s0-n1",
+            "s2-n10",
+            "s3-n2"
+          ],
+          "reliability": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 999,
+      "checks": [
+        {
+          "algorithm": "genetic",
+          "trial": 1,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 3,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 4,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n2"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "genetic",
+          "trial": 2,
+          "controllers": [
+            "s0-n10",
+            "s1-n11",
+            "s2-n4"
+          ],
+          "reliability": 1.0
+        },
+        {
+          "algorithm": "bandit_rl",
+          "trial": 2,
+          "controllers": [
+            "s0-n1",
+            "s2-n10",
+            "s3-n2"
+          ],
+          "reliability": 1.0
+        }
+      ]
+    }
+  ],
+  "internet2": {
+    "checked": true,
+    "checks": [
+      {
+        "algorithm": "genetic",
+        "controller_budget": 3,
+        "shortlist_controllers": [
+          "s0-n10",
+          "s1-n11",
+          "s2-n2"
+        ],
+        "internet2_controllers": [
+          0,
+          8,
+          6
+        ],
+        "reliability": 1.0
+      },
+      {
+        "algorithm": "genetic",
+        "controller_budget": 3,
+        "shortlist_controllers": [
+          "s0-n10",
+          "s1-n11",
+          "s2-n2"
+        ],
+        "internet2_controllers": [
+          0,
+          8,
+          6
+        ],
+        "reliability": 1.0
+      },
+      {
+        "algorithm": "genetic",
+        "controller_budget": 3,
+        "shortlist_controllers": [
+          "s0-n10",
+          "s1-n11",
+          "s2-n2"
+        ],
+        "internet2_controllers": [
+          0,
+          8,
+          6
+        ],
+        "reliability": 1.0
+      },
+      {
+        "algorithm": "genetic",
+        "controller_budget": 3,
+        "shortlist_controllers": [
+          "s0-n10",
+          "s1-n11",
+          "s2-n4"
+        ],
+        "internet2_controllers": [
+          0,
+          8,
+          6
+        ],
+        "reliability": 1.0
+      },
+      {
+        "algorithm": "bandit_rl",
+        "controller_budget": 3,
+        "shortlist_controllers": [
+          "s0-n1",
+          "s2-n10",
+          "s3-n2"
+        ],
+        "internet2_controllers": [
+          0,
+          8,
+          6
+        ],
+        "reliability": 1.0
+      }
+    ]
+  }
+}

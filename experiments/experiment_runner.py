@@ -21,6 +21,7 @@ from evaluation.performance_analysis import (  # noqa: E402
     plot_metric_comparison,
     run_algorithm_benchmark,
 )
+from evaluation.metrics import precompute_reliability_cache  # noqa: E402
 from topology.network_topology import TopologyConfig, generate_multi_site_topology, summarize_topology  # noqa: E402
 
 
@@ -330,8 +331,11 @@ def main() -> None:
         )
 
     topology = generate_multi_site_topology(topology_cfg)
+    cache_key = precompute_reliability_cache(topology)
     summary_stats = summarize_topology(topology)
     logger.info("Topology summary: %s", summary_stats)
+    logger.info("Reliability cache initialized: %s", cache_key[:12])
+    logger.info("Execution mode: graph-only scoring (Phase 5), Mininet bypassed in benchmark loop")
 
     print("Topology summary:", summary_stats)
 

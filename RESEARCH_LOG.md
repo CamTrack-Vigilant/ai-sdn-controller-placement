@@ -162,3 +162,62 @@ Working rule:
 - Evidence: Deterministic seeded factorial runner, warm-up control, repeated trials, and page-cited literature extraction.
 - Limitations/Failures: Current primary evidence remains synthetic-topology based; external validity to production SDN remains a later-phase task.
 - Next Executable Step: Run three-seed stability replication (base seeds 42, 142, 242), then produce a hypothesis-mapped result memo for H1/H2/H3 with confidence qualifiers.
+
+## 7) Baseline Validation Log (2026-04-25)
+
+### Internet2 Greedy Baseline Run
+- Completed a baseline Internet2 run with greedy k-center placement at k=3 under seed 42.
+- Telemetry stabilized at approximately 2.0s, which is consistent with controller startup and OpenFlow handshake settling before steady-state measurement.
+- Hardware profile from the telemetry CSV: mean RSS was 59.952 MB and peak CPU was 102.0%.
+- The recorded summary values were controller nodes 0, 8, 6; latency l = 2.937887944947775; reachability R_avg = 0.0; ping_loss_percent = 100.0; runtime tau = 114.84382945800007 s.
+- The 17.23 hour projection for 540 runs is decision-grade for weekend scheduling and confirms the workload is feasible within a bounded host uptime window.
+
+### Reproducibility and Correctness Notes
+- The run is reproducible in the sense that the seed and controller-selection pipeline are deterministic.
+- However, an exhaustive check of the synthetic Internet2 graph under seed 42 shows that the greedy set (0, 8, 6) is not the exact global optimum for the 3-center worst-case-distance objective; the unique optimal set under that metric is (0, 1, 10).
+- This is not a defect in the baseline run itself; it is a methodological clarification that the thesis should describe the baseline as a deterministic greedy heuristic, not as an exact optimizer.
+- The reachability metric is not inverted: R_avg = 1.0 would mean full survivability, while R_avg = 0.0 correctly corresponds to complete loss of end-host reachability in this particular Mininet run. The survivability gap is 1 - R_avg.
+
+### ANOVA Readiness
+- A sample factorial-cell row for the statistical table is:
+- topology=Internet2 | model=synthetic_fallback | seed=42 | k=3 | algorithm=greedy_k_center | latency_l=2.937887944947775 | reachability_r_avg=0.0 | ping_loss_percent=100.0 | tau_seconds=114.84382945800007 | mean_rss_mb=59.952 | peak_cpu_percent=102.0
+
+### Methodology Verification Statement
+- The baseline Internet2 run is scientifically valid as a controlled, reproducible greedy-reference observation, with stable telemetry after the initial control-plane handshake and no telemetry contamination from process crashes or missing samples.
+- The output supports a clean baseline floor for later DQN or other AI-driven placement comparisons because the metric definitions, seed provenance, and runtime budget are explicitly recorded.
+- The only caveat for final thesis use is that the topology source is currently a synthetic fallback rather than the official GraphML Internet2 file; the numeric evidence is still internally consistent, but topology authenticity should be upgraded before final submission.
+
+## 8) AI-vs-Heuristic Head-to-Head (2026-04-25)
+
+### GA Challenger Run Configuration
+- Topology: Internet2 synthetic fallback (seed 42), k=3.
+- Greedy reference placement: 0, 8, 6.
+- GA configuration: population size 50, generations 100, mutation rate 0.15, tournament size 3.
+- Telemetry collection used process-level bridge with repeated executions (repeat_count=100) to stabilize short-duration CPU/RSS estimates.
+- Challenger result artifact: results/experiment_data/ga_challenger_internet2.csv.
+
+### Search Efficiency Result
+- Greedy latency (l): 2.937887944947775.
+- GA latency (l): 2.937887944947775.
+- Verdict: No latency improvement in this first GA run; GA matched but did not beat the greedy baseline.
+
+### Reliability Result
+- Greedy reliability (single-link control-plane): 1.0.
+- GA reliability (single-link control-plane): 1.0.
+- Verdict: No reliability gain in this first GA run under the synthetic fallback graph.
+
+### Cost-Benefit Ratio
+- Greedy tau per run: 1.9286369997644215e-05 s.
+- GA tau per run: 0.038384006189999126 s.
+- GA/Greedy tau ratio: 1990.2141354069036x.
+- Greedy mean CPU: 0.0%; GA mean CPU: 75.6%.
+- Greedy peak RSS: 185.03125 MB; GA peak RSS: 185.22265625 MB.
+- Verdict: GA imposed substantial additional compute cost without improving latency or reliability in this initial head-to-head.
+
+### Pareto Draft Table (Greedy vs GA)
+- Greedy | placement=0;8;6 | latency_l=2.937887944947775 | reliability_r_avg=1.0 | tau_per_run_seconds=1.9286369997644215e-05
+- GA | placement=0;3;6 | latency_l=2.937887944947775 | reliability_r_avg=1.0 | tau_per_run_seconds=0.038384006189999126
+
+### Methodology Interpretation
+- The first AI challenger run did not surpass the heuristic baseline on primary outcomes, which strengthens methodological credibility by demonstrating that AI methods are being evaluated against explicit compute-cost penalties rather than assumed superiority.
+- The exhaustive worst-case optimum reference remains 0,1,10; GA in this run converged to 0,3,6, indicating the need for broader hyperparameter and multi-seed exploration before concluding on GA capability.

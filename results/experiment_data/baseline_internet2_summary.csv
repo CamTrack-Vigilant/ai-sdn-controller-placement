@@ -1,0 +1,2 @@
+timestamp_utc,topology,topology_source,seed,k,controller_nodes,latency_l,reachability_r_avg,ping_loss_percent,tau_runtime_seconds,ryu_pid,telemetry_mean_cpu_percent,telemetry_max_rss_mb,telemetry_csv
+2026-04-25T20:39:49.462511+00:00,Internet2,synthetic_fallback,42,3,0;8;6,2.937887944947775,0.0,100.0,114.84382945800007,19536,98.2612334801762,60.226562,/home/pro/Desktop/ai-sdn-controller-placement/results/experiment_data/baseline_telemetry_internet2.csv

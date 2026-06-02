@@ -1,0 +1,58 @@
+{
+  "test_date": "2026-05-20 00:41:47",
+  "configuration": {
+    "topology": "Internet2",
+    "nodes": 11,
+    "edges": 18,
+    "controllers_per_trial": 3,
+    "traffic_burst_duration": 0.2
+  },
+  "trials": 3,
+  "threshold_ms": 2000,
+  "exceeds_threshold": 3,
+  "aggregate": {
+    "phase_a_mean_ms": 662.275275021481,
+    "phase_b_mean_ms": 137.68631600153944,
+    "phase_c_mean_ms": 89.85504500257473,
+    "phase_d_mean_ms": 1985.6765446796392,
+    "online_loop_avg_ms": 889.8166360255951,
+    "online_loop_min_ms": 869.6861080243252,
+    "online_loop_max_ms": 913.1993459886871,
+    "full_lifecycle_avg_ms": 2875.4931807052344,
+    "full_lifecycle_min_ms": 2797.129835060332,
+    "full_lifecycle_max_ms": 2974.6929109678604,
+    "teardown_infrastructure_tax_avg_ms": 1985.6765446796392,
+    "total_avg_ms": 2875.4931807052344,
+    "total_min_ms": 2797.129835060332,
+    "total_max_ms": 2974.6929109678604,
+    "variability_ms": 177.5630759075284
+  },
+  "decision": "WARN",
+  "recommendation": "3/3 trials exceeded 2000 ms threshold. Recommend deferring Mininet to Phase 6 validation on Pareto subset only. Phase 5: Use graph-based metrics (shortest-path latency, reachability). Phase 6: Validate top 5 Pareto solutions via Mininet.",
+  "individual_trials": [
+    {
+      "phase_a_topo_instantiation": 695.8581079961732,
+      "phase_b_controller_binding": 133.58916400466114,
+      "phase_c_traffic_generation": 83.75207398785278,
+      "phase_d_teardown": 2061.4935649791732,
+      "online_loop_overhead_ms": 913.1993459886871,
+      "full_lifecycle_overhead_ms": 2974.6929109678604
+    },
+    {
+      "phase_a_topo_instantiation": 638.9789130189456,
+      "phase_b_controller_binding": 138.16097303060815,
+      "phase_c_traffic_generation": 92.54622197477147,
+      "phase_d_teardown": 1927.4437270360067,
+      "online_loop_overhead_ms": 869.6861080243252,
+      "full_lifecycle_overhead_ms": 2797.129835060332
+    },
+    {
+      "phase_a_topo_instantiation": 651.9888040493242,
+      "phase_b_controller_binding": 141.308810969349,
+      "phase_c_traffic_generation": 93.26683904509991,
+      "phase_d_teardown": 1968.0923420237377,
+      "online_loop_overhead_ms": 886.5644540637732,
+      "full_lifecycle_overhead_ms": 2854.656796087511
+    }
+  ]
+}

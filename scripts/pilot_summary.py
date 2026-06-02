@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+import json
+from pathlib import Path
+P = Path(__file__).resolve().parents[1]
+f = P / "results" / "pilot_metrics.json"
+if not f.exists():
+    print("pilot_metrics.json not found")
+    raise SystemExit(2)
+data = json.loads(f.read_text(encoding="utf-8"))
+print(json.dumps(data, indent=2))
+#!/usr/bin/env python3
 """Quick summary of pilot results from JSON."""
 import json
 from pathlib import Path
