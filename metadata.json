@@ -1,0 +1,6 @@
+{
+  "name": "ai-sdn-controller-placement",
+  "description": "Decision-grade multi-objective benchmarking platform for AI and heuristic controller placement in Software Defined Networks (SDN). Evaluates latency, resilience, and computational trade-offs.",
+  "permissions": [],
+  "capabilities": []
+}
