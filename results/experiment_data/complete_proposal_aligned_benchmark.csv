@@ -1,0 +1,61 @@
+Topology,Nodes (N),Edges (E),Budget (k),Algorithm,Avg Latency (ms),N-1 Reliability (%),Runtime (ms),Complexity Tax ω (s/ep),Controllers
+Internet2 (Canonical),20,26,3,K-Means,1.469,100.0,0.048,0.0,n1; n16; n9
+Internet2 (Canonical),20,26,3,Greedy K-Center,1.511,100.0,0.033,0.0,n1; n10; n6
+Internet2 (Canonical),20,26,3,Genetic Algorithm,1.403,100.0,0.031,0.0,n1; n15; n16
+Internet2 (Canonical),20,26,3,Bandit RL,1.564,100.0,0.031,0.0213,n1; n10; n5
+Internet2 (Canonical),20,26,3,Random Baseline,1.734,100.0,0.031,0.0,n13; n0; n18
+Internet2 (Canonical),20,26,5,K-Means,1.045,100.0,0.039,0.0,n10; n2; n4; n6; n9
+Internet2 (Canonical),20,26,5,Greedy K-Center,1.064,100.0,0.034,0.0,n1; n10; n6; n13; n8
+Internet2 (Canonical),20,26,5,Genetic Algorithm,0.976,100.0,0.031,0.0,n17; n18; n2; n4; n6
+Internet2 (Canonical),20,26,5,Bandit RL,0.96,100.0,0.031,0.0213,n1; n10; n15; n16; n4
+Internet2 (Canonical),20,26,5,Random Baseline,1.277,100.0,0.032,0.0,n13; n0; n18; n17; n8
+ATT-MPLS (Canonical),21,54,3,K-Means,2.391,100.0,0.053,0.0001,4; 8; 10
+ATT-MPLS (Canonical),21,54,3,Greedy K-Center,3.03,100.0,0.045,0.0,5; 2; 13
+ATT-MPLS (Canonical),21,54,3,Genetic Algorithm,2.32,100.0,0.043,0.0,1; 4; 7
+ATT-MPLS (Canonical),21,54,3,Bandit RL,2.37,100.0,0.044,0.0213,4; 7; 8
+ATT-MPLS (Canonical),21,54,3,Random Baseline,3.289,100.0,0.046,0.0,20; 3; 0
+ATT-MPLS (Canonical),21,54,5,K-Means,2.336,100.0,0.064,0.0001,11; 5; 19; 18; 12
+ATT-MPLS (Canonical),21,54,5,Greedy K-Center,2.381,100.0,0.045,0.0,5; 2; 13; 12; 18
+ATT-MPLS (Canonical),21,54,5,Genetic Algorithm,1.828,100.0,0.046,0.0,1; 4; 7; 13; 17
+ATT-MPLS (Canonical),21,54,5,Bandit RL,1.923,100.0,0.044,0.0213,0; 1; 2; 7; 17
+ATT-MPLS (Canonical),21,54,5,Random Baseline,2.177,100.0,0.049,0.0,20; 3; 0; 8; 7
+Barabási-Albert (N=20),20,36,3,K-Means,7.042,100.0,0.061,0.0001,n15; n11; n10
+Barabási-Albert (N=20),20,36,3,Greedy K-Center,5.528,100.0,0.04,0.0,n0; n12; n16
+Barabási-Albert (N=20),20,36,3,Genetic Algorithm,4.281,100.0,0.036,0.0,n1; n4; n8
+Barabási-Albert (N=20),20,36,3,Bandit RL,4.752,100.0,0.036,0.0213,n0; n1; n4
+Barabási-Albert (N=20),20,36,3,Random Baseline,5.925,100.0,0.036,0.0,n3; n0; n8
+Barabási-Albert (N=20),20,36,5,K-Means,4.706,100.0,0.049,0.0,n10; n13; n5; n15; n2
+Barabási-Albert (N=20),20,36,5,Greedy K-Center,3.673,100.0,0.04,0.0,n0; n12; n16; n8; n6
+Barabási-Albert (N=20),20,36,5,Genetic Algorithm,3.407,100.0,0.038,0.0,n0; n1; n2; n5; n8
+Barabási-Albert (N=20),20,36,5,Bandit RL,3.493,100.0,0.037,0.0213,n0; n1; n4; n5; n8
+Barabási-Albert (N=20),20,36,5,Random Baseline,4.863,100.0,0.037,0.0,n3; n0; n8; n7; n16
+Barabási-Albert (N=50),50,96,3,K-Means,6.514,100.0,0.087,0.0001,n49; n36; n6
+Barabási-Albert (N=50),50,96,3,Greedy K-Center,5.412,100.0,0.074,0.0001,n0; n48; n37
+Barabási-Albert (N=50),50,96,3,Genetic Algorithm,4.937,100.0,0.085,0.0001,n0; n16; n5
+Barabási-Albert (N=50),50,96,3,Bandit RL,5.465,100.0,0.074,0.0213,n0; n1; n4
+Barabási-Albert (N=50),50,96,3,Random Baseline,6.594,100.0,0.075,0.0001,n40; n7; n1
+Barabási-Albert (N=50),50,96,5,K-Means,6.398,100.0,0.089,0.0001,n10; n23; n2; n43; n7
+Barabási-Albert (N=50),50,96,5,Greedy K-Center,4.691,100.0,0.075,0.0001,n0; n48; n37; n39; n35
+Barabási-Albert (N=50),50,96,5,Genetic Algorithm,4.089,100.0,0.074,0.0001,n0; n15; n16; n29; n5
+Barabási-Albert (N=50),50,96,5,Bandit RL,4.325,100.0,0.077,0.0213,n0; n1; n4; n5; n6
+Barabási-Albert (N=50),50,96,5,Random Baseline,6.131,100.0,0.075,0.0001,n40; n7; n1; n47; n17
+Waxman (N=20),20,19,3,K-Means,2.73,94.47,0.042,0.0,n2; n3; n1
+Waxman (N=20),20,19,3,Greedy K-Center,4.935,97.37,0.035,0.0,n1; n17; n12
+Waxman (N=20),20,19,3,Genetic Algorithm,2.64,96.05,0.031,0.0,n1; n10; n8
+Waxman (N=20),20,19,3,Bandit RL,2.73,94.47,0.029,0.0213,n1; n2; n3
+Waxman (N=20),20,19,3,Random Baseline,4.609,96.05,0.032,0.0,n3; n0; n8
+Waxman (N=20),20,19,5,K-Means,1.703,98.16,0.04,0.0,n16; n9; n1; n18; n8
+Waxman (N=20),20,19,5,Greedy K-Center,1.855,98.42,0.031,0.0,n1; n17; n12; n16; n18
+Waxman (N=20),20,19,5,Genetic Algorithm,1.494,96.84,0.031,0.0,n1; n14; n15; n3; n5
+Waxman (N=20),20,19,5,Bandit RL,1.603,97.89,0.03,0.0213,n1; n10; n17; n6; n9
+Waxman (N=20),20,19,5,Random Baseline,2.695,96.32,0.03,0.0,n3; n0; n8; n7; n16
+Waxman (N=50),50,53,3,K-Means,16.76,96.98,0.097,0.0001,n36; n2; n21
+Waxman (N=50),50,53,3,Greedy K-Center,12.499,97.96,0.071,0.0001,n25; n38; n45
+Waxman (N=50),50,53,3,Genetic Algorithm,7.707,97.58,0.074,0.0001,n1; n22; n48
+Waxman (N=50),50,53,3,Bandit RL,8.721,98.19,0.071,0.0213,n14; n5; n6
+Waxman (N=50),50,53,3,Random Baseline,16.296,95.51,0.061,0.0001,n40; n7; n1
+Waxman (N=50),50,53,5,K-Means,9.93,98.34,0.079,0.0001,n36; n5; n1; n26; n18
+Waxman (N=50),50,53,5,Greedy K-Center,9.972,98.79,0.064,0.0001,n25; n38; n45; n26; n28
+Waxman (N=50),50,53,5,Genetic Algorithm,5.468,98.34,0.063,0.0001,n1; n14; n32; n37; n6
+Waxman (N=50),50,53,5,Bandit RL,6.5,98.3,0.063,0.0213,n1; n14; n32; n35; n38
+Waxman (N=50),50,53,5,Random Baseline,10.026,96.91,0.062,0.0001,n40; n7; n1; n47; n17

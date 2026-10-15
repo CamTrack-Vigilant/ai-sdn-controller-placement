@@ -184,7 +184,7 @@ def run_mininet_simulation(
             ping_count=ping_count,
             timeout_s=timeout_s,
         )
-    except Exception as exc:
+    except (Exception, SystemExit, BaseException) as exc:
         if not fallback_to_synthetic:
             raise
 

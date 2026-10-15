@@ -30,7 +30,7 @@
 
 **Suggested caption:**
 
-> Figure 8.1. Annotated methodology diagram for the study. The figure shows the heuristic and DRL workflows, metric collection for ℓ, R, and ω, the aggregation bridge into Phase 3, the CPU thermal cooldown experimental condition, and the explicit no cross-seeding policy between heuristic solutions and DRL priors.
+> Figure 8.1. Methodology workflow for the heuristic and DRL tracks, showing metric collection, Phase 3 aggregation, the CPU thermal cooldown factor, and the no cross-seeding policy.
 
 ### Option 1: VS Code with Mermaid Extension (Recommended)
 **Best for:** Quick viewing, editing, and live preview

@@ -1,0 +1,29 @@
+{
+  "Random": {
+    "placement": [
+      "n13",
+      "n0",
+      "n18"
+    ],
+    "avg_rtt_ms": 3.374,
+    "worst_rtt_ms": 6.944
+  },
+  "Greedy K-Center": {
+    "placement": [
+      "n1",
+      "n10",
+      "n6"
+    ],
+    "avg_rtt_ms": 2.934,
+    "worst_rtt_ms": 6.664
+  },
+  "K-Means": {
+    "placement": [
+      "n1",
+      "n16",
+      "n9"
+    ],
+    "avg_rtt_ms": 2.852,
+    "worst_rtt_ms": 5.764
+  }
+}

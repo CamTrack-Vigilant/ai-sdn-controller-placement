@@ -1,0 +1,11 @@
+{
+  "topology_id": "internet2",
+  "method": "kcenter",
+  "k": 3,
+  "seed": 42,
+  "controllers": [
+    "n21",
+    "n22",
+    "n36"
+  ]
+}

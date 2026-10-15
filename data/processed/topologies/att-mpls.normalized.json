@@ -1,0 +1,741 @@
+{
+  "topology_id": "att-mpls",
+  "source_path": "data/raw/topologies/AttMpls.graphml",
+  "node_count": 25,
+  "edge_count": 57,
+  "nodes": [
+    {
+      "id": 0,
+      "x": -0.32728269590185544,
+      "y": 0.7251575026481897,
+      "Internal": 1,
+      "Latitude": 40.71427,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -74.00597,
+      "label": "NY54"
+    },
+    {
+      "id": 1,
+      "x": -0.47254176594669356,
+      "y": 0.9999999999999999,
+      "Internal": 1,
+      "Latitude": 42.3751,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -71.10561,
+      "label": "CMBR"
+    },
+    {
+      "id": 18,
+      "x": 0.855966871204365,
+      "y": 0.1122517704452441,
+      "Internal": 1,
+      "Latitude": 38.58157,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -121.4944,
+      "label": "SCRM"
+    },
+    {
+      "id": 19,
+      "x": 0.7562499575092786,
+      "y": 0.49553690476193735,
+      "Internal": 1,
+      "Latitude": 45.52345,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -122.67621,
+      "label": "PTLD"
+    },
+    {
+      "id": 2,
+      "x": 0.09438019198802823,
+      "y": 0.33733964131185284,
+      "Internal": 1,
+      "Latitude": 41.85003,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -87.65005,
+      "label": "CHCG"
+    },
+    {
+      "id": 20,
+      "x": 0.4862580465327046,
+      "y": 0.5106703271999639,
+      "Internal": 1,
+      "Latitude": 47.60621,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -122.33207,
+      "label": "STTL"
+    },
+    {
+      "id": 21,
+      "x": 0.5402310148524754,
+      "y": 0.04125487677005417,
+      "Internal": 1,
+      "Latitude": 40.76078,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -111.89105,
+      "label": "SLKC"
+    },
+    {
+      "id": 22,
+      "x": 0.38477252800589323,
+      "y": -0.3319418259014338,
+      "Internal": 1,
+      "Latitude": 34.05223,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -118.24368,
+      "label": "LA03"
+    },
+    {
+      "id": 23,
+      "x": 0.7129081690106764,
+      "y": -0.6839426305266701,
+      "Internal": 1,
+      "Latitude": 32.71533,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -117.15726,
+      "label": "SNDG"
+    },
+    {
+      "id": 24,
+      "x": 0.45792086969259754,
+      "y": -0.6734784152673023,
+      "Internal": 1,
+      "Latitude": 33.44838,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -112.07404,
+      "label": "PHNX"
+    },
+    {
+      "id": 3,
+      "x": -0.24173881437431505,
+      "y": 0.28381487629669805,
+      "Internal": 1,
+      "Latitude": 41.4995,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -81.69541,
+      "label": "CLEV"
+    },
+    {
+      "id": 4,
+      "x": -0.9267330700641357,
+      "y": 0.15977978268888707,
+      "Internal": 1,
+      "Latitude": 35.7721,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -78.63861,
+      "label": "RLGH"
+    },
+    {
+      "id": 10,
+      "x": -0.39508610937473015,
+      "y": -0.6647772831955481,
+      "Internal": 1,
+      "Latitude": 29.95465,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -90.07507,
+      "label": "NWOR"
+    },
+    {
+      "id": 5,
+      "x": -0.5381521304927963,
+      "y": -0.08357120494415482,
+      "Internal": 1,
+      "Latitude": 33.749,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -84.38798,
+      "label": "ATLN"
+    },
+    {
+      "id": 6,
+      "x": -0.34480001346769523,
+      "y": 0.5963086711937667,
+      "Internal": 1,
+      "Latitude": 39.95234,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -75.16379,
+      "label": "PHLA"
+    },
+    {
+      "id": 7,
+      "x": -0.6575147158226423,
+      "y": 0.4055888461505334,
+      "Internal": 1,
+      "Latitude": 38.89511,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -77.03637,
+      "label": "WASH"
+    },
+    {
+      "id": 8,
+      "x": -0.32966907240618915,
+      "y": -0.061919442816956126,
+      "Internal": 1,
+      "Latitude": 36.16589,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -86.78444,
+      "label": "NSVL"
+    },
+    {
+      "id": 9,
+      "x": -0.08616778946870601,
+      "y": -0.03109697511900962,
+      "Internal": 1,
+      "Latitude": 38.62727,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -90.19789,
+      "label": "STLS"
+    },
+    {
+      "id": 11,
+      "x": -0.23481990281119136,
+      "y": -0.7105355780424714,
+      "Internal": 1,
+      "Latitude": 29.76328,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -95.36327,
+      "label": "HSTN"
+    },
+    {
+      "id": 12,
+      "x": 0.09653841240073405,
+      "y": -0.7460213148011112,
+      "Internal": 1,
+      "Latitude": 29.42412,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -98.49363,
+      "label": "SNAN"
+    },
+    {
+      "id": 13,
+      "x": -0.03402978626008292,
+      "y": -0.29355816523848016,
+      "Internal": 1,
+      "Latitude": 32.78306,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -96.80667,
+      "label": "DLLS"
+    },
+    {
+      "id": 14,
+      "x": -0.6115972450553312,
+      "y": -0.565315952308477,
+      "Internal": 1,
+      "Latitude": 28.53834,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -81.37924,
+      "label": "ORLD"
+    },
+    {
+      "id": 15,
+      "x": 0.2701960848248632,
+      "y": 0.0014658290309203874,
+      "Internal": 1,
+      "Latitude": 39.73915,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -104.9847,
+      "label": "DNVR"
+    },
+    {
+      "id": 16,
+      "x": 0.12215231080894172,
+      "y": 0.0487368994374387,
+      "Internal": 1,
+      "Latitude": 39.11417,
+      "Country": "United States",
+      "type": "Completion 2007 - 2008",
+      "Longitude": -94.62746,
+      "label": "KSCY"
+    },
+    {
+      "id": 17,
+      "x": 0.422558654615806,
+      "y": 0.1282528602261257,
+      "Internal": 1,
+      "Latitude": 37.77493,
+      "Country": "United States",
+      "type": "Completed",
+      "Longitude": -122.41942,
+      "label": "SNFN"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n0",
+      "target": "n1",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n0",
+      "target": "n12",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n0",
+      "target": "n21",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n0",
+      "target": "n22",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n1",
+      "target": "n21",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n10",
+      "target": "n14",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n9",
+      "target": "n10",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n11",
+      "target": "n13",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n9",
+      "target": "n11",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n13",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n14",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n18",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n21",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n24",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n7",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n9",
+      "target": "n13",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n14",
+      "target": "n15",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n7",
+      "target": "n14",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n9",
+      "target": "n14",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n16",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n17",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n17",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 1
+    },
+    {
+      "source": "n24",
+      "target": "n15",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n5",
+      "target": "n15",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n9",
+      "target": "n15",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n16",
+      "target": "n17",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n4",
+      "target": "n17",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n18",
+      "target": "n21",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n18",
+      "target": "n23",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n18",
+      "target": "n24",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n19",
+      "target": "n20",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n19",
+      "target": "n22",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n2",
+      "target": "n3",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n2",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n2",
+      "target": "n6",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n20",
+      "target": "n22",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n20",
+      "target": "n23",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n20",
+      "target": "n24",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n20",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n20",
+      "target": "n6",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n21",
+      "target": "n22",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n23",
+      "target": "n24",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n23",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n24",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n24",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n3",
+      "target": "n4",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n3",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n3",
+      "target": "n6",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completed",
+      "key": 0
+    },
+    {
+      "source": "n4",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n5",
+      "target": "n7",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n5",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n5",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n7",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n7",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    },
+    {
+      "source": "n8",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "LinkLabel": "Completion 2007-2008",
+      "key": 0
+    }
+  ]
+}

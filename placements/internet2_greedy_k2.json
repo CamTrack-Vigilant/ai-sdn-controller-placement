@@ -1,0 +1,10 @@
+{
+  "topology_id": "internet2",
+  "method": "greedy",
+  "k": 2,
+  "seed": 42,
+  "controllers": [
+    "n21",
+    "n22"
+  ]
+}

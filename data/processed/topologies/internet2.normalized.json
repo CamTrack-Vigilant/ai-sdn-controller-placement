@@ -1,0 +1,315 @@
+{
+  "topology_id": "internet2",
+  "source_path": "data/raw/topologies/Internet2.graphml",
+  "node_count": 20,
+  "edge_count": 26,
+  "nodes": [
+    {
+      "id": 0,
+      "x": 0.8589991155371088,
+      "y": 0.42196557052568223,
+      "label": "Pacific Northwest Gigapop"
+    },
+    {
+      "id": 1,
+      "x": 0.6458499961437971,
+      "y": 0.3004132402708104,
+      "label": "University of Utah"
+    },
+    {
+      "id": 18,
+      "x": -0.8523944596007753,
+      "y": -0.10570063563299106,
+      "label": "MAGPI"
+    },
+    {
+      "id": 19,
+      "x": -0.832888554022579,
+      "y": 0.08568875979761716,
+      "label": "NYSERNet"
+    },
+    {
+      "id": 2,
+      "x": 0.6401866715739362,
+      "y": 0.15374977291750763,
+      "label": "CENIC"
+    },
+    {
+      "id": 3,
+      "x": 0.1391202912889248,
+      "y": -0.07858523380296133,
+      "label": "LEARN"
+    },
+    {
+      "id": 4,
+      "x": 0.03204180330410081,
+      "y": 0.10974657069053702,
+      "label": "GPN"
+    },
+    {
+      "id": 5,
+      "x": -0.3195322332900257,
+      "y": 0.0558374134365552,
+      "label": "MREN"
+    },
+    {
+      "id": 6,
+      "x": -0.09151105363535703,
+      "y": -0.29109297447762134,
+      "label": "FLR/SOX"
+    },
+    {
+      "id": 7,
+      "x": -0.6395716312979333,
+      "y": -0.20335237239544604,
+      "label": "MAX"
+    },
+    {
+      "id": 8,
+      "x": -0.6023313245444379,
+      "y": 0.14397833671358487,
+      "label": "NOX"
+    },
+    {
+      "id": 9,
+      "x": 1.0,
+      "y": 0.3468398377322316,
+      "label": "Oregon Gigapop"
+    },
+    {
+      "id": 10,
+      "x": 0.8250164256019848,
+      "y": 0.2515211920350312,
+      "hyperedge": 1,
+      "label": ""
+    },
+    {
+      "id": 11,
+      "x": 0.35060455418543,
+      "y": 0.20927830409254677,
+      "hyperedge": 1,
+      "label": ""
+    },
+    {
+      "id": 12,
+      "x": 0.396739202971929,
+      "y": 0.05215687173563555,
+      "hyperedge": 1,
+      "label": ""
+    },
+    {
+      "id": 13,
+      "x": -0.2865218829678078,
+      "y": -0.18185884634014815,
+      "label": "Indiana GigaPoP"
+    },
+    {
+      "id": 14,
+      "x": -0.2402428013740433,
+      "y": -0.41902916816774427,
+      "label": "KyRON"
+    },
+    {
+      "id": 15,
+      "x": -0.10363940944793866,
+      "y": -0.4985148739556324,
+      "label": "University of Memphis"
+    },
+    {
+      "id": 16,
+      "x": -0.396413849048875,
+      "y": -0.3116021924209942,
+      "label": "MCNC/SCGPoP"
+    },
+    {
+      "id": 17,
+      "x": -0.5235108613774379,
+      "y": -0.041439572754201515,
+      "label": "3ROX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n0",
+      "target": "n1",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n0",
+      "target": "n19",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n1",
+      "target": "n12",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n1",
+      "target": "n2",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n1",
+      "target": "n3",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n10",
+      "target": "n11",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n17",
+      "target": "n10",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n18",
+      "target": "n11",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n2",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n12",
+      "target": "n4",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n13",
+      "target": "n14",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n13",
+      "target": "n16",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n13",
+      "target": "n4",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n14",
+      "target": "n15",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n14",
+      "target": "n3",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n18",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n5",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n15",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n16",
+      "target": "n7",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n16",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n17",
+      "target": "n8",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n17",
+      "target": "n9",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n19",
+      "target": "n2",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n3",
+      "target": "n4",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n5",
+      "target": "n6",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    },
+    {
+      "source": "n6",
+      "target": "n7",
+      "latency": 1.0,
+      "weight": 1.0,
+      "key": 0
+    }
+  ]
+}

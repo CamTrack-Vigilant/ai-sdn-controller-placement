@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 # Load pilot metrics
-metrics_path = Path(__file__).parent / "results" / "pilot_metrics.json"
+metrics_path = Path(__file__).parent.parent / "results" / "pilot_metrics.json"
 with open(metrics_path) as f:
     metrics = json.load(f)
 
@@ -38,7 +38,7 @@ print("─" * 60)
 print(f"  Learning Rate:    {hyper['learning_rate']}")
 print(f"  Batch Size:       {hyper['batch_size']}")
 print(f"  Gamma (γ):        {hyper['gamma']}")
-print(f"  Max Episodes:     {hyper['max_episodes']}")
+print(f"  Max Episodes:     {hyper.get('max_episodes', meta['pilot_episodes'])}")
 print(f"  Replay Memory:    {hyper['replay_memory_size']:,}")
 print(f"  Target Updates:   Every {hyper['target_update_frequency']} steps")
 print(f"  Epsilon Decay:    {hyper['epsilon_decay']}")

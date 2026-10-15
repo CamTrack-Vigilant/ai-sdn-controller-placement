@@ -55,8 +55,8 @@ EPSILON_START = RL_CONFIG.get("epsilon_start", 1.0)
 EPSILON_END = RL_CONFIG.get("epsilon_end", 0.05)
 EPSILON_DECAY = RL_CONFIG.get("epsilon_decay", 0.995)
 
-# Pilot constants (override max_episodes for quick validation)
-PILOT_EPISODES = 50
+# Pilot / Training constants
+PILOT_EPISODES = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else RL_CONFIG.get("max_episodes", 1000)
 DEVICE = torch.device("cpu")
 
 
