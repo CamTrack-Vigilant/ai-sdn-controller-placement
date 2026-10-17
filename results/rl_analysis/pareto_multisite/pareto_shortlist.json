@@ -1,0 +1,52 @@
+[
+  {
+    "algorithm": "genetic",
+    "controllers": "s0-n10;s1-n11;s2-n2",
+    "trial": 1,
+    "latency_obj": 2.222181007929327,
+    "disconnection_obj": 0.0,
+    "omega_obj": 4.320493798938574,
+    "average_distance": 2.222181007929327,
+    "control_plane_reliability": 1.0
+  },
+  {
+    "algorithm": "genetic",
+    "controllers": "s0-n10;s1-n11;s2-n2",
+    "trial": 3,
+    "latency_obj": 2.222181007929327,
+    "disconnection_obj": 0.0,
+    "omega_obj": 4.320493798938574,
+    "average_distance": 2.222181007929327,
+    "control_plane_reliability": 1.0
+  },
+  {
+    "algorithm": "genetic",
+    "controllers": "s0-n10;s1-n11;s2-n2",
+    "trial": 4,
+    "latency_obj": 2.222181007929327,
+    "disconnection_obj": 0.0,
+    "omega_obj": 4.320493798938574,
+    "average_distance": 2.222181007929327,
+    "control_plane_reliability": 1.0
+  },
+  {
+    "algorithm": "genetic",
+    "controllers": "s0-n10;s1-n11;s2-n4",
+    "trial": 2,
+    "latency_obj": 2.2399350512404865,
+    "disconnection_obj": 0.0,
+    "omega_obj": 3.741657386773941,
+    "average_distance": 2.2399350512404865,
+    "control_plane_reliability": 1.0
+  },
+  {
+    "algorithm": "bandit_rl",
+    "controllers": "s0-n1;s2-n10;s3-n2",
+    "trial": 2,
+    "latency_obj": 2.4073055316653096,
+    "disconnection_obj": 0.0,
+    "omega_obj": 2.943920288775949,
+    "average_distance": 2.4073055316653096,
+    "control_plane_reliability": 1.0
+  }
+]

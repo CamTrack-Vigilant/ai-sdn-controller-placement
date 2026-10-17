@@ -6,6 +6,15 @@ import sys
 from pathlib import Path
 import json
 
+# Compatibility shim for legacy pandas/scipy expecting NumPy < 1.20 deprecated aliases
+try:
+    import numpy as np
+    for _alias, _target in [("bool", bool), ("int", int), ("float", float)]:
+        if not hasattr(np, _alias):
+            setattr(np, _alias, _target)
+except Exception:
+    pass
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))

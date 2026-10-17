@@ -36,6 +36,17 @@ import traceback
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # Mininet imports
 try:
     from mininet.net import Mininet
@@ -402,7 +413,7 @@ def run_gate_test(
         print(f"    Phase B (Controller + Start):    {timing['phase_b_controller_binding']:8.2f} ms")
         print(f"    Phase C (Traffic Burst):         {timing['phase_c_traffic_generation']:8.2f} ms")
         print(f"    Phase D (Cleanup + Teardown):    {timing['phase_d_teardown']:8.2f} ms")
-        print(f"    ─────────────────────────────────────")
+        print("    " + "-" * 37)
         print(f"    Online Loop Overhead:            {online_loop_overhead_ms:8.2f} ms")
         print(f"    Full Lifecycle Overhead:         {full_lifecycle_overhead_ms:8.2f} ms")
         print(
@@ -415,12 +426,12 @@ def run_gate_test(
         
         # Check against threshold
         if full_lifecycle_overhead_ms >= 2000:
-            print(f"\n  ⚠️  CRITICAL TIMING THRESHOLD EXCEEDED: OUT OF SPEC FOR ONLINE DRL TRAINING INTERACTION")
+            print(f"\n  [WARN] CRITICAL TIMING THRESHOLD EXCEEDED: OUT OF SPEC FOR ONLINE DRL TRAINING INTERACTION")
             print(f"      Overhead {full_lifecycle_overhead_ms:.2f} ms exceeds 2000 ms budget.")
             exceeds_threshold += 1
         else:
             print(
-                f"\n  ✅ WITHIN BUDGET: {full_lifecycle_overhead_ms:.2f} ms / 2000 ms "
+                f"\n  [PASS] WITHIN BUDGET: {full_lifecycle_overhead_ms:.2f} ms / 2000 ms "
                 f"({(full_lifecycle_overhead_ms/2000)*100:.1f}%)"
             )
 
@@ -457,7 +468,7 @@ def run_gate_test(
     print(f"  Phase B (Controller): {phase_means['phase_b_controller_binding']:8.2f} ms (avg)")
     print(f"  Phase C (Traffic):    {phase_means['phase_c_traffic_generation']:8.2f} ms (avg)")
     print(f"  Phase D (Cleanup):    {phase_means['phase_d_teardown']:8.2f} ms (avg)")
-    print(f"  ─────────────────────────────────────")
+    print("  " + "-" * 37)
     print(f"  Online Loop (avg):    {avg_online:8.2f} ms")
     print(f"  Online Loop (min):    {min_online:8.2f} ms")
     print(f"  Online Loop (max):    {max_online:8.2f} ms")
@@ -477,15 +488,15 @@ def run_gate_test(
     # Decision
     print(f"\n{'='*80}")
     if exceeds_threshold == 0:
-        decision = "✅ APPROVED FOR PHASE 5"
+        decision = "[PASS] APPROVED FOR PHASE 5"
         status = "PASS"
         recommendation = (
             "Mininet overhead is within budget. Proceed with Mininet integration "
-            "in Phase 5 (July) full factorial runs. Expect ~1–1.5 hours total "
-            "for 18 cells × 1000 episodes."
+            "in Phase 5 (July) full factorial runs. Expect ~1-1.5 hours total "
+            "for 18 cells x 1000 episodes."
         )
     else:
-        decision = "⚠️  CONDITIONALLY APPROVED (DEFER TO PHASE 6)"
+        decision = "[WARN] CONDITIONALLY APPROVED (DEFER TO PHASE 6)"
         status = "WARN"
         recommendation = (
             f"{exceeds_threshold}/{len(trial_results)} trials exceeded 2000 ms threshold. "

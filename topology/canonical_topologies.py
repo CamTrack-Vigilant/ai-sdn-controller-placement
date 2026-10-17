@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 Canonical Topology Loader for Internet2 and ATT-MPLS reference implementations.
 
