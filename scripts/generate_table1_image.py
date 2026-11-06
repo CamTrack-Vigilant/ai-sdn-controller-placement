@@ -12,29 +12,30 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     data = [
-        ["Internet2 (Canonical)", "20", "3", "K-Means / GA", "1.403 ms", "100.0%", "0.031 ms", "0.0000s"],
-        ["Internet2 (Canonical)", "20", "5", "Greedy / GA", "0.960 ms", "100.0%", "0.031 ms", "0.0000s"],
-        ["ATT-MPLS (Canonical)", "21", "3", "Genetic Algorithm", "2.320 ms", "100.0%", "0.043 ms", "0.0000s"],
-        ["ATT-MPLS (Canonical)", "21", "5", "Genetic Algorithm", "1.828 ms", "100.0%", "0.046 ms", "0.0000s"],
-        ["Barabási-Albert", "20", "3", "K-Means", "2.177 ms", "100.0%", "0.049 ms", "0.0000s"],
-        ["Barabási-Albert", "50", "3", "K-Means", "4.863 ms", "100.0%", "0.037 ms", "0.0000s"],
-        ["Waxman", "20", "3", "Greedy K-Center", "2.640 ms", "96.1%", "0.031 ms", "0.0000s"],
-        ["Waxman", "50", "3", "K-Means / GA", "7.707 ms", "97.6%", "0.074 ms", "0.0000s"],
-        ["DQN / DRL Stack", "20", "3", "PyTorch DQN", "1.420 ms", "100.0%", "21,260 ms", "0.0213s"],
+        ["Internet2 (Canonical)", "20", "3", "K-Means / GA", "1.403 ms", "1.420 ms", "100.0%", "0.031 ms", "0.0213s"],
+        ["Internet2 (Canonical)", "20", "5", "Genetic / K-Means", "0.976 ms", "0.960 ms", "100.0%", "0.031 ms", "0.0213s"],
+        ["ATT-MPLS (Canonical)", "21", "3", "Genetic Algorithm", "2.320 ms", "2.370 ms", "100.0%", "0.043 ms", "0.0213s"],
+        ["ATT-MPLS (Canonical)", "21", "5", "Genetic Algorithm", "1.828 ms", "1.923 ms", "100.0%", "0.046 ms", "0.0213s"],
+        ["Barabási-Albert", "20", "3", "K-Means / GA", "2.177 ms", "2.517 ms", "100.0%", "0.049 ms", "0.0213s"],
+        ["Barabási-Albert", "50", "3", "K-Means / GA", "4.863 ms", "5.465 ms", "100.0%", "0.037 ms", "0.0213s"],
+        ["Waxman", "20", "3", "Greedy / GA", "2.640 ms", "2.730 ms", "96.1%", "0.031 ms", "0.0213s"],
+        ["Waxman", "50", "3", "K-Means / GA", "7.707 ms", "8.721 ms", "97.6%", "0.074 ms", "0.0213s"],
+        ["DQN 1000-Ep Pilot", "20", "3", "PyTorch DQN", "1.420 ms", "1.420 ms", "100.0%", "21,260 ms", "0.0213s"],
     ]
 
     columns = [
         "Topology Model",
         "Nodes (N)",
         "Budget (k)",
-        "Best Algorithm",
-        "Avg Latency L(P)",
+        "Best Paradigm",
+        "Best Latency L(P)",
+        "DRL Latency L(P)",
         "N-1 Reliability",
         "Runtime (ms)",
-        "Complexity Tax ω"
+        "DRL Tax ω"
     ]
 
-    fig, ax = plt.subplots(figsize=(11, 4.8), dpi=300)
+    fig, ax = plt.subplots(figsize=(12, 4.8), dpi=300)
     ax.axis('off')
 
     # Title

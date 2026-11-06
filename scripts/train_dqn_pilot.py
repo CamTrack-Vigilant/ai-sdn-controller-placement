@@ -129,16 +129,19 @@ class ControllerPlacementEnv:
     Reward: based on latency and reliability
     """
 
-    def __init__(self, graph):
+    def __init__(self, graph, k: int = 3, use_weighted_paths: bool = True):
         self.graph = graph
         self.num_nodes = graph.number_of_nodes()
         self.nodes = list(graph.nodes())
+        self.k = max(1, min(k, self.num_nodes))
+        self.use_weighted_paths = use_weighted_paths
         
         # Pre-compute latency baseline
         self.max_latency = self._compute_max_avg_distance()
         
         # Tracking
         self.current_controller = None
+        self.current_controllers: List[str] = []
         self.step_count = 0
         self.episode_rewards = []
 
@@ -147,58 +150,73 @@ class ControllerPlacementEnv:
         import networkx as nx
         max_avg = 0.0
         for node in self.graph.nodes():
-            lengths = nx.single_source_shortest_path_length(self.graph, node)
+            if self.use_weighted_paths:
+                lengths = nx.single_source_dijkstra_path_length(self.graph, node, weight="weight")
+            else:
+                lengths = nx.single_source_shortest_path_length(self.graph, node)
             avg_dist = np.mean(list(lengths.values())) if lengths else 0.0
             max_avg = max(max_avg, avg_dist)
         return max_avg if max_avg > 0 else 1.0
 
-    def _compute_latency(self, controller_node: str) -> float:
+    def _compute_latency(self, controller_node) -> float:
         """
-        Compute average latency: mean shortest path from controller to all nodes.
+        Compute average latency: mean shortest path from controller(s) to all nodes.
         Normalized by max_latency.
         """
         import networkx as nx
-        lengths = nx.single_source_shortest_path_length(self.graph, controller_node)
+        sources = controller_node if isinstance(controller_node, (list, tuple, set)) else [controller_node]
+        if self.use_weighted_paths:
+            lengths = nx.multi_source_dijkstra_path_length(self.graph, list(sources), weight="weight")
+        else:
+            lengths = nx.multi_source_dijkstra_path_length(self.graph, list(sources), weight=None)
         avg_dist = np.mean(list(lengths.values())) if lengths else 0.0
         return avg_dist / self.max_latency
 
-    def _compute_reliability(self, controller_node: str) -> float:
+    def _compute_reliability(self, controller_node) -> float:
         """
-        Compute reliability: fraction of nodes reachable from controller.
-        For a connected graph, this is typically 1.0; in pilot, always 1.0.
+        Compute N-1 single-link failure reachability from controller(s).
         """
-        import networkx as nx
-        reachable = len(nx.descendants(self.graph, controller_node)) + 1  # +1 for self
-        return reachable / self.num_nodes
+        from evaluation.metrics import control_plane_reliability_single_link_failure_cached
+        sources = controller_node if isinstance(controller_node, (list, tuple, set)) else [controller_node]
+        return control_plane_reliability_single_link_failure_cached(self.graph, list(sources))
 
     def reset(self) -> np.ndarray:
         """Reset environment and return initial state."""
-        self.current_controller = random.choice(self.nodes)
+        self.current_controllers = random.sample(self.nodes, self.k)
+        self.current_controller = self.current_controllers[0]
         self.step_count = 0
         self.episode_rewards = []
         return self._state_to_vector()
 
     def _state_to_vector(self) -> np.ndarray:
-        """Convert controller node to one-hot vector."""
+        """Convert controller node(s) to multi-hot state vector."""
         state = np.zeros(self.num_nodes, dtype=np.float32)
-        node_idx = self.nodes.index(self.current_controller)
-        state[node_idx] = 1.0
+        active = self.current_controllers if self.current_controllers else [self.current_controller]
+        for ctrl in active:
+            if ctrl in self.nodes:
+                state[self.nodes.index(ctrl)] = 1.0
         return state
 
     def step(self, action: int) -> Tuple[np.ndarray, float, bool]:
         """
-        Execute action (move controller to new node).
+        Execute action (update controller placement).
         Return: (next_state, reward, done)
         """
         self.step_count += 1
         
-        # Action: select controller node
+        # Action: select controller node and maintain k-controller active set
         if 0 <= action < self.num_nodes:
-            self.current_controller = self.nodes[action]
+            selected = self.nodes[action]
+            self.current_controller = selected
+            if selected not in self.current_controllers:
+                if len(self.current_controllers) >= self.k:
+                    self.current_controllers.pop(0)
+                self.current_controllers.append(selected)
         
-        # Compute metrics
-        latency = self._compute_latency(self.current_controller)
-        reliability = self._compute_reliability(self.current_controller)
+        # Compute metrics across the active k-controller placement
+        active_set = self.current_controllers if self.current_controllers else [self.current_controller]
+        latency = self._compute_latency(active_set)
+        reliability = self._compute_reliability(active_set)
         
         # Reward logic (Section 8.4.1 specifications)
         latency_score = -(latency)  # Negative latency is good
@@ -309,9 +327,9 @@ def train_pilot():
     
     # Create environment and agent
     print("\n[2/4] Initializing environment and agent...")
-    env = ControllerPlacementEnv(G)
+    env = ControllerPlacementEnv(G, k=3, use_weighted_paths=True)
     agent = DQNAgent(state_size=G.number_of_nodes(), action_size=G.number_of_nodes())
-    print(f"  ✓ DQN Network: Input(11) -> Hidden(64) -> Hidden(64) -> Output(11)")
+    print(f"  ✓ DQN Network: Input({G.number_of_nodes()}) -> Hidden(64) -> Hidden(64) -> Output({G.number_of_nodes()})")
     print(f"  ✓ Replay Buffer: {REPLAY_MEMORY_SIZE} capacity")
     print(f"  ✓ Hyperparameters: LR={LEARNING_RATE}, γ={GAMMA}, batch={BATCH_SIZE}")
     

@@ -23,6 +23,8 @@ from topology.canonical_topologies import load_canonical_topology
 from algorithms.baseline.greedy_placement import greedy_k_center_placement
 from algorithms.baseline.kmeans_placement import kmeans_controller_placement
 from algorithms.baseline.random_placement import random_controller_placement
+from algorithms.ai.genetic_algorithm import genetic_controller_placement
+from algorithms.ai.reinforcement_learning import bandit_rl_controller_placement
 from simulation.mininet_simulation import run_mininet_simulation
 
 def main():
@@ -36,9 +38,11 @@ def main():
     print(f"Controller Budget (k): {num_controllers}\n")
 
     algorithms = {
-        "Random": random_controller_placement(graph, num_controllers, seed=42),
-        "Greedy K-Center": greedy_k_center_placement(graph, num_controllers),
+        "Genetic Algorithm": genetic_controller_placement(graph, num_controllers, population_size=40, generations=30, seed=42),
         "K-Means": kmeans_controller_placement(graph, num_controllers, random_state=42),
+        "Greedy K-Center": greedy_k_center_placement(graph, num_controllers),
+        "Bandit RL / DQN": bandit_rl_controller_placement(graph, num_controllers, episodes=200, seed=42),
+        "Random": random_controller_placement(graph, num_controllers, seed=42),
     }
 
     results = {}

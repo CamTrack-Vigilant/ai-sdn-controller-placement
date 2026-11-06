@@ -1,16 +1,23 @@
 from __future__ import annotations
 
+from collections import deque
 from datetime import datetime, timezone
 import itertools
 import json
 import math
 from pathlib import Path
 import random
+import time
 from typing import List, Tuple
 
 import networkx as nx
+import numpy as np
 
-from evaluation.metrics import control_plane_reliability_single_link_failure
+from evaluation.metrics import (
+    average_controller_distance,
+    control_plane_reliability_single_link_failure,
+    control_plane_reliability_single_link_failure_cached,
+)
 
 
 def _average_distance_from_all_pairs(
@@ -220,3 +227,164 @@ def bandit_rl_controller_placement(
         }
 
     return list(best_action)
+
+
+def dqn_controller_placement(
+    graph: nx.Graph,
+    num_controllers: int,
+    episodes: int = 200,
+    learning_rate: float = 0.001,
+    gamma: float = 0.99,
+    batch_size: int = 32,
+    replay_capacity: int = 10000,
+    epsilon_start: float = 1.0,
+    epsilon_end: float = 0.05,
+    epsilon_decay: float = 0.995,
+    seed: int = 42,
+    return_metadata: bool = False,
+) -> List[str] | Tuple[List[str], dict]:
+    """
+    Multi-controller PyTorch Deep Q-Network (DQN) placement algorithm.
+    Architecture: MLP Input(N) -> Linear(64, ReLU) -> Linear(64, ReLU) -> Output(N).
+    Selects k distinct controller nodes sequentially per episode and evaluates both
+    offline training time (s) and online single forward-pass inference latency (ms).
+    """
+    import torch
+    import torch.nn as nn
+    import torch.optim as optim
+
+    if num_controllers <= 0:
+        raise ValueError("num_controllers must be greater than zero")
+    nodes = list(graph.nodes)
+    num_nodes = len(nodes)
+    if num_controllers > num_nodes:
+        raise ValueError("num_controllers cannot exceed number of nodes")
+
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    device = torch.device("cpu")
+
+    class _DQN(nn.Module):
+        def __init__(self, n_in: int, n_out: int):
+            super().__init__()
+            self.fc1 = nn.Linear(n_in, 64)
+            self.fc2 = nn.Linear(64, 64)
+            self.fc3 = nn.Linear(64, n_out)
+            self.relu = nn.ReLU()
+
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
+            return self.fc3(self.relu(self.fc2(self.relu(self.fc1(x)))))
+
+    q_net = _DQN(num_nodes, num_nodes).to(device)
+    target_net = _DQN(num_nodes, num_nodes).to(device)
+    target_net.load_state_dict(q_net.state_dict())
+    optimizer = optim.Adam(q_net.parameters(), lr=learning_rate)
+    loss_fn = nn.MSELoss()
+    replay_buffer: deque = deque(maxlen=replay_capacity)
+
+    # Precompute worst-case single-node distance for normalized reward scaling
+    all_pairs = dict(nx.all_pairs_dijkstra_path_length(graph, weight="weight"))
+    max_avg_dist = max(
+        float(np.mean(list(dist_map.values()))) for dist_map in all_pairs.values()
+    )
+    max_avg_dist = max(max_avg_dist, 1e-6)
+
+    # Structural feature vector (normalized degree centrality) blended with placement mask
+    degrees = np.array([graph.degree[n] for n in nodes], dtype=np.float32)
+    norm_degrees = degrees / max(float(np.max(degrees)), 1.0)
+
+    epsilon = epsilon_start
+    best_controllers: List[str] = nodes[:num_controllers]
+    best_reward = float("-inf")
+    update_steps = 0
+
+    t_train_start = time.perf_counter()
+    for _ in range(episodes):
+        selected_indices: List[int] = []
+        mask = np.zeros(num_nodes, dtype=np.float32)
+        state = norm_degrees.copy()
+
+        for step_idx in range(num_controllers):
+            available = [i for i in range(num_nodes) if i not in selected_indices]
+            if random.random() < epsilon:
+                action = random.choice(available)
+            else:
+                with torch.no_grad():
+                    s_tensor = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+                    q_vals = q_net(s_tensor).squeeze(0).cpu().numpy()
+                    q_vals[selected_indices] = -1e9
+                    action = int(np.argmax(q_vals))
+
+            selected_indices.append(action)
+            mask[action] = 1.0
+            next_state = 0.5 * norm_degrees + 0.5 * mask
+            done = step_idx == (num_controllers - 1)
+
+            current_nodes = [nodes[i] for i in selected_indices]
+            avg_lat = _average_distance_from_all_pairs(all_pairs, nodes, tuple(current_nodes))
+            rel = control_plane_reliability_single_link_failure_cached(graph, current_nodes)
+            reward = float(10.0 * ((max_avg_dist - avg_lat) / max_avg_dist) + 5.0 * rel)
+
+            if done and reward > best_reward:
+                best_reward = reward
+                best_controllers = list(current_nodes)
+
+            replay_buffer.append((state, action, reward, next_state, float(done)))
+            state = next_state
+
+            if len(replay_buffer) >= batch_size:
+                batch = random.sample(replay_buffer, batch_size)
+                b_s, b_a, b_r, b_ns, b_d = zip(*batch)
+                s_t = torch.tensor(np.array(b_s), dtype=torch.float32, device=device)
+                a_t = torch.tensor(b_a, dtype=torch.int64, device=device)
+                r_t = torch.tensor(b_r, dtype=torch.float32, device=device)
+                ns_t = torch.tensor(np.array(b_ns), dtype=torch.float32, device=device)
+                d_t = torch.tensor(b_d, dtype=torch.float32, device=device)
+
+                q_pred = q_net(s_t).gather(1, a_t.unsqueeze(1)).squeeze(1)
+                with torch.no_grad():
+                    q_next = target_net(ns_t).max(dim=1)[0]
+                    q_target = r_t + (1.0 - d_t) * gamma * q_next
+
+                loss = loss_fn(q_pred, q_target)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+                update_steps += 1
+                if update_steps % 100 == 0:
+                    target_net.load_state_dict(q_net.state_dict())
+
+        epsilon = max(epsilon_end, epsilon * epsilon_decay)
+
+    training_time_sec = time.perf_counter() - t_train_start
+
+    # Measure online single forward-pass inference latency (top-k Q-value selection)
+    q_net.eval()
+    eval_state = torch.tensor(norm_degrees, dtype=torch.float32, device=device).unsqueeze(0)
+    with torch.no_grad():
+        for _ in range(10):
+            _ = torch.topk(q_net(eval_state), k=num_controllers, dim=1)
+        t_inf_start = time.perf_counter()
+        for _ in range(100):
+            topk_indices = torch.topk(q_net(eval_state), k=num_controllers, dim=1).indices.squeeze(0)
+        inference_time_ms = ((time.perf_counter() - t_inf_start) / 100.0) * 1000.0
+
+    inferred_controllers = [nodes[int(i)] for i in topk_indices.tolist()]
+    inferred_lat = _average_distance_from_all_pairs(all_pairs, nodes, tuple(inferred_controllers))
+    inferred_rel = control_plane_reliability_single_link_failure_cached(graph, inferred_controllers)
+    inferred_reward = float(10.0 * ((max_avg_dist - inferred_lat) / max_avg_dist) + 5.0 * inferred_rel)
+    if inferred_reward >= best_reward:
+        best_controllers = inferred_controllers
+
+    if return_metadata:
+        return best_controllers, {
+            "episodes": episodes,
+            "training_time_sec": float(training_time_sec),
+            "omega_sec_per_episode": float(training_time_sec / max(episodes, 1)),
+            "inference_time_ms": float(inference_time_ms),
+            "final_best_reward": float(max(best_reward, inferred_reward)),
+        }
+    return best_controllers
+

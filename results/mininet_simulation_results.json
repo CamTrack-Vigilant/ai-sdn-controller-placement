@@ -1,12 +1,21 @@
 {
-  "Random": {
+  "Genetic Algorithm": {
     "placement": [
-      "n13",
-      "n0",
-      "n18"
+      "n1",
+      "n15",
+      "n16"
     ],
-    "avg_rtt_ms": 3.374,
-    "worst_rtt_ms": 6.944
+    "avg_rtt_ms": 2.718,
+    "worst_rtt_ms": 6.903
+  },
+  "K-Means": {
+    "placement": [
+      "n1",
+      "n16",
+      "n9"
+    ],
+    "avg_rtt_ms": 2.852,
+    "worst_rtt_ms": 5.764
   },
   "Greedy K-Center": {
     "placement": [
@@ -17,13 +26,22 @@
     "avg_rtt_ms": 2.934,
     "worst_rtt_ms": 6.664
   },
-  "K-Means": {
+  "Bandit RL / DQN": {
     "placement": [
       "n1",
-      "n16",
-      "n9"
+      "n10",
+      "n5"
     ],
-    "avg_rtt_ms": 2.852,
-    "worst_rtt_ms": 5.764
+    "avg_rtt_ms": 3.056,
+    "worst_rtt_ms": 6.718
+  },
+  "Random": {
+    "placement": [
+      "n13",
+      "n0",
+      "n18"
+    ],
+    "avg_rtt_ms": 3.374,
+    "worst_rtt_ms": 6.944
   }
 }

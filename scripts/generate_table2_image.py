@@ -9,9 +9,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     data = [
-        ["K-Means", "['n1', 'n16', 'n9']", "2.852 ms", "5.764 ms", "100.0%", "1st (Best)"],
-        ["Greedy K-Center", "['n1', 'n10', 'n6']", "2.934 ms", "6.664 ms", "100.0%", "2nd"],
-        ["Random Baseline", "['n13', 'n0', 'n18']", "3.374 ms", "6.944 ms", "100.0%", "3rd (Baseline)"],
+        ["Genetic Algorithm", "['n1', 'n15', 'n16']", "2.718 ms", "6.903 ms", "100.0%", "1st (Lowest Avg)"],
+        ["K-Means", "['n1', 'n16', 'n9']", "2.852 ms", "5.764 ms", "100.0%", "2nd (Best Worst-Case)"],
+        ["Greedy K-Center", "['n1', 'n10', 'n6']", "2.934 ms", "6.664 ms", "100.0%", "3rd"],
+        ["Bandit RL / DQN", "['n1', 'n10', 'n5']", "3.056 ms", "6.718 ms", "100.0%", "4th"],
+        ["Random Baseline", "['n13', 'n0', 'n18']", "3.374 ms", "6.944 ms", "100.0%", "5th (Baseline)"],
     ]
 
     columns = [
@@ -20,10 +22,10 @@ def main():
         "Avg Control RTT",
         "Worst-Case RTT",
         "N-1 Reliability",
-        "RTT Rank"
+        "Emulation Rank"
     ]
 
-    fig, ax = plt.subplots(figsize=(9.5, 3.2), dpi=300)
+    fig, ax = plt.subplots(figsize=(10.0, 4.0), dpi=300)
     ax.axis('off')
 
     # Title
