@@ -75,6 +75,7 @@ TABLES_LIST = [
     ("Table 4.4b:", "Table 4.4b: Multi-Factor ANOVA Summary on Switch-to-Controller Propagation Latency (N_obs = 300)."),
     ("Table 4.5:", "Table 4.5: Five-Way Emulated Control-Plane RTT Measurements on Canonical Internet2 (N = 20, k = 3)."),
     ("Table 4.6:", "Table 4.6: Phase 4 Mininet Overhead Gate Test Timing Breakdown Across 3 Trials."),
+    ("Table 4.6B:", "Table 4.6B: Dynamic Topology Churn and Break-Even Amortization Results (T_churn = 100 Epochs x 5 Seeds)."),
     ("Table 4.7:", "Table 4.7: Scenario-Conditioned Algorithm Selection Decision Rules (Bounded to N <= 50)."),
     ("Table B.1:", "Table B.1: Complete Proposal-Aligned Multi-Objective Benchmark Matrix Across Canonical and Synthetic Topologies."),
 ]

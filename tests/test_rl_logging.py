@@ -7,7 +7,10 @@ import unittest
 
 import networkx as nx
 
-from algorithms.ai.reinforcement_learning import bandit_rl_controller_placement
+from algorithms.ai.reinforcement_learning import (
+    bandit_rl_controller_placement,
+    dqn_controller_placement,
+)
 
 
 class ReinforcementLearningLoggingTests(unittest.TestCase):
@@ -95,6 +98,27 @@ class ReinforcementLearningLoggingTests(unittest.TestCase):
                 num_controllers=1,
                 reliability_weight=-0.1,
             )
+
+    def test_dqn_controller_placement_returns_metadata_and_timing(self) -> None:
+        graph = nx.barabasi_albert_graph(10, 2, seed=42)
+        mapping = {i: f"n{i}" for i in graph.nodes}
+        graph = nx.relabel_nodes(graph, mapping)
+        for u, v in graph.edges:
+            graph[u][v]["weight"] = 1.0
+
+        controllers, meta = dqn_controller_placement(
+            graph=graph,
+            num_controllers=2,
+            episodes=10,
+            seed=42,
+            return_metadata=True,
+        )
+        self.assertEqual(len(controllers), 2)
+        self.assertEqual(len(set(controllers)), 2)
+        self.assertIn("training_time_sec", meta)
+        self.assertIn("inference_time_ms", meta)
+        self.assertGreater(meta["training_time_sec"], 0.0)
+        self.assertGreater(meta["inference_time_ms"], 0.0)
 
 
 if __name__ == "__main__":

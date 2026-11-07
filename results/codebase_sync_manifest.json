@@ -1,0 +1,3531 @@
+{
+  "generated_at": "2026-11-07T00:29:29.127615+00:00",
+  "repository": "https://github.com/CamTrack-Vigilant/ai-sdn-controller-placement.git",
+  "branch": "add/metodology-annotated",
+  "head_commit": "cc3ee418016c0cfacabdef52e383505e51683bdc",
+  "total_tracked_files": 587,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 4800,
+      "lines": null,
+      "sha256_12": "de85618da338"
+    },
+    {
+      "path": ".vscode/launch.json",
+      "size_bytes": 489,
+      "lines": 16,
+      "sha256_12": "a0970fcb2400"
+    },
+    {
+      "path": "DATA_COLLECTION_ANALYSIS_ALIGNMENT_DISCOVERY_LOG.md",
+      "size_bytes": 32494,
+      "lines": 501,
+      "sha256_12": "ef8c96f5ea26"
+    },
+    {
+      "path": "ETHICS.md",
+      "size_bytes": 7193,
+      "lines": 146,
+      "sha256_12": "e327d7222a20"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1074,
+      "lines": null,
+      "sha256_12": "d34553454cfc"
+    },
+    {
+      "path": "PILOT_RUN_REPORT.md",
+      "size_bytes": 10739,
+      "lines": 283,
+      "sha256_12": "a470d0d8a6da"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "size_bytes": 14474,
+      "lines": 309,
+      "sha256_12": "3d708e40c57c"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 24817,
+      "lines": 447,
+      "sha256_12": "8f130f1315d7"
+    },
+    {
+      "path": "RESEARCH_LOG.md",
+      "size_bytes": 11921,
+      "lines": 224,
+      "sha256_12": "8f0700920fd3"
+    },
+    {
+      "path": "RUNNING.md",
+      "size_bytes": 12172,
+      "lines": 291,
+      "sha256_12": "89e2ddf636e5"
+    },
+    {
+      "path": "SDN_Pareto_3D.png",
+      "size_bytes": 557253,
+      "lines": null,
+      "sha256_12": "e70a8f3749de"
+    },
+    {
+      "path": "SDN_Pareto_3D_Print.png",
+      "size_bytes": 109204,
+      "lines": null,
+      "sha256_12": "5abbd88afb62"
+    },
+    {
+      "path": "SYNCHRONIZATION_REPORT.md",
+      "size_bytes": 9992,
+      "lines": 297,
+      "sha256_12": "f2e47ef19100"
+    },
+    {
+      "path": "algorithms/__init__.py",
+      "size_bytes": 57,
+      "lines": 4,
+      "sha256_12": "3f9269538526"
+    },
+    {
+      "path": "algorithms/ai/__init__.py",
+      "size_bytes": 216,
+      "lines": 8,
+      "sha256_12": "cfc3815b351f"
+    },
+    {
+      "path": "algorithms/ai/genetic_algorithm.py",
+      "size_bytes": 5401,
+      "lines": 163,
+      "sha256_12": "075729167eab"
+    },
+    {
+      "path": "algorithms/ai/reinforcement_learning.py",
+      "size_bytes": 16136,
+      "lines": 420,
+      "sha256_12": "e7de4281705e"
+    },
+    {
+      "path": "algorithms/baseline/__init__.py",
+      "size_bytes": 290,
+      "lines": 10,
+      "sha256_12": "5d90d4ac9429"
+    },
+    {
+      "path": "algorithms/baseline/greedy_placement.py",
+      "size_bytes": 1166,
+      "lines": 38,
+      "sha256_12": "80f9d1b8e767"
+    },
+    {
+      "path": "algorithms/baseline/kmeans_placement.py",
+      "size_bytes": 1458,
+      "lines": 46,
+      "sha256_12": "f85723b21280"
+    },
+    {
+      "path": "algorithms/baseline/random_placement.py",
+      "size_bytes": 542,
+      "lines": 23,
+      "sha256_12": "90cdaa6886f0"
+    },
+    {
+      "path": "analyze_rl_logs.py",
+      "size_bytes": 9623,
+      "lines": 265,
+      "sha256_12": "629ddfc671d1"
+    },
+    {
+      "path": "configs/README.md",
+      "size_bytes": 377,
+      "lines": 16,
+      "sha256_12": "e392635626a6"
+    },
+    {
+      "path": "configs/experiment_config.json",
+      "size_bytes": 1659,
+      "lines": 64,
+      "sha256_12": "f058acbe61ed"
+    },
+    {
+      "path": "data/processed/.gitkeep",
+      "size_bytes": 52,
+      "lines": null,
+      "sha256_12": "d3d11936d632"
+    },
+    {
+      "path": "data/processed/topologies/att-mpls.normalized.json",
+      "size_bytes": 15593,
+      "lines": 741,
+      "sha256_12": "464ade0a4524"
+    },
+    {
+      "path": "data/processed/topologies/internet2.normalized.json",
+      "size_bytes": 5591,
+      "lines": 315,
+      "sha256_12": "c6a068093e51"
+    },
+    {
+      "path": "data/raw/.gitkeep",
+      "size_bytes": 46,
+      "lines": null,
+      "sha256_12": "0c0113018c28"
+    },
+    {
+      "path": "data/raw/topologies/AttMpls.graphml",
+      "size_bytes": 18293,
+      "lines": 523,
+      "sha256_12": "c32c3aeb985e"
+    },
+    {
+      "path": "data/raw/topologies/Internet2.graphml",
+      "size_bytes": 7036,
+      "lines": 214,
+      "sha256_12": "eac8568cb9d3"
+    },
+    {
+      "path": "demo/quick_demo.sh",
+      "size_bytes": 409,
+      "lines": 13,
+      "sha256_12": "72cc74f123de"
+    },
+    {
+      "path": "dissertation/00_front_matter.md",
+      "size_bytes": 9203,
+      "lines": 122,
+      "sha256_12": "6e1cb952c82c"
+    },
+    {
+      "path": "dissertation/01_chapter_1_introduction.md",
+      "size_bytes": 9040,
+      "lines": 62,
+      "sha256_12": "cd3f086843f4"
+    },
+    {
+      "path": "dissertation/02_chapter_2_literature_review.md",
+      "size_bytes": 10732,
+      "lines": 97,
+      "sha256_12": "8c931473f645"
+    },
+    {
+      "path": "dissertation/03_chapter_3_methodology.md",
+      "size_bytes": 20892,
+      "lines": 176,
+      "sha256_12": "86a1b0cf44a9"
+    },
+    {
+      "path": "dissertation/04_chapter_4_results_and_discussion.md",
+      "size_bytes": 31663,
+      "lines": 263,
+      "sha256_12": "519134ad0ffb"
+    },
+    {
+      "path": "dissertation/05_chapter_5_conclusion.md",
+      "size_bytes": 7293,
+      "lines": 38,
+      "sha256_12": "f97cddbc97a1"
+    },
+    {
+      "path": "dissertation/06_references.md",
+      "size_bytes": 3396,
+      "lines": 38,
+      "sha256_12": "a3245fa7b99d"
+    },
+    {
+      "path": "dissertation/07_appendices.md",
+      "size_bytes": 10086,
+      "lines": 173,
+      "sha256_12": "cd30f44e106a"
+    },
+    {
+      "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.docx",
+      "size_bytes": 3647619,
+      "lines": null,
+      "sha256_12": "faade00152a7"
+    },
+    {
+      "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.md",
+      "size_bytes": 102321,
+      "lines": 978,
+      "sha256_12": "744ea0c2a47a"
+    },
+    {
+      "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.pdf",
+      "size_bytes": 2890081,
+      "lines": null,
+      "sha256_12": "e34f6f99a951"
+    },
+    {
+      "path": "dissertation/compile_dissertation.py",
+      "size_bytes": 46292,
+      "lines": 991,
+      "sha256_12": "a07110b26a3d"
+    },
+    {
+      "path": "docs/00_DELIVERY_CONFIRMATION.md",
+      "size_bytes": 10768,
+      "lines": 312,
+      "sha256_12": "598eb35649ea"
+    },
+    {
+      "path": "docs/BIBLIOGRAPHY_ADDITIONS.md",
+      "size_bytes": 5998,
+      "lines": 157,
+      "sha256_12": "8ae7af5d8f2c"
+    },
+    {
+      "path": "docs/EXECUTION_SUMMARY.md",
+      "size_bytes": 10876,
+      "lines": 262,
+      "sha256_12": "f1c688679682"
+    },
+    {
+      "path": "docs/FINAL_SUBMISSION_Thabang_Mhlokoma.pdf",
+      "size_bytes": 121626,
+      "lines": null,
+      "sha256_12": "34b148deca0f"
+    },
+    {
+      "path": "docs/Honours Mini-Dissertation Template (1).docx",
+      "size_bytes": 90506,
+      "lines": null,
+      "sha256_12": "8492f8e6c964"
+    },
+    {
+      "path": "docs/MANIFEST.md",
+      "size_bytes": 12372,
+      "lines": 331,
+      "sha256_12": "077f8d90540b"
+    },
+    {
+      "path": "docs/PARETO_DIAGRAM_SPECIFICATION.md",
+      "size_bytes": 10433,
+      "lines": 212,
+      "sha256_12": "dc4d460f500f"
+    },
+    {
+      "path": "docs/PATCH_CARDS_QUICK_REFERENCE.md",
+      "size_bytes": 10430,
+      "lines": 258,
+      "sha256_12": "72e2278508e9"
+    },
+    {
+      "path": "docs/PATCH_CHECKLIST_DETAILED.md",
+      "size_bytes": 12864,
+      "lines": 306,
+      "sha256_12": "4cea500434b7"
+    },
+    {
+      "path": "docs/PHASE4_MININET_GATE_TEST_GUIDE.md",
+      "size_bytes": 11496,
+      "lines": 334,
+      "sha256_12": "aac5871385e0"
+    },
+    {
+      "path": "docs/PROGRESS_REPORT.md",
+      "size_bytes": 6560,
+      "lines": 101,
+      "sha256_12": "a9742d69672e"
+    },
+    {
+      "path": "docs/README_START_HERE.md",
+      "size_bytes": 10074,
+      "lines": 330,
+      "sha256_12": "bd45a24ed9ec"
+    },
+    {
+      "path": "docs/REFERENCE_MANAGEMENT_WORKFLOW.md",
+      "size_bytes": 12945,
+      "lines": 288,
+      "sha256_12": "d555a201f4bd"
+    },
+    {
+      "path": "docs/Research Proposal  - PG Studies - Hons.pdf",
+      "size_bytes": 4731896,
+      "lines": null,
+      "sha256_12": "6860af2d6d11"
+    },
+    {
+      "path": "docs/Research Proposal  - PG Studies - Hons.pdf.bak",
+      "size_bytes": 403489,
+      "lines": null,
+      "sha256_12": "a6cf79766edf"
+    },
+    {
+      "path": "docs/Research Proposal Template with Contant- PG Studies - Hons.pdf",
+      "size_bytes": 471538,
+      "lines": null,
+      "sha256_12": "a6927fcf1bf7"
+    },
+    {
+      "path": "docs/Research Proposal Template with Contant- PG Studies - Hons_bibliography_audit.txt",
+      "size_bytes": 898,
+      "lines": 13,
+      "sha256_12": "0a930820db12"
+    },
+    {
+      "path": "docs/Research Proposal Template with Contant- PG Studies - Hons_link_report.txt",
+      "size_bytes": 909,
+      "lines": 16,
+      "sha256_12": "26f2d1fe588a"
+    },
+    {
+      "path": "docs/Research Proposal Template with Contant- PG Studies - Hons_linked.pdf",
+      "size_bytes": 540382,
+      "lines": null,
+      "sha256_12": "8d37fa67401e"
+    },
+    {
+      "path": "docs/Research Proposal Template with Contant- PG Studies - Hons_linked_hardened.pdf",
+      "size_bytes": 567159,
+      "lines": null,
+      "sha256_12": "cb0123b4d8c5"
+    },
+    {
+      "path": "docs/Research_Proposal_Backup.pdf",
+      "size_bytes": 4731896,
+      "lines": null,
+      "sha256_12": "6860af2d6d11"
+    },
+    {
+      "path": "docs/Research_Proposal_Before_Section3_Update.pdf",
+      "size_bytes": 1051108,
+      "lines": null,
+      "sha256_12": "b1f42fb8ff44"
+    },
+    {
+      "path": "docs/Research_Proposal_Final_SUBMISSION.pdf",
+      "size_bytes": 45577,
+      "lines": null,
+      "sha256_12": "f116113e42b8"
+    },
+    {
+      "path": "docs/Research_Proposal_Hardened_Final.pdf",
+      "size_bytes": 916471,
+      "lines": null,
+      "sha256_12": "b9f86996352f"
+    },
+    {
+      "path": "docs/Research_Proposal_Methodology_Backup.pdf",
+      "size_bytes": 1056731,
+      "lines": null,
+      "sha256_12": "b4798d95ad32"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER.docx",
+      "size_bytes": 2353217,
+      "lines": null,
+      "sha256_12": "a2fae95f6ef2"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER.md",
+      "size_bytes": 40642,
+      "lines": 226,
+      "sha256_12": "09a5dd85292e"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER.pdf",
+      "size_bytes": 2270487,
+      "lines": null,
+      "sha256_12": "7126e5a10fd5"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER.tex",
+      "size_bytes": 39836,
+      "lines": 296,
+      "sha256_12": "395321101c2a"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER_Anonymized.docx",
+      "size_bytes": 2353043,
+      "lines": null,
+      "sha256_12": "731bcb9efacc"
+    },
+    {
+      "path": "docs/SATNAC_RESEARCH_PAPER_CameraReady.docx",
+      "size_bytes": 2353217,
+      "lines": null,
+      "sha256_12": "a2fae95f6ef2"
+    },
+    {
+      "path": "docs/SECTION_3_COMPLETION_SUMMARY.md",
+      "size_bytes": 13652,
+      "lines": 264,
+      "sha256_12": "69d05555c0e5"
+    },
+    {
+      "path": "docs/SECTION_3_HARDENING_REPORT.md",
+      "size_bytes": 10015,
+      "lines": 195,
+      "sha256_12": "875b288d2f0b"
+    },
+    {
+      "path": "docs/STUDY_DESIGN_METHODOLOGY.md",
+      "size_bytes": 44109,
+      "lines": 1001,
+      "sha256_12": "69c733a9829e"
+    },
+    {
+      "path": "docs/SUPERVISOR_REVIEW_REQUEST.md",
+      "size_bytes": 5102,
+      "lines": 85,
+      "sha256_12": "1146dfe4ecd4"
+    },
+    {
+      "path": "docs/Section_11_3_timeline_hardening_report.txt",
+      "size_bytes": 439,
+      "lines": 5,
+      "sha256_12": "1824c83dbba1"
+    },
+    {
+      "path": "docs/VISUAL_FLOWCHART_REFERENCE.md",
+      "size_bytes": 13571,
+      "lines": 365,
+      "sha256_12": "bb22609dade3"
+    },
+    {
+      "path": "docs/VISUAL_PATCH_GUIDE.md",
+      "size_bytes": 11477,
+      "lines": 280,
+      "sha256_12": "3048b71df2ee"
+    },
+    {
+      "path": "docs/WRITING_EXCELLENCE_SUMMARY_20260322.md",
+      "size_bytes": 15947,
+      "lines": 282,
+      "sha256_12": "154dfc2d7b43"
+    },
+    {
+      "path": "docs/_final_submission_extract.txt",
+      "size_bytes": 52847,
+      "lines": 499,
+      "sha256_12": "d4378c517988"
+    },
+    {
+      "path": "docs/_proposal_final_extract.txt",
+      "size_bytes": 13226,
+      "lines": 194,
+      "sha256_12": "7dfcb2b65b7d"
+    },
+    {
+      "path": "docs/_proposal_text_extract.txt",
+      "size_bytes": 44482,
+      "lines": 1021,
+      "sha256_12": "22d6cf5dc2c0"
+    },
+    {
+      "path": "docs/_tmp_link_test.pdf",
+      "size_bytes": 36938,
+      "lines": null,
+      "sha256_12": "e46f171f9eab"
+    },
+    {
+      "path": "docs/chat_history/2026-10-17_permanent_chat_history.md",
+      "size_bytes": 119763,
+      "lines": 2098,
+      "sha256_12": "7a1ef384afdd"
+    },
+    {
+      "path": "docs/chat_history/raw_logs/transcript.jsonl.gz",
+      "size_bytes": 159030,
+      "lines": null,
+      "sha256_12": "1ce91f42ec49"
+    },
+    {
+      "path": "docs/chat_history/raw_logs/transcript_full.jsonl.gz",
+      "size_bytes": 245281,
+      "lines": null,
+      "sha256_12": "414eadcb3f4c"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow.mmd",
+      "size_bytes": 5654,
+      "lines": null,
+      "sha256_12": "c02b93be2d8d"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow.png",
+      "size_bytes": 185247,
+      "lines": null,
+      "sha256_12": "f40291f7db36"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow.svg",
+      "size_bytes": 193434,
+      "lines": null,
+      "sha256_12": "bfb749b055b6"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_browser.svg",
+      "size_bytes": 193518,
+      "lines": null,
+      "sha256_12": "2e8f65e32b31"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_labeled.png",
+      "size_bytes": 592760,
+      "lines": null,
+      "sha256_12": "be5ed8d002a3"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_labeled_cropped.png",
+      "size_bytes": 592760,
+      "lines": null,
+      "sha256_12": "be5ed8d002a3"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_labeled_v2.png",
+      "size_bytes": 375222,
+      "lines": null,
+      "sha256_12": "aceaf46730e0"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_noforeign.svg",
+      "size_bytes": 167253,
+      "lines": null,
+      "sha256_12": "fdff45352d06"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_plain.html",
+      "size_bytes": 5969,
+      "lines": null,
+      "sha256_12": "23e997340e95"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_render.html",
+      "size_bytes": 6385,
+      "lines": null,
+      "sha256_12": "bfa956dfa456"
+    },
+    {
+      "path": "docs/diagrams/01_complete_experimental_workflow_singleline.html",
+      "size_bytes": 5890,
+      "lines": null,
+      "sha256_12": "248ecfa7cc0c"
+    },
+    {
+      "path": "docs/diagrams/02_per_trial_measurement_protocol.mmd",
+      "size_bytes": 2000,
+      "lines": null,
+      "sha256_12": "29109746bca7"
+    },
+    {
+      "path": "docs/diagrams/03_phase4_analysis_pipeline.mmd",
+      "size_bytes": 4361,
+      "lines": null,
+      "sha256_12": "207918a33463"
+    },
+    {
+      "path": "docs/diagrams/04_factorial_design_matrix.mmd",
+      "size_bytes": 3871,
+      "lines": null,
+      "sha256_12": "6e6ddff1cd45"
+    },
+    {
+      "path": "docs/diagrams/FLOWCHART_SUMMARY.md",
+      "size_bytes": 9482,
+      "lines": 297,
+      "sha256_12": "0ee6b5665f0a"
+    },
+    {
+      "path": "docs/diagrams/Gemini_Generated_Image_offmw8offmw8offm (1).png",
+      "size_bytes": 1795135,
+      "lines": null,
+      "sha256_12": "8ab18ad7d4de"
+    },
+    {
+      "path": "docs/diagrams/Gemini_Generated_Image_offmw8offmw8offm.png",
+      "size_bytes": 2180921,
+      "lines": null,
+      "sha256_12": "8370a4e520a7"
+    },
+    {
+      "path": "docs/diagrams/HOW_TO_EXPORT_IMAGES.md",
+      "size_bytes": 5662,
+      "lines": 212,
+      "sha256_12": "2aa55a23018c"
+    },
+    {
+      "path": "docs/diagrams/Metodology.png",
+      "size_bytes": 1620232,
+      "lines": null,
+      "sha256_12": "13f65a495b5e"
+    },
+    {
+      "path": "docs/diagrams/Metodology_annotated.svg",
+      "size_bytes": 3253,
+      "lines": null,
+      "sha256_12": "38922dac858a"
+    },
+    {
+      "path": "docs/diagrams/Metodology_legend.txt",
+      "size_bytes": 344,
+      "lines": 5,
+      "sha256_12": "5f0fefcb09b2"
+    },
+    {
+      "path": "docs/diagrams/README.md",
+      "size_bytes": 8328,
+      "lines": 286,
+      "sha256_12": "e38a790660bd"
+    },
+    {
+      "path": "docs/draft_proposal_presentation_april_2026.md",
+      "size_bytes": 6537,
+      "lines": 168,
+      "sha256_12": "290ae8f2d9e7"
+    },
+    {
+      "path": "docs/draft_proposal_presentation_april_2026_10_slide.md",
+      "size_bytes": 3968,
+      "lines": 101,
+      "sha256_12": "74ae01a4300d"
+    },
+    {
+      "path": "docs/draft_proposal_speaker_script_april_2026.md",
+      "size_bytes": 4664,
+      "lines": 66,
+      "sha256_12": "ac7e1246a528"
+    },
+    {
+      "path": "docs/ethics/Research Protocol for Honours.docx",
+      "size_bytes": 62323,
+      "lines": null,
+      "sha256_12": "497415b9078c"
+    },
+    {
+      "path": "docs/ethics/data_retention_schedule.md",
+      "size_bytes": 2865,
+      "lines": 64,
+      "sha256_12": "66721d61ea24"
+    },
+    {
+      "path": "docs/ethics/dataset_intake_form.md",
+      "size_bytes": 2473,
+      "lines": 83,
+      "sha256_12": "7449e1a9d550"
+    },
+    {
+      "path": "docs/ethics/de_identification_checklist.md",
+      "size_bytes": 2324,
+      "lines": 67,
+      "sha256_12": "f506bb2125a2"
+    },
+    {
+      "path": "docs/ethics/participant_consent_template.md",
+      "size_bytes": 1275,
+      "lines": 52,
+      "sha256_12": "346e4f384fe3"
+    },
+    {
+      "path": "docs/figures/conceptual_framework_section_7_1.png",
+      "size_bytes": 354512,
+      "lines": null,
+      "sha256_12": "8f8b282ac4f7"
+    },
+    {
+      "path": "docs/figures/decision_framework_flowchart.png",
+      "size_bytes": 270901,
+      "lines": null,
+      "sha256_12": "8f8292deda0d"
+    },
+    {
+      "path": "docs/figures/factorial_benchmark_table.png",
+      "size_bytes": 377645,
+      "lines": null,
+      "sha256_12": "333b962d2ca2"
+    },
+    {
+      "path": "docs/figures/mininet_rtt_table.png",
+      "size_bytes": 214584,
+      "lines": null,
+      "sha256_12": "a71caab2da45"
+    },
+    {
+      "path": "docs/figures/pdf_cover_img-000.png",
+      "size_bytes": 121067,
+      "lines": null,
+      "sha256_12": "ba8a32ab139a"
+    },
+    {
+      "path": "docs/figures/proposal_methodology_workflow.png",
+      "size_bytes": 1795135,
+      "lines": null,
+      "sha256_12": "8ab18ad7d4de"
+    },
+    {
+      "path": "docs/figures/system_architecture_diagram.png",
+      "size_bytes": 333721,
+      "lines": null,
+      "sha256_12": "2f433d26ef09"
+    },
+    {
+      "path": "docs/figures/test_top_crop.png",
+      "size_bytes": 719,
+      "lines": null,
+      "sha256_12": "4503532b2043"
+    },
+    {
+      "path": "docs/figures/unizulu_crest.png",
+      "size_bytes": 122585,
+      "lines": null,
+      "sha256_12": "95b1a112164b"
+    },
+    {
+      "path": "docs/figures/unizulu_crest_header.png",
+      "size_bytes": 607,
+      "lines": null,
+      "sha256_12": "8472ec855d00"
+    },
+    {
+      "path": "docs/figures/unizulu_logo.png",
+      "size_bytes": 474,
+      "lines": null,
+      "sha256_12": "61aa209a056c"
+    },
+    {
+      "path": "docs/literature_review.md",
+      "size_bytes": 833,
+      "lines": 27,
+      "sha256_12": "adc4bb451a5b"
+    },
+    {
+      "path": "docs/meeting_slide_pack_20260326.md",
+      "size_bytes": 3521,
+      "lines": 71,
+      "sha256_12": "aef4cd643a17"
+    },
+    {
+      "path": "docs/project_alignment_handout_prof_mudali_20260326.md",
+      "size_bytes": 3966,
+      "lines": 67,
+      "sha256_12": "b7b40daefce1"
+    },
+    {
+      "path": "docs/proposal.md",
+      "size_bytes": 63261,
+      "lines": 405,
+      "sha256_12": "c8b813bd5da6"
+    },
+    {
+      "path": "docs/proposal_presentation_hypothesis_evidence_table_20260322.md",
+      "size_bytes": 5093,
+      "lines": 52,
+      "sha256_12": "03e28933bb83"
+    },
+    {
+      "path": "docs/render_checks/methodology_page_11.png",
+      "size_bytes": 406633,
+      "lines": null,
+      "sha256_12": "f3d581288d90"
+    },
+    {
+      "path": "docs/render_checks/methodology_page_12.png",
+      "size_bytes": 406270,
+      "lines": null,
+      "sha256_12": "02eeaed4f167"
+    },
+    {
+      "path": "docs/render_checks/methodology_page_13.png",
+      "size_bytes": 355535,
+      "lines": null,
+      "sha256_12": "b5058689b085"
+    },
+    {
+      "path": "docs/render_checks/methodology_page_14.png",
+      "size_bytes": 290474,
+      "lines": null,
+      "sha256_12": "f43824f013cb"
+    },
+    {
+      "path": "docs/render_checks/page_11.png",
+      "size_bytes": 294041,
+      "lines": null,
+      "sha256_12": "64d7cb332626"
+    },
+    {
+      "path": "docs/render_checks/page_11_v2.png",
+      "size_bytes": 298373,
+      "lines": null,
+      "sha256_12": "0c2c1d5ca574"
+    },
+    {
+      "path": "docs/render_checks/page_19.png",
+      "size_bytes": 301118,
+      "lines": null,
+      "sha256_12": "e8996a6f714b"
+    },
+    {
+      "path": "docs/render_checks/page_3.png",
+      "size_bytes": 304362,
+      "lines": null,
+      "sha256_12": "305f2629a3d0"
+    },
+    {
+      "path": "docs/render_checks/page_3_v2.png",
+      "size_bytes": 309030,
+      "lines": null,
+      "sha256_12": "49324739ffee"
+    },
+    {
+      "path": "docs/render_checks/page_4_section3_final.png",
+      "size_bytes": 261812,
+      "lines": null,
+      "sha256_12": "f67295972c66"
+    },
+    {
+      "path": "docs/render_checks/page_4_section3_updated.png",
+      "size_bytes": 274171,
+      "lines": null,
+      "sha256_12": "6a683eb41ff9"
+    },
+    {
+      "path": "docs/render_checks/page_6.png",
+      "size_bytes": 251347,
+      "lines": null,
+      "sha256_12": "4a079ef591ef"
+    },
+    {
+      "path": "docs/submit/.~SDN_Controller_Placement_Multi_Objective_Presentation (1).pptx",
+      "size_bytes": 165,
+      "lines": null,
+      "sha256_12": "fc0ae2a15aca"
+    },
+    {
+      "path": "docs/submit/.~SDN_Controller_Placement_Multi_Objective_Presentation (5) (1).aligned.pptx",
+      "size_bytes": 165,
+      "lines": null,
+      "sha256_12": "fc0ae2a15aca"
+    },
+    {
+      "path": "docs/submit/.~SDN_Controller_Placement_Multi_Objective_Presentation (5) (1).bgslide2.aligned.pptx",
+      "size_bytes": 165,
+      "lines": null,
+      "sha256_12": "fc0ae2a15aca"
+    },
+    {
+      "path": "docs/submit/.~SDN_Controller_Placement_Multi_Objective_Presentation (5) (1).pptx",
+      "size_bytes": 165,
+      "lines": null,
+      "sha256_12": "fc0ae2a15aca"
+    },
+    {
+      "path": "docs/submit/.~SDN_Controller_Placement_Multi_Objective_Presentation (5) (1).slide2keypoints.pptx",
+      "size_bytes": 165,
+      "lines": null,
+      "sha256_12": "fc0ae2a15aca"
+    },
+    {
+      "path": "docs/submit/Buthelezi TN.docx",
+      "size_bytes": 15661,
+      "lines": null,
+      "sha256_12": "ba894db297b6"
+    },
+    {
+      "path": "docs/submit/DOC-20260416-WA0011..pdf",
+      "size_bytes": 113445,
+      "lines": null,
+      "sha256_12": "4e840b183ab7"
+    },
+    {
+      "path": "docs/submit/Honours Proposal Marking Rubric.pdf",
+      "size_bytes": 58877,
+      "lines": null,
+      "sha256_12": "98a6bf96c46d"
+    },
+    {
+      "path": "docs/submit/One Pager Samples.pdf",
+      "size_bytes": 94861,
+      "lines": null,
+      "sha256_12": "43a9c64f27e2"
+    },
+    {
+      "path": "docs/submit/Research Proposal Template with Contant- PG Studies - Hons (1).pdf",
+      "size_bytes": 403181,
+      "lines": null,
+      "sha256_12": "7685cd1d33f5"
+    },
+    {
+      "path": "docs/submit/Research Proposal Template with Contant- PG Studies - Hons (1)_link_report.txt",
+      "size_bytes": 536,
+      "lines": 16,
+      "sha256_12": "30f746002c4a"
+    },
+    {
+      "path": "docs/submit/Research Proposal Template with Contant- PG Studies - Hons (1)_linked (6).pdf",
+      "size_bytes": 812238,
+      "lines": null,
+      "sha256_12": "acffb35a1df0"
+    },
+    {
+      "path": "docs/submit/Research Proposal Template with Contant- PG Studies - Hons (1)_linked (6)_hotlinks.pdf",
+      "size_bytes": 812238,
+      "lines": null,
+      "sha256_12": "974c415f4d0c"
+    },
+    {
+      "path": "docs/submit/Research Proposal Template with Contant- PG Studies - Hons (1)_linked.pdf",
+      "size_bytes": 453329,
+      "lines": null,
+      "sha256_12": "c17982d14498"
+    },
+    {
+      "path": "docs/submit/SDN_Controller_Placement_Multi_Objective_Presentation (5) (1).pptx",
+      "size_bytes": 54833,
+      "lines": null,
+      "sha256_12": "bf6fd762368d"
+    },
+    {
+      "path": "docs/submit/Screenshot 2026-05-23 040032.png",
+      "size_bytes": 778690,
+      "lines": null,
+      "sha256_12": "c1715e37ff62"
+    },
+    {
+      "path": "docs/submit/ThabangNhlokomaButhelezi_OnePager_DRAFT.pdf",
+      "size_bytes": 3913,
+      "lines": null,
+      "sha256_12": "4087c58f99ab"
+    },
+    {
+      "path": "docs/submit/document.pdf",
+      "size_bytes": 64024,
+      "lines": null,
+      "sha256_12": "ff7f132bbfcf"
+    },
+    {
+      "path": "docs/submit/hyperlink_batch_report.txt",
+      "size_bytes": 980,
+      "lines": 17,
+      "sha256_12": "6f3b08fca1f2"
+    },
+    {
+      "path": "docs/submit/~$thelezi TN.docx",
+      "size_bytes": 162,
+      "lines": null,
+      "sha256_12": "42f3a7687208"
+    },
+    {
+      "path": "env_check.py",
+      "size_bytes": 1697,
+      "lines": 57,
+      "sha256_12": "e9572009aad5"
+    },
+    {
+      "path": "evaluation/__init__.py",
+      "size_bytes": 960,
+      "lines": 34,
+      "sha256_12": "5a42b7d22f9f"
+    },
+    {
+      "path": "evaluation/metrics.py",
+      "size_bytes": 10101,
+      "lines": 283,
+      "sha256_12": "e4c48a21d0d1"
+    },
+    {
+      "path": "evaluation/pareto.py",
+      "size_bytes": 5958,
+      "lines": 181,
+      "sha256_12": "9188c0aad609"
+    },
+    {
+      "path": "evaluation/performance_analysis.py",
+      "size_bytes": 7472,
+      "lines": 194,
+      "sha256_12": "ceec93c2adc7"
+    },
+    {
+      "path": "evaluation/telemetry.py",
+      "size_bytes": 9585,
+      "lines": 292,
+      "sha256_12": "07dbe9790e09"
+    },
+    {
+      "path": "experiments/__init__.py",
+      "size_bytes": 56,
+      "lines": 4,
+      "sha256_12": "19a811b9ca39"
+    },
+    {
+      "path": "experiments/experiment_runner.py",
+      "size_bytes": 13686,
+      "lines": 396,
+      "sha256_12": "e99485fb3821"
+    },
+    {
+      "path": "file.jpe",
+      "size_bytes": 3324,
+      "lines": null,
+      "sha256_12": "829f55cdddd4"
+    },
+    {
+      "path": "logs/.gitkeep",
+      "size_bytes": 42,
+      "lines": null,
+      "sha256_12": "149ed2677ba2"
+    },
+    {
+      "path": "logs/rl_training.jsonl",
+      "size_bytes": 182056,
+      "lines": null,
+      "sha256_12": "b2660bc54271"
+    },
+    {
+      "path": "notes/reliability_analysis.md",
+      "size_bytes": 2910,
+      "lines": 45,
+      "sha256_12": "ed0d53f9b0c4"
+    },
+    {
+      "path": "page_11_render.png",
+      "size_bytes": 264577,
+      "lines": null,
+      "sha256_12": "4d63a235d57b"
+    },
+    {
+      "path": "page_3_render.png",
+      "size_bytes": 274940,
+      "lines": null,
+      "sha256_12": "2c664f5825c5"
+    },
+    {
+      "path": "page_4_render.png",
+      "size_bytes": 234442,
+      "lines": null,
+      "sha256_12": "8666449a1d91"
+    },
+    {
+      "path": "placements/att-mpls_kmeans_k5.json",
+      "size_bytes": 155,
+      "lines": 13,
+      "sha256_12": "1a6a61449358"
+    },
+    {
+      "path": "placements/internet2_greedy_k2.json",
+      "size_bytes": 123,
+      "lines": 10,
+      "sha256_12": "4a6cf59306b3"
+    },
+    {
+      "path": "placements/internet2_kcenter_k3.json",
+      "size_bytes": 135,
+      "lines": 11,
+      "sha256_12": "3dd349b68535"
+    },
+    {
+      "path": "poster/POSTER_Thabang_Mhlokoma_UNIZULU_2026.pdf",
+      "size_bytes": 3696344,
+      "lines": null,
+      "sha256_12": "c8cf7984c59f"
+    },
+    {
+      "path": "poster/POSTER_Thabang_Mhlokoma_UNIZULU_2026.png",
+      "size_bytes": 4441320,
+      "lines": null,
+      "sha256_12": "c4e8097eab48"
+    },
+    {
+      "path": "poster/assets/SDN_Pareto_3D.png",
+      "size_bytes": 557253,
+      "lines": null,
+      "sha256_12": "e70a8f3749de"
+    },
+    {
+      "path": "poster/assets/decision_framework_flowchart.png",
+      "size_bytes": 356582,
+      "lines": null,
+      "sha256_12": "bef44fcacbd2"
+    },
+    {
+      "path": "poster/assets/dqn_1000_episodes_convergence.png",
+      "size_bytes": 407269,
+      "lines": null,
+      "sha256_12": "abdb5743b323"
+    },
+    {
+      "path": "poster/assets/factorial_benchmark_table.png",
+      "size_bytes": 350345,
+      "lines": null,
+      "sha256_12": "c48e6c6cd9b7"
+    },
+    {
+      "path": "poster/assets/mininet_rtt_table.png",
+      "size_bytes": 149589,
+      "lines": null,
+      "sha256_12": "a9e338655eaa"
+    },
+    {
+      "path": "poster/assets/proposal_methodology_workflow.png",
+      "size_bytes": 1795135,
+      "lines": null,
+      "sha256_12": "8ab18ad7d4de"
+    },
+    {
+      "path": "poster/assets/system_architecture_diagram.png",
+      "size_bytes": 333721,
+      "lines": null,
+      "sha256_12": "2f433d26ef09"
+    },
+    {
+      "path": "poster/assets/unizulu_crest_header.png",
+      "size_bytes": 607,
+      "lines": null,
+      "sha256_12": "8472ec855d00"
+    },
+    {
+      "path": "poster/generate_poster.py",
+      "size_bytes": 28741,
+      "lines": 902,
+      "sha256_12": "3473add35db9"
+    },
+    {
+      "path": "poster/index.html",
+      "size_bytes": 3869161,
+      "lines": null,
+      "sha256_12": "4bae79cc5405"
+    },
+    {
+      "path": "poster/render_poster.py",
+      "size_bytes": 1790,
+      "lines": 60,
+      "sha256_12": "ec8b37611bd5"
+    },
+    {
+      "path": "references.md",
+      "size_bytes": 11212,
+      "lines": 224,
+      "sha256_12": "cf41ccde1d8b"
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 675,
+      "lines": 21,
+      "sha256_12": "e28553edf9e4"
+    },
+    {
+      "path": "research_papers/1-s2.0-S1319157823003968-main.pdf",
+      "size_bytes": 2460673,
+      "lines": null,
+      "sha256_12": "929fbf87f266"
+    },
+    {
+      "path": "research_papers/1-s2.0-S2590123026006717-main.pdf",
+      "size_bytes": 17934632,
+      "lines": null,
+      "sha256_12": "e4417a98666a"
+    },
+    {
+      "path": "research_papers/2377677.2377767 (1).pdf",
+      "size_bytes": 2194052,
+      "lines": null,
+      "sha256_12": "2b138867c43b"
+    },
+    {
+      "path": "research_papers/2377677.2377767.pdf",
+      "size_bytes": 2194052,
+      "lines": null,
+      "sha256_12": "d44ae99fc7c0"
+    },
+    {
+      "path": "research_papers/AI-Enabled_Dynamic_Load_Balancing_and_Mobility_Management_for_Internet_of_Vehicles_in_SDN_6G_Ne.pdf",
+      "size_bytes": 702200,
+      "lines": null,
+      "sha256_12": "0aa5e6c25912"
+    },
+    {
+      "path": "research_papers/AI-Enhanced_Routing_Optimization_for_SDN_NFV_Architectures_in_Large-Scale_IoT_Networks.pdf",
+      "size_bytes": 311037,
+      "lines": null,
+      "sha256_12": "c888adda7791"
+    },
+    {
+      "path": "research_papers/A_Comparative_Analysis_of_SDN_Controller_Placement_Problem_IoT-Specific_Tactics_and_Generalized.pdf",
+      "size_bytes": 461636,
+      "lines": null,
+      "sha256_12": "3d6945bd8ea4"
+    },
+    {
+      "path": "research_papers/A_Controller_Placement_Algorithm_Based_on_Density_Clustering_in_SDN.pdf",
+      "size_bytes": 614652,
+      "lines": null,
+      "sha256_12": "68e32a25a8ef"
+    },
+    {
+      "path": "research_papers/A_Hierarchical_K-Means_Algorithm_for_Controller_Placement_in_SDN-Based_WAN_Architecture.pdf",
+      "size_bytes": 166636,
+      "lines": null,
+      "sha256_12": "8a5728365ae5"
+    },
+    {
+      "path": "research_papers/A_Review_on_AI_Driven_Distributed_SDN_for_Energy_-Efficient_Routing_in_Large_Scale_IoT_Network.pdf",
+      "size_bytes": 514349,
+      "lines": null,
+      "sha256_12": "f4a5d1efc794"
+    },
+    {
+      "path": "research_papers/An_Effective_Controller_Placement_Algorithm_Based_on_Clustering_in_SDN.pdf",
+      "size_bytes": 527971,
+      "lines": null,
+      "sha256_12": "dbfc7d6fbe8e"
+    },
+    {
+      "path": "research_papers/An_Energy_Efficient_SDN_Controller_Placement_with_Delay_Constraints.pdf",
+      "size_bytes": 744620,
+      "lines": null,
+      "sha256_12": "ab215682f897"
+    },
+    {
+      "path": "research_papers/CAPFUL_-_Coherent_Dynamic_Controller_Placement_Method_using_deep_reinforcement_learning_for_SDN.pdf",
+      "size_bytes": 518133,
+      "lines": null,
+      "sha256_12": "b01fe1b76891"
+    },
+    {
+      "path": "research_papers/Deployment_of_an_SDN-based_UAV_network_Controller_placement_and_tradeoff_between_control_overhe.pdf",
+      "size_bytes": 340846,
+      "lines": null,
+      "sha256_12": "1333f65d86d8"
+    },
+    {
+      "path": "research_papers/Enhanced_SDN_Controller_Placement_and_Load_Balancing_for_Campus_Network_Optimization.pdf",
+      "size_bytes": 1031450,
+      "lines": null,
+      "sha256_12": "364fcf49b470"
+    },
+    {
+      "path": "research_papers/Enhancing_Security_and_Performance_in_Software-Defined_Networks_Using_AI-Driven_Automation.pdf",
+      "size_bytes": 295926,
+      "lines": null,
+      "sha256_12": "2ac7fa615d53"
+    },
+    {
+      "path": "research_papers/GOKA_A_Network_Patition_and_Cluster_Fusion_Algorithm_for_Controller_Placement_Problem_in_SDN.pdf",
+      "size_bytes": 160864,
+      "lines": null,
+      "sha256_12": "384cc925733c"
+    },
+    {
+      "path": "research_papers/Heuristic_Approaches_to_the_Controller_Placement_Problem_in_Large_Scale_SDN_Networks.pdf",
+      "size_bytes": 1391536,
+      "lines": null,
+      "sha256_12": "dad1d47ec5ef"
+    },
+    {
+      "path": "research_papers/Intent-Based_Networking_with_QoS-Aware_Routing_in_SDN_using_AHP_based_AI_Prioritization_and_Opt.pdf",
+      "size_bytes": 1862930,
+      "lines": null,
+      "sha256_12": "28f2483fb7a8"
+    },
+    {
+      "path": "research_papers/Minimizing_Latency_for_Controller_Placement_Problem_in_SDN.pdf",
+      "size_bytes": 587416,
+      "lines": null,
+      "sha256_12": "b710c44b07c3"
+    },
+    {
+      "path": "research_papers/Optimal_Model_for_Link_Failure_Foresight_Controller_Placement_in_SDN.pdf",
+      "size_bytes": 173881,
+      "lines": null,
+      "sha256_12": "eb2076b02ee6"
+    },
+    {
+      "path": "research_papers/Optimal_Model_for_the_Controller_Placement_Problem_in_Software_Defined_Networks.pdf",
+      "size_bytes": 244773,
+      "lines": null,
+      "sha256_12": "0a3e558966f6"
+    },
+    {
+      "path": "research_papers/Optimal_and_Dynamic_SDN_Controller_Placement.pdf",
+      "size_bytes": 637881,
+      "lines": null,
+      "sha256_12": "669a3d4de776"
+    },
+    {
+      "path": "research_papers/Optimizing_the_controller_placement_problem_in_SDN_with_uncertain_parameters_with_robust_optimi.pdf",
+      "size_bytes": 1650375,
+      "lines": null,
+      "sha256_12": "f50a3f7124e5"
+    },
+    {
+      "path": "research_papers/README.md",
+      "size_bytes": 1624,
+      "lines": 39,
+      "sha256_12": "148754f413f8"
+    },
+    {
+      "path": "research_papers/Rule_Placement_and_Switch_Migration-based_Scheme_for_Controller_Load_Balancing_in_SDN.pdf",
+      "size_bytes": 446414,
+      "lines": null,
+      "sha256_12": "6f076711177e"
+    },
+    {
+      "path": "research_papers/SDN-based Solutions.pdf",
+      "size_bytes": 19427848,
+      "lines": null,
+      "sha256_12": "e808d7cfef4a"
+    },
+    {
+      "path": "research_papers/SDN_controller_placement_design_For_large_scale_production_network.pdf",
+      "size_bytes": 970835,
+      "lines": null,
+      "sha256_12": "c1177b65f470"
+    },
+    {
+      "path": "research_papers/The_SDN_controller_placement_problem_for_WAN.pdf",
+      "size_bytes": 410126,
+      "lines": null,
+      "sha256_12": "1bdd1ceb87ae"
+    },
+    {
+      "path": "research_papers/The_role_of_inter-controller_traffic_in_SDN_controllers_placement.pdf",
+      "size_bytes": 901999,
+      "lines": null,
+      "sha256_12": "bef14122f3bd"
+    },
+    {
+      "path": "research_papers/computers-11-00111.pdf",
+      "size_bytes": 4579466,
+      "lines": null,
+      "sha256_12": "55aaf3b62aa2"
+    },
+    {
+      "path": "research_papers/matrices/sota_synthesis_matrix.csv",
+      "size_bytes": 13006,
+      "lines": 11,
+      "sha256_12": "0d736cfa8c2b"
+    },
+    {
+      "path": "research_papers/notes/1-s2.0-S1319157823003968-main_notes.md",
+      "size_bytes": 3996,
+      "lines": 54,
+      "sha256_12": "9ced1e59f8ad"
+    },
+    {
+      "path": "research_papers/notes/1-s2.0-S2590123026006717-main_notes.md",
+      "size_bytes": 3855,
+      "lines": 54,
+      "sha256_12": "5506e0f76c44"
+    },
+    {
+      "path": "research_papers/notes/2377677.2377767_(1)_notes.md",
+      "size_bytes": 3312,
+      "lines": 53,
+      "sha256_12": "c774e03686f3"
+    },
+    {
+      "path": "research_papers/notes/2377677.2377767_notes.md",
+      "size_bytes": 3772,
+      "lines": 54,
+      "sha256_12": "2e160f17174d"
+    },
+    {
+      "path": "research_papers/notes/CLASS_ORIENTATION_GAP_CHECK.md",
+      "size_bytes": 2490,
+      "lines": 75,
+      "sha256_12": "a65d1046bcf9"
+    },
+    {
+      "path": "research_papers/notes/NOTES_INDEX.md",
+      "size_bytes": 1135,
+      "lines": 41,
+      "sha256_12": "1bd479dbd1f8"
+    },
+    {
+      "path": "research_papers/notes/PG_Orientation_Slides_AdigunMO.pptx",
+      "size_bytes": 94919,
+      "lines": null,
+      "sha256_12": "7c406106e420"
+    },
+    {
+      "path": "research_papers/notes/SDN-based_Solutions_notes.md",
+      "size_bytes": 3827,
+      "lines": 54,
+      "sha256_12": "b2a67de2ea72"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Imag.jpeg",
+      "size_bytes": 65337,
+      "lines": null,
+      "sha256_12": "c4ea7c0a56ad"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at .jpeg",
+      "size_bytes": 67035,
+      "lines": null,
+      "sha256_12": "510b0a40fb37"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.16.57.jpeg",
+      "size_bytes": 23754,
+      "lines": null,
+      "sha256_12": "77fc79ad0c81"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.16.58.jpeg",
+      "size_bytes": 63099,
+      "lines": null,
+      "sha256_12": "b16bc1dac575"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.16.59.jpeg",
+      "size_bytes": 67319,
+      "lines": null,
+      "sha256_12": "beac5ec4af6b"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.00.jpeg",
+      "size_bytes": 64108,
+      "lines": null,
+      "sha256_12": "6f5c941618ca"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.01.jpeg",
+      "size_bytes": 53120,
+      "lines": null,
+      "sha256_12": "e9477e07e668"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.02.jpeg",
+      "size_bytes": 66888,
+      "lines": null,
+      "sha256_12": "d0509c632a22"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.03.jpeg",
+      "size_bytes": 64484,
+      "lines": null,
+      "sha256_12": "ba4b7cbb4e29"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.04.jpeg",
+      "size_bytes": 20083,
+      "lines": null,
+      "sha256_12": "ab7f1e3ac00a"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.05.jpeg",
+      "size_bytes": 16226,
+      "lines": null,
+      "sha256_12": "62534f903a9a"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.06.jpeg",
+      "size_bytes": 64217,
+      "lines": null,
+      "sha256_12": "04d1db326c40"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.07.jpeg",
+      "size_bytes": 67394,
+      "lines": null,
+      "sha256_12": "e2587130caa0"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.17.08.jpeg",
+      "size_bytes": 64951,
+      "lines": null,
+      "sha256_12": "9aecabef21e2"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 02.jpeg",
+      "size_bytes": 19769,
+      "lines": null,
+      "sha256_12": "def39d33f57a"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 10.jpeg",
+      "size_bytes": 60167,
+      "lines": null,
+      "sha256_12": "d6a6fb7f7051"
+    },
+    {
+      "path": "research_papers/notes/WhatsApp Image 2026-03-20 at 17.09.jpeg",
+      "size_bytes": 66624,
+      "lines": null,
+      "sha256_12": "746bc858fb82"
+    },
+    {
+      "path": "research_papers/notes/computers-11-00111_notes.md",
+      "size_bytes": 3585,
+      "lines": 54,
+      "sha256_12": "61250e255494"
+    },
+    {
+      "path": "research_papers/notes/peerj-cs-1698_notes.md",
+      "size_bytes": 3635,
+      "lines": 54,
+      "sha256_12": "100f6681f419"
+    },
+    {
+      "path": "research_papers/notes/smartcities-08-00025_notes.md",
+      "size_bytes": 4076,
+      "lines": 55,
+      "sha256_12": "33c61b16c642"
+    },
+    {
+      "path": "research_papers/notes/symmetry-15-01520-v2_notes.md",
+      "size_bytes": 3905,
+      "lines": 54,
+      "sha256_12": "7b6a2208afae"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp .jpeg",
+      "size_bytes": 162986,
+      "lines": null,
+      "sha256_12": "efe29704aad9"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 .jpeg",
+      "size_bytes": 163038,
+      "lines": null,
+      "sha256_12": "c7ffdacd15f7"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00..jpeg",
+      "size_bytes": 154781,
+      "lines": null,
+      "sha256_12": "50d255d58b19"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.15.0.jpeg",
+      "size_bytes": 167485,
+      "lines": null,
+      "sha256_12": "9de8935403b3"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.15.08.jpeg",
+      "size_bytes": 184947,
+      "lines": null,
+      "sha256_12": "b41ab50d15c8"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.15.09.jpeg",
+      "size_bytes": 151139,
+      "lines": null,
+      "sha256_12": "249d3f36ce8d"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.15.10.jpeg",
+      "size_bytes": 144856,
+      "lines": null,
+      "sha256_12": "830efa40eaeb"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.15.jpeg",
+      "size_bytes": 186480,
+      "lines": null,
+      "sha256_12": "788f0f24561a"
+    },
+    {
+      "path": "research_papers/notes/workshop notes/WhatsApp Image 2026-03-26 at 00.jpeg",
+      "size_bytes": 145100,
+      "lines": null,
+      "sha256_12": "147099571475"
+    },
+    {
+      "path": "research_papers/peerj-cs-1698.pdf",
+      "size_bytes": 14812064,
+      "lines": null,
+      "sha256_12": "05685bde25ca"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/About-the-Authors_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 35046,
+      "lines": null,
+      "sha256_12": "42b110d5234c"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Acknowledgments_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 25158,
+      "lines": null,
+      "sha256_12": "e6d671f5805a"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Appendix-A---Acronyms-and-Abbreviations_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 38080,
+      "lines": null,
+      "sha256_12": "b82c47835486"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Appendix-B---Blacklist-Application_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 52831,
+      "lines": null,
+      "sha256_12": "0189b9e9236d"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-1---Introduction_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 1293183,
+      "lines": null,
+      "sha256_12": "557361c3b293"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-10---Network-Functions-Virtualization_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 864291,
+      "lines": null,
+      "sha256_12": "612343e60559"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-11---Players-in-the-SDN-Ecosystem_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 3048653,
+      "lines": null,
+      "sha256_12": "f214b4a1b190"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-12---SDN-Applications_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 490034,
+      "lines": null,
+      "sha256_12": "5c8191212a9d"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-13---SDN-Open-Source_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 1634121,
+      "lines": null,
+      "sha256_12": "4abb9cd0419e"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-14---Business-Ramifications_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 252245,
+      "lines": null,
+      "sha256_12": "667b3d365860"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-15---SDN-Futures_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 274162,
+      "lines": null,
+      "sha256_12": "69e0168c6abd"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-2---Why-SDN-_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 488423,
+      "lines": null,
+      "sha256_12": "e1d781c3df69"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-3---Genesis-of-SDN_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 824095,
+      "lines": null,
+      "sha256_12": "b2385e0846ee"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-4---How-SDN-Works_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 619830,
+      "lines": null,
+      "sha256_12": "b4a2e540a2c1"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-5---The-OpenFlow-Specification_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 1169384,
+      "lines": null,
+      "sha256_12": "1ccf78ff6062"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-6---Alternative-Definitions-of-SDN_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 724493,
+      "lines": null,
+      "sha256_12": "b29c4827010c"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-7---Emerging-Protocol--Controller--and-Appl_2017_Software-Defined-Ne.pdf",
+      "size_bytes": 524930,
+      "lines": null,
+      "sha256_12": "b0eacc75336f"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-8---SDN-in-the-Data-Center_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 468506,
+      "lines": null,
+      "sha256_12": "4d9273c6e13e"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Chapter-9---SDN-in-Other-Environments_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 518719,
+      "lines": null,
+      "sha256_12": "20c417501f78"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Copyright_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 153298,
+      "lines": null,
+      "sha256_12": "d668e0d32f36"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Dedication_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 12749,
+      "lines": null,
+      "sha256_12": "33191ba16255"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Foreword_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 32352,
+      "lines": null,
+      "sha256_12": "c996c9c41d50"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Front-Matter_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 134119,
+      "lines": null,
+      "sha256_12": "eb7f208ebb64"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Index_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 69207,
+      "lines": null,
+      "sha256_12": "e395e523f959"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/Preface_2017_Software-Defined-Networks.pdf",
+      "size_bytes": 30336,
+      "lines": null,
+      "sha256_12": "0acaac511279"
+    },
+    {
+      "path": "research_papers/sdn_textbooks/README.md",
+      "size_bytes": 544,
+      "lines": 16,
+      "sha256_12": "40abab9911b7"
+    },
+    {
+      "path": "research_papers/smartcities-08-00025.pdf",
+      "size_bytes": 953313,
+      "lines": null,
+      "sha256_12": "89db7f9933a8"
+    },
+    {
+      "path": "research_papers/symmetry-15-01520-v2.pdf",
+      "size_bytes": 3937939,
+      "lines": null,
+      "sha256_12": "f5e2b846cac8"
+    },
+    {
+      "path": "research_papers/templates/SATNAC_2025_Camera-Ready_0198.pdf",
+      "size_bytes": 1142660,
+      "lines": null,
+      "sha256_12": "40f48adfcfba"
+    },
+    {
+      "path": "research_papers/templates/paper_extraction_template.md",
+      "size_bytes": 983,
+      "lines": 52,
+      "sha256_12": "97ff237ec504"
+    },
+    {
+      "path": "results/dqn_1000_episodes_convergence.png",
+      "size_bytes": 407269,
+      "lines": null,
+      "sha256_12": "abdb5743b323"
+    },
+    {
+      "path": "results/experiment_data/.gitkeep",
+      "size_bytes": 42,
+      "lines": null,
+      "sha256_12": "050ea8a84a07"
+    },
+    {
+      "path": "results/experiment_data/baseline_internet2_summary.csv",
+      "size_bytes": 458,
+      "lines": 3,
+      "sha256_12": "334ac60262d0"
+    },
+    {
+      "path": "results/experiment_data/baseline_telemetry_internet2.csv",
+      "size_bytes": 15571,
+      "lines": 229,
+      "sha256_12": "ab01a401aa1e"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_041713.csv",
+      "size_bytes": 517,
+      "lines": 7,
+      "sha256_12": "13cf3b8eeb09"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_042841.csv",
+      "size_bytes": 569,
+      "lines": 7,
+      "sha256_12": "32e39c0ade3d"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_044211.csv",
+      "size_bytes": 565,
+      "lines": 7,
+      "sha256_12": "0ebec665eaff"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_044937.csv",
+      "size_bytes": 2814,
+      "lines": 27,
+      "sha256_12": "610a6955e47f"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_161635.csv",
+      "size_bytes": 2814,
+      "lines": 27,
+      "sha256_12": "610a6955e47f"
+    },
+    {
+      "path": "results/experiment_data/benchmark_20260309_230955.csv",
+      "size_bytes": 5446,
+      "lines": 52,
+      "sha256_12": "a6a6f720fa2c"
+    },
+    {
+      "path": "results/experiment_data/complete_proposal_aligned_benchmark.csv",
+      "size_bytes": 5448,
+      "lines": 62,
+      "sha256_12": "6fcde608ef95"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20260314_050634.csv",
+      "size_bytes": 558,
+      "lines": 4,
+      "sha256_12": "620cbdf5b00c"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20260314_050837.csv",
+      "size_bytes": 558,
+      "lines": 4,
+      "sha256_12": "086b0abf4da3"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20260322_052249.csv",
+      "size_bytes": 2317,
+      "lines": 14,
+      "sha256_12": "cf3ca6553a70"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20260326_021307.csv",
+      "size_bytes": 2311,
+      "lines": 14,
+      "sha256_12": "5eadd0bf084c"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20260808_015946.csv",
+      "size_bytes": 1627,
+      "lines": 10,
+      "sha256_12": "a0624173fa94"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_best_20261017_052319.csv",
+      "size_bytes": 2289,
+      "lines": 14,
+      "sha256_12": "ff2ec2e40428"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20260314_050634.csv",
+      "size_bytes": 1267,
+      "lines": 12,
+      "sha256_12": "540ad077344c"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20260314_050837.csv",
+      "size_bytes": 1266,
+      "lines": 12,
+      "sha256_12": "0c0979e911c2"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20260322_052249.csv",
+      "size_bytes": 34815,
+      "lines": 302,
+      "sha256_12": "1741a5fedfea"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20260326_021307.csv",
+      "size_bytes": 34809,
+      "lines": 302,
+      "sha256_12": "ab4176b664a9"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20260808_015946.csv",
+      "size_bytes": 13856,
+      "lines": 122,
+      "sha256_12": "7c5984891c91"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_raw_20261017_052319.csv",
+      "size_bytes": 33815,
+      "lines": 302,
+      "sha256_12": "03b047d2b7f2"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_stats_20260322_052249.csv",
+      "size_bytes": 8658,
+      "lines": 50,
+      "sha256_12": "9915620c4fc5"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_stats_20260326_021307.csv",
+      "size_bytes": 8646,
+      "lines": 50,
+      "sha256_12": "7d6960daacac"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_stats_20260808_015946.csv",
+      "size_bytes": 5979,
+      "lines": 34,
+      "sha256_12": "019bac298d1e"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_stats_20261017_052319.csv",
+      "size_bytes": 8610,
+      "lines": 50,
+      "sha256_12": "92feaf9b9882"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20260314_050634.csv",
+      "size_bytes": 1653,
+      "lines": 12,
+      "sha256_12": "9e5e1aeaf3bb"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20260314_050837.csv",
+      "size_bytes": 1666,
+      "lines": 12,
+      "sha256_12": "b5952ce0e897"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20260322_052249.csv",
+      "size_bytes": 10136,
+      "lines": 62,
+      "sha256_12": "bc1a11605fe6"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20260326_021307.csv",
+      "size_bytes": 10146,
+      "lines": 62,
+      "sha256_12": "0c502150f306"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20260808_015946.csv",
+      "size_bytes": 6956,
+      "lines": 42,
+      "sha256_12": "84dc81295a34"
+    },
+    {
+      "path": "results/experiment_data/factorial_latency_cost_summary_20261017_052319.csv",
+      "size_bytes": 10045,
+      "lines": 62,
+      "sha256_12": "e1c1a3e741b0"
+    },
+    {
+      "path": "results/experiment_data/ga_challenger_internet2.csv",
+      "size_bytes": 851,
+      "lines": 4,
+      "sha256_12": "4de0084341e9"
+    },
+    {
+      "path": "results/experiment_data/ga_seed_sweep_internet2.csv",
+      "size_bytes": 388,
+      "lines": 5,
+      "sha256_12": "e5e8490a0629"
+    },
+    {
+      "path": "results/experiment_data/stress_test_best_compromise_20260309_050103.csv",
+      "size_bytes": 399,
+      "lines": 4,
+      "sha256_12": "e608a8927ec7"
+    },
+    {
+      "path": "results/experiment_data/stress_test_best_compromise_20260326_021046.csv",
+      "size_bytes": 1588,
+      "lines": 11,
+      "sha256_12": "b8fb00baf668"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260309_044057.csv",
+      "size_bytes": 132,
+      "lines": 8,
+      "sha256_12": "65a9aadd1074"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260309_044132.csv",
+      "size_bytes": 132,
+      "lines": 8,
+      "sha256_12": "65a9aadd1074"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260309_045102.csv",
+      "size_bytes": 132,
+      "lines": 8,
+      "sha256_12": "c235657e251c"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260309_045617.csv",
+      "size_bytes": 132,
+      "lines": 8,
+      "sha256_12": "65a9aadd1074"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260309_050103.csv",
+      "size_bytes": 132,
+      "lines": 8,
+      "sha256_12": "65a9aadd1074"
+    },
+    {
+      "path": "results/experiment_data/stress_test_correlation_20260326_021046.csv",
+      "size_bytes": 328,
+      "lines": 8,
+      "sha256_12": "744b70979a35"
+    },
+    {
+      "path": "results/experiment_data/stress_test_pareto_20260309_045617.csv",
+      "size_bytes": 531,
+      "lines": 6,
+      "sha256_12": "d4b2bdd66b7d"
+    },
+    {
+      "path": "results/experiment_data/stress_test_pareto_20260309_050103.csv",
+      "size_bytes": 437,
+      "lines": 5,
+      "sha256_12": "596878a355af"
+    },
+    {
+      "path": "results/experiment_data/stress_test_pareto_20260326_021046.csv",
+      "size_bytes": 1479,
+      "lines": 11,
+      "sha256_12": "fddf7db2a0da"
+    },
+    {
+      "path": "results/experiment_data/stress_test_pareto_ranked_20260309_050103.csv",
+      "size_bytes": 498,
+      "lines": 5,
+      "sha256_12": "660126f99d5d"
+    },
+    {
+      "path": "results/experiment_data/stress_test_pareto_ranked_20260326_021046.csv",
+      "size_bytes": 1588,
+      "lines": 11,
+      "sha256_12": "b8fb00baf668"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260309_044057.csv",
+      "size_bytes": 1331,
+      "lines": 12,
+      "sha256_12": "6e19f22d0384"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260309_044132.csv",
+      "size_bytes": 1331,
+      "lines": 12,
+      "sha256_12": "6e19f22d0384"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260309_045102.csv",
+      "size_bytes": 17746,
+      "lines": 137,
+      "sha256_12": "c859ca7724ac"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260309_045617.csv",
+      "size_bytes": 1323,
+      "lines": 12,
+      "sha256_12": "2fea49992256"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260309_050103.csv",
+      "size_bytes": 1322,
+      "lines": 12,
+      "sha256_12": "14932504a5b9"
+    },
+    {
+      "path": "results/experiment_data/stress_test_raw_20260326_021046.csv",
+      "size_bytes": 21025,
+      "lines": 137,
+      "sha256_12": "f3745d35b9c8"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260309_044057.csv",
+      "size_bytes": 1023,
+      "lines": 12,
+      "sha256_12": "bcade6e0f5dc"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260309_044132.csv",
+      "size_bytes": 1023,
+      "lines": 12,
+      "sha256_12": "bcade6e0f5dc"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260309_045102.csv",
+      "size_bytes": 4568,
+      "lines": 47,
+      "sha256_12": "243eba306c27"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260309_045617.csv",
+      "size_bytes": 1089,
+      "lines": 12,
+      "sha256_12": "34232729f1fb"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260309_050103.csv",
+      "size_bytes": 1089,
+      "lines": 12,
+      "sha256_12": "4922fb05270f"
+    },
+    {
+      "path": "results/experiment_data/stress_test_summary_20260326_021046.csv",
+      "size_bytes": 6318,
+      "lines": 47,
+      "sha256_12": "2a0340152416"
+    },
+    {
+      "path": "results/graphs/.gitkeep",
+      "size_bytes": 42,
+      "lines": null,
+      "sha256_12": "050ea8a84a07"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_041713.png",
+      "size_bytes": 50478,
+      "lines": null,
+      "sha256_12": "d2bc4baca0fe"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_042841.png",
+      "size_bytes": 46033,
+      "lines": null,
+      "sha256_12": "012c203cd521"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_044211.png",
+      "size_bytes": 44323,
+      "lines": null,
+      "sha256_12": "1b91d85c734b"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_044937.png",
+      "size_bytes": 46928,
+      "lines": null,
+      "sha256_12": "8511784a8fb0"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_161635.png",
+      "size_bytes": 46928,
+      "lines": null,
+      "sha256_12": "8511784a8fb0"
+    },
+    {
+      "path": "results/graphs/average_distance_20260309_230955.png",
+      "size_bytes": 45825,
+      "lines": null,
+      "sha256_12": "328091c8fb1f"
+    },
+    {
+      "path": "results/graphs/baseline_tau_internet2.png",
+      "size_bytes": 108210,
+      "lines": null,
+      "sha256_12": "9fd6e0da9724"
+    },
+    {
+      "path": "results/graphs/control_plane_reliability_20260309_042841.png",
+      "size_bytes": 45941,
+      "lines": null,
+      "sha256_12": "bb3edeabd355"
+    },
+    {
+      "path": "results/graphs/control_plane_reliability_20260309_044211.png",
+      "size_bytes": 45941,
+      "lines": null,
+      "sha256_12": "bb3edeabd355"
+    },
+    {
+      "path": "results/graphs/control_plane_reliability_20260309_044937.png",
+      "size_bytes": 45941,
+      "lines": null,
+      "sha256_12": "bb3edeabd355"
+    },
+    {
+      "path": "results/graphs/control_plane_reliability_20260309_161635.png",
+      "size_bytes": 45941,
+      "lines": null,
+      "sha256_12": "bb3edeabd355"
+    },
+    {
+      "path": "results/graphs/control_plane_reliability_20260309_230955.png",
+      "size_bytes": 45941,
+      "lines": null,
+      "sha256_12": "bb3edeabd355"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_041713.png",
+      "size_bytes": 44205,
+      "lines": null,
+      "sha256_12": "369fc7fc961e"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_042841.png",
+      "size_bytes": 44286,
+      "lines": null,
+      "sha256_12": "72aa75fb0a63"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_044211.png",
+      "size_bytes": 40414,
+      "lines": null,
+      "sha256_12": "158719db3a7b"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_044937.png",
+      "size_bytes": 41649,
+      "lines": null,
+      "sha256_12": "83cb7550a669"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_161635.png",
+      "size_bytes": 41649,
+      "lines": null,
+      "sha256_12": "83cb7550a669"
+    },
+    {
+      "path": "results/graphs/controller_load_std_20260309_230955.png",
+      "size_bytes": 40856,
+      "lines": null,
+      "sha256_12": "07d4044f3c3e"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260314_050634/latency_cost_pareto_barabasi_albert_n20_k3_20260314_050634.png",
+      "size_bytes": 77089,
+      "lines": null,
+      "sha256_12": "b301dec3fa3d"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260314_050634/latency_cost_pareto_waxman_n20_k3_20260314_050634.png",
+      "size_bytes": 73512,
+      "lines": null,
+      "sha256_12": "9fe243ea8af4"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260314_050837/latency_cost_pareto_barabasi_albert_n20_k3_20260314_050837.png",
+      "size_bytes": 76511,
+      "lines": null,
+      "sha256_12": "70b8a8c8e25c"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260314_050837/latency_cost_pareto_waxman_n20_k3_20260314_050837.png",
+      "size_bytes": 75348,
+      "lines": null,
+      "sha256_12": "c3f8d79c442c"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n100_k3_20260322_052249.png",
+      "size_bytes": 74299,
+      "lines": null,
+      "sha256_12": "12c881334e8f"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n100_k5_20260322_052249.png",
+      "size_bytes": 78642,
+      "lines": null,
+      "sha256_12": "824ab3242faa"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n20_k3_20260322_052249.png",
+      "size_bytes": 78377,
+      "lines": null,
+      "sha256_12": "e48dc4c00203"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n20_k5_20260322_052249.png",
+      "size_bytes": 83489,
+      "lines": null,
+      "sha256_12": "30766ae95a72"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n50_k3_20260322_052249.png",
+      "size_bytes": 75591,
+      "lines": null,
+      "sha256_12": "74785486ddeb"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_barabasi_albert_n50_k5_20260322_052249.png",
+      "size_bytes": 77606,
+      "lines": null,
+      "sha256_12": "0139b901e662"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n100_k3_20260322_052249.png",
+      "size_bytes": 76290,
+      "lines": null,
+      "sha256_12": "8e57e5ec7913"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n100_k5_20260322_052249.png",
+      "size_bytes": 73350,
+      "lines": null,
+      "sha256_12": "4c9f2b30bb34"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n20_k3_20260322_052249.png",
+      "size_bytes": 76689,
+      "lines": null,
+      "sha256_12": "32849aa4543a"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n20_k5_20260322_052249.png",
+      "size_bytes": 77955,
+      "lines": null,
+      "sha256_12": "4dc4d3d2a770"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n50_k3_20260322_052249.png",
+      "size_bytes": 75126,
+      "lines": null,
+      "sha256_12": "ef045327b734"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260322_052249/latency_cost_pareto_waxman_n50_k5_20260322_052249.png",
+      "size_bytes": 75709,
+      "lines": null,
+      "sha256_12": "e3c6f96104a6"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n100_k3_20260326_021307.png",
+      "size_bytes": 74306,
+      "lines": null,
+      "sha256_12": "bd2cda9fbdc6"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n100_k5_20260326_021307.png",
+      "size_bytes": 78745,
+      "lines": null,
+      "sha256_12": "1737ff5deca7"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n20_k3_20260326_021307.png",
+      "size_bytes": 78107,
+      "lines": null,
+      "sha256_12": "ca10725a260e"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n20_k5_20260326_021307.png",
+      "size_bytes": 83297,
+      "lines": null,
+      "sha256_12": "d325662c3ab7"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n50_k3_20260326_021307.png",
+      "size_bytes": 75405,
+      "lines": null,
+      "sha256_12": "58b4e3f52044"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_barabasi_albert_n50_k5_20260326_021307.png",
+      "size_bytes": 77644,
+      "lines": null,
+      "sha256_12": "f2c81a26134b"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n100_k3_20260326_021307.png",
+      "size_bytes": 76792,
+      "lines": null,
+      "sha256_12": "3c6ace040b89"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n100_k5_20260326_021307.png",
+      "size_bytes": 73569,
+      "lines": null,
+      "sha256_12": "8e346f33edbc"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n20_k3_20260326_021307.png",
+      "size_bytes": 76084,
+      "lines": null,
+      "sha256_12": "f8758a478bb6"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n20_k5_20260326_021307.png",
+      "size_bytes": 77138,
+      "lines": null,
+      "sha256_12": "82f134ee50be"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n50_k3_20260326_021307.png",
+      "size_bytes": 75038,
+      "lines": null,
+      "sha256_12": "0329d74e3b5e"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260326_021307/latency_cost_pareto_waxman_n50_k5_20260326_021307.png",
+      "size_bytes": 76116,
+      "lines": null,
+      "sha256_12": "d12905b3aef7"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_barabasi_albert_n20_k3_20260808_015946.png",
+      "size_bytes": 87572,
+      "lines": null,
+      "sha256_12": "a809783b62b0"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_barabasi_albert_n20_k5_20260808_015946.png",
+      "size_bytes": 94765,
+      "lines": null,
+      "sha256_12": "08d0fcdf0046"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_barabasi_albert_n50_k3_20260808_015946.png",
+      "size_bytes": 90771,
+      "lines": null,
+      "sha256_12": "c3ba100f03e1"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_barabasi_albert_n50_k5_20260808_015946.png",
+      "size_bytes": 86798,
+      "lines": null,
+      "sha256_12": "5fe7c888bcea"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_waxman_n20_k3_20260808_015946.png",
+      "size_bytes": 91255,
+      "lines": null,
+      "sha256_12": "02baa9fda0ab"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_waxman_n20_k5_20260808_015946.png",
+      "size_bytes": 87860,
+      "lines": null,
+      "sha256_12": "ff701de6d934"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_waxman_n50_k3_20260808_015946.png",
+      "size_bytes": 86964,
+      "lines": null,
+      "sha256_12": "179a18c1bbd2"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20260808_015946/latency_cost_pareto_waxman_n50_k5_20260808_015946.png",
+      "size_bytes": 84498,
+      "lines": null,
+      "sha256_12": "ef1d68a71d29"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n20_k2_20261017_052319.png",
+      "size_bytes": 78101,
+      "lines": null,
+      "sha256_12": "345a66073f65"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n20_k3_20261017_052319.png",
+      "size_bytes": 87476,
+      "lines": null,
+      "sha256_12": "eb4fd9fac53a"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n20_k5_20261017_052319.png",
+      "size_bytes": 87715,
+      "lines": null,
+      "sha256_12": "10adb2cfbc76"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k2_20261017_052319.png",
+      "size_bytes": 84994,
+      "lines": null,
+      "sha256_12": "f0c09f11f7ba"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k3_20261017_052319.png",
+      "size_bytes": 93691,
+      "lines": null,
+      "sha256_12": "ce4f833b81b2"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k5_20261017_052319.png",
+      "size_bytes": 91568,
+      "lines": null,
+      "sha256_12": "4a55aef49eda"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n20_k2_20261017_052319.png",
+      "size_bytes": 85125,
+      "lines": null,
+      "sha256_12": "91a777bb7640"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n20_k3_20261017_052319.png",
+      "size_bytes": 86396,
+      "lines": null,
+      "sha256_12": "c26c52f09bf5"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n20_k5_20261017_052319.png",
+      "size_bytes": 85325,
+      "lines": null,
+      "sha256_12": "1b13e80de6c3"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n50_k2_20261017_052319.png",
+      "size_bytes": 84515,
+      "lines": null,
+      "sha256_12": "3eeb972c7ff0"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n50_k3_20261017_052319.png",
+      "size_bytes": 84635,
+      "lines": null,
+      "sha256_12": "5f6066c6fddf"
+    },
+    {
+      "path": "results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n50_k5_20261017_052319.png",
+      "size_bytes": 82113,
+      "lines": null,
+      "sha256_12": "7b8e7a1faa75"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260309_044057.png",
+      "size_bytes": 75546,
+      "lines": null,
+      "sha256_12": "9029d662a87c"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260309_044132.png",
+      "size_bytes": 75546,
+      "lines": null,
+      "sha256_12": "9029d662a87c"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260309_045102.png",
+      "size_bytes": 86080,
+      "lines": null,
+      "sha256_12": "cb3f3820c3ef"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260309_045617.png",
+      "size_bytes": 77690,
+      "lines": null,
+      "sha256_12": "0bf37e0198a2"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260309_050103.png",
+      "size_bytes": 90007,
+      "lines": null,
+      "sha256_12": "1a37f194b94e"
+    },
+    {
+      "path": "results/graphs/latency_vs_reliability_20260326_021046.png",
+      "size_bytes": 96623,
+      "lines": null,
+      "sha256_12": "cdd435ba6ff3"
+    },
+    {
+      "path": "results/graphs/pareto_presentation.html",
+      "size_bytes": 4850956,
+      "lines": null,
+      "sha256_12": "2c07ee1c425a"
+    },
+    {
+      "path": "results/graphs/pareto_presentation.png",
+      "size_bytes": 103260,
+      "lines": null,
+      "sha256_12": "92d35f073228"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_041713.png",
+      "size_bytes": 41378,
+      "lines": null,
+      "sha256_12": "6d902bde23b7"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_042841.png",
+      "size_bytes": 40196,
+      "lines": null,
+      "sha256_12": "ad7a5e557918"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_044211.png",
+      "size_bytes": 40388,
+      "lines": null,
+      "sha256_12": "bad8c3aa6d74"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_044937.png",
+      "size_bytes": 45377,
+      "lines": null,
+      "sha256_12": "bc75b92b7da0"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_161635.png",
+      "size_bytes": 45377,
+      "lines": null,
+      "sha256_12": "bc75b92b7da0"
+    },
+    {
+      "path": "results/graphs/resilience_ratio_20260309_230955.png",
+      "size_bytes": 45557,
+      "lines": null,
+      "sha256_12": "7bc6edf34b1a"
+    },
+    {
+      "path": "results/graphs/rl_training_20260309T021717.882802Z-539427.csv",
+      "size_bytes": 1524,
+      "lines": 15,
+      "sha256_12": "abef3deadf86"
+    },
+    {
+      "path": "results/graphs/rl_training_20260309T021717.882802Z-539427.png",
+      "size_bytes": 105476,
+      "lines": null,
+      "sha256_12": "8f5202aba950"
+    },
+    {
+      "path": "results/graphs/rl_training_20260309T025000.995593Z-573275.csv",
+      "size_bytes": 1667,
+      "lines": 15,
+      "sha256_12": "6401fae20594"
+    },
+    {
+      "path": "results/graphs/rl_training_20260309T025000.995593Z-573275.png",
+      "size_bytes": 125931,
+      "lines": null,
+      "sha256_12": "9e63ab2a1cc4"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_041713.png",
+      "size_bytes": 49571,
+      "lines": null,
+      "sha256_12": "6f14255a9878"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_042841.png",
+      "size_bytes": 52392,
+      "lines": null,
+      "sha256_12": "eff40a1ddaf3"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_044211.png",
+      "size_bytes": 43377,
+      "lines": null,
+      "sha256_12": "d24fe838e6da"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_044937.png",
+      "size_bytes": 46077,
+      "lines": null,
+      "sha256_12": "a90e756a0d60"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_161635.png",
+      "size_bytes": 46077,
+      "lines": null,
+      "sha256_12": "a90e756a0d60"
+    },
+    {
+      "path": "results/graphs/worst_case_distance_20260309_230955.png",
+      "size_bytes": 45398,
+      "lines": null,
+      "sha256_12": "47b182b9670f"
+    },
+    {
+      "path": "results/mininet_overhead_validation.json",
+      "size_bytes": 2257,
+      "lines": 58,
+      "sha256_12": "f940ae8bb46d"
+    },
+    {
+      "path": "results/mininet_simulation_results.json",
+      "size_bytes": 694,
+      "lines": 47,
+      "sha256_12": "e0a130bc02a3"
+    },
+    {
+      "path": "results/pilot_metrics.json",
+      "size_bytes": 24429,
+      "lines": 1033,
+      "sha256_12": "12adf6f99c7f"
+    },
+    {
+      "path": "results/rl_analysis/ANALYSIS_REPORT.md",
+      "size_bytes": 7263,
+      "lines": 193,
+      "sha256_12": "eb401b9bc8de"
+    },
+    {
+      "path": "results/rl_analysis/convergence_analysis.png",
+      "size_bytes": 694138,
+      "lines": null,
+      "sha256_12": "cdee0c90ac3b"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_frontier_interactive.html",
+      "size_bytes": 10788,
+      "lines": null,
+      "sha256_12": "edff90ae57c4"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_frontier_static.png",
+      "size_bytes": 304961,
+      "lines": null,
+      "sha256_12": "c0ac027c1b16"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_marked.csv",
+      "size_bytes": 6470,
+      "lines": 62,
+      "sha256_12": "c3337af2d738"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_mininet_validation.json",
+      "size_bytes": 3949,
+      "lines": 134,
+      "sha256_12": "50b0b7dc054f"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_shortlist.json",
+      "size_bytes": 180,
+      "lines": 12,
+      "sha256_12": "845cf9adae5e"
+    },
+    {
+      "path": "results/rl_analysis/pareto/pareto_shortlist_reliability_sweep.json",
+      "size_bytes": 7103,
+      "lines": 359,
+      "sha256_12": "9dafd09af63a"
+    },
+    {
+      "path": "results/rl_analysis/pareto_multisite/pareto_frontier_interactive.html",
+      "size_bytes": 10716,
+      "lines": null,
+      "sha256_12": "41016c8d5dc8"
+    },
+    {
+      "path": "results/rl_analysis/pareto_multisite/pareto_frontier_static.png",
+      "size_bytes": 298132,
+      "lines": null,
+      "sha256_12": "da201e4d55a6"
+    },
+    {
+      "path": "results/rl_analysis/pareto_multisite/pareto_marked.csv",
+      "size_bytes": 4027,
+      "lines": 27,
+      "sha256_12": "9a05e9e0a53a"
+    },
+    {
+      "path": "results/rl_analysis/pareto_multisite/pareto_shortlist.json",
+      "size_bytes": 1402,
+      "lines": 52,
+      "sha256_12": "b0ff7ad20816"
+    },
+    {
+      "path": "results/rl_analysis/reward_distribution.png",
+      "size_bytes": 117673,
+      "lines": null,
+      "sha256_12": "55240268a4e3"
+    },
+    {
+      "path": "results/rl_analysis/stability_audit/stability_grouped_by_topology.csv",
+      "size_bytes": 370,
+      "lines": 4,
+      "sha256_12": "19d7eaffa5bf"
+    },
+    {
+      "path": "results/rl_analysis/stability_audit/stability_summary.csv",
+      "size_bytes": 1949,
+      "lines": 12,
+      "sha256_12": "e96278ae255b"
+    },
+    {
+      "path": "results/rl_analysis/stability_audit/stability_summary.json",
+      "size_bytes": 5664,
+      "lines": 182,
+      "sha256_12": "e2aadfc2cc4f"
+    },
+    {
+      "path": "results/rl_analysis/stability_audit/training_events.jsonl",
+      "size_bytes": 119905,
+      "lines": null,
+      "sha256_12": "2ec266b423bd"
+    },
+    {
+      "path": "results/rl_training/training_log.jsonl",
+      "size_bytes": 12596,
+      "lines": null,
+      "sha256_12": "3313efc87b7d"
+    },
+    {
+      "path": "run_baseline_internet2.py",
+      "size_bytes": 11340,
+      "lines": 350,
+      "sha256_12": "57639e7e9e7f"
+    },
+    {
+      "path": "run_rl_training.py",
+      "size_bytes": 2183,
+      "lines": 75,
+      "sha256_12": "c7959ea9579b"
+    },
+    {
+      "path": "scripts/align_presentation_to_proposal.py",
+      "size_bytes": 8514,
+      "lines": 188,
+      "sha256_12": "6c945b97b142"
+    },
+    {
+      "path": "scripts/audit_baseline_factorial_cell.py",
+      "size_bytes": 8834,
+      "lines": 235,
+      "sha256_12": "379a7e271efc"
+    },
+    {
+      "path": "scripts/batch_hyperlink_update.py",
+      "size_bytes": 7969,
+      "lines": 245,
+      "sha256_12": "dcc9a0d62196"
+    },
+    {
+      "path": "scripts/compute_complete_benchmark_matrix.py",
+      "size_bytes": 5903,
+      "lines": 120,
+      "sha256_12": "ffd8247c8eb5"
+    },
+    {
+      "path": "scripts/export_chat_history.py",
+      "size_bytes": 4937,
+      "lines": 134,
+      "sha256_12": "3f7cae1abf04"
+    },
+    {
+      "path": "scripts/generate_decision_flowchart.py",
+      "size_bytes": 4006,
+      "lines": 87,
+      "sha256_12": "96c41ea11d1b"
+    },
+    {
+      "path": "scripts/generate_one_pager_pitch.py",
+      "size_bytes": 6174,
+      "lines": 113,
+      "sha256_12": "de2f12140c25"
+    },
+    {
+      "path": "scripts/generate_pareto_presentation_plot.py",
+      "size_bytes": 3375,
+      "lines": 95,
+      "sha256_12": "c955ddc6816d"
+    },
+    {
+      "path": "scripts/generate_proposal_docs.py",
+      "size_bytes": 48780,
+      "lines": 424,
+      "sha256_12": "3a1d02e5f3f8"
+    },
+    {
+      "path": "scripts/generate_satnac_word_doc.py",
+      "size_bytes": 46507,
+      "lines": 753,
+      "sha256_12": "f2be238e7da3"
+    },
+    {
+      "path": "scripts/generate_sdn_pareto_3d.py",
+      "size_bytes": 5040,
+      "lines": 178,
+      "sha256_12": "9746c4d04e2d"
+    },
+    {
+      "path": "scripts/generate_sdn_pareto_3d_print.py",
+      "size_bytes": 4486,
+      "lines": 158,
+      "sha256_12": "2f6ad2bf2400"
+    },
+    {
+      "path": "scripts/generate_table1_image.py",
+      "size_bytes": 3711,
+      "lines": 102,
+      "sha256_12": "7f1a2e48f377"
+    },
+    {
+      "path": "scripts/generate_table2_image.py",
+      "size_bytes": 3121,
+      "lines": 98,
+      "sha256_12": "4b4d3ca9f12c"
+    },
+    {
+      "path": "scripts/harden_bibliography_links_pdf.py",
+      "size_bytes": 7861,
+      "lines": 225,
+      "sha256_12": "1e5ae048f775"
+    },
+    {
+      "path": "scripts/harden_pdf_internal_links.py",
+      "size_bytes": 6344,
+      "lines": 182,
+      "sha256_12": "fc116770ad64"
+    },
+    {
+      "path": "scripts/harden_section_113_timeline_pdf.py",
+      "size_bytes": 5642,
+      "lines": 144,
+      "sha256_12": "d53a8178bc28"
+    },
+    {
+      "path": "scripts/inspect_pdf_structure.py",
+      "size_bytes": 553,
+      "lines": 16,
+      "sha256_12": "bb4b413a52c8"
+    },
+    {
+      "path": "scripts/migrate_submission_into_hardened.py",
+      "size_bytes": 3948,
+      "lines": 124,
+      "sha256_12": "733bf0655a0d"
+    },
+    {
+      "path": "scripts/pareto_synthesis.py",
+      "size_bytes": 7506,
+      "lines": 217,
+      "sha256_12": "309569f765cc"
+    },
+    {
+      "path": "scripts/patch_methodology.py",
+      "size_bytes": 9539,
+      "lines": 148,
+      "sha256_12": "61d9abc9a77d"
+    },
+    {
+      "path": "scripts/patch_research_proposal_pdf.py",
+      "size_bytes": 13675,
+      "lines": 304,
+      "sha256_12": "1670049ec501"
+    },
+    {
+      "path": "scripts/patch_section_3_update.py",
+      "size_bytes": 3550,
+      "lines": 71,
+      "sha256_12": "75c536ce08b1"
+    },
+    {
+      "path": "scripts/pilot_summary.py",
+      "size_bytes": 2184,
+      "lines": 72,
+      "sha256_12": "140fcb7bec7e"
+    },
+    {
+      "path": "scripts/plot_baseline_tau.py",
+      "size_bytes": 4353,
+      "lines": 138,
+      "sha256_12": "93daedab0e5d"
+    },
+    {
+      "path": "scripts/plot_pilot_metrics.py",
+      "size_bytes": 1612,
+      "lines": 42,
+      "sha256_12": "cb4779b54623"
+    },
+    {
+      "path": "scripts/plot_rl_training_log.py",
+      "size_bytes": 6137,
+      "lines": 180,
+      "sha256_12": "b21d6af6495f"
+    },
+    {
+      "path": "scripts/quick_verify.py",
+      "size_bytes": 1647,
+      "lines": 49,
+      "sha256_12": "a041077d65c0"
+    },
+    {
+      "path": "scripts/regenerate_pdf_clean.py",
+      "size_bytes": 10190,
+      "lines": 143,
+      "sha256_12": "314b1297d7a1"
+    },
+    {
+      "path": "scripts/reliability_sweep_and_internet2_check.py",
+      "size_bytes": 3598,
+      "lines": 82,
+      "sha256_12": "fbec4989f350"
+    },
+    {
+      "path": "scripts/render_final_submission_pdf.py",
+      "size_bytes": 6543,
+      "lines": 187,
+      "sha256_12": "76a99988b517"
+    },
+    {
+      "path": "scripts/run_factorial_latency_cost_matrix.py",
+      "size_bytes": 22315,
+      "lines": 579,
+      "sha256_12": "bcd3a4772d6d"
+    },
+    {
+      "path": "scripts/run_full_workflow.py",
+      "size_bytes": 3316,
+      "lines": 111,
+      "sha256_12": "567c73c06f2b"
+    },
+    {
+      "path": "scripts/run_ga_challenger_internet2.py",
+      "size_bytes": 8364,
+      "lines": 211,
+      "sha256_12": "c2e090c13573"
+    },
+    {
+      "path": "scripts/run_linux_ready_benchmark.py",
+      "size_bytes": 1516,
+      "lines": 54,
+      "sha256_12": "32ab68cec9ce"
+    },
+    {
+      "path": "scripts/run_mininet_demo.py",
+      "size_bytes": 2793,
+      "lines": 66,
+      "sha256_12": "2146fdc2a2cf"
+    },
+    {
+      "path": "scripts/run_segmented_workload.py",
+      "size_bytes": 5953,
+      "lines": 179,
+      "sha256_12": "1851626d7878"
+    },
+    {
+      "path": "scripts/run_stability_audit.py",
+      "size_bytes": 14850,
+      "lines": 432,
+      "sha256_12": "d8aad75b78c1"
+    },
+    {
+      "path": "scripts/show_pilot_results.py",
+      "size_bytes": 4756,
+      "lines": 110,
+      "sha256_12": "fc2833f5de45"
+    },
+    {
+      "path": "scripts/show_pilot_summary.py",
+      "size_bytes": 4308,
+      "lines": 110,
+      "sha256_12": "10f52bed3421"
+    },
+    {
+      "path": "scripts/stress_test_latency_reliability.py",
+      "size_bytes": 11145,
+      "lines": 309,
+      "sha256_12": "7203f4609a52"
+    },
+    {
+      "path": "scripts/test_mininet_overhead.py",
+      "size_bytes": 25444,
+      "lines": 643,
+      "sha256_12": "f9149ff5f647"
+    },
+    {
+      "path": "scripts/train_dqn_pilot.py",
+      "size_bytes": 16330,
+      "lines": 432,
+      "sha256_12": "249db350a134"
+    },
+    {
+      "path": "scripts/validate_shortlist_mininet.py",
+      "size_bytes": 8551,
+      "lines": 231,
+      "sha256_12": "9c0420db3b99"
+    },
+    {
+      "path": "scripts/verify_proposal_compliance.py",
+      "size_bytes": 7438,
+      "lines": 232,
+      "sha256_12": "96d76d7248bc"
+    },
+    {
+      "path": "simulation/__init__.py",
+      "size_bytes": 233,
+      "lines": 12,
+      "sha256_12": "b5651f014ae3"
+    },
+    {
+      "path": "simulation/mininet_simulation.py",
+      "size_bytes": 6782,
+      "lines": 203,
+      "sha256_12": "1685b59888a6"
+    },
+    {
+      "path": "slides/pareto_presentation.png",
+      "size_bytes": 103260,
+      "lines": null,
+      "sha256_12": "92d35f073228"
+    },
+    {
+      "path": "slides/presentation.md",
+      "size_bytes": 1521,
+      "lines": 36,
+      "sha256_12": "b06b6c21508a"
+    },
+    {
+      "path": "slides/presentation.pdf",
+      "size_bytes": 168102,
+      "lines": null,
+      "sha256_12": "789fb64a7878"
+    },
+    {
+      "path": "test_torch.py",
+      "size_bytes": 231,
+      "lines": 8,
+      "sha256_12": "6214650d91d4"
+    },
+    {
+      "path": "tests/test_experiment_config.py",
+      "size_bytes": 3792,
+      "lines": 105,
+      "sha256_12": "8f7cc6dac4b7"
+    },
+    {
+      "path": "tests/test_manifest_schema.py",
+      "size_bytes": 3266,
+      "lines": 88,
+      "sha256_12": "d7a2ffa8bac5"
+    },
+    {
+      "path": "tests/test_pareto_frontier.py",
+      "size_bytes": 5174,
+      "lines": 150,
+      "sha256_12": "a364d5262bba"
+    },
+    {
+      "path": "tests/test_reliability_metric.py",
+      "size_bytes": 1087,
+      "lines": 30,
+      "sha256_12": "bf8164f54018"
+    },
+    {
+      "path": "tests/test_rl_logging.py",
+      "size_bytes": 4388,
+      "lines": 126,
+      "sha256_12": "fed56d360357"
+    },
+    {
+      "path": "tests/test_telemetry.py",
+      "size_bytes": 1507,
+      "lines": 44,
+      "sha256_12": "fba8fb01e53f"
+    },
+    {
+      "path": "tests/test_topology_loader.py",
+      "size_bytes": 2705,
+      "lines": 75,
+      "sha256_12": "65f4dc4b1856"
+    },
+    {
+      "path": "topology/__init__.py",
+      "size_bytes": 574,
+      "lines": 24,
+      "sha256_12": "6c89d6766a03"
+    },
+    {
+      "path": "topology/canonical_topologies.py",
+      "size_bytes": 9187,
+      "lines": 275,
+      "sha256_12": "e747434afe22"
+    },
+    {
+      "path": "topology/network_topology.py",
+      "size_bytes": 3831,
+      "lines": 117,
+      "sha256_12": "8127ea1bbf5c"
+    },
+    {
+      "path": "topology/synthetic_topology_models.py",
+      "size_bytes": 5229,
+      "lines": 170,
+      "sha256_12": "2ee2f86888a6"
+    },
+    {
+      "path": "venv310/bin/Activate.ps1",
+      "size_bytes": 9033,
+      "lines": null,
+      "sha256_12": "3795a060dea7"
+    },
+    {
+      "path": "venv310/bin/activate",
+      "size_bytes": 2028,
+      "lines": null,
+      "sha256_12": "51bce42859ea"
+    },
+    {
+      "path": "venv310/bin/activate.csh",
+      "size_bytes": 954,
+      "lines": null,
+      "sha256_12": "231d5154fcd8"
+    },
+    {
+      "path": "venv310/bin/activate.fish",
+      "size_bytes": 2230,
+      "lines": null,
+      "sha256_12": "8c1dbcef9216"
+    },
+    {
+      "path": "venv310/bin/f2py",
+      "size_bytes": 212,
+      "lines": null,
+      "sha256_12": "e27825e2b0c9"
+    },
+    {
+      "path": "venv310/bin/fonttools",
+      "size_bytes": 213,
+      "lines": null,
+      "sha256_12": "3c6e5f5cdf0d"
+    },
+    {
+      "path": "venv310/bin/inv",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "87287240e4b3"
+    },
+    {
+      "path": "venv310/bin/invoke",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "87287240e4b3"
+    },
+    {
+      "path": "venv310/bin/ipython",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "93d7c2f602c5"
+    },
+    {
+      "path": "venv310/bin/ipython3",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "93d7c2f602c5"
+    },
+    {
+      "path": "venv310/bin/isympy",
+      "size_bytes": 201,
+      "lines": null,
+      "sha256_12": "0fec69b92f9c"
+    },
+    {
+      "path": "venv310/bin/netaddr",
+      "size_bytes": 210,
+      "lines": null,
+      "sha256_12": "f5a803d86596"
+    },
+    {
+      "path": "venv310/bin/normalizer",
+      "size_bytes": 233,
+      "lines": null,
+      "sha256_12": "b2c65944ba5e"
+    },
+    {
+      "path": "venv310/bin/numpy-config",
+      "size_bytes": 212,
+      "lines": null,
+      "sha256_12": "125767baa454"
+    },
+    {
+      "path": "venv310/bin/oslo-config-generator",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "bf306cb87e7c"
+    },
+    {
+      "path": "venv310/bin/oslo-config-validator",
+      "size_bytes": 220,
+      "lines": null,
+      "sha256_12": "ab43e9b15834"
+    },
+    {
+      "path": "venv310/bin/ovs-flowviz",
+      "size_bytes": 734,
+      "lines": null,
+      "sha256_12": "a9f65f095559"
+    },
+    {
+      "path": "venv310/bin/pbr",
+      "size_bytes": 211,
+      "lines": null,
+      "sha256_12": "0ebc140b6739"
+    },
+    {
+      "path": "venv310/bin/pip",
+      "size_bytes": 217,
+      "lines": null,
+      "sha256_12": "e4224b52c4ea"
+    },
+    {
+      "path": "venv310/bin/pip3",
+      "size_bytes": 217,
+      "lines": null,
+      "sha256_12": "e4224b52c4ea"
+    },
+    {
+      "path": "venv310/bin/pip3.10",
+      "size_bytes": 217,
+      "lines": null,
+      "sha256_12": "e4224b52c4ea"
+    },
+    {
+      "path": "venv310/bin/plotly_get_chrome",
+      "size_bytes": 239,
+      "lines": null,
+      "sha256_12": "1a226b12d1b3"
+    },
+    {
+      "path": "venv310/bin/proton",
+      "size_bytes": 217,
+      "lines": null,
+      "sha256_12": "04f5329c28f4"
+    },
+    {
+      "path": "venv310/bin/proton-viewer",
+      "size_bytes": 217,
+      "lines": null,
+      "sha256_12": "d5e1df9e7754"
+    },
+    {
+      "path": "venv310/bin/pyftmerge",
+      "size_bytes": 210,
+      "lines": null,
+      "sha256_12": "bfeb7cb071a9"
+    },
+    {
+      "path": "venv310/bin/pyftsubset",
+      "size_bytes": 211,
+      "lines": null,
+      "sha256_12": "645c98d9ad64"
+    },
+    {
+      "path": "venv310/bin/pygmentize",
+      "size_bytes": 211,
+      "lines": null,
+      "sha256_12": "d38fd103cca0"
+    },
+    {
+      "path": "venv310/bin/python",
+      "size_bytes": 5236248,
+      "lines": null,
+      "sha256_12": "d317b3c9c1bf"
+    },
+    {
+      "path": "venv310/bin/python3",
+      "size_bytes": 5236248,
+      "lines": null,
+      "sha256_12": "d317b3c9c1bf"
+    },
+    {
+      "path": "venv310/bin/python3.10",
+      "size_bytes": 5236248,
+      "lines": null,
+      "sha256_12": "d317b3c9c1bf"
+    },
+    {
+      "path": "venv310/bin/ryu",
+      "size_bytes": 215,
+      "lines": null,
+      "sha256_12": "ad7d6b3fd77c"
+    },
+    {
+      "path": "venv310/bin/ryu-manager",
+      "size_bytes": 214,
+      "lines": null,
+      "sha256_12": "e051bf7bfaca"
+    },
+    {
+      "path": "venv310/bin/torchfrtrace",
+      "size_bytes": 237,
+      "lines": null,
+      "sha256_12": "4e3165b58c01"
+    },
+    {
+      "path": "venv310/bin/torchrun",
+      "size_bytes": 216,
+      "lines": null,
+      "sha256_12": "75f79b5e72b5"
+    },
+    {
+      "path": "venv310/bin/tqdm",
+      "size_bytes": 203,
+      "lines": null,
+      "sha256_12": "406c2273796d"
+    },
+    {
+      "path": "venv310/bin/ttx",
+      "size_bytes": 208,
+      "lines": null,
+      "sha256_12": "05198a5533a4"
+    },
+    {
+      "path": "venv310/bin/wheel",
+      "size_bytes": 208,
+      "lines": null,
+      "sha256_12": "aa1cf20bd5c9"
+    },
+    {
+      "path": "venv310/etc/ryu/ryu.conf",
+      "size_bytes": 145,
+      "lines": null,
+      "sha256_12": "3c07bdd1b1f2"
+    },
+    {
+      "path": "venv310/include/site/python3.10/greenlet/greenlet.h",
+      "size_bytes": 4755,
+      "lines": null,
+      "sha256_12": "b33e69611490"
+    },
+    {
+      "path": "venv310/pyvenv.cfg",
+      "size_bytes": 71,
+      "lines": null,
+      "sha256_12": "852addd6d76e"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/install.json",
+      "size_bytes": 63,
+      "lines": 4,
+      "sha256_12": "31fa7d2306ba"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/package.json",
+      "size_bytes": 1411,
+      "lines": 41,
+      "sha256_12": "b020e5283da5"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/static/1.9daa5160b7fc741623bf.js",
+      "size_bytes": 4829088,
+      "lines": null,
+      "sha256_12": "f0fe886d2801"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/static/1.9daa5160b7fc741623bf.js.LICENSE.txt",
+      "size_bytes": 2087,
+      "lines": 80,
+      "sha256_12": "1c9ebb787344"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/static/remoteEntry.b2077f01f9b03ba2c63d.js",
+      "size_bytes": 3789,
+      "lines": null,
+      "sha256_12": "b2077f01f9b0"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/static/style.js",
+      "size_bytes": 118,
+      "lines": null,
+      "sha256_12": "f8242dd194cf"
+    },
+    {
+      "path": "venv310/share/jupyter/labextensions/jupyterlab-plotly/static/third-party-licenses.json",
+      "size_bytes": 1264,
+      "lines": 10,
+      "sha256_12": "e202018f172d"
+    },
+    {
+      "path": "venv310/share/man/man1/ipython.1",
+      "size_bytes": 2058,
+      "lines": null,
+      "sha256_12": "3d57503f6847"
+    },
+    {
+      "path": "venv310/share/man/man1/isympy.1",
+      "size_bytes": 6659,
+      "lines": null,
+      "sha256_12": "f4365d48e210"
+    },
+    {
+      "path": "venv310/share/man/man1/ttx.1",
+      "size_bytes": 5377,
+      "lines": null,
+      "sha256_12": "70b6e6fe938e"
+    }
+  ]
+}

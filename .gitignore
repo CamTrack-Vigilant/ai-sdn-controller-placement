@@ -210,3 +210,6 @@ __marimo__/
 .~*
 *.aux
 
+
+# Local AI Studio key file
+configs/ai_studio_key.txt

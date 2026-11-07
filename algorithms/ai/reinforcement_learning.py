@@ -36,8 +36,14 @@ def _composite_reward(
     reliability: float,
     latency_weight: float,
     reliability_weight: float,
+    seconds_per_episode: float = 0.0,
+    seconds_per_episode_weight: float = 0.0,
 ) -> float:
-    return -(latency_weight * average_distance) + (reliability_weight * reliability)
+    return (
+        -(latency_weight * average_distance)
+        + (reliability_weight * reliability)
+        - (seconds_per_episode_weight * seconds_per_episode)
+    )
 
 
 def _append_jsonl(log_path: str, records: list[dict]) -> None:
@@ -60,6 +66,7 @@ def bandit_rl_controller_placement(
     run_label: str | None = None,
     latency_weight: float = 1.0,
     reliability_weight: float = 0.0,
+    seconds_per_episode_weight: float = 0.0,
     return_metadata: bool = False,
 ) -> List[str] | tuple[List[str], dict[str, int | float | None]]:
     """Epsilon-greedy bandit baseline for adaptive controller placement."""
@@ -74,6 +81,9 @@ def bandit_rl_controller_placement(
 
     if reliability_weight < 0:
         raise ValueError("reliability_weight must be non-negative")
+
+    if seconds_per_episode_weight < 0:
+        raise ValueError("seconds_per_episode_weight must be non-negative")
 
     nodes = list(graph.nodes)
     if num_controllers > len(nodes):
@@ -117,6 +127,7 @@ def bandit_rl_controller_placement(
             reliability=action_reliabilities[action],
             latency_weight=latency_weight,
             reliability_weight=reliability_weight,
+            seconds_per_episode_weight=seconds_per_episode_weight,
         )
         for action in action_list
     }
@@ -229,6 +240,23 @@ def bandit_rl_controller_placement(
     return list(best_action)
 
 
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+
+class _DQN(nn.Module):
+    def __init__(self, n_in: int, n_out: int):
+        super().__init__()
+        self.fc1 = nn.Linear(n_in, 64)
+        self.fc2 = nn.Linear(64, 64)
+        self.fc3 = nn.Linear(64, n_out)
+        self.relu = nn.ReLU()
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.fc3(self.relu(self.fc2(self.relu(self.fc1(x)))))
+
+
 def dqn_controller_placement(
     graph: nx.Graph,
     num_controllers: int,
@@ -241,6 +269,8 @@ def dqn_controller_placement(
     epsilon_end: float = 0.05,
     epsilon_decay: float = 0.995,
     seed: int = 42,
+    load_model_path: str | None = None,
+    save_model_path: str | None = None,
     return_metadata: bool = False,
 ) -> List[str] | Tuple[List[str], dict]:
     """
@@ -248,11 +278,9 @@ def dqn_controller_placement(
     Architecture: MLP Input(N) -> Linear(64, ReLU) -> Linear(64, ReLU) -> Output(N).
     Selects k distinct controller nodes sequentially per episode and evaluates both
     offline training time (s) and online single forward-pass inference latency (ms).
+    Supports saving trained weights (`save_model_path`) and zero-retraining online
+    inference on dynamic topology churn states (`load_model_path`).
     """
-    import torch
-    import torch.nn as nn
-    import torch.optim as optim
-
     if num_controllers <= 0:
         raise ValueError("num_controllers must be greater than zero")
     nodes = list(graph.nodes)
@@ -264,17 +292,6 @@ def dqn_controller_placement(
     np.random.seed(seed)
     torch.manual_seed(seed)
     device = torch.device("cpu")
-
-    class _DQN(nn.Module):
-        def __init__(self, n_in: int, n_out: int):
-            super().__init__()
-            self.fc1 = nn.Linear(n_in, 64)
-            self.fc2 = nn.Linear(64, 64)
-            self.fc3 = nn.Linear(64, n_out)
-            self.relu = nn.ReLU()
-
-        def forward(self, x: torch.Tensor) -> torch.Tensor:
-            return self.fc3(self.relu(self.fc2(self.relu(self.fc1(x)))))
 
     q_net = _DQN(num_nodes, num_nodes).to(device)
     target_net = _DQN(num_nodes, num_nodes).to(device)
@@ -299,66 +316,78 @@ def dqn_controller_placement(
     best_reward = float("-inf")
     update_steps = 0
 
-    t_train_start = time.perf_counter()
-    for _ in range(episodes):
-        selected_indices: List[int] = []
-        mask = np.zeros(num_nodes, dtype=np.float32)
-        state = norm_degrees.copy()
+    if load_model_path is not None:
+        q_net.load_state_dict(
+            torch.load(load_model_path, map_location=device, weights_only=True)
+        )
+        q_net.eval()
+        training_time_sec = 0.0
+        episodes = 0
+    else:
+        t_train_start = time.perf_counter()
+        for _ in range(episodes):
+            selected_indices: List[int] = []
+            mask = np.zeros(num_nodes, dtype=np.float32)
+            state = norm_degrees.copy()
 
-        for step_idx in range(num_controllers):
-            available = [i for i in range(num_nodes) if i not in selected_indices]
-            if random.random() < epsilon:
-                action = random.choice(available)
-            else:
-                with torch.no_grad():
-                    s_tensor = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
-                    q_vals = q_net(s_tensor).squeeze(0).cpu().numpy()
-                    q_vals[selected_indices] = -1e9
-                    action = int(np.argmax(q_vals))
+            for step_idx in range(num_controllers):
+                available = [i for i in range(num_nodes) if i not in selected_indices]
+                if random.random() < epsilon:
+                    action = random.choice(available)
+                else:
+                    with torch.no_grad():
+                        s_tensor = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+                        q_vals = q_net(s_tensor).squeeze(0).cpu().numpy()
+                        q_vals[selected_indices] = -1e9
+                        action = int(np.argmax(q_vals))
 
-            selected_indices.append(action)
-            mask[action] = 1.0
-            next_state = 0.5 * norm_degrees + 0.5 * mask
-            done = step_idx == (num_controllers - 1)
+                selected_indices.append(action)
+                mask[action] = 1.0
+                next_state = 0.5 * norm_degrees + 0.5 * mask
+                done = step_idx == (num_controllers - 1)
 
-            current_nodes = [nodes[i] for i in selected_indices]
-            avg_lat = _average_distance_from_all_pairs(all_pairs, nodes, tuple(current_nodes))
-            rel = control_plane_reliability_single_link_failure_cached(graph, current_nodes)
-            reward = float(10.0 * ((max_avg_dist - avg_lat) / max_avg_dist) + 5.0 * rel)
+                current_nodes = [nodes[i] for i in selected_indices]
+                avg_lat = _average_distance_from_all_pairs(all_pairs, nodes, tuple(current_nodes))
+                rel = control_plane_reliability_single_link_failure_cached(graph, current_nodes)
+                reward = float(10.0 * ((max_avg_dist - avg_lat) / max_avg_dist) + 5.0 * rel)
 
-            if done and reward > best_reward:
-                best_reward = reward
-                best_controllers = list(current_nodes)
+                if done and reward > best_reward:
+                    best_reward = reward
+                    best_controllers = list(current_nodes)
 
-            replay_buffer.append((state, action, reward, next_state, float(done)))
-            state = next_state
+                replay_buffer.append((state, action, reward, next_state, float(done)))
+                state = next_state
 
-            if len(replay_buffer) >= batch_size:
-                batch = random.sample(replay_buffer, batch_size)
-                b_s, b_a, b_r, b_ns, b_d = zip(*batch)
-                s_t = torch.tensor(np.array(b_s), dtype=torch.float32, device=device)
-                a_t = torch.tensor(b_a, dtype=torch.int64, device=device)
-                r_t = torch.tensor(b_r, dtype=torch.float32, device=device)
-                ns_t = torch.tensor(np.array(b_ns), dtype=torch.float32, device=device)
-                d_t = torch.tensor(b_d, dtype=torch.float32, device=device)
+                if len(replay_buffer) >= batch_size:
+                    batch = random.sample(replay_buffer, batch_size)
+                    b_s, b_a, b_r, b_ns, b_d = zip(*batch)
+                    s_t = torch.tensor(np.array(b_s), dtype=torch.float32, device=device)
+                    a_t = torch.tensor(b_a, dtype=torch.int64, device=device)
+                    r_t = torch.tensor(b_r, dtype=torch.float32, device=device)
+                    ns_t = torch.tensor(np.array(b_ns), dtype=torch.float32, device=device)
+                    d_t = torch.tensor(b_d, dtype=torch.float32, device=device)
 
-                q_pred = q_net(s_t).gather(1, a_t.unsqueeze(1)).squeeze(1)
-                with torch.no_grad():
-                    q_next = target_net(ns_t).max(dim=1)[0]
-                    q_target = r_t + (1.0 - d_t) * gamma * q_next
+                    q_pred = q_net(s_t).gather(1, a_t.unsqueeze(1)).squeeze(1)
+                    with torch.no_grad():
+                        q_next = target_net(ns_t).max(dim=1)[0]
+                        q_target = r_t + (1.0 - d_t) * gamma * q_next
 
-                loss = loss_fn(q_pred, q_target)
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
+                    loss = loss_fn(q_pred, q_target)
+                    optimizer.zero_grad()
+                    loss.backward()
+                    optimizer.step()
 
-                update_steps += 1
-                if update_steps % 100 == 0:
-                    target_net.load_state_dict(q_net.state_dict())
+                    update_steps += 1
+                    if update_steps % 100 == 0:
+                        target_net.load_state_dict(q_net.state_dict())
 
-        epsilon = max(epsilon_end, epsilon * epsilon_decay)
+            epsilon = max(epsilon_end, epsilon * epsilon_decay)
 
-    training_time_sec = time.perf_counter() - t_train_start
+        training_time_sec = time.perf_counter() - t_train_start
+        if save_model_path is not None:
+            out_file = Path(save_model_path)
+            out_file.parent.mkdir(parents=True, exist_ok=True)
+            torch.save(q_net.state_dict(), out_file)
 
     # Measure online single forward-pass inference latency (top-k Q-value selection)
     q_net.eval()

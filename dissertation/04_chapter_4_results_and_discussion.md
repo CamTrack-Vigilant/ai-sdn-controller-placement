@@ -12,7 +12,7 @@ A recurring limitation in networking reinforcement learning studies is single-se
 
 ![](../results/dqn_1000_episodes_convergence.png)
 
-In the 1,000-episode pilot on Internet2 (`results/pilot_metrics.json`), the policy reward increased rapidly during the initial exploration phase as $\epsilon$ decayed from $1.0$ to $0.05$, stabilizing within approximately 20 episodes. Across all 1,000 episodes (including early exploration), the agent recorded a grand training mean reward of $13.055 \pm 0.589$, a final 10-episode post-convergence rolling average of $13.199$, a peak episode reward of $14.607$, and a total CPU training runtime of $21.26\text{ s}$ ($0.0213\text{ s/episode}$).
+In the initial uncached 1,000-episode pilot on Internet2 (`results/pilot_metrics.json`, $k=3$), the policy reward increased rapidly during the initial exploration phase as $\epsilon$ decayed from $1.0$ to $0.05$, stabilizing within approximately 20 episodes. Across all 1,000 episodes (including early exploration), the agent recorded a grand training mean reward of $13.055 \pm 0.589$, a final 10-episode post-convergence rolling average of $13.199$, a peak episode reward of $14.607$, and an uncached CPU training runtime of $21.26\text{ s}$ ($21.26\text{ ms/episode}$). In the subsequent 10-run multi-seed stability audit (`results/rl_analysis/stability_audit/stability_summary.csv`, Table 4.1), enabling precomputed $N-1$ component caching (`precompute_reliability_cache`) reduced the per-episode training rate on Internet2 to $11.40 \pm 0.11\text{ ms/episode}$ ($11.40\text{ s}$ per 1,000 episodes).
 
 **Table 4.1: Multi-Seed Stability Audit Results for Deep Q-Network Across 10 Independent Runs (`stability_summary.csv`)**
 
@@ -31,81 +31,81 @@ In the 1,000-episode pilot on Internet2 (`results/pilot_metrics.json`), the poli
 
 ![](../results/rl_analysis/convergence_analysis.png)
 
-Across all 10 audit runs in Table 4.1, zero gradient explosions or policy divergences occurred (`divergence_flag = False` in all 10 runs). On Internet2, the audit recorded a mean best reward of $14.194 \pm 0.063$ and a final 100-episode rolling mean reward of $12.654 \pm 0.348$, while on ATT-MPLS ($N=21$) the agent reached a mean best reward of $14.854 \pm 0.395$ and a rolling mean reward of $12.557 \pm 0.328$. Normalized action entropy remained between $0.953$ and $0.982$, and per-episode training execution averaged $11.40 \pm 0.11\text{ ms/episode}$ on Internet2 and $19.22 \pm 6.31\text{ ms/episode}$ on ATT-MPLS.
+Across all 10 audit runs in Table 4.1, zero gradient explosions or policy divergences occurred (`divergence_flag = False` in all 10 runs). Note that `run_stability_audit.py` evaluates single-controller ($k=1$) action selection stability and entropy across 1,000 episodes (reported in the `Single-Controller L(P)` column of Table 4.1), whereas the 1,000-episode convergence pilot and dynamic churn benchmarks evaluate multi-controller ($k=3$) placement. On Internet2, the audit recorded a mean best reward of $14.194 \pm 0.063$ and a final 100-episode rolling mean reward of $12.654 \pm 0.348$, while on ATT-MPLS ($N=21$) the agent reached a mean best reward of $14.854 \pm 0.395$ and a rolling mean reward of $12.557 \pm 0.328$. Normalized action entropy remained between $0.953$ and $0.982$, and per-episode training execution averaged $11.40 \pm 0.11\text{ ms/episode}$ on Internet2 and $19.22 \pm 6.31\text{ ms/episode}$ on ATT-MPLS.
 
 ### 4.1.2 Factorial Latency-Cost Benchmark Matrix
 
-To evaluate how topology structure, network scale, and controller budget interact across all five algorithmic paradigms, the 60-cell synthetic factorial experiment ($2 \text{ topologies} \times 2 \text{ scales} \times 3 \text{ budgets} \times 5 \text{ algorithms} \times 5 \text{ seeds} = 300 \text{ runs}$) was executed (`results/experiment_data/factorial_latency_cost_summary_20261017_052319.csv`). Tables 4.2 and 4.3 report the cell means and standard deviations for Barabási-Albert and Waxman topologies across $N \in \{20, 50\}$ and $k \in \{2, 3, 5\}$.
+To evaluate how topology structure, network scale, and controller budget interact across all five algorithmic paradigms, the 60-cell synthetic factorial experiment ($2 \text{ topologies} \times 2 \text{ scales} \times 3 \text{ budgets} \times 5 \text{ algorithms} \times 5 \text{ seeds} = 300 \text{ runs}$) was executed (`results/experiment_data/factorial_latency_cost_summary_20261017_052319.csv`). Tables 4.2 and 4.3 report the cell means and standard deviations for Barabási-Albert and Waxman topologies across $N \in \{20, 50\}$ and $k \in \{2, 3, 5\}$ (where the `PyTorch DQN / RL` rows report the 200–300 episode `Bandit RL` training runtime $\omega$ in milliseconds across the 60 factorial cells).
 
 **Table 4.2: Summary of Factorial Performance Metrics for Barabási-Albert Topologies (`factorial_latency_cost_summary_20261017_052319.csv`)**
 
 | Scale ($N$) | Budget ($k$) | Algorithm Paradigm | Mean Latency ($L(P)$ ms) | Latency Std | Mean Runtime ($\omega$ ms) | Runtime Std | Pareto Optimal? | Latency Gain vs. Random (%) |
 | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| 20 | 2 | Random Baseline | 7.121 | 0.000 | 0.018 | 0.001 | Yes | 0.00% |
+| 20 | 2 | Random Baseline | 7.121 | 0.871 | 0.018 | 0.003 | Yes | 0.00% |
 | 20 | 2 | Greedy $K$-Center | 6.083 | 0.000 | 0.029 | 0.004 | Yes | 14.58% |
-| 20 | 2 | $K$-Means Clustering | 7.885 | 0.000 | 3.988 | 0.412 | No (Dominated) | -10.73% |
-| 20 | 2 | Genetic Algorithm | 5.810 | 0.000 | 25.944 | 0.892 | Yes | 18.41% |
-| 20 | 2 | PyTorch DQN / RL | 6.028 | 0.000 | 149.928 | 8.412 | No (Dominated) | 15.35% |
-| 20 | 3 | Random Baseline | 7.113 | 0.000 | 0.020 | 0.001 | Yes | 0.00% |
-| 20 | 3 | Greedy $K$-Center | 5.751 | 0.000 | 0.057 | 0.005 | Yes | 19.15% |
-| 20 | 3 | $K$-Means Clustering | 5.005 | 0.000 | 4.028 | 0.354 | Yes | 29.63% |
+| 20 | 2 | $K$-Means Clustering | 7.885 | 0.000 | 3.988 | 0.284 | No (Dominated) | -10.73% |
+| 20 | 2 | Genetic Algorithm | 5.810 | 0.000 | 25.944 | 1.252 | Yes | 18.41% |
+| 20 | 2 | PyTorch DQN / RL | 6.028 | 0.052 | 149.928 | 3.694 | No (Dominated) | 15.35% |
+| 20 | 3 | Random Baseline | 7.113 | 0.470 | 0.020 | 0.004 | Yes | 0.00% |
+| 20 | 3 | Greedy $K$-Center | 5.751 | 0.000 | 0.057 | 0.008 | Yes | 19.16% |
+| 20 | 3 | $K$-Means Clustering | 5.005 | 0.383 | 4.028 | 0.249 | Yes | 29.63% |
 | 20 | 3 | Genetic Algorithm | 4.321 | 0.000 | 28.776 | 0.968 | Yes | 39.26% |
-| 20 | 3 | PyTorch DQN / RL | 4.558 | 0.000 | 157.571 | 7.915 | No (Dominated) | 35.92% |
-| 20 | 5 | Random Baseline | 4.258 | 0.000 | 0.021 | 0.001 | Yes | 0.00% |
-| 20 | 5 | Greedy $K$-Center | 3.726 | 0.000 | 0.098 | 0.007 | Yes | 12.50% |
-| 20 | 5 | $K$-Means Clustering | 3.559 | 0.000 | 5.204 | 0.412 | Yes | 16.42% |
+| 20 | 3 | PyTorch DQN / RL | 4.558 | 0.243 | 157.571 | 6.182 | No (Dominated) | 35.92% |
+| 20 | 5 | Random Baseline | 4.258 | 0.388 | 0.021 | 0.005 | Yes | 0.00% |
+| 20 | 5 | Greedy $K$-Center | 3.726 | 0.000 | 0.098 | 0.014 | Yes | 12.51% |
+| 20 | 5 | $K$-Means Clustering | 3.559 | 0.000 | 5.204 | 0.563 | Yes | 16.43% |
 | 20 | 5 | Genetic Algorithm | 3.216 | 0.045 | 35.693 | 1.112 | Yes | 24.47% |
-| 20 | 5 | PyTorch DQN / RL | 3.610 | 0.000 | 160.022 | 6.841 | No (Dominated) | 15.22% |
-| 50 | 2 | Random Baseline | 7.993 | 0.000 | 0.021 | 0.001 | Yes | 0.00% |
-| 50 | 2 | Greedy $K$-Center | 5.631 | 0.000 | 0.067 | 0.006 | Yes | 29.55% |
-| 50 | 2 | $K$-Means Clustering | 7.374 | 0.000 | 4.052 | 0.312 | No (Dominated) | 7.74% |
+| 20 | 5 | PyTorch DQN / RL | 3.610 | 0.091 | 160.022 | 2.135 | No (Dominated) | 15.22% |
+| 50 | 2 | Random Baseline | 7.993 | 0.954 | 0.021 | 0.002 | Yes | 0.00% |
+| 50 | 2 | Greedy $K$-Center | 5.631 | 0.000 | 0.067 | 0.005 | Yes | 29.56% |
+| 50 | 2 | $K$-Means Clustering | 7.374 | 0.000 | 4.052 | 0.187 | No (Dominated) | 7.75% |
 | 50 | 2 | Genetic Algorithm | 5.134 | 0.000 | 50.765 | 1.007 | Yes | 35.77% |
-| 50 | 2 | PyTorch DQN / RL | 5.134 | 0.000 | 1068.596 | 42.112 | No (Dominated) | 35.77% |
-| 50 | 3 | Random Baseline | 6.209 | 0.000 | 0.025 | 0.002 | Yes | 0.00% |
-| 50 | 3 | Greedy $K$-Center | 4.959 | 0.000 | 0.159 | 0.012 | Yes | 20.13% |
-| 50 | 3 | $K$-Means Clustering | 5.044 | 0.000 | 5.256 | 0.385 | No (Dominated) | 18.76% |
+| 50 | 2 | PyTorch DQN / RL | 5.134 | 0.000 | 1068.596 | 14.549 | No (Dominated) | 35.77% |
+| 50 | 3 | Random Baseline | 6.209 | 0.266 | 0.025 | 0.004 | Yes | 0.00% |
+| 50 | 3 | Greedy $K$-Center | 4.959 | 0.000 | 0.159 | 0.034 | Yes | 20.13% |
+| 50 | 3 | $K$-Means Clustering | 5.044 | 0.424 | 5.256 | 0.336 | No (Dominated) | 18.77% |
 | 50 | 3 | Genetic Algorithm | 4.247 | 0.089 | 62.427 | 5.784 | Yes | 31.59% |
-| 50 | 3 | PyTorch DQN / RL | 4.650 | 0.000 | 1064.514 | 38.910 | No (Dominated) | 25.11% |
-| 50 | 5 | Random Baseline | 5.264 | 0.000 | 0.021 | 0.001 | Yes | 0.00% |
-| 50 | 5 | Greedy $K$-Center | 4.203 | 0.000 | 0.207 | 0.015 | Yes | 20.15% |
-| 50 | 5 | $K$-Means Clustering | 4.890 | 0.000 | 5.258 | 0.402 | No (Dominated) | 7.10% |
-| 50 | 5 | Genetic Algorithm | 3.553 | 0.104 | 74.937 | 4.512 | Yes | 32.49% |
-| 50 | 5 | PyTorch DQN / RL | 4.004 | 0.000 | 1086.206 | 45.102 | No (Dominated) | 23.94% |
+| 50 | 3 | PyTorch DQN / RL | 4.650 | 0.019 | 1064.514 | 16.237 | No (Dominated) | 25.11% |
+| 50 | 5 | Random Baseline | 5.264 | 0.414 | 0.021 | 0.002 | Yes | 0.00% |
+| 50 | 5 | Greedy $K$-Center | 4.203 | 0.000 | 0.207 | 0.020 | Yes | 20.16% |
+| 50 | 5 | $K$-Means Clustering | 4.890 | 0.232 | 5.258 | 0.374 | No (Dominated) | 7.09% |
+| 50 | 5 | Genetic Algorithm | 3.553 | 0.041 | 74.937 | 2.720 | Yes | 32.49% |
+| 50 | 5 | PyTorch DQN / RL | 4.004 | 0.043 | 1086.206 | 18.095 | No (Dominated) | 23.94% |
 
 **Table 4.3: Summary of Factorial Performance Metrics for Waxman Spatial Topologies (`factorial_latency_cost_summary_20261017_052319.csv`)**
 
 | Scale ($N$) | Budget ($k$) | Algorithm Paradigm | Mean Latency ($L(P)$ ms) | Latency Std | Mean Runtime ($\omega$ ms) | Runtime Std | Pareto Optimal? | Latency Gain vs. Random (%) |
 | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| 20 | 2 | Random Baseline | 6.584 | 0.000 | 0.020 | 0.001 | Yes | 0.00% |
+| 20 | 2 | Random Baseline | 6.584 | 1.514 | 0.020 | 0.001 | Yes | 0.00% |
 | 20 | 2 | Greedy $K$-Center | 4.922 | 0.000 | 0.026 | 0.002 | Yes | 25.24% |
-| 20 | 2 | $K$-Means Clustering | 4.043 | 0.000 | 3.397 | 0.214 | Yes | 38.59% |
-| 20 | 2 | Genetic Algorithm | 3.715 | 0.000 | 26.258 | 0.912 | Yes | 43.58% |
-| 20 | 2 | PyTorch DQN / RL | 3.779 | 0.000 | 60.329 | 3.120 | No (Dominated) | 42.60% |
-| 20 | 3 | Random Baseline | 5.024 | 0.000 | 0.018 | 0.001 | Yes | 0.00% |
-| 20 | 3 | Greedy $K$-Center | 3.526 | 0.000 | 0.043 | 0.004 | Yes | 29.82% |
-| 20 | 3 | $K$-Means Clustering | 3.953 | 0.000 | 4.493 | 0.312 | No (Dominated) | 21.32% |
-| 20 | 3 | Genetic Algorithm | 2.432 | 0.000 | 33.125 | 1.105 | Yes | 51.60% |
-| 20 | 3 | PyTorch DQN / RL | 2.517 | 0.000 | 58.335 | 2.890 | No (Dominated) | 49.90% |
-| 20 | 5 | Random Baseline | 4.202 | 0.000 | 0.022 | 0.002 | Yes | 0.00% |
-| 20 | 5 | Greedy $K$-Center | 2.769 | 0.000 | 0.079 | 0.006 | Yes | 34.10% |
-| 20 | 5 | $K$-Means Clustering | 1.998 | 0.000 | 4.573 | 0.341 | Yes | 52.45% |
-| 20 | 5 | Genetic Algorithm | 1.879 | 0.000 | 35.792 | 1.240 | Yes | 55.29% |
-| 20 | 5 | PyTorch DQN / RL | 1.997 | 0.000 | 63.375 | 3.412 | No (Dominated) | 52.47% |
-| 50 | 2 | Random Baseline | 19.436 | 0.000 | 0.022 | 0.001 | Yes | 0.00% |
-| 50 | 2 | Greedy $K$-Center | 17.057 | 0.000 | 0.059 | 0.005 | Yes | 12.24% |
-| 50 | 2 | $K$-Means Clustering | 25.525 | 0.000 | 3.976 | 0.289 | No (Dominated) | -31.33% |
-| 50 | 2 | Genetic Algorithm | 10.604 | 0.020 | 50.245 | 1.812 | Yes | 45.44% |
-| 50 | 2 | PyTorch DQN / RL | 11.432 | 0.000 | 396.982 | 18.410 | No (Dominated) | 41.18% |
-| 50 | 3 | Random Baseline | 10.872 | 0.000 | 0.020 | 0.001 | Yes | 0.00% |
-| 50 | 3 | Greedy $K$-Center | 8.842 | 0.000 | 0.086 | 0.008 | Yes | 18.67% |
-| 50 | 3 | $K$-Means Clustering | 8.879 | 0.000 | 4.452 | 0.312 | No (Dominated) | 18.33% |
+| 20 | 2 | $K$-Means Clustering | 4.043 | 0.000 | 3.397 | 0.366 | Yes | 38.59% |
+| 20 | 2 | Genetic Algorithm | 3.715 | 0.000 | 26.258 | 0.799 | Yes | 43.56% |
+| 20 | 2 | PyTorch DQN / RL | 3.779 | 0.141 | 60.329 | 1.657 | No (Dominated) | 42.61% |
+| 20 | 3 | Random Baseline | 5.024 | 0.961 | 0.018 | 0.002 | Yes | 0.00% |
+| 20 | 3 | Greedy $K$-Center | 3.526 | 0.000 | 0.043 | 0.007 | Yes | 29.81% |
+| 20 | 3 | $K$-Means Clustering | 3.953 | 0.000 | 4.493 | 0.460 | No (Dominated) | 21.32% |
+| 20 | 3 | Genetic Algorithm | 2.432 | 0.000 | 33.125 | 1.897 | Yes | 51.60% |
+| 20 | 3 | PyTorch DQN / RL | 2.517 | 0.080 | 58.335 | 2.235 | No (Dominated) | 49.89% |
+| 20 | 5 | Random Baseline | 4.202 | 2.889 | 0.022 | 0.004 | Yes | 0.00% |
+| 20 | 5 | Greedy $K$-Center | 2.769 | 0.000 | 0.079 | 0.008 | Yes | 34.10% |
+| 20 | 5 | $K$-Means Clustering | 1.998 | 0.177 | 4.573 | 0.241 | Yes | 52.46% |
+| 20 | 5 | Genetic Algorithm | 1.879 | 0.044 | 35.792 | 1.164 | Yes | 55.29% |
+| 20 | 5 | PyTorch DQN / RL | 1.997 | 0.038 | 63.375 | 1.804 | No (Dominated) | 52.47% |
+| 50 | 2 | Random Baseline | 19.436 | 5.092 | 0.022 | 0.004 | Yes | 0.00% |
+| 50 | 2 | Greedy $K$-Center | 17.057 | 0.000 | 0.059 | 0.013 | Yes | 12.24% |
+| 50 | 2 | $K$-Means Clustering | 25.525 | 0.000 | 3.976 | 0.372 | No (Dominated) | -31.33% |
+| 50 | 2 | Genetic Algorithm | 10.604 | 0.127 | 50.245 | 2.825 | Yes | 45.44% |
+| 50 | 2 | PyTorch DQN / RL | 11.432 | 1.059 | 396.982 | 6.537 | No (Dominated) | 41.18% |
+| 50 | 3 | Random Baseline | 10.872 | 2.314 | 0.020 | 0.003 | Yes | 0.00% |
+| 50 | 3 | Greedy $K$-Center | 8.842 | 0.000 | 0.086 | 0.009 | Yes | 18.67% |
+| 50 | 3 | $K$-Means Clustering | 8.879 | 0.000 | 4.452 | 0.351 | No (Dominated) | 18.33% |
 | 50 | 3 | Genetic Algorithm | 5.921 | 0.013 | 58.388 | 1.633 | Yes | 45.54% |
-| 50 | 3 | PyTorch DQN / RL | 7.287 | 0.000 | 438.198 | 21.312 | No (Dominated) | 32.98% |
-| 50 | 5 | Random Baseline | 6.975 | 0.000 | 0.020 | 0.001 | Yes | 0.00% |
-| 50 | 5 | Greedy $K$-Center | 6.940 | 0.000 | 0.172 | 0.012 | Yes | 0.50% |
-| 50 | 5 | $K$-Means Clustering | 6.883 | 0.000 | 5.223 | 0.412 | Yes | 1.32% |
+| 50 | 3 | PyTorch DQN / RL | 7.287 | 0.461 | 438.198 | 9.085 | No (Dominated) | 32.98% |
+| 50 | 5 | Random Baseline | 6.975 | 1.450 | 0.020 | 0.002 | Yes | 0.00% |
+| 50 | 5 | Greedy $K$-Center | 6.940 | 0.000 | 0.172 | 0.023 | Yes | 0.50% |
+| 50 | 5 | $K$-Means Clustering | 6.883 | 0.000 | 5.223 | 0.357 | Yes | 1.31% |
 | 50 | 5 | Genetic Algorithm | 4.772 | 0.112 | 75.866 | 1.531 | Yes | 31.59% |
-| 50 | 5 | PyTorch DQN / RL | 5.322 | 0.000 | 533.085 | 24.890 | No (Dominated) | 23.70% |
+| 50 | 5 | PyTorch DQN / RL | 5.322 | 0.276 | 533.085 | 8.304 | No (Dominated) | 23.70% |
 
 ![](../results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k3_20261017_052319.png)
 
@@ -154,7 +154,9 @@ Table 4.4b reports the multi-factor ANOVA computed across the 300-observation sy
 | Node Scale ($N \in \{20, 50\}$) | 412.084 | 1 | 412.084 | $F(1, 240) = 502.64$ | $p < 0.0001$ |
 | Controller Budget ($k \in \{2, 3, 5\}$) | 188.450 | 2 | 94.225 | $F(2, 240) = 114.93$ | $p < 0.0001$ |
 | Within-Cell Residual Error ($60 \times 4$) | 196.766 | 240 | 0.820 | -- | -- |
-| Total ($N_{obs} - 1$) | 1391.529 | 299 | -- | -- | -- |
+| Total ($N_{obs} - 1$)* | 1391.529 | 299 | -- | -- | -- |
+
+*\*Note: Table 4.4b reports the 4 main-effect degrees of freedom ($4 + 1 + 1 + 2 = 8$) and pure within-cell residual error across the 60 factorial cells ($60 \times 4 = 240$), omitting the $51$ higher-order factor interaction degrees of freedom ($60 - 1 - 8 = 51$; $8 + 51 + 240 = 299$) for compactness.*
 
 With $df_{alg} = 4$ and within-cell residual error $df_{error} = 60 \times (5 - 1) = 240$, the main effect of Algorithm Family is statistically significant ($F(4, 240) = 118.90, p < 0.0001$). (When the 5 seed replicates per cell are averaged into a 60-row cell-mean table and analyzed via a one-way between-algorithm model without blocking, the degrees of freedom correspond to $df_1 = 4, df_2 = 60 - 5 = 55$). Post-hoc Tukey HSD tests confirm significant latency reductions for GA and $K$-Means relative to the Random baseline ($p < 0.001$, Cohen's $d = 1.42$). Conversely, a two-sample $t$-test comparing PyTorch DQN/RL and $K$-Means across static canonical runs ($n=5$ seeds per group, $df = 8$) shows no statistically significant difference in latency ($t(8) = 0.42, p = 0.68$).
 
@@ -172,7 +174,7 @@ Table 4.5 reports the five-way control-plane Round-Trip Time (RTT) measurements 
 | Bandit RL / DQN | `[n1, n10, n5]` | 3.056 | 6.718 | 1.564 | +1.492 | 100.0% |
 | Random Baseline | `[n13, n0, n18]` | 3.374 | 6.944 | 1.734 | +1.640 | 100.0% |
 
-Across all five strategies, Genetic Algorithm achieved the lowest mean RTT ($2.718\text{ ms}$, a $19.4\%$ reduction compared to Random's $3.374\text{ ms}$), while $K$-Means achieved the second-lowest mean RTT ($2.852\text{ ms}$) and the lowest worst-case tail RTT ($5.764\text{ ms}$). Both outperformed Bandit RL / DQN ($3.056\text{ ms}$). Because the emulation configures a uniform $2.0\text{ ms}$ base link delay per weighted hop with $\pm 0.5\text{ ms}$ uniform jitter, the difference between round-trip delay and one-way graph distance $L(P)$ ($+1.315\text{ ms}$ to $+1.640\text{ ms}$) reflects round-trip return traversal and queuing jitter, confirming that the ordinal ranking of the five algorithms ($GA \prec \text{K-Means} \prec \text{Greedy} \prec \text{RL/DQN} \prec \text{Random}$) is preserved under packet-level jitter.
+Across all five strategies, Genetic Algorithm achieved the lowest mean RTT ($2.718\text{ ms}$, a $19.4\%$ reduction compared to Random's $3.374\text{ ms}$), while $K$-Means achieved the second-lowest mean RTT ($2.852\text{ ms}$) and the lowest worst-case tail RTT ($5.764\text{ ms}$). Both outperformed Bandit RL / DQN ($3.056\text{ ms}$). Because the emulation configures edge-weighted `TCLink` delays $d_{\text{tc}}(u, v) = \max(0.10\text{ ms}, 2.0 \times w(u, v))$ with $\pm 0.5\text{ ms}$ uniform jitter, the difference between round-trip delay and one-way graph distance $L(P)$ ($+1.315\text{ ms}$ to $+1.640\text{ ms}$) reflects round-trip return traversal and queuing jitter, confirming that the ordinal ranking of the five algorithms ($GA \prec \text{K-Means} \prec \text{Greedy} \prec \text{RL/DQN} \prec \text{Random}$) is preserved under packet-level jitter.
 
 ### 4.1.5 Phase 4 Mininet Gate Test Execution Timing Breakdown
 
@@ -190,6 +192,27 @@ To test whether live Mininet network instantiation can be executed inside every 
 | Full Lifecycle Overhead (A + B + C + D) | 2974.69 | 2797.13 | 2854.66 | 2875.49 | 100.00% |
 
 As documented in `results/mininet_overhead_validation.json`, while the active online loop (Phases A + B + C) averaged $889.82\text{ ms}$ (range $869.69\text{--}913.20\text{ ms}$), Linux kernel namespace and OVS bridge teardown in Phase D added an average of $1,985.68\text{ ms}$, bringing the full per-episode lifecycle overhead to $2,875.49\text{ ms}$ (range $2,797.13\text{--}2,974.69\text{ ms}$). Because all 3 trials exceeded the $2,000\text{ ms}$ gate threshold (`exceeds_threshold: 3`, `decision: WARN`), running 1,000 episodic Mininet teardowns per seed would require approximately 48 minutes per seed. This measurement justified executing RL training over the cached NetworkX graph environment and restricting Mininet to post-convergence validation.
+
+### 4.1.6 Dynamic Topology Churn and Break-Even Amortization Analysis ($T_{\text{break}}$)
+
+To evaluate when a pre-trained PyTorch DQN's fast online forward-pass inference ($\tau_{\text{inf}}$) amortizes its upfront offline training cost ($\omega_{\text{train}}$) compared to re-running heuristics and metaheuristics from scratch under topology churn, we executed a 1,000-state dynamic link-churn benchmark (`scripts/run_dynamic_churn_experiment.py`, archived in `results/dynamic_churn_benchmark.json` and `results/experiment_data/dynamic_churn_summary.csv`). Across 5 random seeds (`seeds = [42, 43, 44, 45, 46]`) on both Internet2 and ATT-MPLS ($k=3$), each run simulated $T_{\text{churn}} = 100$ sequential non-bridge link removal and restoration epochs. The PyTorch `DQNetwork` was trained once offline on the initial base topology (`200` cached episodes) and subsequently queried via zero-retraining forward-pass inference (`load_model_path`, $\tau_{\text{inf}}$) across all 100 perturbed graph states $G_t$. Table 4.6B summarizes the 5-seed mean metrics and break-even churn horizons $T_{\text{break}} = \lceil \omega_{\text{train}} / (\tau_{\text{algo}} - \tau_{\text{DQN, inf}}) \rceil$.
+
+**Table 4.6B: Dynamic Topology Churn and Break-Even Amortization Results ($T_{\text{churn}} = 100$ Epochs $\times$ 5 Seeds, `dynamic_churn_summary.csv`)**
+
+| Topology | Algorithm | Upfront $\omega_{\text{train}}$ (ms) | Mean Online $\tau_{\text{inf}}$ (ms/epoch) | Cumulative $\Omega(100)$ (ms) | Mean Churn $L(P_t)$ (ms) | Mean Churn $Reach_{avg}$ (%) | Break-Even Horizon $T_{\text{break}}$ vs. DQN (Epochs) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Internet2 | PyTorch DQN (Inference) | 772.79 | 0.0257 | 775.36 | 2.287 | 99.57% | Baseline Reference |
+| Internet2 | Genetic Algorithm (GA) | 0.00 | 13.2030 | 1320.30 | 1.450 | 99.63% | 59.0 (range 42–101) |
+| Internet2 | $K$-Means Clustering | 0.00 | 5.2689 | 526.90 | 1.528 | 99.63% | 145.8 (range 104–235) |
+| Internet2 | Greedy $K$-Center | 0.00 | 0.0497 | 4.97 | 1.654 | 99.93% | 31,901.4 (23,005–52,772) |
+| ATT-MPLS | PyTorch DQN (Inference) | 921.69 | 0.0213 | 923.81 | 2.931 | 99.98% | Baseline Reference |
+| ATT-MPLS | Genetic Algorithm (GA) | 0.00 | 14.1233 | 1412.34 | 2.317 | 99.98% | 65.2 (range 44–84) |
+| ATT-MPLS | $K$-Means Clustering | 0.00 | 4.4728 | 447.28 | 2.904 | 99.98% | 207.6 (range 147–276) |
+| ATT-MPLS | Greedy $K$-Center | 0.00 | 0.0725 | 7.25 | 2.854 | 100.00% | 17,955.2 (11,267–22,611) |
+
+*\*Note: During the online churn loop, GA was configured with an online search budget of $P_{\text{pop}} = 24, G_{\max} = 25$. Reported break-even horizons $T_{\text{break}}$ are the 5-seed arithmetic means (and min–max ranges) of the per-seed break-even horizons across the 5 independent seeds.*
+
+As Table 4.6B demonstrates, a pre-trained PyTorch DQN executes online topological adaptation in $\tau_{\text{inf}} = 0.0213\text{--}0.0257\text{ ms/epoch}$, amortizing its upfront training overhead against Genetic Algorithm recomputation after an average of $T_{\text{break}} = 59.0\text{ epochs}$ on Internet2 and $T_{\text{break}} = 65.2\text{ epochs}$ on ATT-MPLS, and against $K$-Means after $T_{\text{break}} = 145.8\text{--}207.6\text{ epochs}$. Conversely, because Greedy $K$-Center executes in $0.0497\text{--}0.0725\text{ ms/epoch}$ with zero training overhead and achieves lower post-churn latency ($1.654\text{ ms}$ vs. DQN's $2.287\text{ ms}$ on Internet2), DQN requires $17,955\text{--}31,901$ churn epochs to amortize against Greedy $K$-Center.
 
 ## 4.2 IN-DEPTH DISCUSSION & DECISION FRAMEWORK
 
@@ -213,7 +236,7 @@ The factorial results show that graph structure governs which heuristic performs
 
 ### 4.2.3 Control-Plane Robustness Under Single-Link Failure Stress
 
-Across the 2-edge-connected canonical topologies (Internet2 and ATT-MPLS) and scale-free Barabási-Albert graphs ($m=2$) with $k \ge 3$, all five algorithms achieved $100.0\%$ single-link failure reachability ($Reach_{avg} = 1.0$). Because no edge in a 2-edge-connected graph is a bridge ($\forall e \in E$, removing $e$ leaves $G_e$ connected), single-link cuts do not partition the control plane. Conversely, on sparse Waxman topologies (`Waxman` $N=20, M=19$ and $N=50, M=53$), degree-1 leaf nodes and bridge links cause single-link cuts to isolate uncontrollered components, reducing $Reach_{avg}$ to $94.47\%\text{--}98.79\%$ (`complete_proposal_aligned_benchmark.csv`).
+Across the 2-edge-connected canonical topologies (Internet2 and ATT-MPLS) and scale-free Barabási-Albert graphs ($m=2$) with $k \ge 3$, all five algorithms achieved $100.0\%$ single-link failure reachability ($Reach_{avg} = 1.0$). Because no edge in a 2-edge-connected graph is a bridge ($\forall e \in E$, removing $e$ leaves $G_e$ connected), single-link cuts do not partition the control plane. Conversely, on sparse Waxman topologies (`Waxman` $N=20, M=19$ and $N=50, M=53$), degree-1 leaf nodes and bridge links cause single-link cuts to isolate uncontrolled components, reducing $Reach_{avg}$ to $94.47\%\text{--}98.79\%$ (`complete_proposal_aligned_benchmark.csv`).
 
 ### 4.2.4 Scenario-Conditioned Method Selection Guidance (Bounded to $N \le 50$)
 
@@ -228,12 +251,12 @@ Figure 4.6 and Table 4.7 summarize the scenario-conditioned decision guidelines 
 | Static Regional / National WAN ($N \le 50$, Planar Spatial Mesh) | Spatial Heuristic | $K$-Means Clustering | Achieves $1.045\text{--}1.998\text{ ms}$ latency at $k=5$, executes in $3.19\text{--}8.14\text{ ms}$, and requires zero training overhead. |
 | Scale-Free / Hub-and-Spoke Backbone ($N \le 50$, Degree Skew) | Deterministic Heuristic | Greedy $K$-Center | Sub-millisecond execution ($0.026\text{--}0.207\text{ ms}$); remains on the latency-cost Pareto frontier across all 12 synthetic cells. |
 | Offline Strategic Capacity Planning ($N \le 50$, Latency Priority) | Metaheuristic | Genetic Algorithm (GA) | Achieves the lowest mean latency across all 12 synthetic cells and lowest mean Mininet RTT ($2.718\text{ ms}$) in $12.9\text{--}75.9\text{ ms}$ runtime. |
-| Non-Stationary / High-Churn Topologies *(Candidate for Future Validation)* | Reinforcement Learning | Deep $Q$-Network (DQN) | Pareto-dominated on static graphs; hypothesized for future testing only where fast post-training forward passes ($\tau_{\text{inf}} = 0.021\text{--}0.029\text{ ms}$) can be reused across repeated online topology transitions. |
+| Non-Stationary / High-Churn Topologies ($T_{\text{churn}} > 60\text{--}208$ Epochs) | Reinforcement Learning | Deep $Q$-Network (DQN) | Amortizes 200-episode cached training overhead ($\omega_{\text{train}} = 772.8\text{--}921.7\text{ ms}$) via fast forward passes ($\tau_{\text{inf}} = 0.021\text{--}0.026\text{ ms/epoch}$) after $T_{\text{break}} = 59.0\text{--}65.2\text{ epochs}$ vs. GA and $145.8\text{--}207.6\text{ epochs}$ vs. $K$-Means, though degree-vector MLP inference incurs higher post-churn latency than heuristics. |
 
 ## 4.3 LIMITATIONS OF STUDY & THREATS TO VALIDITY
 
 The empirical conclusions of this dissertation are bounded by three experimental scope constraints:
 
-1. Static Topology Scope ($N \le 50$): All experiments evaluated static topologies with $N \in \{11, 20, 21, 50\}$ and uniform switch weights. Non-stationary link-churn traces and time-varying traffic matrices were not tested experimentally; therefore, any potential benefit of DRL under dynamic churn remains a hypothesis for future work.
+1. Topology Scale ($N \le 50$) and Fixed-Dimension MLP State Representation: All experiments evaluated topologies with $N \in \{11, 20, 21, 50\}$ and uniform switch traffic weights. While the 1,000-state dynamic link-churn benchmark (Section 4.1.6) confirmed that pre-trained DQN inference amortizes its upfront training compute after $T_{\text{break}} = 59.0\text{--}65.2\text{ epochs}$ against GA and $145.8\text{--}207.6\text{ epochs}$ against $K$-Means, the degree-vector MLP representation still trailed classical heuristics in post-churn propagation latency; evaluating Graph Neural Networks (GNNs) and time-varying traffic matrices at $N > 50$ remains future work.
 2. Single-Link ($N-1$) Failure Model: The reliability metric evaluates single-edge removals rather than correlated multi-link disasters or controller node crashes.
-3. Uniform Base Delay in Emulation: The Mininet harness uses a uniform $2.0\text{ ms}$ base link delay per weighted hop with $\pm 0.5\text{ ms}$ jitter on a single host machine, verifying protocol and queuing consistency rather than geographically distributed physical hardware.
+3. Single-Host Virtualized Emulation: The Mininet harness uses edge-weighted `TCLink` delays $d_{\text{tc}}(u, v) = \max(0.10\text{ ms}, 2.0 \times w(u, v))$ with $\pm 0.5\text{ ms}$ uniform jitter on a single host machine, verifying protocol and queuing consistency rather than geographically distributed physical hardware.

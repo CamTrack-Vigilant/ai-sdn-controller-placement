@@ -1,0 +1,41 @@
+{
+  "topology": "Internet2",
+  "num_nodes": 20,
+  "num_edges": 26,
+  "num_controllers": 3,
+  "seed": 42,
+  "bandit_rl": {
+    "selected_controllers": [
+      "n1",
+      "n10",
+      "n5"
+    ],
+    "average_latency_ms": 1.5642,
+    "single_link_reliability": 1.0,
+    "training_wall_time_ms": 77.04,
+    "metadata": {
+      "iterations_budget": 300,
+      "convergence_iteration": 6,
+      "final_best_reward": -1.3141803237761644,
+      "num_actions": 64
+    }
+  },
+  "pytorch_dqn": {
+    "selected_controllers": [
+      "n15",
+      "n1",
+      "n8"
+    ],
+    "average_latency_ms": 1.4934,
+    "single_link_reliability": 1.0,
+    "training_time_sec": 0.6755,
+    "inference_time_ms": 0.0197,
+    "metadata": {
+      "episodes": 200,
+      "training_time_sec": 0.6754982719994587,
+      "omega_sec_per_episode": 0.0033774913599972935,
+      "inference_time_ms": 0.01966178000657237,
+      "final_best_reward": 12.350874246980537
+    }
+  }
+}

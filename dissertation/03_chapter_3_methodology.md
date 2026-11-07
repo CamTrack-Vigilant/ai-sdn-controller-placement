@@ -75,15 +75,15 @@ Operates on a discrete combinatorial chromosome representation (`algorithms/ai/g
 
 - Encoding: Each chromosome is a $k$-element subset $\mathbf{g} = [g_1, g_2, \dots, g_k]$ of distinct switch nodes ($g_i \in V$).
 - Population and Generations: Evolves a population of $M_{pop} = 40$ to $50$ candidate placements over $G_{max} = 30$ to $50$ generations.
-- Fitness Function: Evaluates inverse average propagation latency and worst-case delay:
-  $$\text{Fitness}(\mathbf{g}) = -\left( L(P_{\mathbf{g}}) + 0.25 \cdot L_{\max}(P_{\mathbf{g}}) \right)$$
+- Fitness Function: Evaluates inverse average propagation latency with optional weighting for worst-case tail delay ($w_{\max}$) and single-link reliability ($w_{\text{rel}}$, with $w_{\max} = 0, w_{\text{rel}} = 0$ in the baseline latency sweep):
+  $$\text{Fitness}(\mathbf{g}) = -\left( L(P_{\mathbf{g}}) + w_{\max} \cdot L_{\max}(P_{\mathbf{g}}) \right) + w_{\text{rel}} \cdot Reach_{avg}(P_{\mathbf{g}})$$
 
 - Operators: Binary tournament selection, cardinality-preserving uniform crossover, swap mutation with probability $p_m = 0.15$, and elitism preserving the top 2 individuals per generation.
 
 ### 3.3.5 Algorithm 5: PyTorch Deep $Q$-Network (DQN) and Multi-Armed RL
 The reinforcement learning placement pipeline (`scripts/train_dqn_pilot.py`, `scripts/run_stability_audit.py`, and `algorithms/ai/reinforcement_learning.py`) follows the hyperparameter specification of Farahi et al. (2026). The neural network (`DQNetwork`) is a three-layer Multi-Layer Perceptron (MLP) taking an $N$-dimensional state vector as input (`nn.Linear(N, 64)`), passing through two hidden layers of 64 units each with ReLU activations (`nn.Linear(64, 64)`), and outputting $N$ action $Q$-values (`nn.Linear(64, N)`).
 
-During training, transitions $(s_t, a_t, r_t, s_{t+1}, d_t)$ are stored in a cyclic replay buffer of capacity $M = 10,000$ and sampled in mini-batches of size $32$. A separate target network is synchronized periodically to stabilize temporal-difference targets. For the full 60-cell multi-seed factorial sweep, an $\epsilon$-greedy tabular multi-armed RL solver (`bandit_rl_controller_placement`, 200 to 300 episodes per seed over 64 candidate $k$-tuples) is also evaluated alongside the PyTorch `DQNetwork` so that both offline training time ($\omega_{\text{train}}$) and single forward-pass inference time ($\tau_{\text{inf}}$) are measured across all graph scales. Table 3.2 summarizes the DQN hyperparameter configuration.
+During training, transitions $(s_t, a_t, r_t, s_{t+1}, d_t)$ are stored in a cyclic replay buffer of capacity $M = 10,000$ and sampled in mini-batches of size $32$. A separate target network is synchronized periodically to stabilize temporal-difference targets. In `dqn_controller_placement`, the neural agent optimizes a normalized latency-and-reliability reward ($10 \cdot (L_{\max} - L(P))/L_{\max} + 5 \cdot Reach_{avg}(P)$), while the $\epsilon$-greedy tabular multi-armed RL solver (`bandit_rl_controller_placement`, 200 to 300 episodes per seed over 64 candidate $k$-tuples) applies the configurable `rl_objective` weights (`latency_weight`, `reliability_weight`, and `seconds_per_episode_weight` from `configs/experiment_config.json`) across all 60 cells of the multi-seed factorial sweep so that both offline training time ($\omega_{\text{train}}$) and single forward-pass inference time ($\tau_{\text{inf}}$) are measured across all graph scales. Table 3.2 summarizes the DQN hyperparameter configuration.
 
 **Table 3.2: Deep Q-Network Hyperparameter Configuration and Reference Compliance**
 
@@ -108,7 +108,7 @@ The experimental harness is implemented in Python 3.12 (`ai-sdn-controller-place
 ![](../docs/figures/system_architecture_diagram.png)
 
 ### 3.4.2 Mininet OpenFlow Emulation Architecture
-To evaluate how shortest-path graph latencies compare with packet-switched control-plane delays, controller placements on Internet2 are evaluated in a virtualized Linux emulation harness (`simulation/mininet_simulation.py` and `scripts/test_mininet_overhead.py`) built on Mininet 2.3+ and Open vSwitch (OVS). In the emulation topology, each graph node is instantiated as an OpenFlow switch connected via virtual Ethernet (`veth`) links configured with `TCLink` propagation delays ($2.0\text{ ms}$ per hop base link delay with $\pm 0.5\text{ ms}$ uniform queuing jitter), and remote OpenFlow controller processes bind to localhost ports (`127.0.0.1:6633+`). Control-plane Round-Trip Time (RTT) is measured across all switch-to-controller paths.
+To evaluate how shortest-path graph latencies compare with packet-switched control-plane delays, controller placements on Internet2 are evaluated in a virtualized Linux emulation harness (`simulation/mininet_simulation.py` and `scripts/test_mininet_overhead.py`) built on Mininet 2.3+ and Open vSwitch (OVS). In the emulation topology, each graph node is instantiated as an OpenFlow switch connected via virtual Ethernet (`veth`) links configured with edge-weighted `TCLink` propagation delays $d_{\text{tc}}(u, v) = \max(0.10\text{ ms}, 2.0 \times w(u, v))$ (scaling geodesic edge weight $w(u, v)$ by $2.0\times$ with a $0.10\text{ ms}$ host-switch access delay and $\pm 0.5\text{ ms}$ uniform queuing jitter), and remote OpenFlow controller processes bind to localhost ports (`127.0.0.1:6633+`). Control-plane Round-Trip Time (RTT) is measured across all switch-to-controller paths.
 
 ### 3.4.3 The Phase 4 Mininet "2-Second Gate Test" Protocol
 Running live Mininet network creation and teardown inside every episode of an online reinforcement learning loop introduces operating system namespace overhead. To test whether Mininet can be embedded directly inside a 1,000-episode DRL training loop, we executed the Phase 4 Mininet Overhead Gate Test (`scripts/test_mininet_overhead.py`, archived in `results/mininet_overhead_validation.json`). Across 3 independent trials on the 11-node, 18-edge Internet2 topology ($k=3$), each trial was timed across four phases:
@@ -160,7 +160,7 @@ All benchmark experiments were executed on a Linux workstation (Ubuntu x86_64, P
 
 1. Deterministic Seed Control: All pseudo-random generators (`random`, `numpy.random`, and `torch.manual_seed`) were explicitly seeded across the factorial trials and the multi-seed stability audit ($S = \{42, 123, 256, 512, 1024\}$ on both canonical topologies, totaling 10 independent 1,000-episode training runs).
 2. Precomputed Reliability Caching: To eliminate redundant graph copying during multi-episode evaluations, single-link failure component labels are precomputed and verified via `assert_cache_parity` (`evaluation/metrics.py`) to match exact Dijkstra edge-removal reachability within $10^{-9}$.
-3. Automated Unit Test Suite: The repository includes 21 automated `unittest` verification tests (`tests/`) covering configuration merging, manifest schemas, Pareto dominance, reliability parity, RL JSONL logging, and GraphML/GML topology parsing, passing in $0.132\text{ s}$.
+3. Automated Unit Test Suite: The repository includes 22 automated `unittest` verification tests (`tests/`) covering configuration merging, manifest schemas, Pareto dominance, reliability parity, RL JSONL logging, PyTorch DQN training/inference timing, and GraphML/GML topology parsing.
 
 Table 3.3 summarizes the 60-cell synthetic factorial experimental matrix.
 

@@ -6,16 +6,30 @@ from typing import List, Tuple
 import networkx as nx
 
 
+from evaluation.metrics import control_plane_reliability_single_link_failure_cached
+
+
 def _placement_score(
     all_pairs: dict,
     nodes: list[str],
     placement: Tuple[str, ...],
+    graph: nx.Graph | None = None,
+    worst_case_weight: float = 0.0,
+    reliability_weight: float = 0.0,
 ) -> float:
     total_distance = 0.0
+    max_distance = 0.0
     for node in nodes:
-        total_distance += min(all_pairs[node].get(controller, float("inf")) for controller in placement)
+        d = min(all_pairs[node].get(controller, float("inf")) for controller in placement)
+        total_distance += d
+        if d > max_distance:
+            max_distance = d
     avg_distance = total_distance / len(nodes)
-    return -avg_distance
+    score = -(avg_distance + worst_case_weight * max_distance)
+    if reliability_weight > 0.0 and graph is not None:
+        rel = control_plane_reliability_single_link_failure_cached(graph, list(placement))
+        score += reliability_weight * rel
+    return score
 
 
 def _crossover(
@@ -69,6 +83,8 @@ def genetic_controller_placement(
     mutation_rate: float = 0.15,
     tournament_size: int = 3,
     seed: int | None = 42,
+    worst_case_weight: float = 0.0,
+    reliability_weight: float = 0.0,
     return_metadata: bool = False,
 ) -> List[str] | tuple[List[str], dict[str, int | float | None]]:
     if num_controllers <= 0:
@@ -87,7 +103,13 @@ def genetic_controller_placement(
     best_placement_history: list[Tuple[str, ...]] = []
 
     for _ in range(generations):
-        scores = {individual: _placement_score(all_pairs, nodes, individual) for individual in population}
+        scores = {
+            individual: _placement_score(
+                all_pairs, nodes, individual, graph=graph,
+                worst_case_weight=worst_case_weight, reliability_weight=reliability_weight
+            )
+            for individual in population
+        }
         generation_best = max(population, key=lambda individual: scores[individual])
         best_so_far = max(best_so_far, max(scores.values()))
         best_so_far_history.append(best_so_far)
@@ -107,7 +129,13 @@ def genetic_controller_placement(
 
         population = new_population
 
-    final_scores = {individual: _placement_score(all_pairs, nodes, individual) for individual in population}
+    final_scores = {
+        individual: _placement_score(
+            all_pairs, nodes, individual, graph=graph,
+            worst_case_weight=worst_case_weight, reliability_weight=reliability_weight
+        )
+        for individual in population
+    }
     best = max(population, key=lambda individual: final_scores[individual])
     final_best_score = float(final_scores[best])
 

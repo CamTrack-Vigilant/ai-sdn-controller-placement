@@ -1,0 +1,2332 @@
+[
+  {
+    "topology_name": "Internet2",
+    "num_nodes": 20,
+    "num_edges": 26,
+    "num_controllers_k": 3,
+    "seed": 42,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 1.3567,
+    "dqn_initial_omega_train_ms": 1356.7,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 26,
+        "graph_hash": "9b814b2ed64e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n9",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 3.0483,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0315
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0524
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 127.0679
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 14.5642
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 25,
+        "graph_hash": "86a0c72c0d49",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n9",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 3.0483,
+            "reliability_N_1_P_t_percent": 99.2,
+            "decision_time_tau_t_ms": 0.0223
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n11",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.7364,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 0.0511
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 99.2,
+            "decision_time_tau_t_ms": 5.2465
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4823,
+            "reliability_N_1_P_t_percent": 99.2,
+            "decision_time_tau_t_ms": 15.8193
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 25,
+        "graph_hash": "e72ca074adee",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n9",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 3.0483,
+            "reliability_N_1_P_t_percent": 99.0,
+            "decision_time_tau_t_ms": 0.0221
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n15",
+              "n19",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5934,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0517
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.5358,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.6228
+          },
+          "GA": {
+            "controllers": [
+              "n12",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4442,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.0348
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 25,
+        "graph_hash": "67eea072b776",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n9",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 3.0483,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0269
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0587
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4823,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.748
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 15.5727
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0259,
+        "cumulative_compute_time_ms_Omega_algo": 1359.291,
+        "average_latency_over_churn_ms": 3.1109,
+        "std_latency_over_churn_ms": 0.0966,
+        "average_reliability_over_churn_percent": 99.45
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0516,
+        "cumulative_compute_time_ms_Omega_algo": 5.162,
+        "average_latency_over_churn_ms": 1.6431,
+        "std_latency_over_churn_ms": 0.16,
+        "average_reliability_over_churn_percent": 99.92,
+        "break_even_horizon_T_star_vs_DQN": 52772
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 5.8106,
+        "cumulative_compute_time_ms_Omega_algo": 581.065,
+        "average_latency_over_churn_ms": 1.5258,
+        "std_latency_over_churn_ms": 0.0815,
+        "average_reliability_over_churn_percent": 99.66,
+        "break_even_horizon_T_star_vs_DQN": 235
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.4588,
+        "cumulative_compute_time_ms_Omega_algo": 1345.877,
+        "average_latency_over_churn_ms": 1.4577,
+        "std_latency_over_churn_ms": 0.0468,
+        "average_reliability_over_churn_percent": 99.67,
+        "break_even_horizon_T_star_vs_DQN": 101
+      }
+    }
+  },
+  {
+    "topology_name": "Internet2",
+    "num_nodes": 20,
+    "num_edges": 26,
+    "num_controllers_k": 3,
+    "seed": 43,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.7838,
+    "dqn_initial_omega_train_ms": 783.81,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 26,
+        "graph_hash": "9b814b2ed64e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n12",
+              "n14",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.8255,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0372
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0475
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 6.0134
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 14.432
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 25,
+        "graph_hash": "3f1cacf707f9",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n12",
+              "n14",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.8255,
+            "reliability_N_1_P_t_percent": 99.6,
+            "decision_time_tau_t_ms": 0.0219
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 99.6,
+            "decision_time_tau_t_ms": 0.0426
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 99.6,
+            "decision_time_tau_t_ms": 4.5962
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 99.6,
+            "decision_time_tau_t_ms": 14.6734
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 25,
+        "graph_hash": "2509320fbbbf",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n12",
+              "n14",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 2.1488,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0217
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n18",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.081
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 5.1197
+          },
+          "GA": {
+            "controllers": [
+              "n12",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.5108,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 14.6362
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 25,
+        "graph_hash": "4f0b99d0c109",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n12",
+              "n14",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.8728,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 0.0198
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n5"
+            ],
+            "mean_latency_L_P_t_ms": 1.6816,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0375
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n16",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.7456,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.9837
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 1.4914,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 12.122
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0256,
+        "cumulative_compute_time_ms_Omega_algo": 786.366,
+        "average_latency_over_churn_ms": 1.8871,
+        "std_latency_over_churn_ms": 0.0958,
+        "average_reliability_over_churn_percent": 99.65
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0494,
+        "cumulative_compute_time_ms_Omega_algo": 4.943,
+        "average_latency_over_churn_ms": 1.648,
+        "std_latency_over_churn_ms": 0.1721,
+        "average_reliability_over_churn_percent": 99.94,
+        "break_even_horizon_T_star_vs_DQN": 32831
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 5.5822,
+        "cumulative_compute_time_ms_Omega_algo": 558.223,
+        "average_latency_over_churn_ms": 1.5301,
+        "std_latency_over_churn_ms": 0.0804,
+        "average_reliability_over_churn_percent": 99.67,
+        "break_even_horizon_T_star_vs_DQN": 142
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 12.516,
+        "cumulative_compute_time_ms_Omega_algo": 1251.602,
+        "average_latency_over_churn_ms": 1.4374,
+        "std_latency_over_churn_ms": 0.0364,
+        "average_reliability_over_churn_percent": 99.67,
+        "break_even_horizon_T_star_vs_DQN": 63
+      }
+    }
+  },
+  {
+    "topology_name": "Internet2",
+    "num_nodes": 20,
+    "num_edges": 26,
+    "num_controllers_k": 3,
+    "seed": 44,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.5628,
+    "dqn_initial_omega_train_ms": 562.79,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 26,
+        "graph_hash": "9b814b2ed64e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n13",
+              "n4",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.131,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0234
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0508
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.4673
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 1.4549,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.7695
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 25,
+        "graph_hash": "4f0b99d0c109",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n13",
+              "n4",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.131,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 0.0182
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n5"
+            ],
+            "mean_latency_L_P_t_ms": 1.6816,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0361
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.7456,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.7342
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n11",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5074,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 10.5191
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 25,
+        "graph_hash": "acfbc858ab38",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n13",
+              "n4",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.6833,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0192
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 1.8209,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.037
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 4.1932
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 1.4549,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 10.5999
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 25,
+        "graph_hash": "8557b23b9910",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n13",
+              "n4",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.131,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0203
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n15",
+              "n19",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5984,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0413
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5171,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.4272
+          },
+          "GA": {
+            "controllers": [
+              "n12",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4442,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.0335
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0253,
+        "cumulative_compute_time_ms_Omega_algo": 565.322,
+        "average_latency_over_churn_ms": 2.2364,
+        "std_latency_over_churn_ms": 0.1564,
+        "average_reliability_over_churn_percent": 99.57
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0498,
+        "cumulative_compute_time_ms_Omega_algo": 4.976,
+        "average_latency_over_churn_ms": 1.6611,
+        "std_latency_over_churn_ms": 0.143,
+        "average_reliability_over_churn_percent": 99.94,
+        "break_even_horizon_T_star_vs_DQN": 23005
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 4.4753,
+        "cumulative_compute_time_ms_Omega_algo": 447.532,
+        "average_latency_over_churn_ms": 1.5293,
+        "std_latency_over_churn_ms": 0.0751,
+        "average_reliability_over_churn_percent": 99.64,
+        "break_even_horizon_T_star_vs_DQN": 127
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.1988,
+        "cumulative_compute_time_ms_Omega_algo": 1319.879,
+        "average_latency_over_churn_ms": 1.4624,
+        "std_latency_over_churn_ms": 0.0275,
+        "average_reliability_over_churn_percent": 99.63,
+        "break_even_horizon_T_star_vs_DQN": 43
+      }
+    }
+  },
+  {
+    "topology_name": "Internet2",
+    "num_nodes": 20,
+    "num_edges": 26,
+    "num_controllers_k": 3,
+    "seed": 45,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.592,
+    "dqn_initial_omega_train_ms": 592.04,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 26,
+        "graph_hash": "9b814b2ed64e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n16",
+              "n6",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.1185,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0279
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0398
+          },
+          "K_Means": {
+            "controllers": [
+              "n9",
+              "n1",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 7.7676
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 11.2952
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 25,
+        "graph_hash": "0e67325dba2d",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n16",
+              "n6",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.1246,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.021
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0474
+          },
+          "K_Means": {
+            "controllers": [
+              "n9",
+              "n1",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.7326
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 10.6737
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 25,
+        "graph_hash": "9cfec31f397f",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n16",
+              "n6",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.5072,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 0.0233
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n8",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 1.7767,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0472
+          },
+          "K_Means": {
+            "controllers": [
+              "n9",
+              "n1",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5094,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 3.4324
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n17",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 1.4569,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 11.9275
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 25,
+        "graph_hash": "8557b23b9910",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n16",
+              "n6",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.1185,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0195
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n15",
+              "n19",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5984,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0411
+          },
+          "K_Means": {
+            "controllers": [
+              "n9",
+              "n1",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5171,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.5592
+          },
+          "GA": {
+            "controllers": [
+              "n12",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4442,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 10.9718
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0248,
+        "cumulative_compute_time_ms_Omega_algo": 594.519,
+        "average_latency_over_churn_ms": 2.2105,
+        "std_latency_over_churn_ms": 0.1292,
+        "average_reliability_over_churn_percent": 99.68
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0487,
+        "cumulative_compute_time_ms_Omega_algo": 4.869,
+        "average_latency_over_churn_ms": 1.6644,
+        "std_latency_over_churn_ms": 0.15,
+        "average_reliability_over_churn_percent": 99.93,
+        "break_even_horizon_T_star_vs_DQN": 24814
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 4.9301,
+        "cumulative_compute_time_ms_Omega_algo": 493.007,
+        "average_latency_over_churn_ms": 1.5202,
+        "std_latency_over_churn_ms": 0.0648,
+        "average_reliability_over_churn_percent": 99.6,
+        "break_even_horizon_T_star_vs_DQN": 121
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.136,
+        "cumulative_compute_time_ms_Omega_algo": 1313.604,
+        "average_latency_over_churn_ms": 1.4538,
+        "std_latency_over_churn_ms": 0.0345,
+        "average_reliability_over_churn_percent": 99.59,
+        "break_even_horizon_T_star_vs_DQN": 46
+      }
+    }
+  },
+  {
+    "topology_name": "Internet2",
+    "num_nodes": 20,
+    "num_edges": 26,
+    "num_controllers_k": 3,
+    "seed": 46,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.5686,
+    "dqn_initial_omega_train_ms": 568.61,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 26,
+        "graph_hash": "9b814b2ed64e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n15",
+              "n14",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 1.8949,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0231
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n10",
+              "n6"
+            ],
+            "mean_latency_L_P_t_ms": 1.5105,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0498
+          },
+          "K_Means": {
+            "controllers": [
+              "n16",
+              "n1",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.4695,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.647
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.4029,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 10.4522
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 25,
+        "graph_hash": "00d7124ac4e2",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n15",
+              "n14",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 1.9259,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0238
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n15",
+              "n19",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.5934,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0482
+          },
+          "K_Means": {
+            "controllers": [
+              "n16",
+              "n1",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.547,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.0091
+          },
+          "GA": {
+            "controllers": [
+              "n15",
+              "n16",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 1.4625,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 10.6326
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 25,
+        "graph_hash": "4f0b99d0c109",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n15",
+              "n14",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.315,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 0.0234
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n1",
+              "n9",
+              "n5"
+            ],
+            "mean_latency_L_P_t_ms": 1.6816,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0679
+          },
+          "K_Means": {
+            "controllers": [
+              "n16",
+              "n1",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.7456,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.7233
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n15",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 1.4914,
+            "reliability_N_1_P_t_percent": 99.8,
+            "decision_time_tau_t_ms": 12.0873
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 25,
+        "graph_hash": "53d018f56624",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n15",
+              "n14",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 1.9388,
+            "reliability_N_1_P_t_percent": 99.4,
+            "decision_time_tau_t_ms": 0.057
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n15",
+              "n0",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 1.7132,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.1158
+          },
+          "K_Means": {
+            "controllers": [
+              "n16",
+              "n1",
+              "n9"
+            ],
+            "mean_latency_L_P_t_ms": 1.5443,
+            "reliability_N_1_P_t_percent": 99.4,
+            "decision_time_tau_t_ms": 99.2568
+          },
+          "GA": {
+            "controllers": [
+              "n15",
+              "n16",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 1.4625,
+            "reliability_N_1_P_t_percent": 99.4,
+            "decision_time_tau_t_ms": 16.5826
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.027,
+        "cumulative_compute_time_ms_Omega_algo": 571.316,
+        "average_latency_over_churn_ms": 1.9877,
+        "std_latency_over_churn_ms": 0.1248,
+        "average_reliability_over_churn_percent": 99.49
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0488,
+        "cumulative_compute_time_ms_Omega_algo": 4.882,
+        "average_latency_over_churn_ms": 1.6528,
+        "std_latency_over_churn_ms": 0.1543,
+        "average_reliability_over_churn_percent": 99.91,
+        "break_even_horizon_T_star_vs_DQN": 26085
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 5.5465,
+        "cumulative_compute_time_ms_Omega_algo": 554.649,
+        "average_latency_over_churn_ms": 1.5349,
+        "std_latency_over_churn_ms": 0.0861,
+        "average_reliability_over_churn_percent": 99.6,
+        "break_even_horizon_T_star_vs_DQN": 104
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.7053,
+        "cumulative_compute_time_ms_Omega_algo": 1370.534,
+        "average_latency_over_churn_ms": 1.4397,
+        "std_latency_over_churn_ms": 0.0359,
+        "average_reliability_over_churn_percent": 99.57,
+        "break_even_horizon_T_star_vs_DQN": 42
+      }
+    }
+  },
+  {
+    "topology_name": "ATT-MPLS",
+    "num_nodes": 21,
+    "num_edges": 54,
+    "num_controllers_k": 3,
+    "seed": 42,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 1.1987,
+    "dqn_initial_omega_train_ms": 1198.71,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 54,
+        "graph_hash": "67a6fa3b6e9d",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n11",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.8286,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0234
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n5",
+              "n2",
+              "n13"
+            ],
+            "mean_latency_L_P_t_ms": 3.0301,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0735
+          },
+          "K_Means": {
+            "controllers": [
+              "n4",
+              "n8",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.3911,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 8.3142
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n4",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.32,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 11.6325
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 53,
+        "graph_hash": "a03c290ecc86",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n11",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.8286,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0186
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n5",
+              "n2",
+              "n12"
+            ],
+            "mean_latency_L_P_t_ms": 2.8746,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0638
+          },
+          "K_Means": {
+            "controllers": [
+              "n4",
+              "n8",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.3911,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.7437
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n4",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.32,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.8712
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 53,
+        "graph_hash": "7376922c3078",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n11",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.8286,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0184
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n5",
+              "n2",
+              "n13"
+            ],
+            "mean_latency_L_P_t_ms": 3.0301,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0906
+          },
+          "K_Means": {
+            "controllers": [
+              "n4",
+              "n8",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.3911,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.6132
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n4",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.32,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.1468
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 53,
+        "graph_hash": "cd8adcca5498",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n5",
+              "n11",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.8286,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0224
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n5",
+              "n2",
+              "n13"
+            ],
+            "mean_latency_L_P_t_ms": 3.0301,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.063
+          },
+          "K_Means": {
+            "controllers": [
+              "n4",
+              "n8",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.4713,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.849
+          },
+          "GA": {
+            "controllers": [
+              "n1",
+              "n4",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.323,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 19.0421
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0248,
+        "cumulative_compute_time_ms_Omega_algo": 1201.19,
+        "average_latency_over_churn_ms": 2.8494,
+        "std_latency_over_churn_ms": 0.0391,
+        "average_reliability_over_churn_percent": 100.0
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0803,
+        "cumulative_compute_time_ms_Omega_algo": 8.03,
+        "average_latency_over_churn_ms": 3.0168,
+        "std_latency_over_churn_ms": 0.0666,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 21605
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 5.9505,
+        "cumulative_compute_time_ms_Omega_algo": 595.05,
+        "average_latency_over_churn_ms": 2.4309,
+        "std_latency_over_churn_ms": 0.0728,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 203
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 15.8174,
+        "cumulative_compute_time_ms_Omega_algo": 1581.741,
+        "average_latency_over_churn_ms": 2.3487,
+        "std_latency_over_churn_ms": 0.0609,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 76
+      }
+    }
+  },
+  {
+    "topology_name": "ATT-MPLS",
+    "num_nodes": 21,
+    "num_edges": 54,
+    "num_controllers_k": 3,
+    "seed": 43,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 1.1005,
+    "dqn_initial_omega_train_ms": 1100.46,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 54,
+        "graph_hash": "2571ab0b3ff9",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n6",
+              "n8",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 3.4375,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 0.0308
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n4",
+              "n2",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.4991,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0591
+          },
+          "K_Means": {
+            "controllers": [
+              "n18",
+              "n1",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 3.5017,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 3.7668
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n16",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.2589,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 13.1667
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 53,
+        "graph_hash": "24970a9a3642",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n6",
+              "n8",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 3.4375,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 0.0174
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n4",
+              "n2",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.6814,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0577
+          },
+          "K_Means": {
+            "controllers": [
+              "n18",
+              "n1",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 3.5017,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 3.5178
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n16",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.2589,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 12.7623
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 53,
+        "graph_hash": "9c2cef746b64",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n6",
+              "n8",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 3.4375,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 0.0195
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n4",
+              "n2",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.4991,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0559
+          },
+          "K_Means": {
+            "controllers": [
+              "n18",
+              "n1",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 3.5017,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 3.6457
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n16",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.2589,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 12.5455
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 53,
+        "graph_hash": "373b9ea245fe",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n6",
+              "n8",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 3.4375,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 0.0182
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n4",
+              "n2",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.4991,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0588
+          },
+          "K_Means": {
+            "controllers": [
+              "n18",
+              "n1",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 3.5017,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 3.4797
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n16",
+              "n4"
+            ],
+            "mean_latency_L_P_t_ms": 2.2589,
+            "reliability_N_1_P_t_percent": 99.91,
+            "decision_time_tau_t_ms": 12.6799
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0209,
+        "cumulative_compute_time_ms_Omega_algo": 1102.55,
+        "average_latency_over_churn_ms": 3.448,
+        "std_latency_over_churn_ms": 0.0231,
+        "average_reliability_over_churn_percent": 99.91
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0696,
+        "cumulative_compute_time_ms_Omega_algo": 6.956,
+        "average_latency_over_churn_ms": 2.5227,
+        "std_latency_over_churn_ms": 0.0424,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 22611
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 4.246,
+        "cumulative_compute_time_ms_Omega_algo": 424.602,
+        "average_latency_over_churn_ms": 3.5238,
+        "std_latency_over_churn_ms": 0.0464,
+        "average_reliability_over_churn_percent": 99.91,
+        "break_even_horizon_T_star_vs_DQN": 261
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 14.8145,
+        "cumulative_compute_time_ms_Omega_algo": 1481.452,
+        "average_latency_over_churn_ms": 2.2731,
+        "std_latency_over_churn_ms": 0.0265,
+        "average_reliability_over_churn_percent": 99.91,
+        "break_even_horizon_T_star_vs_DQN": 75
+      }
+    }
+  },
+  {
+    "topology_name": "ATT-MPLS",
+    "num_nodes": 21,
+    "num_edges": 54,
+    "num_controllers_k": 3,
+    "seed": 44,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.6025,
+    "dqn_initial_omega_train_ms": 602.49,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 54,
+        "graph_hash": "b87a6d09db8b",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n0",
+              "n1",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 2.9032,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.023
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n2",
+              "n7",
+              "n11"
+            ],
+            "mean_latency_L_P_t_ms": 3.0157,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0788
+          },
+          "K_Means": {
+            "controllers": [
+              "n17",
+              "n6",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 3.1691,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.7438
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n11",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 2.4889,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.6092
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 53,
+        "graph_hash": "687b20cdc2c1",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n0",
+              "n1",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 2.9032,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0182
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n2",
+              "n7",
+              "n11"
+            ],
+            "mean_latency_L_P_t_ms": 3.0157,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0885
+          },
+          "K_Means": {
+            "controllers": [
+              "n17",
+              "n6",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 3.1691,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 6.4195
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n11",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 2.4889,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 17.9232
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 53,
+        "graph_hash": "66dc64a72f8d",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n0",
+              "n1",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 2.9032,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0272
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n2",
+              "n7",
+              "n11"
+            ],
+            "mean_latency_L_P_t_ms": 3.0157,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0672
+          },
+          "K_Means": {
+            "controllers": [
+              "n17",
+              "n6",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 3.1691,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.4276
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n11",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 2.4889,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 16.7713
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 53,
+        "graph_hash": "ef193bbdd174",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n0",
+              "n1",
+              "n2"
+            ],
+            "mean_latency_L_P_t_ms": 2.9032,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0179
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n2",
+              "n7",
+              "n11"
+            ],
+            "mean_latency_L_P_t_ms": 3.0584,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0577
+          },
+          "K_Means": {
+            "controllers": [
+              "n17",
+              "n6",
+              "n16"
+            ],
+            "mean_latency_L_P_t_ms": 3.1691,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.4657
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n11",
+              "n17"
+            ],
+            "mean_latency_L_P_t_ms": 2.6058,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.4243
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0213,
+        "cumulative_compute_time_ms_Omega_algo": 604.622,
+        "average_latency_over_churn_ms": 2.9167,
+        "std_latency_over_churn_ms": 0.0279,
+        "average_reliability_over_churn_percent": 100.0
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0702,
+        "cumulative_compute_time_ms_Omega_algo": 7.022,
+        "average_latency_over_churn_ms": 3.041,
+        "std_latency_over_churn_ms": 0.0542,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 12312
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 4.1466,
+        "cumulative_compute_time_ms_Omega_algo": 414.663,
+        "average_latency_over_churn_ms": 3.1951,
+        "std_latency_over_churn_ms": 0.049,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 147
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.7242,
+        "cumulative_compute_time_ms_Omega_algo": 1372.423,
+        "average_latency_over_churn_ms": 2.5147,
+        "std_latency_over_churn_ms": 0.0418,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 44
+      }
+    }
+  },
+  {
+    "topology_name": "ATT-MPLS",
+    "num_nodes": 21,
+    "num_edges": 54,
+    "num_controllers_k": 3,
+    "seed": 45,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 1.1147,
+    "dqn_initial_omega_train_ms": 1114.73,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 54,
+        "graph_hash": "06f0637a26f3",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n3",
+              "n13",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.6973,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0181
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n3",
+              "n15",
+              "n19"
+            ],
+            "mean_latency_L_P_t_ms": 2.8954,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0614
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n18",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.8302,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 5.618
+          },
+          "GA": {
+            "controllers": [
+              "n10",
+              "n13",
+              "n3"
+            ],
+            "mean_latency_L_P_t_ms": 2.2506,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 15.984
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 53,
+        "graph_hash": "46e7aca92242",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n3",
+              "n13",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.6973,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0184
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n3",
+              "n15",
+              "n19"
+            ],
+            "mean_latency_L_P_t_ms": 2.9037,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0722
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n18",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.8302,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.9585
+          },
+          "GA": {
+            "controllers": [
+              "n10",
+              "n13",
+              "n3"
+            ],
+            "mean_latency_L_P_t_ms": 2.2506,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 19.5697
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 53,
+        "graph_hash": "3cbe3cb0445c",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n3",
+              "n13",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.6973,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0212
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n3",
+              "n15",
+              "n19"
+            ],
+            "mean_latency_L_P_t_ms": 2.8954,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.142
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n18",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.8302,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.5
+          },
+          "GA": {
+            "controllers": [
+              "n10",
+              "n13",
+              "n3"
+            ],
+            "mean_latency_L_P_t_ms": 2.2506,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.4191
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 53,
+        "graph_hash": "fe71d117b655",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n3",
+              "n13",
+              "n8"
+            ],
+            "mean_latency_L_P_t_ms": 2.7047,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0174
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n0",
+              "n19",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.7443,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0614
+          },
+          "K_Means": {
+            "controllers": [
+              "n1",
+              "n18",
+              "n10"
+            ],
+            "mean_latency_L_P_t_ms": 2.9007,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 5.3346
+          },
+          "GA": {
+            "controllers": [
+              "n10",
+              "n13",
+              "n3"
+            ],
+            "mean_latency_L_P_t_ms": 2.2506,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.1026
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0199,
+        "cumulative_compute_time_ms_Omega_algo": 1116.723,
+        "average_latency_over_churn_ms": 2.7224,
+        "std_latency_over_churn_ms": 0.0458,
+        "average_reliability_over_churn_percent": 100.0
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0707,
+        "cumulative_compute_time_ms_Omega_algo": 7.066,
+        "average_latency_over_churn_ms": 2.8704,
+        "std_latency_over_churn_ms": 0.0694,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 21981
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 4.0642,
+        "cumulative_compute_time_ms_Omega_algo": 406.418,
+        "average_latency_over_churn_ms": 2.8616,
+        "std_latency_over_churn_ms": 0.0572,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 276
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 13.3866,
+        "cumulative_compute_time_ms_Omega_algo": 1338.663,
+        "average_latency_over_churn_ms": 2.2692,
+        "std_latency_over_churn_ms": 0.0359,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 84
+      }
+    }
+  },
+  {
+    "topology_name": "ATT-MPLS",
+    "num_nodes": 21,
+    "num_edges": 54,
+    "num_controllers_k": 3,
+    "seed": 46,
+    "total_churn_epochs_T_churn": 100,
+    "dqn_initial_omega_train_sec": 0.592,
+    "dqn_initial_omega_train_ms": 592.04,
+    "sampled_epochs": [
+      {
+        "epoch_id": 0,
+        "num_active_links": 54,
+        "graph_hash": "0b4b1191aa4f",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n4",
+              "n5",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.6918,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0239
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n0",
+              "n14",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.7988,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0819
+          },
+          "K_Means": {
+            "controllers": [
+              "n3",
+              "n6",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.4777,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.9887
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n2",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.1585,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.0357
+          }
+        }
+      },
+      {
+        "epoch_id": 1,
+        "num_active_links": 53,
+        "graph_hash": "54ed5be66c6c",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n4",
+              "n5",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.6918,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0179
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n0",
+              "n20",
+              "n14"
+            ],
+            "mean_latency_L_P_t_ms": 2.7988,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0808
+          },
+          "K_Means": {
+            "controllers": [
+              "n3",
+              "n6",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.4777,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.8254
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n2",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.1585,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.6243
+          }
+        }
+      },
+      {
+        "epoch_id": 2,
+        "num_active_links": 53,
+        "graph_hash": "89eb60c73158",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n4",
+              "n5",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.7801,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0176
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n0",
+              "n13",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.7863,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0614
+          },
+          "K_Means": {
+            "controllers": [
+              "n3",
+              "n6",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.4777,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 3.8742
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n2",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.1585,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 13.0425
+          }
+        }
+      },
+      {
+        "epoch_id": 99,
+        "num_active_links": 53,
+        "graph_hash": "35fa955de72e",
+        "algorithms": {
+          "DQN": {
+            "controllers": [
+              "n4",
+              "n5",
+              "n20"
+            ],
+            "mean_latency_L_P_t_ms": 2.6918,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.0211
+          },
+          "Greedy_K_Center": {
+            "controllers": [
+              "n0",
+              "n9",
+              "n14"
+            ],
+            "mean_latency_L_P_t_ms": 2.9527,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 0.146
+          },
+          "K_Means": {
+            "controllers": [
+              "n3",
+              "n6",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.4777,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 4.0129
+          },
+          "GA": {
+            "controllers": [
+              "n0",
+              "n2",
+              "n7"
+            ],
+            "mean_latency_L_P_t_ms": 2.1608,
+            "reliability_N_1_P_t_percent": 100.0,
+            "decision_time_tau_t_ms": 12.8765
+          }
+        }
+      }
+    ],
+    "cumulative_results": {
+      "DQN": {
+        "mean_decision_time_tau_ms": 0.0194,
+        "cumulative_compute_time_ms_Omega_algo": 593.978,
+        "average_latency_over_churn_ms": 2.7185,
+        "std_latency_over_churn_ms": 0.0498,
+        "average_reliability_over_churn_percent": 100.0
+      },
+      "Greedy_K_Center": {
+        "mean_decision_time_tau_ms": 0.0719,
+        "cumulative_compute_time_ms_Omega_algo": 7.19,
+        "average_latency_over_churn_ms": 2.8204,
+        "std_latency_over_churn_ms": 0.0518,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 11267
+      },
+      "K_Means": {
+        "mean_decision_time_tau_ms": 3.9568,
+        "cumulative_compute_time_ms_Omega_algo": 395.676,
+        "average_latency_over_churn_ms": 2.5099,
+        "std_latency_over_churn_ms": 0.0643,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 151
+      },
+      "GA": {
+        "mean_decision_time_tau_ms": 12.874,
+        "cumulative_compute_time_ms_Omega_algo": 1287.403,
+        "average_latency_over_churn_ms": 2.178,
+        "std_latency_over_churn_ms": 0.0379,
+        "average_reliability_over_churn_percent": 100.0,
+        "break_even_horizon_T_star_vs_DQN": 47
+      }
+    }
+  }
+]
