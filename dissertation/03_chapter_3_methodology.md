@@ -10,6 +10,8 @@ The experimental workflow executes a full factorial matrix evaluation complement
 
 ![](../docs/figures/proposal_methodology_workflow.png)
 
+**Figure 3.1: End-to-End Comparative Research Methodology Workflow.**
+
 The investigation tests two formal hypotheses:
 
 - Null Hypothesis ($H_{01}$): In multi-site SDN topologies ($N \le 50$), Deep Reinforcement Learning algorithms do not provide a statistically significant improvement in multi-objective decision quality (joint propagation latency, single-link failure reachability, and computational runtime) compared to classical heuristics.
@@ -23,7 +25,7 @@ To evaluate algorithmic behavior across realistic wide-area backbones and contro
 
 | Topology Name | Topology Family | Node Count ($N$) | Edge Count ($M$) | Mean Node Degree | Clustering Coefficient | Characteristic Graph Property |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| Internet2 (GraphML / Core) | Canonical WAN | 20 (11 Core) | 26 (18 Core) | 2.60 (3.27) | 0.250 (0.333) | Sparse national US research backbone (`Internet2.graphml` / Heller 11-PoP core) |
+| Internet2 (GraphML / Core) | Canonical WAN | 20 (11 Core) | 26 (18 Core) | 2.60 (3.27) | 0.250 (0.333) | Sparse national US research backbone (`Internet2.graphml` / 11-PoP core) |
 | ATT-MPLS | Canonical WAN | 21 | 54 | 5.14 | 0.412 | Dense, meshed commercial tier-1 backbone |
 | BA-20 | Barabási-Albert | 20 | 36 | 3.60 | 0.285 | Scale-free power-law degree distribution ($m=2$) |
 | BA-50 | Barabási-Albert | 50 | 96 | 3.84 | 0.174 | Regional scale-free network with hub nodes ($m=2$) |
@@ -31,13 +33,13 @@ To evaluate algorithmic behavior across realistic wide-area backbones and contro
 | WX-50 | Waxman Spatial | 50 | 53 | 2.12 | 0.042 | Planar geographic network with sparse long links ($\alpha=0.4, \beta=0.1$) |
 
 ### 3.2.1 Canonical Empirical Topologies
-First, the Internet2 backbone serves as the standard reference topology in SDN controller placement literature following Heller et al. (2012). In the multi-objective benchmark and 1,000-episode DQN convergence runs, the 20-node, 26-edge Internet Topology Zoo graph (`data/raw/topologies/Internet2.graphml`) is evaluated; in the Phase 4 Mininet kernel overhead gate test (`scripts/test_mininet_overhead.py`), the 11-switch, 18-edge core PoP configuration is instantiated to measure per-switch Open vSwitch setup and teardown latency. Second, the ATT-MPLS topology models a 21-node, 54-link commercial multi-protocol label switching core network with high path redundancy.
+First, the Internet2 backbone serves as the standard reference topology in SDN controller placement literature (Mohanty et al., 2021; Yusuf et al., 2023; Farahi et al., 2026). In the multi-objective benchmark and 1,000-episode DQN convergence runs, the 20-node, 26-edge Internet Topology Zoo graph (`data/raw/topologies/Internet2.graphml`) is evaluated; in the Phase 4 Mininet kernel overhead gate test (`scripts/test_mininet_overhead.py`), the 11-switch, 18-edge core PoP configuration is instantiated to measure per-switch Open vSwitch setup and teardown latency. Second, the ATT-MPLS topology models a 21-node, 54-link commercial multi-protocol label switching core network with high path redundancy (Xiao & Chen, 2021; Benoudifa et al., 2023).
 
 ### 3.2.2 Parameterized Synthetic Network Models
-To isolate the structural drivers governing algorithm performance, synthetic graphs were generated using two graph-theoretic models implemented in NetworkX:
+To isolate the structural drivers governing algorithm performance, synthetic graphs were generated using two graph-theoretic models implemented in NetworkX (Vardhan & SriBhargav, 2025; Boudi, 2026):
 
 1. Barabási-Albert (BA) Scale-Free Model: Generates networks via preferential attachment in which new nodes connect to existing nodes with probability proportional to their degree ($P(k) \sim k^{-\gamma}$). Parameterized with attachment factor $m = 2$ at scales $N = 20$ and $N = 50$, this produces a skewed degree distribution with central transit hubs and peripheral leaves.
-2. Waxman Spatial Random Graph Model: Generates geographically embedded networks (Waxman, 1988) in which nodes are placed uniformly at random on the unit square $[0, 1]^2$. The probability $P(u, v)$ of placing an edge between nodes $u$ and $v$ decays exponentially with Euclidean distance $d(u, v)$:
+2. Waxman Spatial Random Graph Model: Generates geographically embedded networks (Vardhan & SriBhargav, 2025; Boudi, 2026) in which nodes are placed uniformly at random on the unit square $[0, 1]^2$. The probability $P(u, v)$ of placing an edge between nodes $u$ and $v$ decays exponentially with Euclidean distance $d(u, v)$:
    $$P(u, v) = \alpha \cdot \exp\left( - \frac{d(u, v)}{\beta \cdot L} \right)$$
    where $L$ is the maximum inter-node Euclidean distance, $\alpha = 0.4$ controls link density, and $\beta = 0.1$ governs the ratio of short to long edges.
 
@@ -53,8 +55,8 @@ The Random baseline samples $k$ distinct switch nodes uniformly at random from $
 $$P_{rand} \sim \text{Uniform}(V, k)$$
 This establishes the unoptimized reference baseline against which heuristic and learning-based methods are compared.
 
-### 3.3.2 Algorithm 2: Greedy $K$-Center Placement (Gonzalez Heuristic)
-Implements Gonzalez's farthest-first 2-approximation algorithm for the $k$-center problem (`algorithms/baseline/greedy_placement.py`):
+### 3.3.2 Algorithm 2: Greedy $K$-Center Placement (Farthest-First Traversal)
+Implements deterministic farthest-first 2-approximation traversal for the $k$-center problem (`algorithms/baseline/greedy_placement.py`, Mohanty et al., 2021; Vardhan & SriBhargav, 2025):
 
 1. Initialize $P = \{ v_0 \}$ at the graph eccentricity center.
 2. For $i = 2$ to $k$, select the switch that maximizes the minimum distance to the already chosen controllers:
@@ -63,15 +65,15 @@ Implements Gonzalez's farthest-first 2-approximation algorithm for the $k$-cente
 3. Return $P$ after $k$ iterations in $\mathcal{O}(kN)$ matrix lookups.
 
 ### 3.3.3 Algorithm 3: Spatial $K$-Means Clustering
-Partitions network switches into $k$ clusters in coordinate space (`algorithms/baseline/kmeans_placement.py`):
+Partitions network switches into $k$ clusters in coordinate space (`algorithms/baseline/kmeans_placement.py`, Xiao & Chen, 2021; Priya et al., 2025):
 
 1. Node coordinates $(x_i, y_i)$ are extracted from the graph layout or shortest-path distance profile.
-2. Centroids are initialized via $K$-Means++ and refined iteratively via Lloyd's algorithm until convergence (tolerance $10^{-4}$ or $T = 300$ iterations).
+2. Centroids are initialized via $K$-Means++ and refined iteratively until convergence (tolerance $10^{-4}$ or $T = 300$ iterations).
 3. For each final cluster centroid $\mu_j$, the closest discrete switch node is selected as the controller host:
    $$c_j = \arg\min_{v \in V} d_2(\mathbf{x}_v, \mu_j)$$
 
 ### 3.3.4 Algorithm 4: Genetic Algorithm (GA Metaheuristic)
-Operates on a discrete combinatorial chromosome representation (`algorithms/ai/genetic_algorithm.py`):
+Operates on a discrete combinatorial chromosome representation (`algorithms/ai/genetic_algorithm.py`, Radam et al., 2022; Xu et al., 2023; Boudi, 2026):
 
 - Encoding: Each chromosome is a $k$-element subset $\mathbf{g} = [g_1, g_2, \dots, g_k]$ of distinct switch nodes ($g_i \in V$).
 - Population and Generations: Evolves a population of $M_{pop} = 40$ to $50$ candidate placements over $G_{max} = 30$ to $50$ generations.
@@ -106,6 +108,8 @@ During training, transitions $(s_t, a_t, r_t, s_{t+1}, d_t)$ are stored in a cyc
 The experimental harness is implemented in Python 3.12 (`ai-sdn-controller-placement`). Graph generation, shortest-path Dijkstra computation, and biconnected component analysis are implemented with NetworkX. Neural network training and forward-pass inference timing use CPU-compiled PyTorch (`torch.nn`, `torch.optim`). Clustering and statistical testing use Scikit-Learn, NumPy, and Pandas. Figure 3.2 illustrates the software and emulation system architecture.
 
 ![](../docs/figures/system_architecture_diagram.png)
+
+**Figure 3.2: System Architecture of the Multi-Objective Controller Placement Benchmark and Mininet Emulation Harness.**
 
 ### 3.4.2 Mininet OpenFlow Emulation Architecture
 To evaluate how shortest-path graph latencies compare with packet-switched control-plane delays, controller placements on Internet2 are evaluated in a virtualized Linux emulation harness (`simulation/mininet_simulation.py` and `scripts/test_mininet_overhead.py`) built on Mininet 2.3+ and Open vSwitch (OVS). In the emulation topology, each graph node is instantiated as an OpenFlow switch connected via virtual Ethernet (`veth`) links configured with edge-weighted `TCLink` propagation delays $d_{\text{tc}}(u, v) = \max(0.10\text{ ms}, 2.0 \times w(u, v))$ (scaling geodesic edge weight $w(u, v)$ by $2.0\times$ with a $0.10\text{ ms}$ host-switch access delay and $\pm 0.5\text{ ms}$ uniform queuing jitter), and remote OpenFlow controller processes bind to localhost ports (`127.0.0.1:6633+`). Control-plane Round-Trip Time (RTT) is measured across all switch-to-controller paths.

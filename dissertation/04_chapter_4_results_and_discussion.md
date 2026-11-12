@@ -12,6 +12,8 @@ A recurring limitation in networking reinforcement learning studies is single-se
 
 ![](../results/dqn_1000_episodes_convergence.png)
 
+**Figure 4.1: PyTorch DQN 1,000-Episode Training Reward Convergence Profile on Canonical Internet2 Topology ($N=20, k=3$).**
+
 In the initial uncached 1,000-episode pilot on Internet2 (`results/pilot_metrics.json`, $k=3$), the policy reward increased rapidly during the initial exploration phase as $\epsilon$ decayed from $1.0$ to $0.05$, stabilizing within approximately 20 episodes. Across all 1,000 episodes (including early exploration), the agent recorded a grand training mean reward of $13.055 \pm 0.589$, a final 10-episode post-convergence rolling average of $13.199$, a peak episode reward of $14.607$, and an uncached CPU training runtime of $21.26\text{ s}$ ($21.26\text{ ms/episode}$). In the subsequent 10-run multi-seed stability audit (`results/rl_analysis/stability_audit/stability_summary.csv`, Table 4.1), enabling precomputed $N-1$ component caching (`precompute_reliability_cache`) reduced the per-episode training rate on Internet2 to $11.40 \pm 0.11\text{ ms/episode}$ ($11.40\text{ s}$ per 1,000 episodes).
 
 **Table 4.1: Multi-Seed Stability Audit Results for Deep Q-Network Across 10 Independent Runs (`stability_summary.csv`)**
@@ -30,6 +32,8 @@ In the initial uncached 1,000-episode pilot on Internet2 (`results/pilot_metrics
 | ATT-MPLS | 1024 | 1,000 | 12.474 | 0.657 | 14.398 | 0.05 | 0.975 | 4.923 | 1.000 | 24.639 | False (Stable) |
 
 ![](../results/rl_analysis/convergence_analysis.png)
+
+**Figure 4.2: Multi-Seed DQN Convergence and Rolling Reward Distribution Analysis.**
 
 Across all 10 audit runs in Table 4.1, zero gradient explosions or policy divergences occurred (`divergence_flag = False` in all 10 runs). Note that `run_stability_audit.py` evaluates single-controller ($k=1$) action selection stability and entropy across 1,000 episodes (reported in the `Single-Controller L(P)` column of Table 4.1), whereas the 1,000-episode convergence pilot and dynamic churn benchmarks evaluate multi-controller ($k=3$) placement. On Internet2, the audit recorded a mean best reward of $14.194 \pm 0.063$ and a final 100-episode rolling mean reward of $12.654 \pm 0.348$, while on ATT-MPLS ($N=21$) the agent reached a mean best reward of $14.854 \pm 0.395$ and a rolling mean reward of $12.557 \pm 0.328$. Normalized action entropy remained between $0.953$ and $0.982$, and per-episode training execution averaged $11.40 \pm 0.11\text{ ms/episode}$ on Internet2 and $19.22 \pm 6.31\text{ ms/episode}$ on ATT-MPLS.
 
@@ -109,7 +113,11 @@ To evaluate how topology structure, network scale, and controller budget interac
 
 ![](../results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k3_20261017_052319.png)
 
+**Figure 4.3: Pareto Latency-Cost Trade-Off Frontier on Barabási-Albert Topology ($N=50, k=3$).**
+
 ![](../results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n50_k3_20261017_052319.png)
+
+**Figure 4.4: Pareto Latency-Cost Trade-Off Frontier on Waxman Spatial Topology ($N=50, k=3$).**
 
 Four quantitative findings emerge from Tables 4.2 and 4.3 and Figures 4.3 and 4.4:
 
@@ -138,6 +146,8 @@ To evaluate canonical and synthetic placements across all three objectives simul
 | ATT-MPLS ($N=21$) | 5 | Greedy $K$-Center | 2.381 | 100.0% | 0.131 | 0.131 | 0.088 | Dominated by Random |
 
 ![](../SDN_Pareto_3D_Print.png)
+
+**Figure 4.5: Three-Dimensional Multi-Objective Pareto Surface Mapping Propagation Latency, Single-Link Reliability, and Computational Complexity Tax.**
 
 As shown in Table 4.4, on Internet2 ($k=5$), Bandit RL / DQN (`0.960 ms`) and GA (`0.976 ms`) achieve the lowest propagation latencies with $100.0\%$ single-link failure survivability, while $K$-Means (`1.045 ms`, `4.983 ms` runtime) and Greedy $K$-Center (`1.064 ms`, `0.095 ms` runtime) remain within $0.104\text{ ms}$ of the best latency at a fraction of the total compute time.
 
@@ -243,6 +253,8 @@ Across the 2-edge-connected canonical topologies (Internet2 and ATT-MPLS) and sc
 Figure 4.6 and Table 4.7 summarize the scenario-conditioned decision guidelines bounded to the evaluated experimental range ($N \le 50$).
 
 ![](../docs/figures/decision_framework_flowchart.png)
+
+**Figure 4.6: Bounded Infrastructure Deployment Decision Flowchart ($N \le 50$).**
 
 **Table 4.7: Scenario-Conditioned Algorithm Selection Decision Rules (Bounded to $N \le 50$)**
 

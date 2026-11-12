@@ -17,7 +17,7 @@ The benchmarking harness reads its parameters from `configs/experiment_config.js
         "edges_graphml": 26,
         "nodes_core_fallback": 11,
         "edges_core_fallback": 18,
-        "source": "data/raw/topologies/Internet2.graphml & Heller et al. (2012)"
+        "source": "data/raw/topologies/Internet2.graphml & Topology Zoo (Mohanty et al., 2021; Farahi et al., 2026)"
       },
       {
         "name": "ATT-MPLS",

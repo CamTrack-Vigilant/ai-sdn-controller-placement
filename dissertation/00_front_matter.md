@@ -67,7 +67,7 @@ I also thank the academic and technical staff of the Department of Computer Scie
 
 ## LIST OF TABLES
 
-- Table 2.1: Literature Synthesis on SDN Controller Placement (2012–2026).
+- Table 2.1: Literature Synthesis on SDN Controller Placement (2021–2026).
 - Table 3.1: Summary of Canonical and Synthetic Network Topology Parameters.
 - Table 3.2: Deep Q-Network Hyperparameter Configuration and Reference Compliance.
 - Table 3.3: Full Factorial Benchmark Design Matrix ($2 \times 2 \times 3 \times 5 = 60$ Cells).

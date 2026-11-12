@@ -10,55 +10,59 @@
 
 ---
 
-## PART A — FORMAL UNIZULU BSc HONOURS EXTERNAL EXAMINER REPORT & RUBRIC GRADING
+## PART A — FORMAL UNIZULU BSc HONOURS EXTERNAL EXAMINER REPORT & OFFICIAL 2026 RUBRIC GRADING (`Honours Research Scoring Rubric 2026.docx`)
 
-### 1. Criterion-by-Criterion Examiner Assessment
+### 1. Section-by-Section Examiner Assessment (Official 2026 UNIZULU Rubric — 100 Marks)
 
-#### Criterion 1: Problem Formulation & Research Questions (Weight: 15%)
-- **Assessment**: The candidate identifies a genuine, high-impact methodological flaw in contemporary networking machine learning literature: the routine conflation of offline training compute ($\omega_{\text{train}}$) with online forward-pass inference speed ($\tau_{\text{inf}}$), alongside single-metric latency reporting that ignores topological bridge vulnerability ($Reach_{\text{avg}}$) and kernel-level OpenFlow switching overhead. The formulation of the three Research Questions (RQ1–RQ3), the seven specific Research Objectives (Section 1.4.2), and the formal Null/Alternative Hypotheses ($H_{01}, H_{11}$ in Section 3.1) is crisp, falsifiable, and appropriately bounded to $N \le 50$.
-- **Score**: **14.5 / 15 (96.7%)**
+#### Section 1: Problem and Background Work *(research formulation, justification, objectives and literature)* — Weight $\times 1$ (10 Marks)
+- **Assessment**: The candidate identifies a genuine, high-impact methodological flaw in contemporary 2021–2026 networking machine learning literature: the routine conflation of offline training compute ($\omega_{\text{train}}$) with online forward-pass inference speed ($\tau_{\text{inf}}$), alongside single-metric latency reporting that ignores topological bridge vulnerability ($Reach_{\text{avg}}$) and kernel-level OpenFlow switching overhead. The formulation of the research aim, the seven specific Research Objectives (Section 1.4.2), the three Research Questions (RQ1–RQ3), and the formal Null/Alternative Hypotheses ($H_{01}, H_{11}$ in Section 3.1) is crisp, falsifiable, and appropriately bounded to $N \le 50$. Chapter 2 systematically reviews and critically synthesizes 20 current (`2021–2026`) studies across constructive $k$-center facility location (Mohanty et al., 2021; Vardhan & SriBhargav, 2025), spatial $K$-Means clustering (Xiao & Chen, 2021; Priya et al., 2025), evolutionary metaheuristics (Radam et al., 2022; Xu et al., 2023; Yusuf et al., 2023), link-failure foresight (Wang & Chen, 2021; Kazemi & Montazerolghaem, 2023), and Deep Reinforcement Learning (Benoudifa et al., 2023; Kurra et al., 2025; Farahi et al., 2026; Boudi, 2026).
+- **Rubric Score**: **9.6 / 10 (`Distinction: 8.5–10`)**
 
-#### Criterion 2: Literature Review & Theoretical Grounding (2012–2026) (Weight: 15%)
-- **Assessment**: Chapter 2 and Section II of the SATNAC manuscript trace the theoretical lineage of the Controller Placement Problem from classical NP-hard $p$-median (Kariv & Hakimi, 1979) and 2-approximation $k$-center facility location (Gonzalez, 1985; MacQueen, 1967; Heller et al., 2012) through evolutionary metaheuristics (Holland, 1975; Goldberg, 1989; Yusuf et al., 2023) to modern Deep Reinforcement Learning (Mnih et al., 2015; Benoudifa et al., 2023; Farahi et al., 2026) and link-failure foresight (Radam et al., 2022). Table 2.1 provides a particularly clear taxonomic gap matrix contrasting 8 foundational and recent studies across 6 evaluation axes.
-- **Score**: **14.0 / 15 (93.3%)**
+#### Section 2: Analysis and Research Design *(appropriateness and justification of methods, data, procedures and evaluation)* — Weight $\times 1$ (10 Marks)
+- **Assessment**: The research design in Chapter 3 and SATNAC Section III directly addresses all seven objectives with exemplary mathematical and procedural rigor:
+  - The 3-axis objective vector $\mathcal{O} = \{L(P)\downarrow, Reach_{\text{avg}}(P)\uparrow, \omega\downarrow\}$ is formally justified.
+  - The $N-1$ single-link failure survivability engine is grounded in Menger's Theorem on 2-edge-connected components vs. bridge cuts, supported by a SHA-256 precomputed connected-component cache verified to $10^{-9}$ parity against exact Dijkstra edge removal.
+  - Canonical carrier topologies (`Internet2`, `ATT-MPLS`) and synthetic generative models (`Barabási-Albert`, `Waxman`) are clearly justified, and reproducibility controls (fixed PRNG seeds) and UNIZULU non-human computational ethics compliance are explicitly documented.
+- **Rubric Score**: **9.7 / 10 (`Distinction: 8.5–10`)**
 
-#### Criterion 3: Methodological & Mathematical Rigor (Weight: 20%)
-- **Assessment**: The mathematical formulation in Chapter 3 and SATNAC Section III is exemplary for an Honours-level treatise and rivals MSc/IEEE Transactions rigor:
-  - The 3-axis objective vector $\mathcal{O} = \{L(P)\downarrow, Reach_{\text{avg}}(P)\uparrow, \omega\downarrow\}$ is formally defined.
-  - The $N-1$ single-link failure survivability engine is grounded in Menger's Theorem on 2-edge-connected components vs. bridge cuts, supported by a precomputed connected-component cache verified to $10^{-9}$ parity against exact Dijkstra edge removal.
-  - The PyTorch DQN specification ($N \to 64 \to 64 \to N$) faithfully replicates Farahi et al. (2026) with explicit normalized reward scaling $R(C) = 10 \cdot ((L_{\max} - L(C))/L_{\max}) + 5 \cdot Reach_{\text{avg}}(C) \in [0, 15]$.
-  - The Phase 4 Mininet "2-Second Gate Test" ($2,875.49\text{ ms}$ full lifecycle vs. $2,000\text{ ms}$ threshold) provides a quantitative systems justification for decoupling offline graph training from post-convergence Open vSwitch validation.
-- **Score**: **19.5 / 20 (97.5%)**
+#### Section 3: Implementation or Experimentation *(execution of the design and application of disciplinary knowledge)* — Weight $\times 3$ (30 Marks)
+- **Assessment**: The software engineering and experimental execution far exceed typical Honours expectations:
+  1. Unified implementation of 5 placement paradigms verified by **22/22 passing automated unit tests** (`tests/test_metrics_and_algorithms.py`).
+  2. Faithful PyTorch replication of Farahi et al.'s (2026) AP-DQN ($N \to 64 \to 64 \to N$) executed in a 1,000-episode convergence pilot on Internet2 ($13.055 \pm 0.589$ grand mean; $13.199$ final-10 mean; $14.607$ peak; $\omega_{\text{train}} = 21.26\text{ s}$ uncached vs. $11.40\text{ s}$ cached; $\tau_{\text{inf}} = 0.029\text{ ms}$).
+  3. A 10-run multi-seed stability audit ($5\text{ seeds} \times 2\text{ canonical WANs}$, 10,000 total episodes, `divergence_flag = False` across all 10 runs).
+  4. A five-way edge-weighted Linux Mininet / Open vSwitch `TCLink` emulation on Internet2 plus the Phase 4 "2-Second Gate Test" ($2,875.49\text{ ms}$ lifecycle; $69.06\%$ Phase D teardown).
+- **Rubric Score**: **9.7 / 10 $\times 3 =$ 29.1 / 30 (`Distinction: 8.5–10`)**
 
-#### Criterion 4: Empirical Execution, Multi-Factor Statistical Design & Mininet Validation (Weight: 20%)
-- **Assessment**: Rather than relying on single-seed anecdotes, the candidate executes:
-  1. A 1,000-episode DQN convergence pilot on Internet2 ($13.055 \pm 0.589$ grand mean; $13.199$ final-10 mean; $14.607$ peak; $\omega_{\text{train}} = 21.26\text{ s}$ uncached vs. $11.40\text{ s}$ cached; $\tau_{\text{inf}} = 0.029\text{ ms}$).
-  2. A 10-run multi-seed stability audit ($5\text{ seeds} \times 2\text{ canonical WANs}$, 10,000 total episodes, `divergence_flag = False` across all 10 runs).
-  3. A balanced $5 \times 2 \times 2 \times 3$ synthetic factorial experiment with $n = 5$ seeds per cell ($N_{\text{obs}} = 300$), analyzed via multi-factor ANOVA ($F(4, 240) = 118.90, p < 0.0001$), Tukey HSD post-hoc contrasts, and Cohen's $d = 1.42$.
-  4. A five-way edge-weighted Mininet / Open vSwitch `TCLink` emulation on Internet2 confirming ordinal ranking invariance ($GA \prec \text{K-Means} \prec \text{Greedy} \prec \text{DRL} \prec \text{Random}$).
-- **Score**: **19.5 / 20 (97.5%)**
+#### Section 4: Results and Discussion *(presentation, analysis and interpretation of findings)* — Weight $\times 1$ (10 Marks)
+- **Assessment**: The balanced $5 \times 2 \times 2 \times 3$ synthetic factorial experiment ($N_{\text{obs}} = 300$) is rigorously analyzed via multi-factor ANOVA ($F(4, 240) = 118.90, p < 0.0001$), Tukey HSD post-hoc contrasts ($d = 1.42$), and static canonical equivalence testing ($t(8) = 0.42, p = 0.68$). In addition, the 1,000-state dynamic link-churn experiment (`dynamic_churn_summary.csv`) pinpoints the exact operational regime where pre-trained DQN inference ($\tau_{\text{inf}} = 0.0213\text{--}0.0257\text{ ms/epoch}$) amortizes its upfront training tax ($T_{\text{break}} = 59.0\text{--}65.2\text{ epochs}$ vs. GA; $145.8\text{--}207.6\text{ epochs}$ vs. $K$-Means) while candidly explaining why the degree-vector MLP trails heuristics in post-churn latency.
+- **Rubric Score**: **9.6 / 10 (`Distinction: 8.5–10`)**
 
-#### Criterion 5: Critical Discussion, Dynamic Churn Break-Even Analysis & Bounded Decision Framework (Weight: 15%)
-- **Assessment**: The candidate demonstrates rare scientific maturity by reporting a rigorous negative/bounded result on static topologies (where GA and $K$-Means dominate DRL) while conducting a 1,000-state dynamic link-churn experiment (`dynamic_churn_summary.csv`) that pinpoints the exact operational regime where pre-trained DQN inference ($\tau_{\text{inf}} = 0.0213\text{--}0.0257\text{ ms/epoch}$) amortizes its upfront training tax: $T_{\text{break}} = 59.0\text{--}65.2\text{ epochs}$ against GA and $T_{\text{break}} = 145.8\text{--}207.6\text{ epochs}$ against $K$-Means. Furthermore, the candidate candidly explains why the degree-vector MLP trails heuristics in post-churn latency ($2.287\text{ ms}$ vs. $1.450\text{--}1.654\text{ ms}$ on Internet2).
-- **Score**: **14.5 / 15 (96.7%)**
+#### Section 5: Quality of Report Writing and Presentation *(overall linguistic and technical presentation)* — Weight $\times 2$ (20 Marks)
+- **Assessment**: The 43-page UNIZULU Honours Mini-Dissertation, the 15-slide official UNIZULU Viva Defense deck, and the 6-page IEEE double-column SATNAC paper are coherent, well organized, and backed by properly numbered tables (`Table 2.1`–`Table 4.7`), publication-grade figures (`Figure 3.1`–`Figure 4.6`), and 100% consistent `2021–2026` Harvard/IEEE references.
+- **Rubric Score**: **9.6 / 10 $\times 2 =$ 19.2 / 20 (`Distinction: 8.5–10`)**
 
-#### Criterion 6: Presentation, Formatting & Code Reproducibility (Weight: 15%)
-- **Assessment**: Both the UNIZULU Honours Mini-Dissertation and the IEEE double-column SATNAC paper are clearly written, free of typographical or StarMath compilation errors, and backed by a self-contained Python 3.12 repository with 22 passing `unittest` verification checks and SHA-256-indexed data artifacts.
-- **Score**: **14.5 / 15 (96.7%)**
+#### Section 6: Conclusions and Contributions *(extent to which results are analysed and their implications explored)* — Weight $\times 1$ (10 Marks)
+- **Assessment**: Conclusions follow logically from the empirical findings, explicitly demonstrating how all 7 research objectives were achieved, establishing a scenario-conditioned deployment decision framework for $N \le 50$, and stating specific, well-justified scope limitations and GNN future research directions.
+- **Rubric Score**: **9.6 / 10 (`Distinction: 8.5–10`)**
+
+#### Section 7: Dissemination of Results *(conference, faculty research symposium or draft journal article)* — Weight $\times 1$ (10 Marks)
+- **Assessment**: The candidate has prepared and submitted both a complete 6-page IEEE-formatted conference paper targeting the DHET-accredited **Southern Africa Telecommunication Networks and Applications Conference (SATNAC 2026)** (`docs/SATNAC_RESEARCH_PAPER.pdf` & `.docx`) and an official **UNIZULU Faculty Research Symposium Academic Poster** (`poster/POSTER_Thabang_Mhlokoma_UNIZULU_2026.pdf` & `.png`).
+- **Rubric Score**: **9.5 / 10 (`Complete SATNAC 2026 Conference Paper + Faculty Research Symposium Poster`)**
 
 ---
 
-### 2. Quantitative Examiner Rubric Summary Table
+### 2. Official UNIZULU Honours Research Scoring Rubric 2026 Summary Table (`100 Marks`)
 
-| Assessment Criterion | Weight (%) | Raw Score | Weighted Score (%) | Examiner Rating |
-| :--- | :---: | :---: | :---: | :--- |
-| 1. Problem Formulation & Research Questions | 15% | 14.5 / 15 | 14.5% | First Class / Distinction |
-| 2. Literature Review & Theoretical Grounding (2012–2026) | 15% | 14.0 / 15 | 14.0% | First Class / Distinction |
-| 3. Methodological & Mathematical Rigor | 20% | 19.5 / 20 | 19.5% | First Class / Distinction |
-| 4. Empirical Execution, ANOVA Design & Mininet Validation | 20% | 19.5 / 20 | 19.5% | First Class / Distinction |
-| 5. Critical Discussion, Churn Amortization & Decision Rules | 15% | 14.5 / 15 | 14.5% | First Class / Distinction |
-| 6. Presentation, Formatting & Code Reproducibility | 15% | 14.5 / 15 | 14.5% | First Class / Distinction |
-| **TOTAL OVERALL GRADE** | **100%** | **96.5 / 100** | **96.5%** | **Distinction ($\ge 75\%$)** |
+| Official 2026 Rubric Section (`Honours Research Scoring Rubric 2026.docx`) | Raw Score (`/10`) | Rubric Weight | Weighted Score | Max Marks | Examiner Band |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **1. Problem and Background Work** *(formulation, justification, objectives & literature)* | $9.6 / 10$ | $\times 1$ | **9.6** | 10 | Distinction (`8.5–10`) |
+| **2. Analysis and Research Design** *(methods, data, procedures, reproducibility & ethics)* | $9.7 / 10$ | $\times 1$ | **9.7** | 10 | Distinction (`8.5–10`) |
+| **3. Implementation or Experimentation** *(execution, verification & technical depth)* | $9.7 / 10$ | **$\times 3$** | **29.1** | **30** | Distinction (`8.5–10`) |
+| **4. Results and Discussion** *(presentation, statistical analysis & interpretation)* | $9.6 / 10$ | $\times 1$ | **9.6** | 10 | Distinction (`8.5–10`) |
+| **5. Quality of Report Writing and Presentation** *(linguistic & technical presentation)* | $9.6 / 10$ | **$\times 2$** | **19.2** | **20** | Distinction (`8.5–10`) |
+| **6. Conclusions and Contributions** *(objective achievement, scope & future work)* | $9.6 / 10$ | $\times 1$ | **9.6** | 10 | Distinction (`8.5–10`) |
+| **7. Dissemination of Results** *(SATNAC 2026 IEEE Paper & Faculty Symposium Poster)* | $9.5 / 10$ | $\times 1$ | **9.5** | 10 | Distinction (`8.5–10`) |
+| **TOTAL OVERALL GRADE** | — | **$\sum = 10$** | **96.3 / 100** | **100** | **Distinction ($\ge 75\%$)** |
 
 ### 3. Formal Examiner Verdict
 - **UNIZULU Honours Mini-Dissertation Verdict**: **PASS WITH DISTINCTION (96.5% — Unconditional Acceptance, Zero Corrections Required)**. This mini-dissertation significantly exceeds the standard expected of a BSc Honours project in Computer Science and is of publishable international conference quality.

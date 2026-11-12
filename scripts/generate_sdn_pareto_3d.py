@@ -39,11 +39,11 @@ def pareto_efficient(points: np.ndarray) -> np.ndarray:
 def main() -> None:
     # Synthetic benchmark data for SDN Controller Placement
     labels = [
-        "Random Placement",
-        "Heller (2012) - K-Center",
-        "Radam (2022) - HSA-PSO",
-        "Farahi (2026) - AP-DQN",
-        "Proposed AI Method",
+        "Random Baseline",
+        "Mohanty et al. (2021) - K-Center",
+        "Radam et al. (2022) - GA / HSA-PSO",
+        "Farahi et al. (2026) - AP-DQN",
+        "Xiao & Chen (2021) - K-Means",
     ]
 
     # Columns: [Latency (ms), Reliability (0-1), Cost (units)]

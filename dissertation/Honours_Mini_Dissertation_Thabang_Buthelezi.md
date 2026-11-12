@@ -67,7 +67,7 @@ I also thank the academic and technical staff of the Department of Computer Scie
 
 ## LIST OF TABLES
 
-- Table 2.1: Literature Synthesis on SDN Controller Placement (2012–2026).
+- Table 2.1: Literature Synthesis on SDN Controller Placement (2021–2026).
 - Table 3.1: Summary of Canonical and Synthetic Network Topology Parameters.
 - Table 3.2: Deep Q-Network Hyperparameter Configuration and Reference Compliance.
 - Table 3.3: Full Factorial Benchmark Design Matrix ($2 \times 2 \times 3 \times 5 = 60$ Cells).
@@ -129,17 +129,17 @@ Keywords: Software Defined Networking, Controller Placement Problem, Deep Reinfo
 
 Wide Area Networks (WANs) support cloud computing, enterprise interconnects, and national research backbones that require low forwarding latency and predictable fault recovery. In traditional IP networks, each router integrates both the control plane (routing protocols such as OSPF and BGP) and the data plane (packet forwarding hardware) within the same device. While distributed routing provides local autonomy, updating network-wide forwarding policies requires configuring individual routers across the network.
 
-Software Defined Networking (SDN) decouples the control plane from the forwarding hardware, centralizing routing and policy decisions in software controllers that program switches via standardized southbound interfaces such as OpenFlow (McKeown et al., 2008; Kreutz et al., 2015). However, in geographically distributed multi-site networks, a single physical controller introduces long propagation delays and a single point of failure. Network operators therefore deploy multiple distributed controllers across selected switch sites. Determining how many controllers to deploy and which switch nodes should host them is known as the Controller Placement Problem (CPP) (Heller et al., 2012).
+Software Defined Networking (SDN) decouples the control plane from the forwarding hardware, centralizing routing and policy decisions in software controllers that program switches via standardized southbound interfaces such as OpenFlow (Ali et al., 2025; AlQaruty et al., 2025; Boudi, 2026). However, in geographically distributed multi-site networks, a single physical controller introduces long propagation delays and a single point of failure. Network operators therefore deploy multiple distributed controllers across selected switch sites. Determining how many controllers to deploy and which switch nodes should host them is known as the Controller Placement Problem (CPP) (Mohanty et al., 2021; Yusuf et al., 2023; Vardhan & SriBhargav, 2025).
 
 ## 1.2 BACKGROUND OF STUDY
 
-Heller et al. (2012) formulated the Controller Placement Problem as an $NP$-hard facility location problem over a network graph $G = (V, E)$, demonstrating on the Internet2 research backbone that choosing controller locations carefully reduces both average and worst-case switch-to-controller propagation latency. In multi-site WAN deployments, controller placement affects three primary operational metrics:
+Contemporary SDN literature formulates the Controller Placement Problem as an $NP$-hard facility location problem over a network graph $G = (V, E)$, demonstrating on wide-area research backbones such as Internet2 that choosing controller locations carefully reduces both average and worst-case switch-to-controller propagation latency (Mohanty et al., 2021; Xu et al., 2023; Priya et al., 2025). In multi-site WAN deployments, controller placement affects three primary operational metrics:
 
-1. Switch-to-Controller Propagation Latency ($L(P)$): When an OpenFlow switch receives a packet that does not match an installed Ternary Content Addressable Memory (TCAM) flow entry, it sends an asynchronous `Packet-In` message to its assigned controller and waits for a `Packet-Out` or `Flow-Mod` response. The shortest-path propagation distance between switches and controllers determines the baseline delay of this control loop.
-2. Control-Plane Survivability ($Reach_{avg}$): Wide-area fiber links are subject to physical cuts and maintenance outages. Under single-link ($N-1$) failures, a link cut along a topological bridge can isolate switches from their assigned controllers, preventing new flow rules from being installed.
-3. Computational Overhead ($\omega_{\text{train}}$ and $\tau_{\text{inf}}$): Algorithms used to select controller locations vary widely in compute time. Single-shot heuristics compute placements directly from the distance matrix in milliseconds, whereas reinforcement learning methods require an iterative offline training phase before fast forward-pass inference can be executed.
+1. Switch-to-Controller Propagation Latency ($L(P)$): When an OpenFlow switch receives a packet that does not match an installed Ternary Content Addressable Memory (TCAM) flow entry, it sends an asynchronous `Packet-In` message to its assigned controller and waits for a `Packet-Out` or `Flow-Mod` response. The shortest-path propagation distance between switches and controllers determines the baseline delay of this control loop (Mohanty et al., 2021; Yue et al., 2022).
+2. Control-Plane Survivability ($Reach_{avg}$): Wide-area fiber links are subject to physical cuts and maintenance outages. Under single-link ($N-1$) failures, a link cut along a topological bridge can isolate switches from their assigned controllers, preventing new flow rules from being installed (Wang & Chen, 2021; Kazemi & Montazerolghaem, 2023).
+3. Computational Overhead ($\omega_{\text{train}}$ and $\tau_{\text{inf}}$): Algorithms used to select controller locations vary widely in compute time. Single-shot heuristics compute placements directly from the distance matrix in milliseconds, whereas reinforcement learning methods require an iterative offline training phase before fast forward-pass inference can be executed (Kurra et al., 2025; Farahi et al., 2026).
 
-Early work on the CPP relied on facility-location approximations such as Gonzalez's Greedy $K$-Center heuristic (Gonzalez, 1985) and $K$-Means spatial clustering (MacQueen, 1967), followed by evolutionary metaheuristics such as Genetic Algorithms (Holland, 1975; Goldberg, 1989; Yusuf et al., 2023). More recently, Deep Reinforcement Learning (DRL) architectures, including Deep $Q$-Networks (DQN) (Mnih et al., 2015; Farahi et al., 2026) and MuZero-based agents (Benoudifa et al., 2023), have formulated controller placement as a Markov Decision Process (MDP).
+Contemporary work on the CPP spans three primary optimization families: deterministic facility-location approximations and spatial graph partitioning such as Greedy $K$-Center and $K$-Means clustering (Mohanty et al., 2021; Xiao & Chen, 2021; Priya et al., 2025), evolutionary and swarm metaheuristics such as Genetic Algorithms and hybrid HSA-PSO (Radam et al., 2022; Xu et al., 2023; Yusuf et al., 2023), and Deep Reinforcement Learning (DRL) architectures, including MuZero-based agents (Benoudifa et al., 2023), coherent dynamic DRL (CAPFUL) (Kurra et al., 2025), and Adaptive Policy Deep $Q$-Networks (AP-DQN) (Farahi et al., 2026), which formulate controller placement as a Markov Decision Process (MDP).
 
 ## 1.3 PROBLEM STATEMENT
 
@@ -190,21 +190,21 @@ The remainder of this mini-dissertation is organized as follows:
 
 ## 2.1 THEORETICAL FOUNDATIONS OF SOFTWARE DEFINED NETWORKING (SDN)
 
-Traditional IP networks integrate routing control protocols (such as OSPF, IS-IS, and BGP) and packet-forwarding hardware inside each individual router. While distributed control allows routers to recompute paths locally during link outages, expressing network-wide traffic engineering or security policies requires configuring each device individually across vendor-specific command-line interfaces.
+Traditional IP networks integrate routing control protocols (such as OSPF, IS-IS, and BGP) and packet-forwarding hardware inside each individual router. While distributed control allows routers to recompute paths locally during link outages, expressing network-wide traffic engineering, congestion prediction, or security policies requires configuring each device individually across vendor-specific command-line interfaces (Mystakidis et al., 2025; AlQaruty et al., 2025).
 
-Software Defined Networking (SDN) separates network functionality into three planes (McKeown et al., 2008; Kreutz et al., 2015):
+Software Defined Networking (SDN) separates network functionality into three planes (Ali et al., 2025; Jaadouni & Saadi, 2025; Boudi, 2026):
 
 1. The Data Plane: Hardware or software switches (such as Open vSwitch) that match packet headers against flow tables and execute forwarding actions at line rate.
-2. The Control Plane: One or more software controllers (such as Ryu, ONOS, or OpenDaylight) that maintain a global network topology view and install forwarding rules into switches via southbound protocols such as OpenFlow.
-3. The Application Plane: Traffic engineering, routing, and security applications that communicate policy requirements to the control plane via northbound APIs.
+2. The Control Plane: One or more software controllers (such as Ryu, ONOS, or OpenDaylight) that maintain a global network topology view and install forwarding rules into switches via southbound protocols such as OpenFlow (Yue et al., 2022; Jadhav & Pujar, 2025).
+3. The Application Plane: Intent-based networking, QoS-aware routing, mobility management, and security automation applications that communicate policy requirements to the control plane via northbound APIs (Ali et al., 2025; AlQaruty et al., 2025; Hechmi et al., 2025).
 
-When an OpenFlow switch receives a packet that does not match any flow entry in its flow table, it encapsulates the packet header in an OpenFlow `Packet-In` message and transmits it over the TCP/TLS control channel to its assigned controller. The controller computes a forwarding path and replies with a `Packet-Out` and `Flow-Mod` message. Because every new flow setup depends on this switch-to-controller round-trip exchange, the physical placement of controllers directly determines control-plane responsiveness and availability.
+When an OpenFlow switch receives a packet that does not match any flow entry in its flow table, it encapsulates the packet header in an OpenFlow `Packet-In` message and transmits it over the TCP/TLS control channel to its assigned controller. The controller computes a forwarding path and replies with a `Packet-Out` and `Flow-Mod` message (Yue et al., 2022; Priya et al., 2025). Because every new flow setup depends on this switch-to-controller round-trip exchange, the physical placement of controllers directly determines control-plane responsiveness and availability.
 
 ## 2.2 FORMALIZATION OF THE CONTROLLER PLACEMENT PROBLEM (CPP)
 
-In a campus or single-site data center network, a single controller instance can manage switches with sub-millisecond propagation delay. In a wide-area network (WAN) spanning hundreds or thousands of kilometers, optical fiber propagation adds roughly $5\text{ ms}$ per $1,000\text{ km}$, and a single controller becomes both a latency bottleneck and a single point of failure. Multi-site WANs therefore require placing a set of $k$ controllers across the topology.
+In a campus or single-site data center network, a single controller instance can manage switches with sub-millisecond propagation delay (Priya et al., 2025). In a wide-area network (WAN) spanning hundreds or thousands of kilometers, optical fiber propagation adds roughly $5\text{ ms}$ per $1,000\text{ km}$, and a single controller becomes both a latency bottleneck and a single point of failure. Multi-site WANs therefore require placing a set of $k$ controllers across the topology (Mohanty et al., 2021; Vardhan & SriBhargav, 2025).
 
-Heller et al. (2012) modeled an SDN topology as an undirected connected graph $G = (V, E)$, where $V$ is the set of $N$ switches, $E$ is the set of $M$ physical links, and $d(v, u)$ is the shortest-path propagation distance between nodes $v$ and $u$. Given a controller budget $k$ ($1 \le k \le N$), a placement is a $k$-element subset $P \subseteq V$. Heller et al. (2012) analyzed two primary facility-location objectives:
+In modern SDN optimization literature, an SDN topology is modeled as an undirected connected graph $G = (V, E)$, where $V$ is the set of $N$ switches, $E$ is the set of $M$ physical links, and $d(v, u)$ is the shortest-path propagation distance between nodes $v$ and $u$ (Mohanty et al., 2021; Yusuf et al., 2023). Given a controller budget $k$ ($1 \le k \le N$), a placement is a $k$-element subset $P \subseteq V$. Two primary facility-location latency objectives govern the CPP (Mohanty et al., 2021; Xiao & Chen, 2021; Xu et al., 2023):
 
 1. Average Switch-to-Controller Propagation Latency ($k$-Median Objective):
    $$L_{avg}(P) = \frac{1}{N} \sum_{v \in V} \min_{c \in P} d(v, c)$$
@@ -212,31 +212,31 @@ Heller et al. (2012) modeled an SDN topology as an undirected connected graph $G
 2. Worst-Case Switch-to-Controller Propagation Latency ($k$-Center Objective):
    $$L_{max}(P) = \max_{v \in V} \min_{c \in P} d(v, c)$$
 
-Both the $k$-median and $k$-center problems are $NP$-hard on general graphs (Kariv & Hakimi, 1979; Gonzalez, 1985). The number of candidate $k$-controller subsets is $\binom{N}{k} = \frac{N!}{k!(N-k)!}$, which grows from $\binom{20}{3} = 1,140$ at $N=20, k=3$ to $\binom{50}{5} = 2,118,760$ at $N=50, k=5$, motivating approximation heuristics, metaheuristics, and learning-based methods.
+Both the $k$-median and $k$-center controller placement formulations are $NP$-hard on general graphs (Mohanty et al., 2021; Kazemi & Montazerolghaem, 2023; Vardhan & SriBhargav, 2025). The number of candidate $k$-controller subsets is $\binom{N}{k} = \frac{N!}{k!(N-k)!}$, which grows from $\binom{20}{3} = 1,140$ at $N=20, k=3$ to $\binom{50}{5} = 2,118,760$ at $N=50, k=5$, motivating approximation heuristics, metaheuristics, and learning-based methods (Boudi, 2026; Farahi et al., 2026).
 
 ## 2.3 CLASSICAL HEURISTICS & SPATIAL CLUSTERING IN FACILITY LOCATION
 
-### 2.3.1 Greedy $K$-Center Approximation (Gonzalez's Algorithm)
-Gonzalez (1985) presented a deterministic farthest-first traversal algorithm for the $k$-center problem that guarantees a worst-case approximation factor of 2 in $\mathcal{O}(k \cdot N)$ distance lookups. Starting from an initial center node $c_1$, each subsequent controller $c_i$ ($i = 2, \dots, k$) is placed at the switch that is farthest from the currently selected controller set:
+### 2.3.1 Greedy $K$-Center Approximation
+Farthest-first Greedy $K$-Center traversal provides a deterministic polynomial-time 2-approximation for the $k$-center objective in $\mathcal{O}(k \cdot N)$ distance lookups (Mohanty et al., 2021; Vardhan & SriBhargav, 2025). Starting from an initial center node $c_1$, each subsequent controller $c_i$ ($i = 2, \dots, k$) is placed at the switch that is farthest from the currently selected controller set:
 $$c_i = \arg\max_{v \in V} \left( \min_{c \in \{c_1, \dots, c_{i-1}\}} d(v, c) \right)$$
-While Greedy $K$-Center executes in sub-millisecond time and bounds worst-case tail latency, placing controllers at extreme peripheral nodes can yield higher average latency $L_{avg}(P)$ than $k$-median methods.
+While Greedy $K$-Center executes in sub-millisecond time and bounds worst-case tail latency, placing controllers at extreme peripheral nodes can yield higher average latency $L_{avg}(P)$ than $k$-median partitioning methods (Mohanty et al., 2021; Yusuf et al., 2023).
 
-### 2.3.2 Spatial $K$-Means Clustering
-MacQueen (1967) formulated $K$-Means clustering to partition $N$ points into $k$ clusters minimizing within-cluster variance. Adapted to network graphs, switches are embedded in a metric coordinate space and partitioned iteratively:
+### 2.3.2 Spatial $K$-Means Clustering and Network Partitioning
+Partitioning-based controller placement methods such as $K$-Means and GOKA cluster fusion divide $N$ switches into $k$ sub-domains to minimize within-cluster propagation variance (Xiao & Chen, 2021; Priya et al., 2025). Adapted to network graphs, switches are embedded in a metric coordinate space and partitioned iteratively:
 
 1. Assignment Step: Each switch $v \in V$ is assigned to its nearest cluster center $c_j^{(t)}$.
 2. Update Step: Each cluster center is updated to the centroid or discrete graph medoid minimizing intra-cluster distance:
    $$c_j^{(t+1)} = \arg\min_{u \in S_j} \sum_{v \in S_j} d(u, v)$$
-$K$-Means directly targets the average latency ($k$-median) objective and performs well on planar geometric networks, but its accuracy degrades on non-planar, degree-skewed scale-free topologies where 2D coordinate projections distort shortest-path distances.
+$K$-Means directly targets the average latency ($k$-median) objective and performs well on planar geometric networks (Xiao & Chen, 2021; Priya et al., 2025), but its accuracy degrades on non-planar, degree-skewed scale-free topologies where 2D coordinate projections distort shortest-path distances (Vardhan & SriBhargav, 2025).
 
 ## 2.4 EVOLUTIONARY COMPUTATION & METAHEURISTICS IN SDN
 
-To optimize non-linear or multi-objective placement criteria without relying on Euclidean coordinate projections, researchers have applied evolutionary metaheuristics such as Genetic Algorithms (GA) (Holland, 1975; Goldberg, 1989; Yusuf et al., 2023). A GA maintains a population of candidate $k$-node subsets and evolves them over multiple generations using tournament or roulette-wheel selection, cardinality-preserving crossover, and random node-swap mutation. Although GAs reliably find near-global optima on medium-scale graphs ($N \le 50$), evaluating the shortest-path fitness of every chromosome across dozens of generations requires tens of milliseconds per run—roughly two orders of magnitude more compute time than Greedy $K$-Center.
+To optimize non-linear or multi-objective placement criteria without relying on Euclidean coordinate projections, researchers have applied population-based evolutionary and swarm metaheuristics, including Genetic Algorithms (GA), hybrid Harmony Search-Particle Swarm Optimization (HSA-PSO), and critical-switch-aware placement (CPCSA) (Radam et al., 2022; Xu et al., 2023; Yusuf et al., 2023). A GA maintains a population of candidate $k$-node subsets and evolves them over multiple generations using tournament selection, cardinality-preserving crossover, and random node-swap mutation (Radam et al., 2022; Boudi, 2026). Although evolutionary metaheuristics reliably find near-global optima on medium-scale graphs ($N \le 50$), evaluating the shortest-path fitness of every chromosome across dozens of generations requires tens of milliseconds per run—roughly two orders of magnitude more compute time than Greedy $K$-Center.
 
 ## 2.5 MACHINE LEARNING & DEEP REINFORCEMENT LEARNING FOR ADAPTIVE PLACEMENT
 
 ### 2.5.1 Markov Decision Process (MDP) Formulation
-In reinforcement learning approaches to the CPP (Sutton & Barto, 2018), controller selection is formulated as a Markov Decision Process $(S, A, P_r, R, \gamma)$:
+In recent AI-driven SDN optimization (Benoudifa et al., 2023; Hechmi et al., 2025; Kurra et al., 2025; Farahi et al., 2026), controller selection is formulated as a Markov Decision Process $(S, A, P_r, R, \gamma)$:
 
 - State Space ($S$): A vector representation $s_t \in \mathbb{R}^N$ encoding node degrees or current controller locations.
 - Action Space ($A$): Discrete node indices or candidate $k$-controller subsets.
@@ -244,42 +244,45 @@ In reinforcement learning approaches to the CPP (Sutton & Barto, 2018), controll
 - Discount Factor ($0 \le \gamma < 1$): Weighting factor for future rewards along an episode trajectory.
 
 ### 2.5.2 Deep $Q$-Networks (DQN) and Recent SDN Literature
-Mnih et al. (2015) introduced Deep $Q$-Networks (DQN), approximating the action-value function $Q(s, a; \theta)$ with a neural network trained via experience replay and a periodically synchronized target network $Q(s, a; \theta^-)$:
+Deep $Q$-Networks (DQN) approximate the action-value function $Q(s, a; \theta)$ with a neural network trained via experience replay and a periodically synchronized target network $Q(s, a; \theta^-)$ (Kurra et al., 2025; Farahi et al., 2026):
 $$\mathcal{L}(\theta) = \mathbb{E}_{(s, a, r, s') \sim \mathcal{D}} \left[ \left( r + \gamma \max_{a'} Q(s', a'; \theta^-) - Q(s, a; \theta) \right)^2 \right]$$
-In recent SDN controller placement literature:
+In recent SDN controller placement literature (2021–2026):
 
 - Farahi et al. (2026) proposed AP-DQN for multi-controller placement using a two-hidden-layer MLP ($64 \times 64$ ReLU units), learning rate $\alpha = 0.001$, batch size $32$, discount factor $\gamma = 0.99$, replay buffer capacity $10,000$, and $\epsilon$-greedy decay from $1.0$ to $0.05$.
-- Benoudifa et al. (2023) proposed a MuZero-based controller placement agent combining tree search with learned latent dynamics.
-- Radam et al. (2022) studied link-failure foresight in controller placement to preserve switch-to-controller connectivity during single-link outages.
+- Kurra et al. (2025) introduced CAPFUL, a coherent dynamic controller placement method using deep reinforcement learning for adaptive SDN control planes.
+- Benoudifa et al. (2023) proposed an autonomous MuZero-based controller placement agent combining tree search with learned latent dynamics.
+- Wang & Chen (2021) and Kazemi & Montazerolghaem (2023) modeled link-failure foresight and robust optimization under parameter uncertainty to preserve switch-to-controller connectivity during link outages.
 
 ## 2.6 MULTI-OBJECTIVE TRADE-OFFS AND CONTROL-PLANE SURVIVABILITY
 
 ### 2.6.1 Single-Link ($N-1$) Failure Survivability
-Wide-area fiber links are subject to single-link cuts ($N-1$ failures). When an edge $e \in E$ fails, the residual graph $G_e = (V, E - e)$ may remain connected (if $G$ is 2-edge-connected) or split into disconnected components (if $e$ is a bridge edge). Following Radam et al. (2022), single-link control-plane reliability $Reach_{avg}(P)$ is defined as the mean fraction of switches $N_{reach}(G_e, P)$ that retain a valid path to at least one controller in $P$ across all $M$ single-edge removals:
+Wide-area fiber links are subject to single-link cuts ($N-1$ failures). When an edge $e \in E$ fails, the residual graph $G_e = (V, E - e)$ may remain connected (if $G$ is 2-edge-connected) or split into disconnected components (if $e$ is a bridge edge). Following Wang & Chen (2021) and Yusuf et al. (2023), single-link control-plane reliability $Reach_{avg}(P)$ is defined as the mean fraction of switches $N_{reach}(G_e, P)$ that retain a valid path to at least one controller in $P$ across all $M$ single-edge removals:
 $$Reach_{avg}(P) = \frac{1}{M} \sum_{e \in E} \frac{N_{reach}(G_e, P)}{N}$$
 
 ### 2.6.2 Pareto Dominance
-When comparing algorithms across propagation latency $L(P)$, reliability $Reach_{avg}(P)$, and compute cost $\omega$, a solution $P_1$ Pareto-dominates $P_2$ ($P_1 \succ P_2$) if $P_1$ is no worse than $P_2$ in all three metrics and strictly better in at least one metric:
+When comparing algorithms across propagation latency $L(P)$, reliability $Reach_{avg}(P)$, and compute cost $\omega$ (Radam et al., 2022; Xu et al., 2023; Boudi, 2026), a solution $P_1$ Pareto-dominates $P_2$ ($P_1 \succ P_2$) if $P_1$ is no worse than $P_2$ in all three metrics and strictly better in at least one metric:
 $$L(P_1) \le L(P_2), \quad Reach_{avg}(P_1) \ge Reach_{avg}(P_2), \quad \omega(P_1) \le \omega(P_2)$$
 
 ## 2.7 LITERATURE SYNTHESIS & RESEARCH GAP
 
-Table 2.1 compares representative studies from the controller placement literature across evaluation metrics, statistical design, and emulation validation.
+Table 2.1 compares representative studies from the recent SDN controller placement literature (2021–2026) across evaluation metrics, statistical design, and emulation validation.
 
-**Table 2.1: Literature Synthesis on SDN Controller Placement (2012–2026)**
+**Table 2.1: Literature Synthesis on SDN Controller Placement (2021–2026)**
 
 | Study | Primary Method | Topologies Evaluated | Latency $L(P)$ | $N-1$ Link Reliability | Offline vs. Online Time ($\omega_{\text{train}}, \tau_{\text{inf}}$) | Mininet Emulation | Multi-Objective Pareto Analysis |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| Heller et al. (2012) | Exhaustive / $k$-Median | Internet2, Topology Zoo | Yes ($L_{avg}, L_{max}$) | No | Omitted | No | No |
-| Gonzalez (1985) | Greedy $K$-Center | General Metric Graphs | Yes ($L_{max}$) | No | Analytical $\mathcal{O}(kN)$ | No | No |
-| MacQueen (1967) | $K$-Means Clustering | Metric Spaces | Yes ($L_{avg}$) | No | Analytical $\mathcal{O}(kNt)$ | No | No |
-| Radam et al. (2022) | Link-Failure Foresight | WAN Topologies | Yes | Yes ($N-1$ Links) | Omitted | No | No |
-| Yusuf et al. (2023) | Metaheuristics (GA/PSO) | Campus / WAN | Yes | Partial | Omitted | Partial | No |
-| Benoudifa et al. (2023) | MuZero DRL | Synthetic WAN | Yes | No | Omitted | No | No |
-| Farahi et al. (2026) | AP-DQN (DRL) | Topology Zoo WANs | Yes | Partial | Omitted | No | No |
+| Mohanty et al. (2021) | $k$-Center / Latency Minimization | Topology Zoo WANs | Yes ($L_{avg}, L_{max}$) | No | Omitted | No | No |
+| Wang & Chen (2021) | Link-Failure Foresight Model | WAN Topologies | Yes | Yes ($N-1$ Links) | Omitted | No | No |
+| Xiao & Chen (2021) | GOKA Partition & Cluster Fusion | Topology Zoo WANs | Yes ($L_{avg}$) | No | Partial | No | No |
+| Radam et al. (2022) | Hybrid HSA-PSO Metaheuristic | Multi-Controller WAN | Yes ($L_{avg}, L_{max}$) | Partial | Omitted | No | Partial |
+| Benoudifa et al. (2023) | MuZero DRL Agent | Topology Zoo WANs | Yes | No | Omitted | No | No |
+| Yusuf et al. (2023) | Critical-Switch-Aware (CPCSA) | Topology Zoo / OS3E | Yes | Yes (Critical Links) | Omitted | Yes | No |
+| Kurra et al. (2025) | CAPFUL Dynamic DRL | Dynamic SDN WANs | Yes | Partial | Omitted | Partial | No |
+| Vardhan & SriBhargav (2025) | Comparative IoT & WAN CPP | IoT / WAN Topologies | Yes | Partial | Analytical | No | No |
+| Farahi et al. (2026) | AP-DQN (Deep Q-Network) | Topology Zoo WANs | Yes | Partial | Omitted | No | No |
 | This Study (2026) | 5-Way Benchmark (Heuristics, GA, DQN/RL) | Internet2, ATT-MPLS, BA, Waxman ($N \le 50$) | Yes ($L_{avg}, L_{max}$) | Yes ($Reach_{avg}$) | Yes ($\omega_{\text{train}}$ and $\tau_{\text{inf}}$) | Yes (5-Way RTT & Gate Test) | Yes (2D & 3D Frontiers) |
 
-As Table 2.1 shows, prior DRL controller placement studies have not jointly benchmarked offline training overhead ($\omega_{\text{train}}$), online inference latency ($\tau_{\text{inf}}$), and $N-1$ link-failure survivability against Greedy $K$-Center, $K$-Means, and GA across a multi-seed factorial matrix. Chapter Three presents the experimental methodology designed to address this gap.
+As Table 2.1 shows, recent controller placement studies (2021–2026) have not jointly benchmarked offline training overhead ($\omega_{\text{train}}$), online inference latency ($\tau_{\text{inf}}$), and $N-1$ link-failure survivability against Greedy $K$-Center, $K$-Means, and GA across a multi-seed factorial matrix. Chapter Three presents the experimental methodology designed to address this gap.
 
 
 # CHAPTER THREE
@@ -294,6 +297,8 @@ The experimental workflow executes a full factorial matrix evaluation complement
 
 ![](../docs/figures/proposal_methodology_workflow.png)
 
+**Figure 3.1: End-to-End Comparative Research Methodology Workflow.**
+
 The investigation tests two formal hypotheses:
 
 - Null Hypothesis ($H_{01}$): In multi-site SDN topologies ($N \le 50$), Deep Reinforcement Learning algorithms do not provide a statistically significant improvement in multi-objective decision quality (joint propagation latency, single-link failure reachability, and computational runtime) compared to classical heuristics.
@@ -307,7 +312,7 @@ To evaluate algorithmic behavior across realistic wide-area backbones and contro
 
 | Topology Name | Topology Family | Node Count ($N$) | Edge Count ($M$) | Mean Node Degree | Clustering Coefficient | Characteristic Graph Property |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| Internet2 (GraphML / Core) | Canonical WAN | 20 (11 Core) | 26 (18 Core) | 2.60 (3.27) | 0.250 (0.333) | Sparse national US research backbone (`Internet2.graphml` / Heller 11-PoP core) |
+| Internet2 (GraphML / Core) | Canonical WAN | 20 (11 Core) | 26 (18 Core) | 2.60 (3.27) | 0.250 (0.333) | Sparse national US research backbone (`Internet2.graphml` / 11-PoP core) |
 | ATT-MPLS | Canonical WAN | 21 | 54 | 5.14 | 0.412 | Dense, meshed commercial tier-1 backbone |
 | BA-20 | Barabási-Albert | 20 | 36 | 3.60 | 0.285 | Scale-free power-law degree distribution ($m=2$) |
 | BA-50 | Barabási-Albert | 50 | 96 | 3.84 | 0.174 | Regional scale-free network with hub nodes ($m=2$) |
@@ -315,13 +320,13 @@ To evaluate algorithmic behavior across realistic wide-area backbones and contro
 | WX-50 | Waxman Spatial | 50 | 53 | 2.12 | 0.042 | Planar geographic network with sparse long links ($\alpha=0.4, \beta=0.1$) |
 
 ### 3.2.1 Canonical Empirical Topologies
-First, the Internet2 backbone serves as the standard reference topology in SDN controller placement literature following Heller et al. (2012). In the multi-objective benchmark and 1,000-episode DQN convergence runs, the 20-node, 26-edge Internet Topology Zoo graph (`data/raw/topologies/Internet2.graphml`) is evaluated; in the Phase 4 Mininet kernel overhead gate test (`scripts/test_mininet_overhead.py`), the 11-switch, 18-edge core PoP configuration is instantiated to measure per-switch Open vSwitch setup and teardown latency. Second, the ATT-MPLS topology models a 21-node, 54-link commercial multi-protocol label switching core network with high path redundancy.
+First, the Internet2 backbone serves as the standard reference topology in SDN controller placement literature (Mohanty et al., 2021; Yusuf et al., 2023; Farahi et al., 2026). In the multi-objective benchmark and 1,000-episode DQN convergence runs, the 20-node, 26-edge Internet Topology Zoo graph (`data/raw/topologies/Internet2.graphml`) is evaluated; in the Phase 4 Mininet kernel overhead gate test (`scripts/test_mininet_overhead.py`), the 11-switch, 18-edge core PoP configuration is instantiated to measure per-switch Open vSwitch setup and teardown latency. Second, the ATT-MPLS topology models a 21-node, 54-link commercial multi-protocol label switching core network with high path redundancy (Xiao & Chen, 2021; Benoudifa et al., 2023).
 
 ### 3.2.2 Parameterized Synthetic Network Models
-To isolate the structural drivers governing algorithm performance, synthetic graphs were generated using two graph-theoretic models implemented in NetworkX:
+To isolate the structural drivers governing algorithm performance, synthetic graphs were generated using two graph-theoretic models implemented in NetworkX (Vardhan & SriBhargav, 2025; Boudi, 2026):
 
 1. Barabási-Albert (BA) Scale-Free Model: Generates networks via preferential attachment in which new nodes connect to existing nodes with probability proportional to their degree ($P(k) \sim k^{-\gamma}$). Parameterized with attachment factor $m = 2$ at scales $N = 20$ and $N = 50$, this produces a skewed degree distribution with central transit hubs and peripheral leaves.
-2. Waxman Spatial Random Graph Model: Generates geographically embedded networks (Waxman, 1988) in which nodes are placed uniformly at random on the unit square $[0, 1]^2$. The probability $P(u, v)$ of placing an edge between nodes $u$ and $v$ decays exponentially with Euclidean distance $d(u, v)$:
+2. Waxman Spatial Random Graph Model: Generates geographically embedded networks (Vardhan & SriBhargav, 2025; Boudi, 2026) in which nodes are placed uniformly at random on the unit square $[0, 1]^2$. The probability $P(u, v)$ of placing an edge between nodes $u$ and $v$ decays exponentially with Euclidean distance $d(u, v)$:
    $$P(u, v) = \alpha \cdot \exp\left( - \frac{d(u, v)}{\beta \cdot L} \right)$$
    where $L$ is the maximum inter-node Euclidean distance, $\alpha = 0.4$ controls link density, and $\beta = 0.1$ governs the ratio of short to long edges.
 
@@ -337,8 +342,8 @@ The Random baseline samples $k$ distinct switch nodes uniformly at random from $
 $$P_{rand} \sim \text{Uniform}(V, k)$$
 This establishes the unoptimized reference baseline against which heuristic and learning-based methods are compared.
 
-### 3.3.2 Algorithm 2: Greedy $K$-Center Placement (Gonzalez Heuristic)
-Implements Gonzalez's farthest-first 2-approximation algorithm for the $k$-center problem (`algorithms/baseline/greedy_placement.py`):
+### 3.3.2 Algorithm 2: Greedy $K$-Center Placement (Farthest-First Traversal)
+Implements deterministic farthest-first 2-approximation traversal for the $k$-center problem (`algorithms/baseline/greedy_placement.py`, Mohanty et al., 2021; Vardhan & SriBhargav, 2025):
 
 1. Initialize $P = \{ v_0 \}$ at the graph eccentricity center.
 2. For $i = 2$ to $k$, select the switch that maximizes the minimum distance to the already chosen controllers:
@@ -347,15 +352,15 @@ Implements Gonzalez's farthest-first 2-approximation algorithm for the $k$-cente
 3. Return $P$ after $k$ iterations in $\mathcal{O}(kN)$ matrix lookups.
 
 ### 3.3.3 Algorithm 3: Spatial $K$-Means Clustering
-Partitions network switches into $k$ clusters in coordinate space (`algorithms/baseline/kmeans_placement.py`):
+Partitions network switches into $k$ clusters in coordinate space (`algorithms/baseline/kmeans_placement.py`, Xiao & Chen, 2021; Priya et al., 2025):
 
 1. Node coordinates $(x_i, y_i)$ are extracted from the graph layout or shortest-path distance profile.
-2. Centroids are initialized via $K$-Means++ and refined iteratively via Lloyd's algorithm until convergence (tolerance $10^{-4}$ or $T = 300$ iterations).
+2. Centroids are initialized via $K$-Means++ and refined iteratively until convergence (tolerance $10^{-4}$ or $T = 300$ iterations).
 3. For each final cluster centroid $\mu_j$, the closest discrete switch node is selected as the controller host:
    $$c_j = \arg\min_{v \in V} d_2(\mathbf{x}_v, \mu_j)$$
 
 ### 3.3.4 Algorithm 4: Genetic Algorithm (GA Metaheuristic)
-Operates on a discrete combinatorial chromosome representation (`algorithms/ai/genetic_algorithm.py`):
+Operates on a discrete combinatorial chromosome representation (`algorithms/ai/genetic_algorithm.py`, Radam et al., 2022; Xu et al., 2023; Boudi, 2026):
 
 - Encoding: Each chromosome is a $k$-element subset $\mathbf{g} = [g_1, g_2, \dots, g_k]$ of distinct switch nodes ($g_i \in V$).
 - Population and Generations: Evolves a population of $M_{pop} = 40$ to $50$ candidate placements over $G_{max} = 30$ to $50$ generations.
@@ -390,6 +395,8 @@ During training, transitions $(s_t, a_t, r_t, s_{t+1}, d_t)$ are stored in a cyc
 The experimental harness is implemented in Python 3.12 (`ai-sdn-controller-placement`). Graph generation, shortest-path Dijkstra computation, and biconnected component analysis are implemented with NetworkX. Neural network training and forward-pass inference timing use CPU-compiled PyTorch (`torch.nn`, `torch.optim`). Clustering and statistical testing use Scikit-Learn, NumPy, and Pandas. Figure 3.2 illustrates the software and emulation system architecture.
 
 ![](../docs/figures/system_architecture_diagram.png)
+
+**Figure 3.2: System Architecture of the Multi-Objective Controller Placement Benchmark and Mininet Emulation Harness.**
 
 ### 3.4.2 Mininet OpenFlow Emulation Architecture
 To evaluate how shortest-path graph latencies compare with packet-switched control-plane delays, controller placements on Internet2 are evaluated in a virtualized Linux emulation harness (`simulation/mininet_simulation.py` and `scripts/test_mininet_overhead.py`) built on Mininet 2.3+ and Open vSwitch (OVS). In the emulation topology, each graph node is instantiated as an OpenFlow switch connected via virtual Ethernet (`veth`) links configured with edge-weighted `TCLink` propagation delays $d_{\text{tc}}(u, v) = \max(0.10\text{ ms}, 2.0 \times w(u, v))$ (scaling geodesic edge weight $w(u, v)$ by $2.0\times$ with a $0.10\text{ ms}$ host-switch access delay and $\pm 0.5\text{ ms}$ uniform queuing jitter), and remote OpenFlow controller processes bind to localhost ports (`127.0.0.1:6633+`). Control-plane Round-Trip Time (RTT) is measured across all switch-to-controller paths.
@@ -473,6 +480,8 @@ A recurring limitation in networking reinforcement learning studies is single-se
 
 ![](../results/dqn_1000_episodes_convergence.png)
 
+**Figure 4.1: PyTorch DQN 1,000-Episode Training Reward Convergence Profile on Canonical Internet2 Topology ($N=20, k=3$).**
+
 In the initial uncached 1,000-episode pilot on Internet2 (`results/pilot_metrics.json`, $k=3$), the policy reward increased rapidly during the initial exploration phase as $\epsilon$ decayed from $1.0$ to $0.05$, stabilizing within approximately 20 episodes. Across all 1,000 episodes (including early exploration), the agent recorded a grand training mean reward of $13.055 \pm 0.589$, a final 10-episode post-convergence rolling average of $13.199$, a peak episode reward of $14.607$, and an uncached CPU training runtime of $21.26\text{ s}$ ($21.26\text{ ms/episode}$). In the subsequent 10-run multi-seed stability audit (`results/rl_analysis/stability_audit/stability_summary.csv`, Table 4.1), enabling precomputed $N-1$ component caching (`precompute_reliability_cache`) reduced the per-episode training rate on Internet2 to $11.40 \pm 0.11\text{ ms/episode}$ ($11.40\text{ s}$ per 1,000 episodes).
 
 **Table 4.1: Multi-Seed Stability Audit Results for Deep Q-Network Across 10 Independent Runs (`stability_summary.csv`)**
@@ -491,6 +500,8 @@ In the initial uncached 1,000-episode pilot on Internet2 (`results/pilot_metrics
 | ATT-MPLS | 1024 | 1,000 | 12.474 | 0.657 | 14.398 | 0.05 | 0.975 | 4.923 | 1.000 | 24.639 | False (Stable) |
 
 ![](../results/rl_analysis/convergence_analysis.png)
+
+**Figure 4.2: Multi-Seed DQN Convergence and Rolling Reward Distribution Analysis.**
 
 Across all 10 audit runs in Table 4.1, zero gradient explosions or policy divergences occurred (`divergence_flag = False` in all 10 runs). Note that `run_stability_audit.py` evaluates single-controller ($k=1$) action selection stability and entropy across 1,000 episodes (reported in the `Single-Controller L(P)` column of Table 4.1), whereas the 1,000-episode convergence pilot and dynamic churn benchmarks evaluate multi-controller ($k=3$) placement. On Internet2, the audit recorded a mean best reward of $14.194 \pm 0.063$ and a final 100-episode rolling mean reward of $12.654 \pm 0.348$, while on ATT-MPLS ($N=21$) the agent reached a mean best reward of $14.854 \pm 0.395$ and a rolling mean reward of $12.557 \pm 0.328$. Normalized action entropy remained between $0.953$ and $0.982$, and per-episode training execution averaged $11.40 \pm 0.11\text{ ms/episode}$ on Internet2 and $19.22 \pm 6.31\text{ ms/episode}$ on ATT-MPLS.
 
@@ -570,7 +581,11 @@ To evaluate how topology structure, network scale, and controller budget interac
 
 ![](../results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_barabasi_albert_n50_k3_20261017_052319.png)
 
+**Figure 4.3: Pareto Latency-Cost Trade-Off Frontier on Barabási-Albert Topology ($N=50, k=3$).**
+
 ![](../results/graphs/latency_cost_pareto_20261017_052319/latency_cost_pareto_waxman_n50_k3_20261017_052319.png)
+
+**Figure 4.4: Pareto Latency-Cost Trade-Off Frontier on Waxman Spatial Topology ($N=50, k=3$).**
 
 Four quantitative findings emerge from Tables 4.2 and 4.3 and Figures 4.3 and 4.4:
 
@@ -599,6 +614,8 @@ To evaluate canonical and synthetic placements across all three objectives simul
 | ATT-MPLS ($N=21$) | 5 | Greedy $K$-Center | 2.381 | 100.0% | 0.131 | 0.131 | 0.088 | Dominated by Random |
 
 ![](../SDN_Pareto_3D_Print.png)
+
+**Figure 4.5: Three-Dimensional Multi-Objective Pareto Surface Mapping Propagation Latency, Single-Link Reliability, and Computational Complexity Tax.**
 
 As shown in Table 4.4, on Internet2 ($k=5$), Bandit RL / DQN (`0.960 ms`) and GA (`0.976 ms`) achieve the lowest propagation latencies with $100.0\%$ single-link failure survivability, while $K$-Means (`1.045 ms`, `4.983 ms` runtime) and Greedy $K$-Center (`1.064 ms`, `0.095 ms` runtime) remain within $0.104\text{ ms}$ of the best latency at a fraction of the total compute time.
 
@@ -705,6 +722,8 @@ Figure 4.6 and Table 4.7 summarize the scenario-conditioned decision guidelines 
 
 ![](../docs/figures/decision_framework_flowchart.png)
 
+**Figure 4.6: Bounded Infrastructure Deployment Decision Flowchart ($N \le 50$).**
+
 **Table 4.7: Scenario-Conditioned Algorithm Selection Decision Rules (Bounded to $N \le 50$)**
 
 | Operational Network Scenario | Recommended Paradigm | Recommended Algorithm | Empirical Decision Rationale |
@@ -764,41 +783,45 @@ Within static wide-area networks up to $N = 50$ nodes:
 
 # REFERENCES
 
-Barabási, A.L. & Albert, R., 1999. Emergence of scaling in random networks. *Science*, 286(5439), pp.509-512.
+Ali, J., Khalid, M., Shan, G., Mohsin, A.R., Ahmad, S. & Roh, B.H., 2025. Intent-based networking with QoS-aware routing in SDN using AHP-based AI prioritization and optimization. *IEEE Internet of Things Journal*, 12, pp.1-12. https://doi.org/10.1109/JIOT.2025.3634601
 
-Benoudifa, Y., Senouci, M.A., Mellouk, A. & Senouci, B., 2023. MuZero-based autonomous controller placement method using deep reinforcement learning for SDN. *IEEE Transactions on Network and Service Management*, 20(3), pp.2512-2525.
+AlQaruty, S., Al Qaruty, R., AL-Tkhayneh, K.M. & Hadi, S.A., 2025. Enhancing security and performance in software-defined networks using AI-driven automation. In *2025 12th International Conference on Software Defined Systems (SDS)*. IEEE, pp.1-6. https://doi.org/10.1109/SDS68531.2025.11409794
 
-Farahi, F., Kianpisheh, S., Taleb, T. & Song, H., 2026. AP-DQN: An adaptive policy deep Q-network for multi-controller placement in dynamic software-defined networks. *IEEE Transactions on Network Science and Engineering*, 13(1), pp.412-427.
+Benoudifa, O., Ait Wakrime, A. & Benaini, R., 2023. Autonomous solution for Controller Placement Problem of Software-Defined Networking using MuZero based intelligent agents. *Journal of King Saud University - Computer and Information Sciences*, 35(10), p.101842. https://doi.org/10.1016/j.jksuci.2023.101842
 
-Goldberg, D.E., 1989. *Genetic Algorithms in Search, Optimization, and Machine Learning*. Reading, MA: Addison-Wesley.
+Boudi, R., 2026. *SDN-based solutions for improving network performance*. Doctoral Thesis. Mila, Algeria: Abdelhafid Boussouf University of Mila.
 
-Gonzalez, T.F., 1985. Clustering to minimize the maximum intercluster distance. *Theoretical Computer Science*, 38, pp.293-306.
+Farahi, R., Ghaffari, A., Derakhshanfard, N. & Taghipoureivazi, S., 2026. AP-DQN: A novel approach for controller placement in software-defined networks using deep reinforcement learning. *Results in Engineering*, 29, p.109631. https://doi.org/10.1016/j.rineng.2026.109631
 
-Heller, B., Sherwood, R. & McKeown, N., 2012. The controller placement problem. In *Proceedings of the first workshop on Hot topics in software defined networks (HotSDN '12)*. Helsinki, Finland: ACM, pp.1-6.
+Hechmi, M.A., Ben Rejeb, S., Nasser, N. & Tabbane, S., 2025. AI-enabled dynamic load balancing and mobility management for Internet of Vehicles in SDN 6G networks. In *2025 International Wireless Communications and Mobile Computing (IWCMC)*. IEEE, pp.1-6. https://doi.org/10.1109/IWCMC65282.2025.11059719
 
-Holland, J.H., 1975. *Adaptation in Natural and Artificial Systems: An Introductory Analysis with Applications to Biology, Control, and Artificial Intelligence*. Ann Arbor, MI: University of Michigan Press.
+Jaadouni, H. & Saadi, C., 2025. AI-enhanced routing optimization for SDN/NFV architectures in large-scale IoT networks. In *2025 12th International Conference on Wireless Networks and Mobile Communications (WINCOM)*. IEEE, pp.1-6. https://doi.org/10.1109/WINCOM65874.2025.11313390
 
-Kariv, O. & Hakimi, S.L., 1979. An algorithmic approach to network location problems. II: The p-medians. *SIAM Journal on Applied Mathematics*, 37(3), pp.539-560.
+Jadhav, P. & Pujar, A., 2025. A review on AI-driven distributed SDN for energy-efficient routing in large-scale IoT networks. In *2025 6th International Conference on Electronics and Sustainable Communication Systems (ICESC)*. IEEE, pp.1-6. https://doi.org/10.1109/ICESC65114.2025.11212255
 
-Knight, S., Nguyen, H.X., Falkner, N., Bowden, R. & Roughan, M., 2011. The Internet Topology Zoo. *IEEE Journal on Selected Areas in Communications*, 29(9), pp.1765-1775.
+Kazemi, M. & Montazerolghaem, A., 2023. Optimizing the controller placement problem in SDN with uncertain parameters with robust optimization. In *2023 13th International Conference on Computer and Knowledge Engineering (ICCKE)*. Mashhad, Iran: IEEE, pp.1-6. https://doi.org/10.1109/ICCKE60553.2023.10326300
 
-Kreutz, D., Ramos, F.M., Verissimo, P.E., Rothenberg, C.E., Azodolmolky, S. & Uhlig, S., 2015. Software-defined networking: A comprehensive survey. *Proceedings of the IEEE*, 103(1), pp.14-76.
+Kurra, C., Dadi, V.P., Awasthi, A., Janyani, V. & Battula, R.B., 2025. CAPFUL: Coherent dynamic controller placement method using deep reinforcement learning for SDN. In *2025 International Conference on Communication, Computing, Networking, and Control in Cyber-Physical Systems (CCNCPS)*. IEEE, pp.1-6. https://doi.org/10.1109/CCNCPS66785.2025.11135898
 
-Lantz, B., Heller, B. & McKeown, N., 2010. A network in a laptop: rapid prototyping for software-defined networks. In *Proceedings of the 9th ACM SIGCOMM Workshop on Hot Topics in Networks (HotNets-IX)*. Monterey, CA: ACM, pp.1-6.
+Mohanty, S., Shekhawat, A.S. & Sahoo, B., 2021. Minimizing latency for controller placement problem in SDN. In *2021 19th OITS International Conference on Information Technology (OCIT)*. Bhubaneswar, India: IEEE, pp.1-6. https://doi.org/10.1109/OCIT53463.2021.00083
 
-MacQueen, J., 1967. Some methods for classification and analysis of multivariate observations. In *Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability*. Berkeley, CA: University of California Press, 1(14), pp.281-297.
+Mystakidis, A., Koukaras, P. & Tjortjis, C., 2025. Advances in traffic congestion prediction: An overview of emerging techniques and methods. *Smart Cities*, 8(1), p.25. https://doi.org/10.3390/smartcities8010025
 
-McKeown, N., Anderson, T., Balakrishnan, H., Parulkar, G., Peterson, L., Rexford, J., Shenker, S. & Turner, J., 2008. OpenFlow: enabling innovation in campus networks. *ACM SIGCOMM Computer Communication Review*, 38(2), pp.69-74.
+Priya, L.P., Kandibanda, L. & Thangam, S., 2025. Enhanced SDN controller placement and load balancing for campus network optimization. In *2025 11th International Conference on Communication and Signal Processing (ICCSP)*. IEEE, pp.1-6. https://doi.org/10.1109/ICCSP64183.2025.11089183
 
-Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. & Petersen, S., 2015. Human-level control through deep reinforcement learning. *Nature*, 518(7540), pp.529-533.
+Radam, N.S., Al-Janabi, S.T.F. & Jasim, K.S., 2022. Multi-controllers placement optimization in SDN by the hybrid HSA-PSO algorithm. *Computers*, 11(7), p.111. https://doi.org/10.3390/computers11070111
 
-Radam, M.B., Al-Janabi, T.A. & Hashim, A.H., 2022. Optimal model for link failure foresight controller placement in SDN. *Computers, Materials & Continua*, 72(2), pp.3211-3228.
+Vardhan, T.H. & SriBhargav, Y., 2025. A comparative analysis of SDN controller placement problem: IoT-specific tactics and generalized solutions. In *2025 6th International Conference on Recent Advances in Information Technology (RAIT)*. IEEE, pp.1-6. https://doi.org/10.1109/RAIT65068.2025.11089072
 
-Sutton, R.S. & Barto, A.G., 2018. *Reinforcement Learning: An Introduction*. 2nd ed. Cambridge, MA: MIT Press.
+Wang, T. & Chen, H., 2021. Optimal model for link failure foresight controller placement in SDN. In *2021 IEEE 4th International Conference on Electronics Technology (ICET)*. Chengdu, China: IEEE, pp.1072-1077. https://doi.org/10.1109/ICET51757.2021.9450905
 
-Waxman, B.M., 1988. Routing of multipoint connections. *IEEE Journal on Selected Areas in Communications*, 6(9), pp.1617-1622.
+Xiao, C. & Chen, J., 2021. GOKA: A network partition and cluster fusion algorithm for controller placement problem in SDN. In *2021 International Conference on Information Technology and Biomedical Engineering (ICITBE)*. IEEE, pp.1-5. https://doi.org/10.1109/ICITBE54178.2021.00028
 
-Yusuf, A., Hashim, A.H., Al-Janabi, T.A. & Radam, M.B., 2023. A comparative analysis of SDN controller placement problem: IoT-specific tactics and generalized approaches. *PeerJ Computer Science*, 9, p.e1698.
+Xu, H., Chai, X. & Liu, H., 2023. A multi-controller placement strategy for hierarchical management of software-defined networking. *Symmetry*, 15(8), p.1520. https://doi.org/10.3390/sym15081520
+
+Yue, G., Wang, Y. & Liu, Y., 2022. Rule placement and switch migration-based scheme for controller load balancing in SDN. In *2022 IEEE Symposium on Computers and Communications (ISCC)*. Rhodes, Greece: IEEE, pp.1-6. https://doi.org/10.1109/ISCC55528.2022.9912885
+
+Yusuf, N.M., Abu Bakar, K., Isyaku, B., Abdelmaboud, A. & Nagmeldin, W., 2023. Controller placement with critical switch aware in software-defined network (CPCSA). *PeerJ Computer Science*, 9, p.e1698. https://doi.org/10.7717/peerj-cs.1698
 
 
 # APPENDIX
@@ -820,7 +843,7 @@ The benchmarking harness reads its parameters from `configs/experiment_config.js
         "edges_graphml": 26,
         "nodes_core_fallback": 11,
         "edges_core_fallback": 18,
-        "source": "data/raw/topologies/Internet2.graphml & Heller et al. (2012)"
+        "source": "data/raw/topologies/Internet2.graphml & Topology Zoo (Mohanty et al., 2021; Farahi et al., 2026)"
       },
       {
         "name": "ATT-MPLS",

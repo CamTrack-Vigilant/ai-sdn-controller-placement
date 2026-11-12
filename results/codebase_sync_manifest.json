@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-07T00:29:29.127615+00:00",
+  "generated_at": "2026-11-07T01:33:35.476767+00:00",
   "repository": "https://github.com/CamTrack-Vigilant/ai-sdn-controller-placement.git",
   "branch": "add/metodology-annotated",
-  "head_commit": "cc3ee418016c0cfacabdef52e383505e51683bdc",
-  "total_tracked_files": 587,
+  "head_commit": "155c42ef21b47e978bf6e4c9ac271dfa71f771ab",
+  "total_tracked_files": 610,
   "files": [
     {
       "path": ".gitignore",
@@ -144,6 +144,12 @@
       "sha256_12": "e392635626a6"
     },
     {
+      "path": "configs/ai_studio_system_prompt.md",
+      "size_bytes": 2088,
+      "lines": 18,
+      "sha256_12": "d2e84f6a2112"
+    },
+    {
       "path": "configs/experiment_config.json",
       "size_bytes": 1659,
       "lines": 64,
@@ -195,31 +201,31 @@
       "path": "dissertation/00_front_matter.md",
       "size_bytes": 9203,
       "lines": 122,
-      "sha256_12": "6e1cb952c82c"
+      "sha256_12": "ce19a53cbbdb"
     },
     {
       "path": "dissertation/01_chapter_1_introduction.md",
-      "size_bytes": 9040,
+      "size_bytes": 9466,
       "lines": 62,
-      "sha256_12": "cd3f086843f4"
+      "sha256_12": "d2f5c7c69797"
     },
     {
       "path": "dissertation/02_chapter_2_literature_review.md",
-      "size_bytes": 10732,
-      "lines": 97,
-      "sha256_12": "8c931473f645"
+      "size_bytes": 12419,
+      "lines": 100,
+      "sha256_12": "da6527894c8f"
     },
     {
       "path": "dissertation/03_chapter_3_methodology.md",
-      "size_bytes": 20892,
-      "lines": 176,
-      "sha256_12": "86a1b0cf44a9"
+      "size_bytes": 21350,
+      "lines": 180,
+      "sha256_12": "e702db09e5e4"
     },
     {
       "path": "dissertation/04_chapter_4_results_and_discussion.md",
-      "size_bytes": 31663,
-      "lines": 263,
-      "sha256_12": "519134ad0ffb"
+      "size_bytes": 32311,
+      "lines": 275,
+      "sha256_12": "c11e6ac600c6"
     },
     {
       "path": "dissertation/05_chapter_5_conclusion.md",
@@ -229,39 +235,39 @@
     },
     {
       "path": "dissertation/06_references.md",
-      "size_bytes": 3396,
-      "lines": 38,
-      "sha256_12": "a3245fa7b99d"
+      "size_bytes": 5371,
+      "lines": 42,
+      "sha256_12": "b4b465dfa6db"
     },
     {
       "path": "dissertation/07_appendices.md",
-      "size_bytes": 10086,
+      "size_bytes": 10122,
       "lines": 173,
-      "sha256_12": "cd30f44e106a"
+      "sha256_12": "954e4c048fbf"
     },
     {
       "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.docx",
-      "size_bytes": 3647619,
+      "size_bytes": 3649376,
       "lines": null,
-      "sha256_12": "faade00152a7"
+      "sha256_12": "a764981de526"
     },
     {
       "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.md",
-      "size_bytes": 102321,
-      "lines": 978,
-      "sha256_12": "744ea0c2a47a"
+      "size_bytes": 107551,
+      "lines": 1001,
+      "sha256_12": "46b305157971"
     },
     {
       "path": "dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.pdf",
-      "size_bytes": 2890081,
+      "size_bytes": 2907152,
       "lines": null,
-      "sha256_12": "e34f6f99a951"
+      "sha256_12": "cbda005abc3c"
     },
     {
       "path": "dissertation/compile_dissertation.py",
-      "size_bytes": 46292,
+      "size_bytes": 46399,
       "lines": 991,
-      "sha256_12": "a07110b26a3d"
+      "sha256_12": "6b0cc40ebb2e"
     },
     {
       "path": "docs/00_DELIVERY_CONFIRMATION.md",
@@ -274,6 +280,12 @@
       "size_bytes": 5998,
       "lines": 157,
       "sha256_12": "8ae7af5d8f2c"
+    },
+    {
+      "path": "docs/CODEBASE_CONTEXT_INDEX.md",
+      "size_bytes": 150712,
+      "lines": 3263,
+      "sha256_12": "8673f75e5dd3"
     },
     {
       "path": "docs/EXECUTION_SUMMARY.md",
@@ -421,9 +433,9 @@
     },
     {
       "path": "docs/SATNAC_RESEARCH_PAPER.md",
-      "size_bytes": 40642,
-      "lines": 226,
-      "sha256_12": "09a5dd85292e"
+      "size_bytes": 42929,
+      "lines": 228,
+      "sha256_12": "ca4f037cf57b"
     },
     {
       "path": "docs/SATNAC_RESEARCH_PAPER.pdf",
@@ -492,6 +504,12 @@
       "sha256_12": "3048b71df2ee"
     },
     {
+      "path": "docs/VIVA_DEFENSE_AND_EXAMINER_REPORT.md",
+      "size_bytes": 37584,
+      "lines": 228,
+      "sha256_12": "db507a95691a"
+    },
+    {
       "path": "docs/WRITING_EXCELLENCE_SUMMARY_20260322.md",
       "size_bytes": 15947,
       "lines": 282,
@@ -538,6 +556,12 @@
       "size_bytes": 245281,
       "lines": null,
       "sha256_12": "414eadcb3f4c"
+    },
+    {
+      "path": "docs/cloud_agent_inbox.md",
+      "size_bytes": 6174,
+      "lines": 59,
+      "sha256_12": "00db7958d6ed"
     },
     {
       "path": "docs/diagrams/01_complete_experimental_workflow.mmd",
@@ -790,6 +814,12 @@
       "size_bytes": 833,
       "lines": 27,
       "sha256_12": "adc4bb451a5b"
+    },
+    {
+      "path": "docs/local_agent_outbox.md",
+      "size_bytes": 972,
+      "lines": 10,
+      "sha256_12": "d99ed765790f"
     },
     {
       "path": "docs/meeting_slide_pack_20260326.md",
@@ -1812,10 +1842,88 @@
       "sha256_12": "97ff237ec504"
     },
     {
+      "path": "results/ai_studio_loop_state.json",
+      "size_bytes": 134012,
+      "lines": 143,
+      "sha256_12": "89508b335b87"
+    },
+    {
+      "path": "results/codebase_sync_manifest.json",
+      "size_bytes": 100945,
+      "lines": 3669,
+      "sha256_12": "f635ae2addbb"
+    },
+    {
       "path": "results/dqn_1000_episodes_convergence.png",
       "size_bytes": 407269,
       "lines": null,
       "sha256_12": "abdb5743b323"
+    },
+    {
+      "path": "results/dqn_models/ATT-MPLS_k3_seed42.pth",
+      "size_bytes": 30873,
+      "lines": null,
+      "sha256_12": "47a5a4a65545"
+    },
+    {
+      "path": "results/dqn_models/ATT-MPLS_k3_seed43.pth",
+      "size_bytes": 30873,
+      "lines": null,
+      "sha256_12": "f9087f6b1750"
+    },
+    {
+      "path": "results/dqn_models/ATT-MPLS_k3_seed44.pth",
+      "size_bytes": 30873,
+      "lines": null,
+      "sha256_12": "f1369764b871"
+    },
+    {
+      "path": "results/dqn_models/ATT-MPLS_k3_seed45.pth",
+      "size_bytes": 30873,
+      "lines": null,
+      "sha256_12": "e25b44d76c7f"
+    },
+    {
+      "path": "results/dqn_models/ATT-MPLS_k3_seed46.pth",
+      "size_bytes": 30873,
+      "lines": null,
+      "sha256_12": "a1dfadaaf180"
+    },
+    {
+      "path": "results/dqn_models/Internet2_k3_seed42.pth",
+      "size_bytes": 30373,
+      "lines": null,
+      "sha256_12": "0eb08acf51a3"
+    },
+    {
+      "path": "results/dqn_models/Internet2_k3_seed43.pth",
+      "size_bytes": 30373,
+      "lines": null,
+      "sha256_12": "628bc7a0d731"
+    },
+    {
+      "path": "results/dqn_models/Internet2_k3_seed44.pth",
+      "size_bytes": 30373,
+      "lines": null,
+      "sha256_12": "bc1c7377c7a3"
+    },
+    {
+      "path": "results/dqn_models/Internet2_k3_seed45.pth",
+      "size_bytes": 30373,
+      "lines": null,
+      "sha256_12": "70fabdff95da"
+    },
+    {
+      "path": "results/dqn_models/Internet2_k3_seed46.pth",
+      "size_bytes": 30373,
+      "lines": null,
+      "sha256_12": "facb07f9a1cc"
+    },
+    {
+      "path": "results/dynamic_churn_benchmark.json",
+      "size_bytes": 66373,
+      "lines": 2332,
+      "sha256_12": "abbbd30d56b4"
     },
     {
       "path": "results/experiment_data/.gitkeep",
@@ -1876,6 +1984,12 @@
       "size_bytes": 5448,
       "lines": 62,
       "sha256_12": "6fcde608ef95"
+    },
+    {
+      "path": "results/experiment_data/dynamic_churn_summary.csv",
+      "size_bytes": 2870,
+      "lines": 42,
+      "sha256_12": "5790fba9a5c4"
     },
     {
       "path": "results/experiment_data/factorial_latency_cost_best_20260314_050634.csv",
@@ -2838,6 +2952,12 @@
       "sha256_12": "2ec266b423bd"
     },
     {
+      "path": "results/rl_comparison_benchmark.json",
+      "size_bytes": 943,
+      "lines": 41,
+      "sha256_12": "1d67f7364702"
+    },
+    {
       "path": "results/rl_training/training_log.jsonl",
       "size_bytes": 12596,
       "lines": null,
@@ -2854,6 +2974,12 @@
       "size_bytes": 2183,
       "lines": 75,
       "sha256_12": "c7959ea9579b"
+    },
+    {
+      "path": "scripts/ai_studio_bridge.py",
+      "size_bytes": 16996,
+      "lines": 464,
+      "sha256_12": "7a58d6f83183"
     },
     {
       "path": "scripts/align_presentation_to_proposal.py",
@@ -3042,6 +3168,12 @@
       "sha256_12": "76a99988b517"
     },
     {
+      "path": "scripts/run_dynamic_churn_experiment.py",
+      "size_bytes": 15411,
+      "lines": 366,
+      "sha256_12": "5234dbe9e050"
+    },
+    {
       "path": "scripts/run_factorial_latency_cost_matrix.py",
       "size_bytes": 22315,
       "lines": 579,
@@ -3070,6 +3202,12 @@
       "size_bytes": 2793,
       "lines": 66,
       "sha256_12": "2146fdc2a2cf"
+    },
+    {
+      "path": "scripts/run_rl_comparison_benchmark.py",
+      "size_bytes": 3023,
+      "lines": 93,
+      "sha256_12": "e72cfc09e52d"
     },
     {
       "path": "scripts/run_segmented_workload.py",

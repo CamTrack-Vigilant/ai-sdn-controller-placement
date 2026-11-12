@@ -2,9 +2,9 @@
 
 - **Repository**: `https://github.com/CamTrack-Vigilant/ai-sdn-controller-placement.git`
 - **Active Branch**: `add/metodology-annotated`
-- **HEAD Commit**: `cc3ee418016c0cfacabdef52e383505e51683bdc`
-- **Total Tracked Files**: `587`
-- **Generated At**: `2026-11-07T00:29:29.127615+00:00`
+- **HEAD Commit**: `155c42ef21b47e978bf6e4c9ac271dfa71f771ab`
+- **Total Tracked Files**: `610`
+- **Generated At**: `2026-11-07T01:33:35.476767+00:00`
 
 ## 1. Tracked File Inventory (with SHA-256 Prefix & Line/Byte Counts)
 
@@ -33,6 +33,7 @@
 | `algorithms/baseline/random_placement.py` | 542 | 23 | `90cdaa6886f0` |
 | `analyze_rl_logs.py` | 9623 | 265 | `629ddfc671d1` |
 | `configs/README.md` | 377 | 16 | `e392635626a6` |
+| `configs/ai_studio_system_prompt.md` | 2088 | 18 | `d2e84f6a2112` |
 | `configs/experiment_config.json` | 1659 | 64 | `f058acbe61ed` |
 | `data/processed/.gitkeep` | 52 | binary | `d3d11936d632` |
 | `data/processed/topologies/att-mpls.normalized.json` | 15593 | 741 | `464ade0a4524` |
@@ -41,20 +42,21 @@
 | `data/raw/topologies/AttMpls.graphml` | 18293 | 523 | `c32c3aeb985e` |
 | `data/raw/topologies/Internet2.graphml` | 7036 | 214 | `eac8568cb9d3` |
 | `demo/quick_demo.sh` | 409 | 13 | `72cc74f123de` |
-| `dissertation/00_front_matter.md` | 9203 | 122 | `6e1cb952c82c` |
-| `dissertation/01_chapter_1_introduction.md` | 9040 | 62 | `cd3f086843f4` |
-| `dissertation/02_chapter_2_literature_review.md` | 10732 | 97 | `8c931473f645` |
-| `dissertation/03_chapter_3_methodology.md` | 20892 | 176 | `86a1b0cf44a9` |
-| `dissertation/04_chapter_4_results_and_discussion.md` | 31663 | 263 | `519134ad0ffb` |
+| `dissertation/00_front_matter.md` | 9203 | 122 | `ce19a53cbbdb` |
+| `dissertation/01_chapter_1_introduction.md` | 9466 | 62 | `d2f5c7c69797` |
+| `dissertation/02_chapter_2_literature_review.md` | 12419 | 100 | `da6527894c8f` |
+| `dissertation/03_chapter_3_methodology.md` | 21350 | 180 | `e702db09e5e4` |
+| `dissertation/04_chapter_4_results_and_discussion.md` | 32311 | 275 | `c11e6ac600c6` |
 | `dissertation/05_chapter_5_conclusion.md` | 7293 | 38 | `f97cddbc97a1` |
-| `dissertation/06_references.md` | 3396 | 38 | `a3245fa7b99d` |
-| `dissertation/07_appendices.md` | 10086 | 173 | `cd30f44e106a` |
-| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.docx` | 3647619 | binary | `faade00152a7` |
-| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.md` | 102321 | 978 | `744ea0c2a47a` |
-| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.pdf` | 2890081 | binary | `e34f6f99a951` |
-| `dissertation/compile_dissertation.py` | 46292 | 991 | `a07110b26a3d` |
+| `dissertation/06_references.md` | 5371 | 42 | `b4b465dfa6db` |
+| `dissertation/07_appendices.md` | 10122 | 173 | `954e4c048fbf` |
+| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.docx` | 3649376 | binary | `a764981de526` |
+| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.md` | 107551 | 1001 | `46b305157971` |
+| `dissertation/Honours_Mini_Dissertation_Thabang_Buthelezi.pdf` | 2907152 | binary | `cbda005abc3c` |
+| `dissertation/compile_dissertation.py` | 46399 | 991 | `6b0cc40ebb2e` |
 | `docs/00_DELIVERY_CONFIRMATION.md` | 10768 | 312 | `598eb35649ea` |
 | `docs/BIBLIOGRAPHY_ADDITIONS.md` | 5998 | 157 | `8ae7af5d8f2c` |
+| `docs/CODEBASE_CONTEXT_INDEX.md` | 150712 | 3263 | `8673f75e5dd3` |
 | `docs/EXECUTION_SUMMARY.md` | 10876 | 262 | `f1c688679682` |
 | `docs/FINAL_SUBMISSION_Thabang_Mhlokoma.pdf` | 121626 | binary | `34b148deca0f` |
 | `docs/Honours Mini-Dissertation Template (1).docx` | 90506 | binary | `8492f8e6c964` |
@@ -79,7 +81,7 @@
 | `docs/Research_Proposal_Hardened_Final.pdf` | 916471 | binary | `b9f86996352f` |
 | `docs/Research_Proposal_Methodology_Backup.pdf` | 1056731 | binary | `b4798d95ad32` |
 | `docs/SATNAC_RESEARCH_PAPER.docx` | 2353217 | binary | `a2fae95f6ef2` |
-| `docs/SATNAC_RESEARCH_PAPER.md` | 40642 | 226 | `09a5dd85292e` |
+| `docs/SATNAC_RESEARCH_PAPER.md` | 42929 | 228 | `ca4f037cf57b` |
 | `docs/SATNAC_RESEARCH_PAPER.pdf` | 2270487 | binary | `7126e5a10fd5` |
 | `docs/SATNAC_RESEARCH_PAPER.tex` | 39836 | 296 | `395321101c2a` |
 | `docs/SATNAC_RESEARCH_PAPER_Anonymized.docx` | 2353043 | binary | `731bcb9efacc` |
@@ -91,6 +93,7 @@
 | `docs/Section_11_3_timeline_hardening_report.txt` | 439 | 5 | `1824c83dbba1` |
 | `docs/VISUAL_FLOWCHART_REFERENCE.md` | 13571 | 365 | `bb22609dade3` |
 | `docs/VISUAL_PATCH_GUIDE.md` | 11477 | 280 | `3048b71df2ee` |
+| `docs/VIVA_DEFENSE_AND_EXAMINER_REPORT.md` | 37584 | 228 | `db507a95691a` |
 | `docs/WRITING_EXCELLENCE_SUMMARY_20260322.md` | 15947 | 282 | `154dfc2d7b43` |
 | `docs/_final_submission_extract.txt` | 52847 | 499 | `d4378c517988` |
 | `docs/_proposal_final_extract.txt` | 13226 | 194 | `7dfcb2b65b7d` |
@@ -99,6 +102,7 @@
 | `docs/chat_history/2026-10-17_permanent_chat_history.md` | 119763 | 2098 | `7a1ef384afdd` |
 | `docs/chat_history/raw_logs/transcript.jsonl.gz` | 159030 | binary | `1ce91f42ec49` |
 | `docs/chat_history/raw_logs/transcript_full.jsonl.gz` | 245281 | binary | `414eadcb3f4c` |
+| `docs/cloud_agent_inbox.md` | 6174 | 59 | `00db7958d6ed` |
 | `docs/diagrams/01_complete_experimental_workflow.mmd` | 5654 | binary | `c02b93be2d8d` |
 | `docs/diagrams/01_complete_experimental_workflow.png` | 185247 | binary | `f40291f7db36` |
 | `docs/diagrams/01_complete_experimental_workflow.svg` | 193434 | binary | `bfb749b055b6` |
@@ -141,6 +145,7 @@
 | `docs/figures/unizulu_crest_header.png` | 607 | binary | `8472ec855d00` |
 | `docs/figures/unizulu_logo.png` | 474 | binary | `61aa209a056c` |
 | `docs/literature_review.md` | 833 | 27 | `adc4bb451a5b` |
+| `docs/local_agent_outbox.md` | 972 | 10 | `d99ed765790f` |
 | `docs/meeting_slide_pack_20260326.md` | 3521 | 71 | `aef4cd643a17` |
 | `docs/project_alignment_handout_prof_mudali_20260326.md` | 3966 | 67 | `b7b40daefce1` |
 | `docs/proposal.md` | 63261 | 405 | `c8b813bd5da6` |
@@ -311,7 +316,20 @@
 | `research_papers/symmetry-15-01520-v2.pdf` | 3937939 | binary | `f5e2b846cac8` |
 | `research_papers/templates/SATNAC_2025_Camera-Ready_0198.pdf` | 1142660 | binary | `40f48adfcfba` |
 | `research_papers/templates/paper_extraction_template.md` | 983 | 52 | `97ff237ec504` |
+| `results/ai_studio_loop_state.json` | 134012 | 143 | `89508b335b87` |
+| `results/codebase_sync_manifest.json` | 100945 | 3669 | `f635ae2addbb` |
 | `results/dqn_1000_episodes_convergence.png` | 407269 | binary | `abdb5743b323` |
+| `results/dqn_models/ATT-MPLS_k3_seed42.pth` | 30873 | binary | `47a5a4a65545` |
+| `results/dqn_models/ATT-MPLS_k3_seed43.pth` | 30873 | binary | `f9087f6b1750` |
+| `results/dqn_models/ATT-MPLS_k3_seed44.pth` | 30873 | binary | `f1369764b871` |
+| `results/dqn_models/ATT-MPLS_k3_seed45.pth` | 30873 | binary | `e25b44d76c7f` |
+| `results/dqn_models/ATT-MPLS_k3_seed46.pth` | 30873 | binary | `a1dfadaaf180` |
+| `results/dqn_models/Internet2_k3_seed42.pth` | 30373 | binary | `0eb08acf51a3` |
+| `results/dqn_models/Internet2_k3_seed43.pth` | 30373 | binary | `628bc7a0d731` |
+| `results/dqn_models/Internet2_k3_seed44.pth` | 30373 | binary | `bc1c7377c7a3` |
+| `results/dqn_models/Internet2_k3_seed45.pth` | 30373 | binary | `70fabdff95da` |
+| `results/dqn_models/Internet2_k3_seed46.pth` | 30373 | binary | `facb07f9a1cc` |
+| `results/dynamic_churn_benchmark.json` | 66373 | 2332 | `abbbd30d56b4` |
 | `results/experiment_data/.gitkeep` | 42 | binary | `050ea8a84a07` |
 | `results/experiment_data/baseline_internet2_summary.csv` | 458 | 3 | `334ac60262d0` |
 | `results/experiment_data/baseline_telemetry_internet2.csv` | 15571 | 229 | `ab01a401aa1e` |
@@ -322,6 +340,7 @@
 | `results/experiment_data/benchmark_20260309_161635.csv` | 2814 | 27 | `610a6955e47f` |
 | `results/experiment_data/benchmark_20260309_230955.csv` | 5446 | 52 | `a6a6f720fa2c` |
 | `results/experiment_data/complete_proposal_aligned_benchmark.csv` | 5448 | 62 | `6fcde608ef95` |
+| `results/experiment_data/dynamic_churn_summary.csv` | 2870 | 42 | `5790fba9a5c4` |
 | `results/experiment_data/factorial_latency_cost_best_20260314_050634.csv` | 558 | 4 | `620cbdf5b00c` |
 | `results/experiment_data/factorial_latency_cost_best_20260314_050837.csv` | 558 | 4 | `086b0abf4da3` |
 | `results/experiment_data/factorial_latency_cost_best_20260322_052249.csv` | 2317 | 14 | `cf3ca6553a70` |
@@ -482,9 +501,11 @@
 | `results/rl_analysis/stability_audit/stability_summary.csv` | 1949 | 12 | `e96278ae255b` |
 | `results/rl_analysis/stability_audit/stability_summary.json` | 5664 | 182 | `e2aadfc2cc4f` |
 | `results/rl_analysis/stability_audit/training_events.jsonl` | 119905 | binary | `2ec266b423bd` |
+| `results/rl_comparison_benchmark.json` | 943 | 41 | `1d67f7364702` |
 | `results/rl_training/training_log.jsonl` | 12596 | binary | `3313efc87b7d` |
 | `run_baseline_internet2.py` | 11340 | 350 | `57639e7e9e7f` |
 | `run_rl_training.py` | 2183 | 75 | `c7959ea9579b` |
+| `scripts/ai_studio_bridge.py` | 16996 | 464 | `7a58d6f83183` |
 | `scripts/align_presentation_to_proposal.py` | 8514 | 188 | `6c945b97b142` |
 | `scripts/audit_baseline_factorial_cell.py` | 8834 | 235 | `379a7e271efc` |
 | `scripts/batch_hyperlink_update.py` | 7969 | 245 | `dcc9a0d62196` |
@@ -516,11 +537,13 @@
 | `scripts/regenerate_pdf_clean.py` | 10190 | 143 | `314b1297d7a1` |
 | `scripts/reliability_sweep_and_internet2_check.py` | 3598 | 82 | `fbec4989f350` |
 | `scripts/render_final_submission_pdf.py` | 6543 | 187 | `76a99988b517` |
+| `scripts/run_dynamic_churn_experiment.py` | 15411 | 366 | `5234dbe9e050` |
 | `scripts/run_factorial_latency_cost_matrix.py` | 22315 | 579 | `bcd3a4772d6d` |
 | `scripts/run_full_workflow.py` | 3316 | 111 | `567c73c06f2b` |
 | `scripts/run_ga_challenger_internet2.py` | 8364 | 211 | `c2e090c13573` |
 | `scripts/run_linux_ready_benchmark.py` | 1516 | 54 | `32ab68cec9ce` |
 | `scripts/run_mininet_demo.py` | 2793 | 66 | `2146fdc2a2cf` |
+| `scripts/run_rl_comparison_benchmark.py` | 3023 | 93 | `e72cfc09e52d` |
 | `scripts/run_segmented_workload.py` | 5953 | 179 | `1851626d7878` |
 | `scripts/run_stability_audit.py` | 14850 | 432 | `d8aad75b78c1` |
 | `scripts/show_pilot_results.py` | 4756 | 110 | `fc2833f5de45` |
