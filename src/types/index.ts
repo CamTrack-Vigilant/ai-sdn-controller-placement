@@ -1,4 +1,10 @@
-export type TopologyFamily = 'internet2' | 'att_mpls' | 'barabasi_albert' | 'waxman' | 'multi_site_mesh';
+export type TopologyFamily =
+  | 'internet2'
+  | 'att_mpls'
+  | 'barabasi_albert'
+  | 'waxman'
+  | 'multi_site_mesh'
+  | 'unizulu_wan';
 
 export type AlgorithmType = 'random' | 'greedy_k_center' | 'kmeans' | 'genetic' | 'bandit_rl';
 
@@ -40,6 +46,7 @@ export interface PlacementMetrics {
   resilienceRatio: number;
   controlPlaneReliability: number;
   runtimeMs: number;
+  secondsPerEpisode?: number;
   iterationsToConverge?: number;
   iterationsBudget?: number;
 }

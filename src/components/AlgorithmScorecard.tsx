@@ -1,137 +1,183 @@
 import React from 'react';
 import { AlgorithmResult } from '../types';
-import { Activity, ShieldCheck, Zap, Scale, Clock, Award, Target, HelpCircle } from 'lucide-react';
 
 interface AlgorithmScorecardProps {
   result: AlgorithmResult;
   baselineResult?: AlgorithmResult;
+  activeFaultCount?: number;
 }
 
 export const AlgorithmScorecard: React.FC<AlgorithmScorecardProps> = ({
   result,
   baselineResult,
+  activeFaultCount = 0,
 }) => {
   const { metrics } = result;
 
-  // Percentage gain compared to baseline (if available)
-  const latencyGainPct = baselineResult
-    ? ((baselineResult.metrics.averageDistance - metrics.averageDistance) / baselineResult.metrics.averageDistance) * 100
-    : null;
+  // Percentage gain compared to random baseline
+  const latencyGainPct =
+    baselineResult &&
+    Number.isFinite(baselineResult.metrics.averageDistance) &&
+    Number.isFinite(metrics.averageDistance)
+      ? ((baselineResult.metrics.averageDistance - metrics.averageDistance) /
+          baselineResult.metrics.averageDistance) *
+        100
+      : null;
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl">
-      {/* Title & Status */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-800">
+    <section
+      aria-label="Algorithm Multi-Objective Telemetry Scorecard"
+      className="bg-white border border-slate-200 rounded-lg p-6"
+    >
+      {/* Header Row — Zero-Pill Metadata Discipline */}
+      <div className="flex flex-wrap items-baseline justify-between gap-4 pb-5 mb-5 border-b border-slate-200">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-              Active Solver
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 mb-1">
+            <span className="font-semibold text-[#0061AF]">Active Placement Policy</span>
+            <span aria-hidden="true">·</span>
+            <span>
+              {result.isParetoOptimal
+                ? '● Pareto-Optimal Frontier Member'
+                : '○ Dominated Configuration'}
             </span>
-            <h3 className="font-bold text-slate-100 text-lg">{result.algorithmName}</h3>
+            {result.compromiseRank && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="font-mono font-medium text-[#844349]">
+                  Compromise Rank #{result.compromiseRank}
+                </span>
+              </>
+            )}
+            {activeFaultCount > 0 && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="font-semibold text-[#ED1C24]">
+                  ▲ Degraded ({activeFaultCount} Injected Fault{activeFaultCount > 1 ? 's' : ''})
+                </span>
+              </>
+            )}
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Controllers assigned at nodes: {result.controllers.map(c => `[${c}]`).join(', ')}
-          </p>
+          <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+            {result.algorithmName}
+          </h2>
         </div>
 
-        <div className="flex items-center gap-2">
-          {result.isParetoOptimal && (
-            <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-              <Award className="w-3.5 h-3.5" />
-              Pareto Optimal
-            </span>
-          )}
-          {result.compromiseRank && (
-            <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30">
-              <Target className="w-3.5 h-3.5" />
-              Compromise Rank #{result.compromiseRank}
-            </span>
-          )}
+        <div className="text-xs text-slate-600 font-mono tabular-nums">
+          <span>Assigned Controller Nodes: </span>
+          <strong className="text-[#0061AF]">
+            {result.controllers.length > 0 ? result.controllers.join(', ') : 'None (All Crashed)'}
+          </strong>
         </div>
       </div>
 
-      {/* Grid of Key Benchmark Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      {/* 6-Column Scientific Instrument Telemetry Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {/* 1. Average Latency */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3 relative group">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">Avg Latency</span>
-            <Activity className="w-4 h-4 text-cyan-400" />
+        <div className="border-r border-slate-100 pr-4 last:border-r-0">
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            Mean Control Latency
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {Number.isFinite(metrics.averageDistance) ? `${metrics.averageDistance} ms` : '∞'}
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-slate-900 tabular-nums">
+              {Number.isFinite(metrics.averageDistance)
+                ? metrics.averageDistance.toFixed(2)
+                : '∞'}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">ms</span>
           </div>
-          {latencyGainPct !== null && (
-            <div className={`text-[11px] mt-1 font-semibold ${latencyGainPct >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-              {latencyGainPct >= 0 ? `+${latencyGainPct.toFixed(1)}%` : `${latencyGainPct.toFixed(1)}%`} vs random
+          {latencyGainPct !== null ? (
+            <div
+              className={`text-xs font-mono tabular-nums mt-1.5 ${
+                latencyGainPct >= 0 ? 'text-emerald-700 font-medium' : 'text-[#ED1C24]'
+              }`}
+            >
+              {latencyGainPct >= 0
+                ? `Δ -${latencyGainPct.toFixed(1)}% vs random`
+                : `Δ +${Math.abs(latencyGainPct).toFixed(1)}% vs random`}
             </div>
+          ) : (
+            <div className="text-xs text-slate-500 mt-1.5">Switch-to-controller mean</div>
           )}
         </div>
 
         {/* 2. Worst-Case Latency */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">Max Latency</span>
-            <Zap className="w-4 h-4 text-amber-400" />
+        <div className="border-r border-slate-100 pr-4 last:border-r-0">
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            Worst-Case Latency
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {Number.isFinite(metrics.worstCaseDistance) ? `${metrics.worstCaseDistance} ms` : '∞'}
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-slate-900 tabular-nums">
+              {Number.isFinite(metrics.worstCaseDistance)
+                ? metrics.worstCaseDistance.toFixed(2)
+                : '∞'}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">ms</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">k-center diameter bound</div>
+          <div className="text-xs text-slate-500 mt-1.5">k-center diameter bound</div>
         </div>
 
         {/* 3. Control Plane Reliability (Single-Link N-1) */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">N-1 Link Reliability</span>
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+        <div className="border-r border-slate-100 pr-4 last:border-r-0">
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            N-1 Link Reliability
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {(metrics.controlPlaneReliability * 100).toFixed(1)}%
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-[#0061AF] tabular-nums">
+              {(metrics.controlPlaneReliability * 100).toFixed(2)}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">%</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">reachability under link fault</div>
+          <div className="text-xs text-slate-500 mt-1.5">Single-link fault survivability</div>
         </div>
 
         {/* 4. Resilience Ratio (Controller Crash) */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">N-1 Controller Resil.</span>
-            <Scale className="w-4 h-4 text-indigo-400" />
+        <div className="border-r border-slate-100 pr-4 last:border-r-0">
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            Controller Failover Ratio
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {metrics.resilienceRatio.toFixed(2)}x
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-slate-900 tabular-nums">
+              {Number.isFinite(metrics.resilienceRatio)
+                ? metrics.resilienceRatio.toFixed(2)
+                : '∞'}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">×</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">latency inflation on crash</div>
+          <div className="text-xs text-slate-500 mt-1.5">N-1 outage delay inflation</div>
         </div>
 
-        {/* 5. Load Imbalance */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">Load Balance Std</span>
-            <Scale className="w-4 h-4 text-purple-400" />
+        {/* 5. Load Balance Standard Deviation */}
+        <div className="border-r border-slate-100 pr-4 last:border-r-0">
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            Load Imbalance (σ)
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {metrics.controllerLoadStd.toFixed(2)}
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-slate-900 tabular-nums">
+              {metrics.controllerLoadStd.toFixed(2)}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">nodes</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">switch allocation variance</div>
+          <div className="text-xs text-slate-500 mt-1.5">Switch assignment dispersion</div>
         </div>
 
         {/* 6. Computational Cost */}
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-xs font-medium">Solver Runtime</span>
-            <Clock className="w-4 h-4 text-cyan-400" />
+        <div>
+          <div className="text-xs text-slate-500 font-medium mb-1">
+            Computational Cost
           </div>
-          <div className="text-xl font-bold text-slate-100 font-mono">
-            {metrics.runtimeMs < 1 ? '< 1 ms' : `${metrics.runtimeMs} ms`}
+          <div className="flex items-baseline">
+            <span className="text-2xl font-mono font-semibold text-[#844349] tabular-nums">
+              {metrics.runtimeMs < 1 ? '< 1.0' : metrics.runtimeMs.toFixed(1)}
+            </span>
+            <span className="text-xs font-mono text-slate-500 ml-1.5">ms</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">
+          <div className="text-xs text-slate-500 font-mono tabular-nums mt-1.5">
             {metrics.iterationsToConverge && metrics.iterationsBudget && metrics.iterationsBudget > 1
-              ? `conv. @ ${metrics.iterationsToConverge}/${metrics.iterationsBudget} iters`
-              : 'single-pass heuristic'}
+              ? `Conv: ${metrics.iterationsToConverge}/${metrics.iterationsBudget} ep`
+              : 'Single-pass deterministic'}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

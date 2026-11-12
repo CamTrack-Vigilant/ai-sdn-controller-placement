@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FACTORIAL_SUMMARY_DATA } from '../data/benchmarkDatasets';
 import { FactorialBenchmarkRow } from '../types';
-import { Filter, Download, ArrowUpDown, Award, CheckCircle2 } from 'lucide-react';
+import { Download, ArrowUpDown } from 'lucide-react';
 
 export const FactorialMatrixTable: React.FC = () => {
   const [modelFilter, setModelFilter] = useState<string>('all');
@@ -10,15 +10,14 @@ export const FactorialMatrixTable: React.FC = () => {
   const [sortField, setSortField] = useState<keyof FactorialBenchmarkRow>('avgLatencyMean');
   const [sortAsc, setSortAsc] = useState<boolean>(true);
 
-  // Filtered dataset
   const filtered = FACTORIAL_SUMMARY_DATA.filter((row) => {
     if (modelFilter !== 'all' && row.topologyModel !== modelFilter) return false;
     if (nodesFilter !== 'all' && row.nodeCount.toString() !== nodesFilter) return false;
-    if (budgetFilter !== 'all' && row.controllerBudget.toString() !== budgetFilter) return false;
+    if (budgetFilter !== 'all' && row.controllerBudget.toString() !== budgetFilter)
+      return false;
     return true;
   });
 
-  // Sorted
   const sorted = [...filtered].sort((a, b) => {
     const valA = a[sortField];
     const valB = b[sortField];
@@ -37,9 +36,10 @@ export const FactorialMatrixTable: React.FC = () => {
     }
   };
 
-  // Export CSV
   const handleExportCSV = () => {
     const headers = [
+      'institution',
+      'student_number',
       'topology_model',
       'node_count',
       'controller_budget',
@@ -56,6 +56,8 @@ export const FactorialMatrixTable: React.FC = () => {
     ];
 
     const rows = sorted.map((r) => [
+      'UNIZULU_CS_HONS',
+      '230011908',
       r.topologyModel,
       r.nodeCount,
       r.controllerBudget,
@@ -77,80 +79,84 @@ export const FactorialMatrixTable: React.FC = () => {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `factorial_latency_cost_export.csv`);
+    link.setAttribute('download', `UNIZULU_230011908_Factorial_Benchmark.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl flex flex-col">
-      {/* Header & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-800">
+    <div className="bg-white border border-slate-200 rounded-lg p-6 flex flex-col">
+      {/* Header & SPSS Export Action */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-5 border-b border-slate-200">
         <div>
-          <h3 className="font-bold text-slate-100 text-base flex items-center gap-2">
-            Factorial Latency-Cost Benchmark Matrix
-            <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-              60 Scenario Trials
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 mb-1">
+            <span className="font-semibold text-[#0061AF]">
+              Section 8.3 &amp; 8.5 Factorial Experimental Ledger
             </span>
+            <span aria-hidden="true">·</span>
+            <span>SPSS / GENSTAT Departmental Verification Ready</span>
+            <span aria-hidden="true">·</span>
+            <span>Seed = 42, 142, 242</span>
+          </div>
+          <h3 className="font-bold text-slate-900 text-lg tracking-tight">
+            Multi-Topology Factorial Latency-Cost Matrix
           </h3>
-          <p className="text-xs text-slate-400 mt-1">
-            Empirical results across Barabási-Albert & Waxman models, N ∈ &#123;20, 50, 100&#125;, k ∈ &#123;3, 5&#125;
-          </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 hover:bg-cyan-500 text-white transition-colors shadow"
+          className="flex items-center gap-2 px-4 py-2 rounded-md text-xs font-semibold bg-[#0061AF] hover:bg-[#004987] text-white transition-colors whitespace-nowrap shrink-0"
         >
           <Download className="w-3.5 h-3.5" />
-          Export SPSS/CSV
+          Download CSV Ledger
         </button>
       </div>
 
-      {/* Filters Bar */}
-      <div className="flex flex-wrap items-center gap-3 mb-4 bg-slate-950/70 p-3 rounded-lg border border-slate-800/80 text-xs">
-        <div className="flex items-center gap-1.5 text-slate-400">
-          <Filter className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="font-medium">Filter by:</span>
-        </div>
-
-        {/* Model Filter */}
-        <div className="flex items-center gap-1">
-          <label className="text-slate-400">Topology:</label>
+      {/* Interactive Filter Controls */}
+      <div className="flex flex-wrap items-center gap-4 mb-5 bg-[#F8FAFC] p-3.5 rounded-md border border-slate-200 text-xs">
+        <div className="flex items-center gap-2">
+          <label htmlFor="filter-topology" className="text-slate-600 font-medium">
+            Topology Family:
+          </label>
           <select
+            id="filter-topology"
             value={modelFilter}
             onChange={(e) => setModelFilter(e.target.value)}
-            className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:outline-none focus:border-cyan-500"
+            className="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 font-medium focus:outline-none focus:border-[#0061AF]"
           >
-            <option value="all">All Topologies</option>
-            <option value="barabasi_albert">Barabási-Albert</option>
-            <option value="waxman">Waxman Geographic</option>
+            <option value="all">All Topology Models</option>
+            <option value="barabasi_albert">Barabási-Albert (Scale-Free)</option>
+            <option value="waxman">Waxman (Geographic)</option>
           </select>
         </div>
 
-        {/* Nodes Filter */}
-        <div className="flex items-center gap-1">
-          <label className="text-slate-400">Scale (Nodes):</label>
+        <div className="flex items-center gap-2">
+          <label htmlFor="filter-scale" className="text-slate-600 font-medium">
+            Node Scale (N):
+          </label>
           <select
+            id="filter-scale"
             value={nodesFilter}
             onChange={(e) => setNodesFilter(e.target.value)}
-            className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:outline-none focus:border-cyan-500"
+            className="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 font-medium focus:outline-none focus:border-[#0061AF]"
           >
             <option value="all">All Scales</option>
-            <option value="20">20 Nodes</option>
-            <option value="50">50 Nodes</option>
-            <option value="100">100 Nodes</option>
+            <option value="20">N = 20 Nodes</option>
+            <option value="50">N = 50 Nodes</option>
+            <option value="100">N = 100 Nodes</option>
           </select>
         </div>
 
-        {/* Budget Filter */}
-        <div className="flex items-center gap-1">
-          <label className="text-slate-400">Controllers (k):</label>
+        <div className="flex items-center gap-2">
+          <label htmlFor="filter-budget" className="text-slate-600 font-medium">
+            Controller Budget (k):
+          </label>
           <select
+            id="filter-budget"
             value={budgetFilter}
             onChange={(e) => setBudgetFilter(e.target.value)}
-            className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:outline-none focus:border-cyan-500"
+            className="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-slate-900 font-medium focus:outline-none focus:border-[#0061AF]"
           >
             <option value="all">All Budgets</option>
             <option value="3">k = 3 Controllers</option>
@@ -158,146 +164,120 @@ export const FactorialMatrixTable: React.FC = () => {
           </select>
         </div>
 
-        <span className="ml-auto text-slate-400">
-          Showing <strong>{sorted.length}</strong> of {FACTORIAL_SUMMARY_DATA.length} runs
+        <span className="ml-auto text-slate-600 font-mono tabular-nums">
+          Displaying <strong>{sorted.length}</strong> of {FACTORIAL_SUMMARY_DATA.length} cells
         </span>
       </div>
 
-      {/* Responsive Data Table */}
-      <div className="overflow-x-auto rounded-lg border border-slate-800">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-slate-950 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800 text-[11px]">
+      {/* Tabular Data Grid — No Row Dot Scatter, Strict Tabular Numerals */}
+      <div className="overflow-x-auto rounded-md border border-slate-200">
+        <table className="w-full text-left text-xs text-slate-800">
+          <thead className="bg-[#F8FAFC] text-slate-600 font-semibold border-b border-slate-200">
             <tr>
-              <th className="py-2.5 px-3">Topology</th>
-              <th className="py-2.5 px-2">Nodes</th>
-              <th className="py-2.5 px-2">k</th>
-              <th className="py-2.5 px-3">Algorithm</th>
+              <th className="py-3 px-3.5">Topology Model</th>
+              <th className="py-3 px-2.5">Nodes (N)</th>
+              <th className="py-3 px-2.5">Budget (k)</th>
+              <th className="py-3 px-3.5">Algorithm</th>
               <th
                 onClick={() => handleSort('avgLatencyMean')}
-                className="py-2.5 px-3 cursor-pointer hover:text-cyan-400 transition-colors"
+                className="py-3 px-3.5 cursor-pointer hover:text-[#0061AF] transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  Avg Latency (ms)
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  Mean Latency (ms)
                   <ArrowUpDown className="w-3 h-3" />
                 </div>
               </th>
               <th
                 onClick={() => handleSort('runtimeMsMean')}
-                className="py-2.5 px-3 cursor-pointer hover:text-cyan-400 transition-colors"
+                className="py-3 px-3.5 cursor-pointer hover:text-[#0061AF] transition-colors"
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 whitespace-nowrap">
                   Runtime (ms)
                   <ArrowUpDown className="w-3 h-3" />
                 </div>
               </th>
               <th
                 onClick={() => handleSort('iterationsToConvergeMean')}
-                className="py-2.5 px-3 cursor-pointer hover:text-cyan-400 transition-colors"
+                className="py-3 px-3.5 cursor-pointer hover:text-[#0061AF] transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  Conv. Iters
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  Conv. Epochs
                   <ArrowUpDown className="w-3 h-3" />
                 </div>
               </th>
               <th
                 onClick={() => handleSort('latencyGainVsRandomPct')}
-                className="py-2.5 px-3 cursor-pointer hover:text-cyan-400 transition-colors"
+                className="py-3 px-3.5 cursor-pointer hover:text-[#0061AF] transition-colors"
               >
-                <div className="flex items-center gap-1">
-                  Gain vs Random
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  Gain vs. Random
                   <ArrowUpDown className="w-3 h-3" />
                 </div>
               </th>
               <th
                 onClick={() => handleSort('efficiencyRank')}
-                className="py-2.5 px-2 cursor-pointer hover:text-cyan-400 transition-colors"
+                className="py-3 px-2.5 cursor-pointer hover:text-[#0061AF] transition-colors"
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 whitespace-nowrap">
                   Eff. Rank
                   <ArrowUpDown className="w-3 h-3" />
                 </div>
               </th>
-              <th className="py-2.5 px-3 text-center">Pareto</th>
+              <th className="py-3 px-3.5">Pareto State</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 font-mono">
+          <tbody className="divide-y divide-slate-200 font-mono tabular-nums">
             {sorted.map((row, idx) => (
-              <tr
-                key={idx}
-                className="hover:bg-slate-800/40 transition-colors"
-              >
-                <td className="py-2 px-3 font-sans capitalize text-slate-200">
-                  {row.topologyModel.replace('_', ' ')}
+              <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                <td className="py-2.5 px-3.5 font-sans capitalize text-slate-900">
+                  {row.topologyModel.replace('_', '-')}
                 </td>
-                <td className="py-2 px-2 text-slate-400">{row.nodeCount}</td>
-                <td className="py-2 px-2 text-cyan-300 font-bold">{row.controllerBudget}</td>
-                <td className="py-2 px-3 font-sans font-medium text-slate-100">
-                  <span
-                    className={`inline-block w-2 h-2 rounded-full mr-2 ${
-                      row.algorithm === 'genetic'
-                        ? 'bg-purple-400'
-                        : row.algorithm === 'bandit_rl'
-                        ? 'bg-amber-400'
-                        : row.algorithm === 'greedy_k_center'
-                        ? 'bg-blue-400'
-                        : row.algorithm === 'kmeans'
-                        ? 'bg-emerald-400'
-                        : 'bg-slate-500'
-                    }`}
-                  />
+                <td className="py-2.5 px-2.5 text-slate-600">{row.nodeCount}</td>
+                <td className="py-2.5 px-2.5 text-[#0061AF] font-semibold">
+                  {row.controllerBudget}
+                </td>
+                <td className="py-2.5 px-3.5 font-sans font-semibold text-slate-900">
                   {row.algorithm === 'greedy_k_center'
                     ? 'Greedy k-Center'
                     : row.algorithm === 'bandit_rl'
-                    ? 'Bandit RL'
+                    ? 'AP-DQN / Bandit RL'
                     : row.algorithm === 'genetic'
                     ? 'Genetic Algorithm'
                     : row.algorithm === 'kmeans'
-                    ? 'k-Means'
-                    : 'Random'}
+                    ? 'k-Means Clustering'
+                    : 'Random Baseline'}
                 </td>
-                <td className="py-2 px-3 text-slate-100 font-semibold">
+                <td className="py-2.5 px-3.5 text-slate-900 font-semibold">
                   {row.avgLatencyMean.toFixed(2)}
                   {row.avgLatencyStd > 0 && (
-                    <span className="text-[10px] text-slate-500 ml-1">
+                    <span className="text-[11px] text-slate-500 ml-1">
                       ±{row.avgLatencyStd.toFixed(2)}
                     </span>
                   )}
                 </td>
-                <td className="py-2 px-3 text-slate-300">
-                  {row.runtimeMsMean < 1 ? '< 0.5' : row.runtimeMsMean.toFixed(1)}
+                <td className="py-2.5 px-3.5 text-slate-700">
+                  {row.runtimeMsMean < 1 ? '< 0.50' : row.runtimeMsMean.toFixed(2)}
                 </td>
-                <td className="py-2 px-3 text-slate-400">
+                <td className="py-2.5 px-3.5 text-slate-600">
                   {row.iterationsToConvergeMean.toFixed(1)}
                 </td>
                 <td
-                  className={`py-2 px-3 font-semibold ${
-                    row.latencyGainVsRandomPct > 0 ? 'text-emerald-400' : 'text-slate-500'
+                  className={`py-2.5 px-3.5 font-semibold ${
+                    row.latencyGainVsRandomPct > 0 ? 'text-emerald-700' : 'text-slate-500'
                   }`}
                 >
                   {row.latencyGainVsRandomPct > 0
-                    ? `+${row.latencyGainVsRandomPct.toFixed(1)}%`
-                    : '0.0%'}
+                    ? `+${row.latencyGainVsRandomPct.toFixed(2)}%`
+                    : '0.00%'}
                 </td>
-                <td className="py-2 px-2 text-center">
-                  <span
-                    className={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold ${
-                      row.efficiencyRank === 1
-                        ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
-                        : row.efficiencyRank === 2
-                        ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
-                        : 'text-slate-500'
-                    }`}
-                  >
-                    #{row.efficiencyRank}
-                  </span>
+                <td className="py-2.5 px-2.5 font-semibold text-[#844349]">
+                  #{row.efficiencyRank}
                 </td>
-                <td className="py-2 px-3 text-center">
+                <td className="py-2.5 px-3.5 font-sans">
                   {row.isParetoOptimal ? (
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">
-                      <CheckCircle2 className="w-3 h-3" /> YES
-                    </span>
+                    <span className="text-[#0061AF] font-semibold">● Optimal</span>
                   ) : (
-                    <span className="text-slate-600 text-[11px]">-</span>
+                    <span className="text-slate-500">○ Dominated</span>
                   )}
                 </td>
               </tr>
